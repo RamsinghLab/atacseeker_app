@@ -1,0 +1,52 @@
+---
+title: "csaw"
+author: "asif zubair"
+date: "June 1, 2015"
+output: pdf_document
+---
+
+```{r, message=FALSE, warning=FALSE}
+require(csaw) 
+require(edgeR) 
+require(statmod)
+```
+
+```{r}
+bam.files <- c("normal1_sorted_filtered.bam", "normal2_sorted_filtered.bam", 
+               "normal4_sorted_filtered.bam", 
+               "senescent1_sorted_filtered.bam", "senescent2_sorted_filtered.bam", 
+               "senescent4_sorted_filtered.bam") 
+
+subject = factor(rep(c(1,2,3), 2))
+treat = c(rep("N", 3), rep("S",3))
+
+design <- model.matrix(~subject + treat) 
+colnames(design) <- c("intercept", "subject-2","subject-3","senescent")
+```
+
+```{r}
+data <- windowCounts(bam.files, ext=110, width=10)
+keep <- aveLogCPM(asDGEList(data)) >= -1 
+data <- data[keep,]
+```
+
+```{r}
+binned <- windowCounts(bam.files, bin=TRUE, width=10000) 
+normfacs <- normalize(binned)
+```
+
+```{r}
+y <- asDGEList(data, norm.factors=normfacs) 
+y <- estimateDisp(y, design) 
+fit <- glmQLFit(y, design, robust=TRUE) 
+results <- glmQLFTest(fit)
+```
+
+```{r}
+merged <- mergeWindows(rowData(data), tol=1000L) 
+tabcom <- combineTests(merged$id, results$table)
+```
+
+
+
+
