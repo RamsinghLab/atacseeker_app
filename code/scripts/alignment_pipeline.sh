@@ -39,8 +39,10 @@ OUTBAM=$SUBJECT".unique_q10minimum_noChrM."$GENOME".bam"
 ##
 ## a truly filthy trick: directly grep out the reads on chrM 
 ##
-bwa mem -M $GENOME.fa $FASTQS | samblaster | grep -v "chrM" | \
-  samtools view $FLAGS - >
+bwa mem -M $GENOME.fa $FASTQS | \
+  samblaster | \
+  grep -v "chrM" | \
+  samtools view $FLAGS - > $OUTBAM
 
 ## sort and index the BAM for downstream processing
 ##
