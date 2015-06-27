@@ -52,4 +52,4 @@ samtools index $SORTED".bam"
 
 ## if you wanted to, you could bamToBigWig it at this point:
 ##
-scripts/bamToBigWig $SORTED $GENOME
+./bamToBigWig $SORTED $GENOME
