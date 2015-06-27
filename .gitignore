@@ -11,3 +11,9 @@
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
+
+# data files
+*.bam
+*.bami
+*.fastq
+*.fa
