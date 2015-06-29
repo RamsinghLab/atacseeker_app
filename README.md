@@ -1,6 +1,8 @@
 # ATACseq_counts
 Repo for BaseSpace ATACseq pipeline. 
 
+*requires: R, bwa, samtools, samblaster, genomeCoverageBed, wget, mysql*
+
 This repository contains a first pass attempt for an application for BaseSpace.
 
 The elements of the approach are as follows: 
@@ -10,5 +12,3 @@ The elements of the approach are as follows:
 3. Deploy this as a Native App on BaseSpace. 
 
 The long term objective is to integrate this with the **ATACseeker** package and **csaw**.
-
-*This README will be edited over the course of development.*
