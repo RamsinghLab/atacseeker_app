@@ -18,7 +18,8 @@ RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN apt-get update && install -y \
     r-base \
     bwa \
-    samtools 
+    samtools \
+    git
 
 #COPY tmp/software /bin
 COPY tmp/samplefastq /Package_data/sample_fastq
