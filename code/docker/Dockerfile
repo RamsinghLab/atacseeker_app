@@ -7,14 +7,14 @@
 FROM ubuntu
 MAINTAINER Asif Zubair <asif.zubair@gmail.com>
 
-# Honestly, I ahve no idea why i am running this ENV command, must ask Anthony.
+# Honestly, I have no idea why i am running this ENV command, must ask Anthony.
 ENV DEBIAN_FRONTEND noninteractive
 
 # Getting ready to install R!
 RUN echo 'deb http://cran.stat.ucla.edu//bin/linux/ubuntu trusty/' | sudo tee -a /etc/apt/sources.list.d/r.list
 RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
-# Best practices inidicate not to run apt-getupdate on a single line.
+# Best practices indicate not to run apt-get update on a single line and have multi line installation
 RUN apt-get update && install -y \
     r-base \
     bwa \
