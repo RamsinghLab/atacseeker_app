@@ -17,5 +17,4 @@ vignettes/*.pdf
 *.fastq
 *.fa
 hg19.*
-tmp/*
 artemis.dockerfile
