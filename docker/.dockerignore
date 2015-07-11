@@ -1,1 +1,3 @@
 artemis.dockerfile
+tmp/data/*
+tmp/reference/*

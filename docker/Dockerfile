@@ -26,6 +26,6 @@ RUN mkdir /atacseq_counts
 COPY tmp/scripts /atacseq_counts
 #COPY tmp/samplefastq /Package_data/sample_fastq
 
-RUN bash /atacseq_counts/install_sambalster.sh
+RUN bash /atacseq_counts/install_samblaster.sh
 
 #CMD [./my_alignment_script.sh]
