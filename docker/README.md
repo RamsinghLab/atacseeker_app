@@ -2,7 +2,7 @@
 
 Running the command: 
 
-*docker build -t <image-name> .* 
+*docker build -t image-name .* 
 
 in this folder will create a docker image with the following software installed:
 
@@ -12,6 +12,6 @@ To run the alignment inside the docker container, make sure to mount the "tmp" f
 
 Something like this should work:
 
-*docker run -v ~/projects/atacseq_counts/docker/tmp:/atacseq_counts -t asifzubair/atacseq*
+*docker run -v ~/projects/atacseq_counts/docker/tmp:/atacseq_counts -t image-name*
 
 
