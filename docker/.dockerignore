@@ -2,3 +2,4 @@ artemis.dockerfile
 README.md
 tmp/data/*
 tmp/reference/*
+tmp/scripts/my_alignment_script.sh
