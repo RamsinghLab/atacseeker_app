@@ -2,14 +2,17 @@
 title: "csaw"
 author: "asif zubair"
 date: "June 1, 2015"
-output: pdf_document
+output: html_document
 ---
+
 
 ```{r, message=FALSE, warning=FALSE}
 require(csaw) 
 require(edgeR) 
 require(statmod)
 ```
+
+Specify the bam files and createdesign matrix.
 
 ```{r}
 bam.files <- c("normal1_sorted_filtered.bam", "normal2_sorted_filtered.bam", 
@@ -18,17 +21,27 @@ bam.files <- c("normal1_sorted_filtered.bam", "normal2_sorted_filtered.bam",
                "senescent4_sorted_filtered.bam") 
 
 subject = factor(rep(c(1,2,3), 2))
-treat = c(rep("N", 3), rep("S",3))
+treatment = c(rep("N", 3), rep("S",3))
 
-design <- model.matrix(~subject + treat) 
+design <- model.matrix(~subject + treatment) 
 colnames(design) <- c("intercept", "subject-2","subject-3","senescent")
 ```
 
+*windowCounts* function will use a sliding window approach to count fragments for a set of libraries. The number of fragments
+overlapping a genomic window is counted. This is repeated after sliding the window along the genome to a new position. A count is then obtained for each window in each library.
+
+For window size, quoting directly **from the user guide**: 
+"The window size can be interpreted as a measure of the width of the binding site. Thus, TF analyses will typically use a small window size, e.g., 10 - 20 bp. This maximizes spatial resolution to allow optimal detection of narrow regions of enrichment. For histone marks, widths of at least 150 bp are recommended [Humburg et al., 2011]. This corresponds to the length of DNA wrapped up in each nucleosome, i.e., the smallest relevant unit for histone mark enrichment."
+
 ```{r}
-data <- windowCounts(bam.files, ext=110, width=10)
+frag.len <- 110
+window.width <- 10
+data <- windowCounts(bam.files, ext=frag.len, width=window.width)
 keep <- aveLogCPM(asDGEList(data)) >= -1 
 data <- data[keep,]
 ```
+
+Here, data is a *SummarizedExperiment* object. For future reference, *assay* can be used to obtain the matrix of counts. The coordinates of each window are stored in the *rowRanges*. The total number of reads in each library are stored as *totals* in the *colData*. 
 
 ```{r}
 binned <- windowCounts(bam.files, bin=TRUE, width=10000) 
