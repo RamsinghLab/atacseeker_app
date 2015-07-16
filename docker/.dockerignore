@@ -1,4 +1,5 @@
 artemis.dockerfile
 README.md
-tmp/data/*
-tmp/reference/*
+tmp/data/*.bam
+tmp/data/*.bai
+tmp/reference/hg19*

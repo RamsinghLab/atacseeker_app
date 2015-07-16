@@ -14,7 +14,7 @@ FASTQS=$SUBJECT"_1."$SUFFIX" "$SUBJECT"_2."$SUFFIX
 ## > normal1_1.1mReads.fastq normal1_2.1mReads.fastq
 
 REF_PATH="/atacseq_counts/reference/" 
-GENOME="hg19" ## let's hope we know this in advance!!
+GENOME="chr22" ## let's hope we know this in advance!!
 CHRSIZES=$GENOME".chrom.sizes" ## assuming we do
 
 ## check quality of reads in fastq files

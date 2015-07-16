@@ -21,18 +21,18 @@ RUN apt-get update && apt-get install -y \
     samtools
 
 # Make package directories. 
-#RUN mkdir -p /atacseq_counts/data /atacseq_counts/reference /atacseq_counts/scripts /atacseq_counts/install
+RUN mkdir -p /atacseq_counts/data /atacseq_counts/reference /atacseq_counts/scripts /atacseq_counts/install
 
-#COPY tmp/data /atacseq_counts/data
-#COPY tmp/reference /atacseq_counts/reference
-#COPY tmp/scripts /atacseq_counts/scripts
+COPY tmp/data /atacseq_counts/data
+COPY tmp/reference /atacseq_counts/reference
+COPY tmp/scripts /atacseq_counts/scripts
 
-COPY tmp/scripts tmp
+#COPY tmp/scripts tmp
 
 # Run samblaster installation and run alignment script. 
-#RUN bash /atacseq_counts/scripts/install_sambalster.sh
+RUN bash /atacseq_counts/scripts/install_samblaster.sh
 
-RUN bash /tmp/install_samblaster.sh 
-CMD ["bash","/atacseq_counts/scripts/my_alignment_script.sh"]
+#RUN bash /tmp/install_samblaster.sh 
+CMD ["bash","/atacseq_counts/scripts/my_alignment_pipeline.sh"]
 
 
