@@ -11,7 +11,7 @@ bwa, git, R, samblaster, samtools
 
 To run the alignment inside the docker container, directly run the pipeline by doing this:
 
-`docker run -t asifzubair/atacseq`
+`docker run -t image-name`
 
 
 Previously, was trying to not copy data & reference to image. In this case, make sure to mount the "tmp" folder containing the data. 
