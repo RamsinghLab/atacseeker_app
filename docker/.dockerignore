@@ -1,5 +1,6 @@
-artemis.dockerfile
 README.md
 tmp/data/*.bam
 tmp/data/*.bai
 tmp/reference/hg19*
+artemis.dockerfile
+docker_run.log
