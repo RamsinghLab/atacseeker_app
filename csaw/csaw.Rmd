@@ -5,6 +5,9 @@ date: "June 1, 2015"
 output: html_document
 ---
 
+**Note:** This document summarrizes the csaw workflow and borrows heavily from the userguide. 
+
+Loading required libraries. `csaw` is based on `edgeR`. `statmod` was required for one of the functions used below.
 
 ```{r, message=FALSE, warning=FALSE}
 require(csaw) 
@@ -12,7 +15,7 @@ require(edgeR)
 require(statmod)
 ```
 
-Specify the bam files and createdesign matrix.
+Specify the bam files and create design matrix.
 
 ```{r}
 bam.files <- c("normal1_sorted_filtered.bam", "normal2_sorted_filtered.bam", 
@@ -26,24 +29,69 @@ treatment = c(rep("N", 3), rep("S",3))
 design <- model.matrix(~subject + treatment) 
 colnames(design) <- c("intercept", "subject-2","subject-3","senescent")
 ```
+### Deciding window size
 
-*windowCounts* function will use a sliding window approach to count fragments for a set of libraries. The number of fragments
+`windowCounts` function will use a sliding window approach to count fragments for a set of libraries. The number of fragments
 overlapping a genomic window is counted. This is repeated after sliding the window along the genome to a new position. A count is then obtained for each window in each library.
 
-For window size, quoting directly **from the user guide**: 
+For ascertaining window size, quoting directly **from the user guide**: 
+
 "The window size can be interpreted as a measure of the width of the binding site. Thus, TF analyses will typically use a small window size, e.g., 10 - 20 bp. This maximizes spatial resolution to allow optimal detection of narrow regions of enrichment. For histone marks, widths of at least 150 bp are recommended [Humburg et al., 2011]. This corresponds to the length of DNA wrapped up in each nucleosome, i.e., the smallest relevant unit for histone mark enrichment."
 
+### Filtering low-quality reads
+
+Read extraction from the BAM files is controlled with the `param` argument in `windowCounts`. 
+
+The param argument expects a `readParam()` object. Typically, one would define different `readParam()` objects with varying strictness and use them later on in the analysis. 
+
 ```{r}
-frag.len <- 110
-window.width <- 10
-data <- windowCounts(bam.files, ext=frag.len, width=window.width)
-keep <- aveLogCPM(asDGEList(data)) >= -1 
-data <- data[keep,]
+default.param <- readParam()
+default.param
+strict.param <- readParam(minq=50, dedup=TRUE)
+strict.param
 ```
 
-Here, data is a *SummarizedExperiment* object. For future reference, *assay* can be used to obtain the matrix of counts. The coordinates of each window are stored in the *rowRanges*. The total number of reads in each library are stored as *totals* in the *colData*. 
+### Avoiding problematic regions
+
+One can avoid known/inferred problematic regions on the genome by specifying them in `restrict`. These could be regions that may be known to be problematic as described in the [link](https://sites.google.com/site/anshulkundaje/projects/blacklists), or discovered using *RepeatMasker*. The `restrict` argument could also be used as a way of doing the analysis one chromosome at a time on huge datasets or in limted memory. 
+
+A possible usage is shown below:
 
 ```{r}
+new.param <- readParam(discard=repeats, restrict=c("chr1", "chr10", "chrX"))
+```
+
+### Paried-end data
+
+We move forward to the actual `windowCounts` call for paired end data. This can be accounted for by setting `pe="both"` in the `param` object. By default, only proper pairs are used whereby the two reads are on the same chromosome, face inward and are no more than `max.frag` apart.
+
+The returned object `data` is a `SummarizedExperiment` object. For future reference, `assay` can be used to obtain the matrix of counts. The coordinates of each window are stored in the `rowRanges`. The total number of reads in each library are stored as `totals` in the `colData`. 
+
+```{r}
+frag.len <- 400
+window.width <- 150
+pe.param <- readParam(max.frag = frag.len, pe = "both")
+data <- windowCounts(bam.files, width = window.width, param = pe.param)
+data$totals
+```
+
+A suitable value of `max.frag` can be chosen by examining the distribution of fragment sizes using the `getPESizes` function.
+
+```{r}
+pe.bam <- "normal1_sorted_filtered.bam"
+out <- getPESizes(pe.bam)
+frag.sizes <- out$sizes[out$sizes<=800]
+hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
+abline(v=400, col="red")
+```
+
+
+
+
+
+```{r}
+keep <- aveLogCPM(asDGEList(data)) >= -1 
+data <- data[keep,]
 binned <- windowCounts(bam.files, bin=TRUE, width=10000) 
 normfacs <- normalize(binned)
 ```
