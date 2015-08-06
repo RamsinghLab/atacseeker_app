@@ -5,7 +5,7 @@ date: "June 1, 2015"
 output: html_document
 ---
 
-**Note:** This document summarrizes the csaw workflow and borrows heavily from the userguide. 
+**Note:** This document summarizes the csaw workflow and borrows heavily from the userguide. 
 
 Loading required libraries. `csaw` is based on `edgeR`. `statmod` was required for one of the functions used below.
 
@@ -15,7 +15,7 @@ require(edgeR)
 require(statmod)
 ```
 
-Specify the bam files and create design matrix.
+Specify the bam files and create design matrix based on our experiment.
 
 ```{r}
 bam.files <- c("normal1_sorted_filtered.bam", "normal2_sorted_filtered.bam", 
@@ -61,11 +61,11 @@ A possible usage is shown below:
 new.param <- readParam(discard=repeats, restrict=c("chr1", "chr10", "chrX"))
 ```
 
-### Paried-end data
+### Paired-end data
 
 We move forward to the actual `windowCounts` call for paired end data. This can be accounted for by setting `pe="both"` in the `param` object. By default, only proper pairs are used whereby the two reads are on the same chromosome, face inward and are no more than `max.frag` apart.
 
-The returned object `data` is a `SummarizedExperiment` object. For future reference, `assay` can be used to obtain the matrix of counts. The coordinates of each window are stored in the `rowRanges`. The total number of reads in each library are stored as `totals` in the `colData`. 
+The returned object, here `data`, is a `SummarizedExperiment` object. For future reference, `assay` can be used to obtain the matrix of counts. The coordinates of each window are stored in the `rowRanges`. The total number of reads in each library are stored as `totals` in the `colData`. 
 
 ```{r}
 frag.len <- 400
@@ -74,6 +74,8 @@ pe.param <- readParam(max.frag = frag.len, pe = "both")
 data <- windowCounts(bam.files, width = window.width, param = pe.param)
 data$totals
 ```
+
+### Estimating `max.frag` value
 
 A suitable value of `max.frag` can be chosen by examining the distribution of fragment sizes using the `getPESizes` function.
 
