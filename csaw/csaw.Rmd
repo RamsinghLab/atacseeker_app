@@ -98,9 +98,8 @@ c(out$diagnostics, too.large=sum(out$sizes > 400))
 In datasets where many read pairs are invalid, the reads in those pairs can be rescued by setting `rescue.ext` to a positive integer.
 
 ### Estimating the average fragment length ###
-  
-**Cross-correlation plots**
-Cross-correlation plots can be generated directly from BAM ﬁles using the `correlateReads` function. Efficient IP should yield a smooth peak at a delay distance corresponding to the average fragment length. The location of the peak can then be used as an estimate of the fragment length for read extension in `windowCounts`. 
+
+**Cross-correlation plots** can be generated directly from BAM ﬁles using the `correlateReads` function. Efficient IP should yield a smooth peak at a delay distance corresponding to the average fragment length. The location of the peak can then be used as an estimate of the fragment length for read extension in `windowCounts`. 
 
 Cross-correlation plots can be used for fragment length estimation of narrow histone marks such as histone acetylation and H3K4 methylation. However, they are less effective for regions of diffuse enrichment where bimodality is not obvious (e.g., H3K27 trimethylation).
 
@@ -143,7 +142,12 @@ legend("topright", col=c("blue", "forestgreen", rgb(0,0,0,0.5)), c("normal1_sort
                   "senescent4_sorted_filtered.bam"), pch=16)
 abline(v=c(-150,200), col="dodgerblue", lty=2)
 ```
+Additionally, see the `wwhm` function for selection of a window width from the coverage proﬁle.
+
 # Filtering uninteresting windows #
+
+Many of the low abundance windows in the genome correspond to background regions in which DB is not expected. **Filtering** is valid so long as it is independent of the test statistic under the null hypothesis [Bourgon et al., 2010]. In the negative binomial (NB) framework, this (probably) corresponds to ﬁltering on the overall NB mean. The DB p-values retained after ﬁltering on the overall mean should be uniform under the null hypothesis, by analogy to the normal case. Row sums can also be used for datasets where the effective library sizes are not very different, or where the counts are assumed to be Poisson-distributed between biological replicates.
+
 
 ```{r}
 keep <- aveLogCPM(asDGEList(data)) >= -1 
