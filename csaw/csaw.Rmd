@@ -108,7 +108,8 @@ Cross-correlation plots can be used for fragment length estimation of narrow his
 n <- 1000 
 dedup.on <- readParam(dedup=TRUE) 
 pe.corr <- correlateReads(pe.bam, n, param=dedup.on) 
-plot(0:n, pe.corr, col="blue", ylim=c(0, 0.1), xlim=c(0, 1000), xlab="Delay (bp)", ylab="CCF", pch=16, type="l", lwd=2) 
+plot(0:n, pe.corr, col="blue", ylim=c(0, 0.1), xlim=c(0, 1000), 
+                              xlab="Delay (bp)", ylab="CCF", pch=16, type="l", lwd=2) 
 ```
 
 ### Choice of Window Size ###
@@ -136,9 +137,10 @@ plot(xranged, collected[[1]], type="l", col="blue", xlim=c(-1000, 1000), lwd=2,
 xlab="Distance (bp)", ylab="Relative coverage per base")
 lines(xranged, collected[[2]], col="forestgreen", lwd=2)
 lines(xranged, collected[[3]], col=rgb(0,0,0,0.5), lwd=2)
-legend("topright", col=c("blue", "forestgreen", rgb(0,0,0,0.5)), c("normal1_sorted_filtered", "normal2_sorted_filtered", 
-                  "normal4_sorted_filtered", "senescent1_sorted_filtered", 
-                  "senescent2_sorted_filtered", "senescent4_sorted_filtered.bam"), pch=16)
+legend("topright", col=c("blue", "forestgreen", rgb(0,0,0,0.5)), c("normal1_sorted_filtered", 
+                  "normal2_sorted_filtered", "normal4_sorted_filtered", 
+                  "senescent1_sorted_filtered", "senescent2_sorted_filtered", 
+                  "senescent4_sorted_filtered.bam"), pch=16)
 abline(v=c(-150,200), col="dodgerblue", lty=2)
 ```
 # Filtering uninteresting windows #
