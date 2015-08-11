@@ -14,7 +14,7 @@ require(statmod)
 ```
 
 
-### Counting reads into windows ###
+### Counting reads in windows ###
 
 
 ```{r, echo = FALSE}
@@ -62,7 +62,7 @@ c(out$diagnostics, too.large=sum(out$sizes > 400))
 Cross-correlation plot:
 
 
-```{r. echo=FALSE}
+```{r, echo=FALSE}
 max.delay <- 500
 dedup.on <- readParam(dedup=TRUE, minq=50)
 x <- correlateReads(bam.files, max.delay, param=dedup.on)
@@ -112,10 +112,11 @@ data$totals
 ```
 
 
-### Computing Normalization factors ###
+### Normalization factors ###
 
 
 ```{r}
+param<- readParam()
 binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 normfacs <- normalize(binned)
 normfacs
@@ -123,7 +124,7 @@ normfacs
 
 Do an MA plot : 
 
-```{r}
+```{r, echo = FALSE}
 adj.counts <- cpm(asDGEList(binned), log=TRUE)
 cur.x <- adj.counts[,1]
 cur.y <- adj.counts[,2]
@@ -134,5 +135,36 @@ abline(h=all.dist, col="red")
 ```
 
 
+### Filtering out low abundance regions ###
+
+Keep only high abundance regions according to a pre-defined threshold.
+
+```{r}
+abundance <- aveLogCPM(asDGEList(data))
+keep <- abundance > -1
+original <- data
+data <- data[keep,]
+```
+
+
+
+### Testing for Differential Binding ###
+
+Let's see how the samples are clustered:
+
+```{r, echo=FALSE}
+binned.2 <- windowCounts(bam.files, bin=TRUE, width=2000, param=param)
+bin.adjc <- cpm(asDGEList(binned.2), log=TRUE)
+plotMDS(bin.adjc, labels=samples)
+```
+
+
+```{r}
+y <- asDGEList(data, norm.factors=normfacs)
+y <- estimateDisp(y, design)
+fit <- glmQLFit(y, design, robust=TRUE)
+contrast <- makeContrasts(es - tn, levels=design)
+results <- glmQLFTest(fit, contrast=contrast)
+```
 
 
