@@ -14,5 +14,15 @@ require(statmod)
 ```
 
 
+```{r}
+bam.files = file.path("/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq", 
+              c("normal1.unique_q10minimum_noChrM.hg19.sorted.bam", "normal2.unique_q10minimum_noChrM.hg19.sorted.bam", 
+                "normal4.unique_q10minimum_noChrM.hg19.sorted.bam", "senescent1.unique_q10minimum_noChrM.hg19.sorted.bam", 
+                "senescent2.unique_q10minimum_noChrM.hg19.sorted.bam", "senescent4.unique_q10minimum_noChrM.hg19.sorted.bam"))
+```
+
+
+
+
 
 
