@@ -1,0 +1,18 @@
+---
+title: "csaw pipeline"
+author: "asif zubair"
+date: "August 10, 2015"
+output: html_document
+---
+
+**Summary**: This document will do an end to end `csaw` analysis on the bam files produced by the alignment pipeline. 
+
+```{r, message=FALSE, warning=FALSE}
+require(csaw) 
+require(edgeR) 
+require(statmod)
+```
+
+
+
+
