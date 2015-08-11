@@ -11,6 +11,7 @@ output: html_document
 require(csaw) 
 require(edgeR)
 require(statmod)
+require(locfit)
 ```
 
 
@@ -163,8 +164,8 @@ plotMDS(bin.adjc, labels=samples)
 y <- asDGEList(data, norm.factors=normfacs)
 y <- estimateDisp(y, design)
 fit <- glmQLFit(y, design, robust=TRUE)
-contrast <- makeContrasts(es - tn, levels=design)
-results <- glmQLFTest(fit, contrast=contrast)
+#contrast <- makeContrasts(es - tn, levels=design)
+#results <- glmQLFTest(fit, contrast=contrast)
 ```
 
 
