@@ -1,8 +1,6 @@
 #!/bin/bash -x
 
-## > For expository purposes, let's generalize a tiny bit:
-##
-
+# change to DATA folder
 DATA="/atacseq_counts/data"
 cd $DATA
 
