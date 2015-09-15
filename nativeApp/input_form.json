@@ -1,0 +1,174 @@
+{
+    "$type": "Form",
+    "fields": [
+        
+        // Let's define the fields in our form.
+        
+        // App Session ID - User inputs the name of the session.         
+        {
+            "$type": "TextBox",
+            "size": 400,
+            "minLength": 0,
+            "maxLength": 150,
+            "value": "Example [LocalDateTime]",
+            "label": "Analysis Name",
+            "required": true,
+            "requiredMessage": "Please enter name for your app session.",
+            "id": "app-session-name"
+        },
+        
+        // Sample chooser - User chooses the samples to run
+        // We check that the samples are paired end and it is not-empty
+        {
+            "$type": "SampleChooser",  
+            "size": 300, 
+            "label": "Sample",
+            "required": true,
+            "multiselect": true,
+            "requiredMessage": "Please choose a sample",
+            "id": "samples", 
+            "rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom" 
+        },
+        
+        
+        // Project Chooser. 
+        {
+            "$type": "ProjectChooser",
+            "size": 300,
+            "valueType": "Output",
+            "allowedPermissions": "owner",
+            "label": "Save Results To",
+            "required": true,
+            "requiredMessage": "Please choose a project",
+            "id": "project-id",
+            "allowResourceCreation": true,
+            "rules": "is-project-owner"
+        },
+        
+        // User Specified design matrix. We look at nested and linear.
+        {
+            "$type": "RadioButton", 
+            "id": "design_matrix", 
+            "label": "Design matrix",
+            "value": 1, 
+            "choices": [
+                {
+                    "value": 0,
+                    "label": "Nested"
+                },
+                {
+                    "value": 1,
+                    "label": "Linear"
+                }
+            ]   
+        },
+        
+        {
+            "$type": "SectionBreak"
+     
+        }
+    ],
+    
+    "rulesets":[
+       
+        {
+            "$type": "ScriptValidationRule",
+            "callback":"
+   
+                var Files=dataProvider.GetProperty(\"Input.file-id\")[0];
+                var FileName= Files.Name;
+       
+ 
+                if (FileName.indexOf(\"fastq\") == -1){
+                    return {Message: 'fastq files only'}
+                }
+   
+  
+                return null;",
+            "id": "fast-select",
+            "severity": "Error"
+        },
+        
+        // Sample Validation Rules
+        // We check that the samples are Paired End and non-empty
+        
+        {
+            "$type": "EmptySampleValidationRule",
+            "message": "The sample cannot be empty",
+            "id": "sample-is-not-empty"
+        },
+        
+        {
+            "$type": "PairedEndSampleValidationRule",
+            "message": "This app currently only supports paired-end reads.",
+            "relation": "Equals",
+            "value": true,
+            "severity": "Error",
+            "id": "is-paired-end"
+        },
+        
+        // Should we check each sample to be PE ??? 
+    
+      /*{
+            "$type": "ScriptValidationRule",
+            "callback": "
+                var samples = dataProvider.GetProperty(\"Input.samples\");
+                for(var i = 0; i < samples.length; i++)
+                {
+                    var sample = samples[i];
+
+                    if(!sample.IsPairedEnd)
+                    {
+                        return {Message:'This Sample is not Paired-End'};
+                    }
+                }
+                return null;",
+            "id": "is-paired-end"
+        },*/
+        
+        // Custom rule to test that both Tumor and Normal samples have been provided.
+        // We need to modify this to make it work for Control and Treatment samples.
+        
+        {
+            "$type": "ScriptValidationRule",
+            "callback": "
+                var inputs = dataProvider.GetInputs(currentControl);
+                var samples = new Array();
+                if (inputs.Length > 0) {
+                    var sample;
+                    for (var i=0; i < inputs.Length; i++) {
+                        sample = inputs[i].ContentSample;
+                        if (sample) {
+                            samples.push(sample);
+                        }
+                    }
+
+                    if (samples.length < 2){
+                        return { 
+                            Message: 'Please specify a tumor and a normal sample. Both a tumor and a normal sample need to be specified.' };
+                    }
+                    else{
+                        if (samples[0].Id != samples[1].Id){
+                            return null;
+                        }
+                        else{
+                            return { Message: 'The tumor and the normal sample specified must be different. Both tumor and normal samples specified are the same.'};
+                        }
+                    }
+                }
+                return null;",
+            
+            "id": "tumor-normal-custom"
+        },
+        
+        // General rule around permissions
+        {
+            "$type": "PermissionValidationRule",
+            "permissions": "Own",
+            "severity": "Error",
+            "message": "You aren't the owner of the selected project.",
+            "id": "is-project-owner"
+        }
+    
+    ]
+}
