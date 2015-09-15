@@ -19,7 +19,7 @@ require(locfit)
 
 
 ```{r, echo = FALSE}
-fastq_dir="C:\\Users\\User\\OneDrive\\projects\\atacseq\\data\\fastq"
+fastq_dir="/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq"
 samples = c("normal1", "normal2", "normal4", "senescent1", "senescent2", "senescent4")
 bam.files = file.path(fastq_dir, paste0(samples, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
 ```
@@ -33,7 +33,7 @@ subject = factor(rep(c(1,2,3), 2))
 treatment = c(rep("N", 3), rep("S",3))
 
 design <- model.matrix(~subject + treatment) 
-colnames(design) <- c("intercept", "subject-2","subject-3","senescent")
+colnames(design) <- c("intercept", "subject2","subject3","senescent")
 rownames(design) <- samples
 design
 ```
