@@ -3,7 +3,6 @@
     "fields": [
         
         // Let's define the fields in our form.
-        
         // App Session ID - User inputs the name of the session.         
         {
             "$type": "TextBox",
@@ -16,20 +15,6 @@
             "requiredMessage": "Please enter name for your app session.",
             "id": "app-session-name"
         },
-        
-        // Sample chooser - User chooses the samples to run
-        // We check that the samples are paired end and it is not-empty
-        {
-            "$type": "SampleChooser",  
-            "size": 300, 
-            "label": "Sample",
-            "required": true,
-            "multiselect": true,
-            "requiredMessage": "Please choose a sample",
-            "id": "samples", 
-            "rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom" 
-        },
-        
         
         // Project Chooser. 
         {
@@ -45,8 +30,68 @@
             "rules": "is-project-owner"
         },
         
-        // User Specified design matrix. We look at nested and linear.
         {
+            "$type": "SectionBreak",
+            "id": "section-break-1",
+            "title": "Control Group"
+        },
+        
+        {
+            "$type": "TextBox",
+            "size": 300,
+            "value": "control",
+            "label": "Group Label",
+            "required": true,
+            "requiredMessage": "Please enter name for your app session.",
+            "id": "control_label",
+            "helpText": "please provide a label for your control samples"
+        },
+        
+        // Sample chooser - User chooses the samples to run
+        // We check that the samples are paired end and it is not-empty
+        {
+            "$type": "SampleChooser",  
+            "size": 300, 
+            "label": "Control Samples",
+            "required": true,
+            "multiselect": true,
+            "requiredMessage": "Please choose a sample",
+            "id": "control_samples", 
+            "rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom" 
+        },
+        
+                {
+            "$type": "SectionBreak",
+            "id": "section-break-2",
+            "title": "Comparison Group"
+        },
+        
+        {
+            "$type": "TextBox",
+            "size": 300,
+            "value": "comparison",
+            "label": "Group Label",
+            "required": true,
+            "requiredMessage": "Please enter name for your app session.",
+            "id": "compare_label",
+            "helpText": "please provide a label for your comparison samples"
+        },
+        
+        // Sample chooser - User chooses the samples to run
+        // We check that the samples are paired end and it is not-empty
+        {
+            "$type": "SampleChooser",  
+            "size": 300, 
+            "label": "Comparison Samples",
+            "required": true,
+            "multiselect": true,
+            "requiredMessage": "Please choose a comparison sample",
+            "id": "compare_samples", 
+            "rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom" 
+        },
+
+        // User Specified design matrix. We look at nested and linear.
+        /*{
             "$type": "RadioButton", 
             "id": "design_matrix", 
             "label": "Design matrix",
@@ -61,7 +106,7 @@
                     "label": "Linear"
                 }
             ]   
-        },
+        },*/
         
         {
             "$type": "SectionBreak"
@@ -116,7 +161,6 @@
                 for(var i = 0; i < samples.length; i++)
                 {
                     var sample = samples[i];
-
                     if(!sample.IsPairedEnd)
                     {
                         return {Message:'This Sample is not Paired-End'};
@@ -142,7 +186,6 @@
                             samples.push(sample);
                         }
                     }
-
                     if (samples.length < 2){
                         return { 
                             Message: 'Please specify a tumor and a normal sample. Both a tumor and a normal sample need to be specified.' };
