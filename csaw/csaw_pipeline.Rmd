@@ -43,11 +43,17 @@ A diagnostic plot for the fragment sizes for sample `normal1`.
 
 
 ```{r, echo=FALSE}
-pe.bam <- bam.files[1]
-out <- getPESizes(pe.bam)
+for (i in seq(3)){
+pe.bam <- bam.files[i]
+out <- getPETSizes(pe.bam)
 frag.sizes <- out$sizes[out$sizes<=800]
-hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
-abline(v=400, col="red")
+#hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
+if (i ==1) {
+  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main="Control Group", ylim = c(0,0.015))
+  abline(v=100, col="red")
+  } else 
+    lines(density(frag.sizes))
+}
 
 ```
 
