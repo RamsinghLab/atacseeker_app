@@ -154,6 +154,14 @@
         // We check that the samples are Paired End and non-empty
         
         {
+            "$type": "PermissionValidationRule",
+            "permissions": "Read",
+            "severity": "Error",
+            "message": "You do not have read access to the selected sample",
+            "id": "sample-reader"
+        },
+
+        {
             "$type": "EmptySampleValidationRule",
             "message": "The sample cannot be empty",
             "id": "sample-is-not-empty"
