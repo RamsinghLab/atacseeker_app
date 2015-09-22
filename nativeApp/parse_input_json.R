@@ -23,30 +23,27 @@ compareDir = c()
 for (index in seq(numberOfPropertyItems)){
   
   if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.app-session-name'){
-    parameter = data[['Properties']][['Items']][[index]][['Content']]
-    params = c(params, parameter)    
+    app_session_name = data[['Properties']][['Items']][[index]][['Content']]
+    params = c(params, app_session_name)    
   }
   
   if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.control_label'){
-    parameter = data[['Properties']][['Items']][[index]][['Content']]
-    params = c(params, parameter)    
+    control = data[['Properties']][['Items']][[index]][['Content']]
+    params = c(params, control)    
   }
   
   if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.compare_label'){
-    parameter = data[['Properties']][['Items']][[index]][['Content']]
-    params = c(params, parameter)    
+    comparison = data[['Properties']][['Items']][[index]][['Content']]
+    params = c(params, comparison)    
   }
   
   if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.Projects'){
-    parameter = data[['Properties']][['Items']][[index]][['Items']][[1]]['Id']
-    params = c(params, parameter)    
+    project_id = data[['Properties']][['Items']][[index]][['Items']][[1]][['Id']]
+    params = c(params, project_id)    
   }
   
 }
 
-app_session_name = params[1]
-control = params[2]
-comparison = params[3]
-project_id = params[4]
+
 
 
