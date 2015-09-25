@@ -149,8 +149,7 @@
                 }
                 return null;",
             "id": "is-paired-end"
-        },
+        }
         
-    
     ]
 }
