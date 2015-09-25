@@ -90,52 +90,24 @@
             "requiredMessage": "Please choose a comparison sample",
             "id": "compare_samples" 
             //"rules": "is-paired-end,sample-is-not-empty,sample-read" 
-        },
-
-        // User Specified design matrix. We look at nested and linear.
-        /*{
-            "$type": "RadioButton", 
-            "id": "design_matrix", 
-            "label": "Design matrix",
-            "value": 1, 
-            "choices": [
-                {
-                    "value": 0,
-                    "label": "Nested"
-                },
-                {
-                    "value": 1,
-                    "label": "Linear"
-                }
-            ]   
-        },*/
-        
+        }
 
     ],
     
     "rulesets":[
+
+        // General rule around project permissions
+        {
+            "$type": "PermissionValidationRule",
+            "permissions": "Own",
+            "severity": "Error",
+            "message": "You aren't the owner of the selected project.",
+            "id": "is-project-owner"
+        },
        
-        /*{
-            "$type": "ScriptValidationRule",
-            "callback":"
-   
-                var Files=dataProvider.GetProperty(\"Input.file-id\")[0];
-                var FileName= Files.Name;
-       
- 
-                if (FileName.indexOf(\"fastq\") == -1){
-                    return {Message: 'fastq files only'}
-                }
-   
-  
-                return null;",
-            "id": "fast-select",
-            "severity": "Error"
-        },*/
-        
         // Sample Validation Rules
         // We check that the samples have read-permission, are not-empty and paired-end.
-        // We need to extend this so that all samples are checked. 
+        // TODO: We need to extend this so that all samples are checked. 
 
         {
             "$type": "PermissionValidationRule",
@@ -179,48 +151,6 @@
             "id": "is-paired-end"
         },
         
-        // Custom rule to test that both Tumor and Normal samples have been provided.
-        // We need to modify this to make it work for Control and Treatment samples.
-        
-        /*{
-            "$type": "ScriptValidationRule",
-            "callback": "
-                var inputs = dataProvider.GetInputs(currentControl);
-                var samples = new Array();
-                if (inputs.Length > 0) {
-                    var sample;
-                    for (var i=0; i < inputs.Length; i++) {
-                        sample = inputs[i].ContentSample;
-                        if (sample) {
-                            samples.push(sample);
-                        }
-                    }
-                    if (samples.length < 2){
-                        return { 
-                            Message: 'Please specify a tumor and a normal sample. Both a tumor and a normal sample need to be specified.' };
-                    }
-                    else{
-                        if (samples[0].Id != samples[1].Id){
-                            return null;
-                        }
-                        else{
-                            return { Message: 'The tumor and the normal sample specified must be different. Both tumor and normal samples specified are the same.'};
-                        }
-                    }
-                }
-                return null;",
-            
-            "id": "tumor-normal-custom"
-        },*/
-        
-        // General rule around project permissions
-        {
-            "$type": "PermissionValidationRule",
-            "permissions": "Own",
-            "severity": "Error",
-            "message": "You aren't the owner of the selected project.",
-            "id": "is-project-owner"
-        }
     
     ]
 }
