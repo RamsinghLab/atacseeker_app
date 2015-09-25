@@ -3,8 +3,7 @@
     "fields": [
         
         // Let's define the fields in our form.
-        // App Session ID - User inputs the name of the session.
-
+        // App Session ID - User inputs the name of the session.         
         {
             "$type": "TextBox",
             "size": 400,
@@ -17,8 +16,7 @@
             "id": "app-session-name"
         },
         
-        // Project Chooser
-
+        // Project Chooser. 
         {
             "$type": "ProjectChooser",
             "size": 300,
@@ -31,10 +29,6 @@
             "allowResourceCreation": true,
             "rules": "is-project-owner"
         },
-
-        /*****************/        
-        // Control Groups
-        /*****************/
         
         {
             "$type": "SectionBreak",
@@ -42,7 +36,6 @@
             "title": "Control Group"
         },
         
-
         {
             "$type": "TextBox",
             "size": 300,
@@ -51,12 +44,11 @@
             "required": true,
             "requiredMessage": "Please provide a label for your control samples.",
             "id": "control_label",
-            "helpText": "Please provide a label for your control samples."
+            "helpText": "Label for your control samples."
         },
         
         // Sample chooser - User chooses the samples to run
-        // We check that the samples are paired end, it is not-empty, permission to read
-
+        // We check that the samples are paired end and it is not-empty
         {
             "$type": "SampleChooser",  
             "size": 300,
@@ -64,22 +56,17 @@
             "label": "Control Samples",
             "required": true,
             "multiselect": true,
-            "requiredMessage": "Please choose control sample(s).",
+            "requiredMessage": "Please choose a control sample.",
             "id": "control_samples" 
             //"rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom,sample-read" 
         },
-
-        /********************/
-        // Comparison Groups
-        /********************/
-
-        {
+        
+                {
             "$type": "SectionBreak",
             "id": "section-break-2",
             "title": "Comparison Group"
         },
         
-
         {
             "$type": "TextBox",
             "size": 300,
@@ -88,12 +75,11 @@
             "required": true,
             "requiredMessage": "Please provide a label for your comparison samples.",
             "id": "compare_label",
-            "helpText": "Please provide a label for your comparison samples."
+            "helpText": "Label for your comparison samples."
         },
         
         // Sample chooser - User chooses the samples to run
-        // We check that the samples are paired end, it is not-empty, permission to read
-        
+        // We check that the samples are paired end and it is not-empty
         {
             "$type": "SampleChooser",  
             "size": 300, 
@@ -101,7 +87,7 @@
             "label": "Comparison Samples",
             "required": true,
             "multiselect": true,
-            "requiredMessage": "Please choose comparison sample(s).",
+            "requiredMessage": "Please choose a comparison sample",
             "id": "compare_samples" 
             //"rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom,sample-read" 
         },
@@ -124,15 +110,12 @@
             ]   
         },*/
         
-        {
-            "$type": "SectionBreak"
-     
-        }
+
     ],
     
     "rulesets":[
        
-        /*{
+        {
             "$type": "ScriptValidationRule",
             "callback":"
    
@@ -148,19 +131,11 @@
                 return null;",
             "id": "fast-select",
             "severity": "Error"
-        },*/
+        },
         
         // Sample Validation Rules
         // We check that the samples are Paired End and non-empty
         
-        {
-            "$type": "PermissionValidationRule",
-            "permissions": "Read",
-            "severity": "Error",
-            "message": "You do not have read access to the selected sample",
-            "id": "sample-reader"
-        },
-
         {
             "$type": "EmptySampleValidationRule",
             "message": "The sample cannot be empty",
@@ -197,7 +172,7 @@
         // Custom rule to test that both Tumor and Normal samples have been provided.
         // We need to modify this to make it work for Control and Treatment samples.
         
-        /*{
+        {
             "$type": "ScriptValidationRule",
             "callback": "
                 var inputs = dataProvider.GetInputs(currentControl);
@@ -226,10 +201,9 @@
                 return null;",
             
             "id": "tumor-normal-custom"
-        },*/
+        },
         
         // General rule around permissions
-
         {
             "$type": "PermissionValidationRule",
             "permissions": "Own",
