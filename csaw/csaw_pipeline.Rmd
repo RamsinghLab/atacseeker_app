@@ -12,6 +12,7 @@ require(csaw)
 require(edgeR)
 require(statmod)
 require(locfit)
+require(knitr)
 ```
 
 
@@ -22,6 +23,14 @@ require(locfit)
 fastq_dir="/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq"
 samples = c("normal1", "normal2", "normal4", "senescent1", "senescent2", "senescent4")
 bam.files = file.path(fastq_dir, paste0(samples, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+
+control = c("normal1", "normal2", "normal4")
+compare = c("senescent1", "senescent2", "senescent4")
+
+control.files = file.path(fastq_dir, paste0(control, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+compare.files = file.path(fastq_dir, paste0(compare, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+
+
 ```
 
 
@@ -35,7 +44,7 @@ treatment = c(rep("N", 3), rep("S",3))
 design <- model.matrix(~subject + treatment) 
 colnames(design) <- c("intercept", "subject2","subject3","senescent")
 rownames(design) <- samples
-design
+kable(design, caption = "Design Matrix")
 ```
 
 
@@ -43,26 +52,43 @@ A diagnostic plot for the fragment sizes for sample `normal1`.
 
 
 ```{r, echo=FALSE}
-for (i in seq(3)){
-pe.bam <- bam.files[i]
+
+reads_qc = c()
+
+#par(mfrow=c(2,1))
+
+for (i in seq(length(control))){
+pe.bam <- control.files[i]
 out <- getPETSizes(pe.bam)
 frag.sizes <- out$sizes[out$sizes<=800]
+reads_qc = rbind(reads_qc, c(sample = control[i], out$diagnostics, too.large=sum(out$sizes > 400)))
 #hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
 if (i ==1) {
-  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main="Control Group", ylim = c(0,0.015))
-  abline(v=100, col="red")
+  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main="Control Group", ylim = c(0,0.015), col = i)
+  abline(v=100, col="gray", lwd=4, lty=3)
   } else 
-    lines(density(frag.sizes))
+    lines(density(frag.sizes), col = i)
 }
 
-```
+legend("topright", legend = control, col = seq(length(control)), lwd = 1, bty = "n")
 
+for (i in seq(length(compare))){
+pe.bam <- compare.files[i]
+out <- getPETSizes(pe.bam)
+frag.sizes <- out$sizes[out$sizes<=800]
+reads_qc = rbind(reads_qc, c(sample = compare[i], out$diagnostics, too.large=sum(out$sizes > 400)))
+#hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
+if (i ==1) {
+  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main="Compare Group", ylim = c(0,0.015), col = i)
+  abline(v=100, col="gray", lwd=4, lty=3)
+  } else 
+    lines(density(frag.sizes), col = i)
+}
 
-Some QC metrics for the same sample, `normal1`.
+legend("topright", legend = compare, col = seq(length(compare)), lwd = 1, bty = "n")
 
-
-```{r, echo=FALSE}
-c(out$diagnostics, too.large=sum(out$sizes > 400))
+colnames(reads_qc) = c("Sample", "Total Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter chromosomal", "Frag. Size > 400 bp")
+kable(reads_qc, caption="Quality metrics for PE reads")
 ```
 
 
@@ -80,7 +106,7 @@ plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
 Coverage plot for choosing winodw size :
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 # Specify the readParam object
 dedup.on <- readParam(dedup=TRUE, minq=50) 
 collected <- list()
