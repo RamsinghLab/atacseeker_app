@@ -58,7 +58,7 @@
             "multiselect": true,
             "requiredMessage": "Please choose a control sample.",
             "id": "control_samples" 
-            //"rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom,sample-read" 
+            //"rules": "is-paired-end,sample-is-not-empty,sample-read" 
         },
         
                 {
@@ -89,7 +89,7 @@
             "multiselect": true,
             "requiredMessage": "Please choose a comparison sample",
             "id": "compare_samples" 
-            //"rules": "is-paired-end,sample-is-not-empty,tumor-normal-custom,sample-read" 
+            //"rules": "is-paired-end,sample-is-not-empty,sample-read" 
         },
 
         // User Specified design matrix. We look at nested and linear.
@@ -115,7 +115,7 @@
     
     "rulesets":[
        
-        {
+        /*{
             "$type": "ScriptValidationRule",
             "callback":"
    
@@ -131,11 +131,20 @@
                 return null;",
             "id": "fast-select",
             "severity": "Error"
-        },
+        },*/
         
         // Sample Validation Rules
-        // We check that the samples are Paired End and non-empty
-        
+        // We check that the samples have read-permission, are not-empty and paired-end.
+        // We need to extend this so that all samples are checked. 
+
+        {
+            "$type": "PermissionValidationRule",
+            "permissions": "Read",
+            "severity": "Error",
+            "message": "You do not have read access to the selected sample",
+            "id": "sample-reader"
+        },
+
         {
             "$type": "EmptySampleValidationRule",
             "message": "The sample cannot be empty",
@@ -151,12 +160,13 @@
             "id": "is-paired-end"
         },
         
-        // Should we check each sample to be PE ??? 
+        // We should check that ALL samples have read-permission, are not-empty and paired-end.
+        // TODO: Spruce this up
     
-      /*{
+        {
             "$type": "ScriptValidationRule",
             "callback": "
-                var samples = dataProvider.GetProperty(\"Input.samples\");
+                var samples = dataProvider.GetProperty(\"Input.control_samples\");
                 for(var i = 0; i < samples.length; i++)
                 {
                     var sample = samples[i];
@@ -167,12 +177,12 @@
                 }
                 return null;",
             "id": "is-paired-end"
-        },*/
+        },
         
         // Custom rule to test that both Tumor and Normal samples have been provided.
         // We need to modify this to make it work for Control and Treatment samples.
         
-        {
+        /*{
             "$type": "ScriptValidationRule",
             "callback": "
                 var inputs = dataProvider.GetInputs(currentControl);
@@ -201,9 +211,9 @@
                 return null;",
             
             "id": "tumor-normal-custom"
-        },
+        },*/
         
-        // General rule around permissions
+        // General rule around project permissions
         {
             "$type": "PermissionValidationRule",
             "permissions": "Own",
