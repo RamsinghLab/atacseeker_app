@@ -142,7 +142,7 @@ abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 Finally, couting reads by windows :
 
 
-```{r, echo=FALSE,comment=""}
+```{r, echo=FALSE, comment=""}
 frag.len <- 400
 window.width <- 150
 pe.param <- readParam(max.frag = frag.len, pe = "both")
