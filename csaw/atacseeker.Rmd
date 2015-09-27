@@ -51,41 +51,46 @@ kable(design, caption = "Design Matrix")
 
 ## QC Metrics ##
 
+```{r,echo=FALSE}
+frag.len <- 150
+# Do we use the minq=50 parameter ?
+pe.first <- readParam(dedup=TRUE, pe="first")
+pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE)
+```
+
 Diagnostic plots for fragment sizes:
 
 ```{r, echo=FALSE}
-
 reads_qc = c()
 
-#par(mfrow=c(2,1))
-
 for (i in seq(length(control))){
-pe.bam <- control.files[i]
-out <- getPESizes(pe.bam)
-frag.sizes <- out$sizes[out$sizes<=800]
-reads_qc = rbind(reads_qc, c(sample = control[i], out$diagnostics, too.large=sum(out$sizes > 400)))
-#hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
-if (i ==1) {
-  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main=control.label, ylim = c(0,0.015), col = i)
-  abline(v=100, col="gray", lwd=4, lty=3)
-  } else 
-    lines(density(frag.sizes), col = i)
-}
+
+  pe.bam <- control.files[i]
+  out <- getPESizes(pe.bam)
+  frag.sizes <- out$sizes[out$sizes<=800]
+  reads_qc = rbind(reads_qc, c(sample = control[i], out$diagnostics, too.large=sum(out$sizes > 400)))
+  
+  if (i ==1) {
+    plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main=control.label, ylim = c(0,0.015), col = i)
+    abline(v=100, col="gray", lwd=4, lty=3)
+    } else 
+      lines(density(frag.sizes), col = i)
+  }
 
 legend("topright", legend = control, col = seq(length(control)), lwd = 1, bty = "n")
 
 for (i in seq(length(compare))){
-pe.bam <- compare.files[i]
-out <- getPESizes(pe.bam)
-frag.sizes <- out$sizes[out$sizes<=800]
-reads_qc = rbind(reads_qc, c(sample = compare[i], out$diagnostics, too.large=sum(out$sizes > 400)))
-#hist(frag.sizes, breaks=50, xlab="Fragment sizes (bp)", ylab="Frequency", main="")
-if (i ==1) {
-  plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main=compare.label, ylim = c(0,0.015), col = i)
-  abline(v=100, col="gray", lwd=4, lty=3)
-  } else 
-    lines(density(frag.sizes), col = i)
-}
+  pe.bam <- compare.files[i]
+  out <- getPESizes(pe.bam)
+  frag.sizes <- out$sizes[out$sizes<=800]
+  reads_qc = rbind(reads_qc, c(sample = compare[i], out$diagnostics, too.large=sum(out$sizes > 400)))
+  
+  if (i ==1) {
+    plot(density(frag.sizes), xlab="Fragment sizes (bp)", ylab="Density", main=compare.label, ylim = c(0,0.015), col = i)
+    abline(v=100, col="gray", lwd=4, lty=3)
+    } else
+      lines(density(frag.sizes), col = i)
+  }
 
 legend("topright", legend = compare, col = seq(length(compare)), lwd = 1, bty = "n")
 
@@ -98,101 +103,79 @@ kable(reads_qc, caption="Quality metrics for PE reads")
 
 
 ```{r, echo=FALSE}
-max.delay <- 500
-dedup.on <- readParam(dedup=TRUE, minq=50)
-x <- correlateReads(bam.files, max.delay, param=dedup.on)
+max.delay <- 400
+x <- correlateReads(bam.files, max.delay, param=pe.first)
 plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
 title("Cross Correlation Plot")
 ```
 
 
-Coverage plot for choosing winodw size :
+Coverage plot for choosing winodw size:
 
 
 ```{r, echo=FALSE}
-# Specify the readParam object
-dedup.on <- readParam(dedup=TRUE, minq=50) 
 collected <- list()
 
 for (curbam in bam.files) {
-  windowed <- windowCounts(curbam, spacing=50, width=50, param=dedup.on, filter=20)
+  windowed <- windowCounts(curbam, spacing=50, width=50, param=pe.param, filter=20)
   rwsms <- rowSums(assay(windowed))
   maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
   collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
-                                      param=dedup.on, weight=1/rwsms[maxed])
+                                      param=pe.param, weight=1/rwsms[maxed])
 }
 
 xranged <- as.integer(names(collected[[1]]))
 
 for (i in seq(length(samples))){
   if (i ==1)
-    plot(xranged, collected[[i]], type="l", col=i, 
-     xlim=c(-1000, 1000), lwd=1,
+    plot(xranged, collected[[i]], type="l", col=i, lwd=1,
+     xlim=c(-1000, 1000), ylim=c(0, 1.0), 
      xlab="Distance (bp)", ylab="Relative coverage per base")
   else
     lines(xranged, collected[[i]], col=i, lwd=1)
 }
 
 legend("topright", col=seq(length(samples)), samples, pch=16)
-title("coverage profile around potential binding sites")
+title("Coverage Profile")
 abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 ```
 
 
-Finally, couting reads by windows :
+## Window read counts, Normalization, Filtering ##
 
+Read extraction parameters:
 
 ```{r, echo=FALSE, comment=""}
-frag.len <- 400
-window.width <- 150
-pe.param <- readParam(max.frag = frag.len, pe = "both")
 pe.param
+window.width <- 75
 data <- windowCounts(bam.files, width = window.width, param = pe.param)
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
 ```
 
-
-### Normalization ###
-
-
-```{r, echo=FALSE}
-param<- readParam()
-binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
-Norm.factors <- normalize(binned)
-kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing factors")
-```
-
-
-```{r, echo = FALSE, eval=FALSE}
-adj.counts <- cpm(asDGEList(binned), log=TRUE)
-cur.x <- adj.counts[,1]
-cur.y <- adj.counts[,2]
-smoothScatter(x=(cur.x+cur.y)/2+6*log2(10), y=cur.x-cur.y,
-  xlab="A", ylab="M", main="1 vs 2")
-all.dist <- diff(log2(normfacs[c(2, 1)]))
-abline(h=all.dist, col="red")
-```
-
-
-### Filtering out low abundance regions ###
-
 Keep only high abundance regions according to a pre-defined threshold.
 
-```{r}
+```{r, echo=FALSE}
 abundance <- aveLogCPM(asDGEList(data))
 keep <- abundance > -1
 original <- data
 data <- data[keep,]
+kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads post filtering.")
 ```
 
 
+```{r, echo=FALSE}
+param<- readParam()
+binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
+Norm.factors <- normalize(binned)
+kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing factors")
+```
 
-### Testing for Differential Binding ###
+## Differential Accessibility Testing ##
 
 Let's see how the samples are clustered:
 
 ```{r, echo=FALSE}
-binned.2 <- windowCounts(bam.files, bin=TRUE, width=2000, param=param)
+binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned.2), log=TRUE)
 plotMDS(bin.adjc, labels=samples)
 ```
@@ -202,8 +185,6 @@ plotMDS(bin.adjc, labels=samples)
 y <- asDGEList(data, norm.factors=Norm.factors)
 y <- estimateDisp(y, design)
 fit <- glmQLFit(y, design, robust=TRUE)
-#contrast <- makeContrasts(es - tn, levels=design)
-#results <- glmQLFTest(fit, contrast=contrast)
+results <- glmQLFTest(fit)
+kable(topTags(results))
 ```
-
-
