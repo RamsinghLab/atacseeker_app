@@ -141,7 +141,7 @@ abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 ```
 
 
-## Window read counts, Normalization, Filtering ##
+## Windowed read counts, Filtering, Normalization ##
 
 Read extraction parameters:
 
@@ -188,3 +188,5 @@ fit <- glmQLFit(y, design, robust=TRUE)
 results <- glmQLFTest(fit)
 kable(topTags(results))
 ```
+
+### Multiple Testing Correction ###
