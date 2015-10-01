@@ -150,22 +150,28 @@ pe.param
 window.width <- 75
 data <- windowCounts(bam.files, width = window.width, param = pe.param)
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
+binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 ```
 
 Keep only high abundance regions according to a pre-defined threshold.
 
 ```{r, echo=FALSE}
-abundance <- aveLogCPM(asDGEList(data))
-keep <- abundance > -1
-original <- data
+filter.stat <- filterWindows(data, background=binned, type="global")
+keep <- filter.stat$filter > log2(3)
+
+hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, 
+     main="", xlim=c(min(filter.stat$back.abundances), 0))
+global.bg <- filter.stat$abundances - filter.stat$filter
+abline(v=global.bg[1], col="red", lwd=2)
+abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
+legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
+
 data <- data[keep,]
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads post filtering.")
 ```
 
 
 ```{r, echo=FALSE}
-param<- readParam()
-binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 Norm.factors <- normalize(binned)
 kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing factors")
 ```
