@@ -175,8 +175,8 @@ kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing facto
 Let's see how the samples are clustered:
 
 ```{r, echo=FALSE}
-binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
-bin.adjc <- cpm(asDGEList(binned.2), log=TRUE)
+#binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
+bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 plotMDS(bin.adjc, labels=samples)
 ```
 
