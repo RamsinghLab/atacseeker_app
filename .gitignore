@@ -1,0 +1,25 @@
+.DS_Store
+
+# Vim swap files
+*.swp
+# History files
+.Rhistory
+.Rapp.history
+
+# Example code in package build process
+*-Ex.R
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# data files
+*.bam
+*.bai
+*.fastq
+*.fa
+hg19.*
+chr22*

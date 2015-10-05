@@ -1,0 +1,155 @@
+{
+    "$type": "Form",
+    "fields": [
+        
+        // Let's define the fields in our form.
+        // App Session ID - User inputs the name of the session.         
+        {
+            "$type": "TextBox",
+            "size": 400,
+            "minLength": 0,
+            "maxLength": 150,
+            "value": "Example [LocalDateTime]",
+            "label": "Analysis Name",
+            "required": true,
+            "requiredMessage": "Please enter name for your app session.",
+            "id": "app-session-name"
+        },
+        
+        // Project Chooser. 
+        {
+            "$type": "ProjectChooser",
+            "size": 300,
+            "valueType": "Output",
+            "allowedPermissions": "owner",
+            "label": "Save Results To",
+            "required": true,
+            "requiredMessage": "Please choose a project",
+            "id": "project-id",
+            "allowResourceCreation": true,
+            "rules": "is-project-owner"
+        },
+        
+        {
+            "$type": "SectionBreak",
+            "id": "section-break-1",
+            "title": "Control Group"
+        },
+        
+        {
+            "$type": "TextBox",
+            "size": 300,
+            "value": "control",
+            "label": "Group Label",
+            "required": true,
+            "requiredMessage": "Please provide a label for your control samples.",
+            "id": "control_label",
+            "helpText": "Label for your control samples."
+        },
+        
+        // Sample chooser - User chooses the samples to run
+        // We check that the samples are paired end and it is not-empty
+        {
+            "$type": "SampleChooser",  
+            "size": 300,
+            "allowedPermissions": "read",
+            "label": "Control Samples",
+            "required": true,
+            "multiselect": true,
+            "requiredMessage": "Please choose a control sample.",
+            "id": "control_samples" 
+            //"rules": "is-paired-end,sample-is-not-empty,sample-read" 
+        },
+        
+                {
+            "$type": "SectionBreak",
+            "id": "section-break-2",
+            "title": "Comparison Group"
+        },
+        
+        {
+            "$type": "TextBox",
+            "size": 300,
+            "value": "comparison",
+            "label": "Group Label",
+            "required": true,
+            "requiredMessage": "Please provide a label for your comparison samples.",
+            "id": "compare_label",
+            "helpText": "Label for your comparison samples."
+        },
+        
+        // Sample chooser - User chooses the samples to run
+        // We check that the samples are paired end and it is not-empty
+        {
+            "$type": "SampleChooser",  
+            "size": 300, 
+            "allowedPermissions": "read",
+            "label": "Comparison Samples",
+            "required": true,
+            "multiselect": true,
+            "requiredMessage": "Please choose a comparison sample",
+            "id": "compare_samples" 
+            //"rules": "is-paired-end,sample-is-not-empty,sample-read" 
+        }
+
+    ],
+    
+    "rulesets":[
+
+        // General rule around project permissions
+        {
+            "$type": "PermissionValidationRule",
+            "permissions": "Own",
+            "severity": "Error",
+            "message": "You aren't the owner of the selected project.",
+            "id": "is-project-owner"
+        },
+       
+        // Sample Validation Rules
+        // We check that the samples have read-permission, are not-empty and paired-end.
+        // TODO: We need to extend this so that all samples are checked. 
+
+        {
+            "$type": "PermissionValidationRule",
+            "permissions": "Read",
+            "severity": "Error",
+            "message": "You do not have read access to the selected sample",
+            "id": "sample-reader"
+        },
+
+        {
+            "$type": "EmptySampleValidationRule",
+            "message": "The sample cannot be empty",
+            "id": "sample-is-not-empty"
+        },
+        
+        {
+            "$type": "PairedEndSampleValidationRule",
+            "message": "This app currently only supports paired-end reads.",
+            "relation": "Equals",
+            "value": true,
+            "severity": "Error",
+            "id": "is-paired-end"
+        },
+        
+        // We should check that ALL samples have read-permission, are not-empty and paired-end.
+        // TODO: Spruce this up
+    
+        {
+            "$type": "ScriptValidationRule",
+            "callback": "
+                var samples = dataProvider.GetProperty(\"Input.control_samples\");
+                for(var i = 0; i < samples.length; i++)
+                {
+                    var sample = samples[i];
+                    if(!sample.IsPairedEnd)
+                    {
+                        return {Message:'This Sample is not Paired-End'};
+                    }
+                }
+                return null;",
+            "id": "is-paired-end"
+        }
+        
+    ]
+}
