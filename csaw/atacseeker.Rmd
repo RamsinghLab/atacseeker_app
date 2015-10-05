@@ -4,12 +4,6 @@ author: "ATACseeker"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
-  
-
-
-<!-- TODO: Give brief description of the pipeline and workflow -->
-
-
 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -19,6 +13,14 @@ library(statmod)
 library(locfit)
 library(knitr)
 ```
+
+
+## Workflow Description ##
+
+
+The raw reads are aligned to the hg19 assembly using [bwa](https://github.com/lh3/bwa). Quality flags are made and duplicate reads are removed using [samblaster](https://github.com/GregoryFaust/samblaster). The produced bam files are then piped through [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html) for a two-sample comparison. 
+
+QC metrics for the aligned reads are computed. Fragment size and window length to be used are estimated. Thereafter, the libraries are normalised and filtering of windows is done to retain high abundance windows. Finally, differential accessibility testing is done and corrrections for multiple testing is performed. 
 
 
 ```{r, echo = FALSE}
@@ -37,7 +39,7 @@ samples = c(control, compare)
 bam.files = file.path(fastq_dir, paste0(samples, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
 ```
 
-We construct the design matrix based on sample labels.
+The design matrix used for the two-sample comparison is provided below.
 
 ```{r, echo=FALSE}
 treatment = c(rep("N", length(control)), rep("Y",length(compare)))
@@ -58,7 +60,7 @@ pe.first <- readParam(dedup=TRUE, pe="first")
 pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE)
 ```
 
-Diagnostic plots for fragment sizes:
+Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
 
 ```{r, echo=FALSE}
 reads_qc = c()
@@ -110,7 +112,7 @@ title("Cross Correlation Plot")
 ```
 
 
-Coverage plot for choosing winodw size:
+Coverage plot for choosing window size:
 
 
 ```{r, echo=FALSE}
