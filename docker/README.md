@@ -1,4 +1,4 @@
-# Docker files for creating the ATACseq image #
+# Docker files for ATACseq image #
 
 Running the command: 
 
