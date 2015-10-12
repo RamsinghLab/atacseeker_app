@@ -67,11 +67,3 @@ for (index in seq(numberOfPropertyItems)){
   
 }
   
-  
-  
-  
-
-
-
-
-
