@@ -2,8 +2,8 @@ function launchSpec(dataProvider){
 
    var retval = {
  
-            commandLine: ["",""],
-            containerImageId: "asifzubair/atacseq_counts:v4",
+            commandLine: ["Rscript","-e 'rmarkdown::render("/atacseeker/scripts/atacseeker.Rmd")'"],
+            containerImageId: "asifzubair/atacseeker:v1",
             options:["bsfs.enabled=true"]
             
            };
