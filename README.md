@@ -16,9 +16,9 @@ The elements of the approach are as follows:
 
 Main development directory for BaseSpace App is `nativeApp`.
 
-`csaw`: Testing code for csaw pipeline.
-`docker`: Testing code for Docker Image. This docker image only does the alignment of raw reads.
-`scripts`: random scripts live here.
+* `csaw`: Testing code for csaw pipeline.
+* `docker`: Testing code for Docker Image. This docker image only does the alignment of raw reads.
+* `scripts`: random scripts live here.
 
 *requires*: 
 * docker 
