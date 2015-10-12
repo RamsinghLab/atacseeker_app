@@ -41,7 +41,7 @@ RUN R CMD BATCH /atacseeker/scripts/install_packages.R
 RUN wget -q https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz /tmp
 RUN tar -zxf /tmp/rstudio-0.99.486-amd64-debian.tar.gz
 RUN cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin
-RUN rm -rf /tmp/*
+RUN rm -rf /tmp/rstudio*
 
 # Install samblaster from Github repository 
 
