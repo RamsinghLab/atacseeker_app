@@ -1,0 +1,32 @@
+{
+    "Name": "MyAppResult",
+    "Description": "Analysis result for MyAppResult",
+    "HrefAppSession": "v1pre3/appsessions/2056097",
+    "Properties": [
+        {
+            "Type": "string",
+            "Name": "RW_BaseSpace_App.Month",
+            "Description": "Testing property creation",
+            "Content": "1"
+        },
+        {
+            "Type": "string",
+            "Name": "RW_BaseSpace_App.Day",
+            "Description": "Testing property creation",
+            "Content": "20"
+        },
+        {
+            "Type": "string",
+            "Name": "RW_BaseSpace_App.Year",
+            "Description": "Testing property creation",
+            "Content": "2014"
+        },
+        {
+            "Type": "sample[]",
+            "Name": "Input.Samples",
+            "Items": [
+                "v1pre3/samples/710710"
+            ]
+        }
+    ]
+}
