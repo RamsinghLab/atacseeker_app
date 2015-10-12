@@ -4,7 +4,7 @@ Repo for BaseSpace ATACseq pipeline.
 
 *requires*: docker 
 *requires*: wget, git, pandoc, [samblaster](https://github.com/GregoryFaust/samblaster), samtools, [bwa](https://github.com/lh3/bwa)
-*requires*: R, knitr, (rmarkdown)[https://cran.r-project.org/web/packages/rmarkdown/index.html], statmod, locfit, edgeR, [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html)
+*requires*: R, knitr, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), statmod, locfit, edgeR, [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html)
 
 This repository contains a first pass attempt for an application for BaseSpace.
 
