@@ -49,4 +49,4 @@ RUN bash /atacseeker/scripts/install_samblaster.sh
 
 # Render the Rmarkdown file
 
-CMD Rscript -e 'rmarkdown::render("/atacseeker/atacseeker.Rmd")'
+CMD Rscript -e 'rmarkdown::render("/atacseeker/scripts/atacseeker.Rmd")'
