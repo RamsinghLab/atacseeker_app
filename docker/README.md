@@ -19,3 +19,5 @@ Previously, was trying to not copy data & reference to image. In this case, make
 Something like this should work:
 
 `docker run -v ~/projects/atacseq_counts/docker/tmp:/atacseq_counts -t image-name`
+
+**NOTE**: Development in this directory has been frozen.
