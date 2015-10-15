@@ -39,7 +39,7 @@ RUN R CMD BATCH /atacseeker/scripts/install_packages.R
 # RStudio is removed once pandoc has been copied to bin
 
 RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
-RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz
+RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp
 RUN cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin
 RUN rm -rf /tmp/rstudio*
 
