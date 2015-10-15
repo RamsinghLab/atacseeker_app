@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     bwa \
     git \
     r-base \
-    samtools\
+    samtools \
     wget
 
 # Make ATACseeker directories. 
