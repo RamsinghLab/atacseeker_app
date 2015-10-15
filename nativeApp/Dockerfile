@@ -1,5 +1,5 @@
 ##
-## This Docker file builds an image for the ATACseeker pipeline. 
+## This Docker file builds an image for running the ATACseeker pipeline. 
 ##
 
 FROM ubuntu:14.04
@@ -30,7 +30,7 @@ RUN mkdir -p /atacseker/reference /atacseeker/scripts /atacseeker/install
 COPY tmp/reference /atacseeker/reference
 COPY tmp/scripts /atacseeker/scripts
 
-# Install R packages -  knitr, rmarkdown, statmod, locfit, edgeR, csaw
+# Install R packages - knitr, rmarkdown, statmod, locfit, edgeR, csaw
 
 RUN R CMD BATCH /atacseeker/scripts/install_packages.R
 
