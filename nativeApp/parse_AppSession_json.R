@@ -1,13 +1,16 @@
-# This file parses the input json. 
+####
+## This file parses the form builder json. 
+####
 
-require("jsonlite")
-
+require("rjson")
 
 data <- fromJSON(file="AppSession.json")
 numberOfPropertyItems = length(data[['Properties']][['Items']])
 
-
+##
 # Let's fetch the property items
+##
+
 params = c()
 
 controlID = c()
@@ -19,6 +22,10 @@ compareID = c()
 compareHref = c()
 compareName = c()
 compareDir = c()
+
+##
+# Collect all the AppSession properties
+##
 
 for (index in seq(numberOfPropertyItems)){
   
@@ -45,10 +52,13 @@ for (index in seq(numberOfPropertyItems)){
 }
 
 
-
+##
+# Collect all sample names and IDs
+##
 
 for (index in seq(numberOfPropertyItems)){
-  
+
+  ## Control samples  
   if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.control_samples'){
     for (sample in seq(length(data[['Properties']][['Items']][[index]][['Items']]))){
       controlID = c(controlID, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Id']])
@@ -57,11 +67,12 @@ for (index in seq(numberOfPropertyItems)){
     }
   }
   
+  ## Compare samples
   if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.compare_samples'){
     for (sample in seq(length(data[['Properties']][['Items']][[index]][['Items']]))){
-      compareID = c(controlID, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Id']])
-      compareHref = c(controlHref, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Href']])
-      compareName = c(controlName, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Name']])
+      compareID = c(compareID, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Id']])
+      compareHref = c(compareHref, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Href']])
+      compareName = c(compareName, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Name']])
     }
   }
   

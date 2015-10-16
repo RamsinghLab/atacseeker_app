@@ -18,7 +18,7 @@ library(knitr)
 ## Workflow Description ##
 
 
-The raw reads are aligned to the hg19 assembly using [bwa](https://github.com/lh3/bwa). Quality checks are made and duplicate reads are removed using [samblaster](https://github.com/GregoryFaust/samblaster). The produced bam files are then piped through [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html) for a two-sample comparison. 
+The raw reads are aligned to the hg19 assembly using [bwa](https://github.com/lh3/bwa). Quality checks are made and duplicate reads are removed using [samblaster](https://github.com/GregoryFaust/samblaster). The produced bam files are then piped through [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html) for a two-group comparison. 
 
 QC metrics for the aligned reads are computed. Fragment size and window length parameters are estimated. Thereafter, the libraries are normalised and filtering of windows is done to retain high abundance windows. Finally, differential accessibility testing is done and corrrections for multiple testing are performed. 
 
