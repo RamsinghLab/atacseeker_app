@@ -1,8 +1,8 @@
 {
   "OriginatingUri": "https://basespace.illumina.com",
-  "Id": "29051110",
-  "Name": "ATACseeker 09/21/2015 8:45:05",
-  "Href": "v1pre3/appsessions/29051110",
+  "Id": "29601300",
+  "Name": "ATACseeker 10/15/2015 10:38:27",
+  "Href": "v1pre3/appsessions/29601300",
   "Application": {
     "Id": "2052050",
     "Href": "v1pre3/applications/2052050",
@@ -24,40 +24,40 @@
   },
   "Status": "Initializing",
   "StatusSummary": "",
-  "DateCreated": "2015-09-22T03:49:40.2978380Z",
-  "ModifiedOn": "2015-09-22T03:49:40.5947044Z",
+  "DateCreated": "2015-10-16T05:44:20.0938975Z",
+  "ModifiedOn": "2015-10-16T05:44:20.4688997Z",
   "Properties": {
     "Items": [
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29051110/properties/BaseSpace.Private.IsMultiNode",
+        "Href": "v1pre3/appsessions/29601300/properties/BaseSpace.Private.IsMultiNode",
         "Name": "BaseSpace.Private.IsMultiNode",
         "Description": "",
         "Content": "False"
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.app-session-name",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.app-session-name",
         "Name": "Input.app-session-name",
         "Description": "Analysis Name",
-        "Content": "ATACseeker 09/21/2015 8:45:05"
+        "Content": "ATACseeker 10/15/2015 10:38:27"
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.compare_label",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_label",
         "Name": "Input.compare_label",
         "Description": "Group Label",
-        "Content": "comparison"
+        "Content": "senescent"
       },
       {
         "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.compare_samples",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_samples",
         "Name": "Input.compare_samples",
         "Description": "Comparison Samples",
         "Items": [
           {
-            "Id": "29017031",
-            "Href": "v1pre3/samples/29017031",
+            "Id": "29661757",
+            "Href": "v1pre3/samples/29661757",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -65,30 +65,56 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "truseqI1-8899-Name",
-            "SampleId": "truseqI1-8899-Name",
+            "Name": "100214-1-S",
+            "SampleId": "100214-1-S",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:11:49.0000000",
-            "TotalSize": 3271320,
-            "Read1": 51,
-            "Read2": 51,
-            "NumReadsPF": 32922,
-            "NumReadsRaw": 32922,
-            "TotalReadsRaw": 65844,
-            "TotalReadsPF": 65844,
-            "TotalClustersRaw": 32922,
-            "TotalClustersPF": 32922,
+            "DateCreated": "2015-10-16T01:47:11.0000000",
+            "TotalSize": 3024823673,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 23288105,
+            "NumReadsRaw": 23288105,
+            "TotalReadsRaw": 46576210,
+            "TotalReadsPF": 46576210,
+            "TotalClustersRaw": 23288105,
+            "TotalClustersPF": 23288105,
+            "IsPairedEnd": true
+          },
+          {
+            "Id": "29658730",
+            "Href": "v1pre3/samples/29658730",
+            "IsMerged": false,
+            "UserOwnedBy": {
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3-S",
+            "SampleId": "071114-3-S",
+            "Status": "Complete",
+            "StatusSummary": "",
+            "DateCreated": "2015-10-16T01:38:46.0000000",
+            "TotalSize": 3812514916,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 29195371,
+            "NumReadsRaw": 29195371,
+            "TotalReadsRaw": 58390742,
+            "TotalReadsPF": 58390742,
+            "TotalClustersRaw": 29195371,
+            "TotalClustersPF": 29195371,
             "IsPairedEnd": true
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.compare_samples/items",
-        "ItemsDisplayedCount": 1,
-        "ItemsTotalCount": 1
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.compare_samples/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.compare_samples.attributes",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_samples.attributes",
         "Name": "Input.compare_samples.attributes",
         "Description": "Comparison Samples Attributes",
         "Items": [
@@ -108,37 +134,63 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "29017031"
+                "29661757"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/samples/29017031"
+                "v1pre3/samples/29661757"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare_samples"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "sample"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "29658730"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/samples/29658730"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.compare_samples.attributes/items",
-        "ItemsDisplayedCount": 1,
-        "ItemsTotalCount": 1
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.compare_samples.attributes/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.control_label",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.control_label",
         "Name": "Input.control_label",
         "Description": "Group Label",
-        "Content": "control"
+        "Content": "normal"
       },
       {
         "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.control_samples",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.control_samples",
         "Name": "Input.control_samples",
         "Description": "Control Samples",
         "Items": [
           {
-            "Id": "29021025",
-            "Href": "v1pre3/samples/29021025",
+            "Id": "29660732",
+            "Href": "v1pre3/samples/29660732",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -146,25 +198,25 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "sample2",
-            "SampleId": "sample2",
+            "Name": "100214-1-N",
+            "SampleId": "100214-1-N",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:47:34.0000000",
-            "TotalSize": 12032,
-            "Read1": 100,
-            "Read2": 100,
-            "NumReadsPF": 100,
-            "NumReadsRaw": 100,
-            "TotalReadsRaw": 200,
-            "TotalReadsPF": 200,
-            "TotalClustersRaw": 100,
-            "TotalClustersPF": 100,
+            "DateCreated": "2015-10-16T01:52:08.0000000",
+            "TotalSize": 5364219686,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 41176796,
+            "NumReadsRaw": 41176796,
+            "TotalReadsRaw": 82353592,
+            "TotalReadsPF": 82353592,
+            "TotalClustersRaw": 41176796,
+            "TotalClustersPF": 41176796,
             "IsPairedEnd": true
           },
           {
-            "Id": "29027999",
-            "Href": "v1pre3/samples/29027999",
+            "Id": "29664701",
+            "Href": "v1pre3/samples/29664701",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -172,30 +224,30 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "sample1",
-            "SampleId": "sample1",
+            "Name": "071114-3-N",
+            "SampleId": "071114-3-N",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:40:38.0000000",
-            "TotalSize": 12032,
-            "Read1": 100,
-            "Read2": 100,
-            "NumReadsPF": 100,
-            "NumReadsRaw": 100,
-            "TotalReadsRaw": 200,
-            "TotalReadsPF": 200,
-            "TotalClustersRaw": 100,
-            "TotalClustersPF": 100,
+            "DateCreated": "2015-10-16T01:29:02.0000000",
+            "TotalSize": 2436686625,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 18575973,
+            "NumReadsRaw": 18575973,
+            "TotalReadsRaw": 37151946,
+            "TotalReadsPF": 37151946,
+            "TotalClustersRaw": 18575973,
+            "TotalClustersPF": 18575973,
             "IsPairedEnd": true
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.control_samples/items",
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.control_samples/items",
         "ItemsDisplayedCount": 2,
         "ItemsTotalCount": 2
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.control_samples.attributes",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.control_samples.attributes",
         "Name": "Input.control_samples.attributes",
         "Description": "Control Samples Attributes",
         "Items": [
@@ -215,13 +267,13 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "29021025"
+                "29660732"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/samples/29021025"
+                "v1pre3/samples/29660732"
               ]
             }
           ],
@@ -241,24 +293,24 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "29027999"
+                "29664701"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/samples/29027999"
+                "v1pre3/samples/29664701"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.control_samples.attributes/items",
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.control_samples.attributes/items",
         "ItemsDisplayedCount": 2,
         "ItemsTotalCount": 2
       },
       {
         "Type": "project",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.project-id",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.project-id",
         "Name": "Input.project-id",
         "Description": "Save Results To",
         "Content": {
@@ -273,14 +325,14 @@
           "Name": "atacseq_test",
           "Description": "",
           "DateCreated": "2015-09-21T04:09:44.0000000",
-          "DateModified": "2015-09-22T03:47:45.0000000",
+          "DateModified": "2015-10-16T02:35:28.0000000",
           "HasCollaborators": false,
-          "TotalSize": 3295384
+          "TotalSize": 14638244900
         }
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.project-id.attributes",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.project-id.attributes",
         "Name": "Input.project-id.attributes",
         "Description": "Save Results To Attributes",
         "Items": [
@@ -311,13 +363,13 @@
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.project-id.attributes/items",
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.project-id.attributes/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.Projects",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.Projects",
         "Name": "Input.Projects",
         "Description": "",
         "Items": [
@@ -333,24 +385,24 @@
             "Name": "atacseq_test",
             "Description": "",
             "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-09-22T03:47:45.0000000",
+            "DateModified": "2015-10-16T02:35:28.0000000",
             "HasCollaborators": false,
-            "TotalSize": 3295384
+            "TotalSize": 14638244900
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.Projects/items",
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Input.Samples",
+        "Href": "v1pre3/appsessions/29601300/properties/Input.Samples",
         "Name": "Input.Samples",
         "Description": "",
         "Items": [
           {
-            "Id": "29021025",
-            "Href": "v1pre3/samples/29021025",
+            "Id": "29660732",
+            "Href": "v1pre3/samples/29660732",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -358,25 +410,25 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "sample2",
-            "SampleId": "sample2",
+            "Name": "100214-1-N",
+            "SampleId": "100214-1-N",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:47:34.0000000",
-            "TotalSize": 12032,
-            "Read1": 100,
-            "Read2": 100,
-            "NumReadsPF": 100,
-            "NumReadsRaw": 100,
-            "TotalReadsRaw": 200,
-            "TotalReadsPF": 200,
-            "TotalClustersRaw": 100,
-            "TotalClustersPF": 100,
+            "DateCreated": "2015-10-16T01:52:08.0000000",
+            "TotalSize": 5364219686,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 41176796,
+            "NumReadsRaw": 41176796,
+            "TotalReadsRaw": 82353592,
+            "TotalReadsPF": 82353592,
+            "TotalClustersRaw": 41176796,
+            "TotalClustersPF": 41176796,
             "IsPairedEnd": true
           },
           {
-            "Id": "29027999",
-            "Href": "v1pre3/samples/29027999",
+            "Id": "29664701",
+            "Href": "v1pre3/samples/29664701",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -384,25 +436,25 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "sample1",
-            "SampleId": "sample1",
+            "Name": "071114-3-N",
+            "SampleId": "071114-3-N",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:40:38.0000000",
-            "TotalSize": 12032,
-            "Read1": 100,
-            "Read2": 100,
-            "NumReadsPF": 100,
-            "NumReadsRaw": 100,
-            "TotalReadsRaw": 200,
-            "TotalReadsPF": 200,
-            "TotalClustersRaw": 100,
-            "TotalClustersPF": 100,
+            "DateCreated": "2015-10-16T01:29:02.0000000",
+            "TotalSize": 2436686625,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 18575973,
+            "NumReadsRaw": 18575973,
+            "TotalReadsRaw": 37151946,
+            "TotalReadsPF": 37151946,
+            "TotalClustersRaw": 18575973,
+            "TotalClustersPF": 18575973,
             "IsPairedEnd": true
           },
           {
-            "Id": "29017031",
-            "Href": "v1pre3/samples/29017031",
+            "Id": "29661757",
+            "Href": "v1pre3/samples/29661757",
             "IsMerged": false,
             "UserOwnedBy": {
               "Id": "6061071",
@@ -410,30 +462,56 @@
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "truseqI1-8899-Name",
-            "SampleId": "truseqI1-8899-Name",
+            "Name": "100214-1-S",
+            "SampleId": "100214-1-S",
             "Status": "Complete",
             "StatusSummary": "",
-            "DateCreated": "2015-09-22T03:11:49.0000000",
-            "TotalSize": 3271320,
-            "Read1": 51,
-            "Read2": 51,
-            "NumReadsPF": 32922,
-            "NumReadsRaw": 32922,
-            "TotalReadsRaw": 65844,
-            "TotalReadsPF": 65844,
-            "TotalClustersRaw": 32922,
-            "TotalClustersPF": 32922,
+            "DateCreated": "2015-10-16T01:47:11.0000000",
+            "TotalSize": 3024823673,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 23288105,
+            "NumReadsRaw": 23288105,
+            "TotalReadsRaw": 46576210,
+            "TotalReadsPF": 46576210,
+            "TotalClustersRaw": 23288105,
+            "TotalClustersPF": 23288105,
+            "IsPairedEnd": true
+          },
+          {
+            "Id": "29658730",
+            "Href": "v1pre3/samples/29658730",
+            "IsMerged": false,
+            "UserOwnedBy": {
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3-S",
+            "SampleId": "071114-3-S",
+            "Status": "Complete",
+            "StatusSummary": "",
+            "DateCreated": "2015-10-16T01:38:46.0000000",
+            "TotalSize": 3812514916,
+            "Read1": 76,
+            "Read2": 76,
+            "NumReadsPF": 29195371,
+            "NumReadsRaw": 29195371,
+            "TotalReadsRaw": 58390742,
+            "TotalReadsPF": 58390742,
+            "TotalClustersRaw": 29195371,
+            "TotalClustersPF": 29195371,
             "IsPairedEnd": true
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Input.Samples/items",
-        "ItemsDisplayedCount": 3,
-        "ItemsTotalCount": 3
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.Samples/items",
+        "ItemsDisplayedCount": 4,
+        "ItemsTotalCount": 4
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/29051110/properties/Output.Projects",
+        "Href": "v1pre3/appsessions/29601300/properties/Output.Projects",
         "Name": "Output.Projects",
         "Description": "",
         "Items": [
@@ -449,18 +527,18 @@
             "Name": "atacseq_test",
             "Description": "",
             "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-09-22T03:47:45.0000000",
+            "DateModified": "2015-10-16T02:35:28.0000000",
             "HasCollaborators": false,
-            "TotalSize": 3295384
+            "TotalSize": 14638244900
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29051110/properties/Output.Projects/items",
+        "HrefItems": "v1pre3/appsessions/29601300/properties/Output.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       }
     ],
     "DisplayedCount": 13,
     "TotalCount": 13,
-    "Href": "v1pre3/appsessions/29051110/properties"
+    "Href": "v1pre3/appsessions/29601300/properties"
   }
 }
