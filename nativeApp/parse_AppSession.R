@@ -1,5 +1,5 @@
 ####
-## This file parses the form builder json. 
+## This file parses the AppSession JSON. 
 ####
 
 require("rjson")
