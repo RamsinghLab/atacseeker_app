@@ -5,7 +5,7 @@
 ## It then copies samblaster to the local/bin so that it can be called easily
 ####
 
-cd /atacseeker/install
+cd /tmp
 git clone git://github.com/GregoryFaust/samblaster.git
 
 cd samblaster
