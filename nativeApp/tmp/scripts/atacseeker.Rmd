@@ -22,24 +22,30 @@ source("parse_AppSession.R")
 ```
 
 
-
 ## Workflow Description ##
 
 
-The raw reads are aligned to the hg19 assembly using [bwa](https://github.com/lh3/bwa). Quality checks are made and duplicate reads are removed using [samblaster](https://github.com/GregoryFaust/samblaster). The produced bam files are then piped through [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html) for a two-group comparison. 
+The raw reads are aligned to the hg19 assembly using [bwa](https://github.com/lh3/bwa). Quality checks are made and duplicate reads are removed using [samblaster](https://github.com/GregoryFaust/samblaster). The produced bam files are piped through [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html) for a two-group comparison. 
 
 QC metrics for the aligned reads are computed. Fragment size and window length parameters are estimated. Thereafter, the libraries are normalised and filtering of windows is done to retain high abundance windows. Finally, differential accessibility testing is done and corrrections for multiple testing are performed. 
 
 
 ```{r, echo = FALSE}
-control.label = "Normal Cells"
-compare.label = "Senescent Cells"
+
+##control.label = "Normal Cells"
+##compare.label = "Senescent Cells"
+
+control.label = control
+compare.label = comparison
 
 fastq_dir="/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq"
 
-control = c("normal1", "normal2", "normal4")
-compare = c("senescent1", "senescent2", "senescent4")
+##control = c("normal1", "normal2", "normal4")
+##compare = c("senescent1", "senescent2", "senescent4")
 
+control = controlName
+compare = compareName
+  
 control.files = file.path(fastq_dir, paste0(control, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
 compare.files = file.path(fastq_dir, paste0(compare, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
 
@@ -176,8 +182,8 @@ abline(v=global.bg[1], col="red", lwd=2)
 abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
-data <- data[keep,]
-kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads post filtering.")
+filtered.data <- data[keep,]
+kable(as.data.frame(filtered.data$totals, row.name=samples), caption="Total number of reads post filtering.")
 ```
 
 
@@ -197,12 +203,33 @@ plotMDS(bin.adjc, labels=samples)
 ```
 
 
-```{r}
-y <- asDGEList(data, norm.factors=Norm.factors)
+```{r, echo=FALSE}
+y <- asDGEList(filtered.data, norm.factors=Norm.factors)
 y <- estimateDisp(y, design)
+
+par(mfrow=c(1,2))
+o <- order(y$AveLogCPM)
+plot(y$AveLogCPM[o], sqrt(y$trended.dispersion[o]), type="l", lwd=2,
+     ylim=c(0,1), xlab="Average log2 CPM", lab=("Biological coefficient of variation"))
+
 fit <- glmQLFit(y, design, robust=TRUE)
+plotQLDisp(fit)
+
 results <- glmQLFTest(fit)
-kable(topTags(results))
+kable(topTags(results), caption="Top Tags")
 ```
 
 ### Multiple Testing Correction ###
+
+```{r, echo=FALSE}
+merged <- mergeWindows(rowRanges(filtered.data), tol=1000L)
+kable(merged$region, caption="Merged regions")
+```
+
+
+```{r, echo=FALSE}
+tabcom <- combineTests(merge$id, results$table)
+kable(head(tabcom), caption="Combined Tests")
+kable(summary(width(merged$region)))
+```
+

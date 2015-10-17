@@ -4,7 +4,7 @@
 
 require("rjson")
 
-data <- fromJSON(file="AppSession.json")
+data <- fromJSON(file="../../AppSession.json")
 numberOfPropertyItems = length(data[['Properties']][['Items']])
 
 ##
