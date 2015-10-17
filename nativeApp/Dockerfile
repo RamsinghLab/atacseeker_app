@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 
 # Make ATACseeker directories. 
 
-RUN mkdir -p /atacseker/reference /atacseeker/scripts /atacseeker/install
+RUN mkdir -p /atacseeker/reference /atacseeker/scripts /atacseeker/install
 
 # Copy reference and scripts to atacseeker folder
 
