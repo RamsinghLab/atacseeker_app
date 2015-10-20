@@ -32,7 +32,7 @@ COPY tmp/scripts /atacseeker/scripts
 
 # Install R packages - knitr, rmarkdown, rjson, statmod, locfit, edgeR, csaw
 
-###Rscript /atacseeker/scripts/install_packages.R
+RUN Rscript /atacseeker/scripts/install_packages.R
 
 # Install RStudio for pandoc libraries
 # Required for rmarkdown
