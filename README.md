@@ -23,4 +23,4 @@ Main development directory for BaseSpace App is `nativeApp`.
 *requires*: 
 * docker 
 * wget, git, pandoc, [samblaster](https://github.com/GregoryFaust/samblaster), samtools, [bwa](https://github.com/lh3/bwa)
-* R, knitr, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), statmod, locfit, edgeR, [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html)
+* R, knitr, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), rjson, statmod, locfit, edgeR, [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html)
