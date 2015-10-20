@@ -30,9 +30,9 @@ RUN mkdir -p /atacseeker/reference /atacseeker/scripts
 COPY tmp/reference /atacseeker/reference
 COPY tmp/scripts /atacseeker/scripts
 
-# Install R packages - knitr, rmarkdown, statmod, locfit, edgeR, csaw
+# Install R packages - knitr, rmarkdown, rjson, statmod, locfit, edgeR, csaw
 
-###RUN R CMD BATCH /atacseeker/scripts/install_packages.R
+###Rscript /atacseeker/scripts/install_packages.R
 
 # Install RStudio for pandoc libraries
 # Required for rmarkdown
