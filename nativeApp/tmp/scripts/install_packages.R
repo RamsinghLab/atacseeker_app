@@ -1,8 +1,9 @@
 ##
-# Set CRAN mirror
+# Set CRAN mirror and install R packages
 ##
 
-r <- getOption("repos")             # hard code the US repo for CRAN
+## Hard code the US repo for CRAN
+r <- getOption("repos")             
 r["CRAN"] <- "http://cran.us.r-project.org"
 options(repos = r)
 rm(r)
