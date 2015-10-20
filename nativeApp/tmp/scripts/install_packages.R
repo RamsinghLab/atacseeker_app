@@ -19,5 +19,3 @@ install.packages('statmod')
 install.packages('locfit')
 install.packages('edgeR')
 install.packages('csaw')
-
-
