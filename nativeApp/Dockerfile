@@ -17,6 +17,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN apt-get update && apt-get install -y \
     bwa \
     git \
+    libcurl4-gnutls-dev \
+    libxml2-dev \
     r-base \
     samtools \
     wget
