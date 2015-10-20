@@ -12,10 +12,15 @@ rm(r)
 # Install required packages
 ##
 
+## CRAN packages
 install.packages('knitr')
 install.packages('rmarkdown')
 install.packages('rjson')
 install.packages('statmod')
 install.packages('locfit')
-install.packages('edgeR')
-install.packages('csaw')
+
+
+## Bioconductor packages
+source("https://bioconductor.org/biocLite.R")
+biocLite('edgeR')
+biocLite('csaw')
