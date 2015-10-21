@@ -14,12 +14,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 # Installing required packages.
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --force-yes \
     bwa \
     git \
     libcurl4-gnutls-dev \
     libxml2-dev \
-    r-base \
+    r-base-dev \
     samtools \
     wget
 
