@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     git \
     libcurl4-gnutls-dev \
     libxml2-dev \
+    r-base \
     r-base-dev \
     samtools \
     wget
@@ -48,6 +49,10 @@ RUN rm -rf /tmp/rstudio*
 # Install samblaster from Github repository 
 
 RUN bash /atacseeker/scripts/install_samblaster.sh
+
+# Build the index
+
+RUN bwa index -a bwtsw /atacseeker/reference/hg19.fa.gz
 
 # Render the Rmarkdown file
 
