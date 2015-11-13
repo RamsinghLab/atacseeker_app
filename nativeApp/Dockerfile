@@ -15,22 +15,23 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 # Installing required packages.
 
 RUN apt-get update && apt-get install -y --force-yes \
-    bwa \
-    git \
+#    bwa \
+#    git \
     libcurl4-gnutls-dev \
     libxml2-dev \
     r-base \
     r-base-dev \
-    samtools \
+#    samtools \
     wget
 
 # Make ATACseeker directories. 
 
-RUN mkdir -p /atacseeker/reference /atacseeker/scripts 
+#RUN mkdir -p /atacseeker/reference /atacseeker/scripts 
+RUN mkdir -p /atacseeker/scripts
 
 # Copy reference and scripts to atacseeker folder
 
-COPY tmp/reference /atacseeker/reference
+#COPY tmp/reference /atacseeker/reference
 COPY tmp/scripts /atacseeker/scripts
 
 # Install R packages - knitr, rmarkdown, rjson, statmod, locfit, edgeR, csaw
@@ -48,11 +49,11 @@ RUN rm -rf /tmp/rstudio*
 
 # Install samblaster from Github repository 
 
-RUN bash /atacseeker/scripts/install_samblaster.sh
+#RUN bash /atacseeker/scripts/install_samblaster.sh
 
 # Build the index
 
-RUN bwa index -a bwtsw /atacseeker/reference/hg19.fa.gz
+#RUN bwa index -a bwtsw /atacseeker/reference/hg19.fa.gz
 
 # Render the Rmarkdown file
 
