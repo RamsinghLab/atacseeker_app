@@ -1,8 +1,8 @@
 {
   "OriginatingUri": "https://basespace.illumina.com",
-  "Id": "29601300",
-  "Name": "ATACseeker 10/15/2015 10:38:27",
-  "Href": "v1pre3/appsessions/29601300",
+  "Id": "30465505",
+  "Name": "ATACseeker 11/13/2015 6:53:47",
+  "Href": "v1pre3/appsessions/30465505",
   "Application": {
     "Id": "2052050",
     "Href": "v1pre3/applications/2052050",
@@ -24,123 +24,1234 @@
   },
   "Status": "Initializing",
   "StatusSummary": "",
-  "DateCreated": "2015-10-16T05:44:20.0938975Z",
-  "ModifiedOn": "2015-10-16T05:44:20.4688997Z",
+  "DateCreated": "2015-11-14T02:55:47.8480065Z",
+  "ModifiedOn": "2015-11-14T02:55:48.3011311Z",
   "Properties": {
     "Items": [
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29601300/properties/BaseSpace.Private.IsMultiNode",
+        "Href": "v1pre3/appsessions/30465505/properties/BaseSpace.Private.IsMultiNode",
         "Name": "BaseSpace.Private.IsMultiNode",
         "Description": "",
         "Content": "False"
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.app-session-name",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.app-session-name",
         "Name": "Input.app-session-name",
         "Description": "Analysis Name",
-        "Content": "ATACseeker 10/15/2015 10:38:27"
+        "Content": "ATACseeker 11/13/2015 6:53:47"
+      },
+      {
+        "Type": "appresult[]",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.AppResults",
+        "Name": "Input.AppResults",
+        "Description": "",
+        "Items": [
+          {
+            "Id": "19653662",
+            "Href": "v1pre3/appresults/19653662",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-2_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T09:10:56.0000000",
+            "TotalSize": 6887994081,
+            "AppSession": {
+              "Id": "21898721",
+              "Name": "103114-2-N BWA",
+              "Href": "v1pre3/appsessions/21898721",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:09:35.0000000",
+              "ModifiedOn": "2014-12-18T09:15:28.0000000",
+              "DateCompleted": "2014-12-18T09:15:33.0000000",
+              "TotalSize": 6887994081
+            }
+          },
+          {
+            "Id": "19654651",
+            "Href": "v1pre3/appresults/19654651",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "102414-3_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:48:28.0000000",
+            "TotalSize": 5210558013,
+            "AppSession": {
+              "Id": "21899678",
+              "Name": "102414-3-N BWA",
+              "Href": "v1pre3/appsessions/21899678",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:22:02.0000000",
+              "ModifiedOn": "2014-12-18T07:51:57.0000000",
+              "DateCompleted": "2014-12-18T07:52:01.0000000",
+              "TotalSize": 5210558013
+            }
+          },
+          {
+            "Id": "19653654",
+            "Href": "v1pre3/appresults/19653654",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-1_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:48:11.0000000",
+            "TotalSize": 5450617472,
+            "AppSession": {
+              "Id": "21900616",
+              "Name": "103114-1-N BWA",
+              "Href": "v1pre3/appsessions/21900616",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:19:16.0000000",
+              "ModifiedOn": "2014-12-18T07:52:20.0000000",
+              "DateCompleted": "2014-12-18T07:52:20.0000000",
+              "TotalSize": 5450617472
+            }
+          },
+          {
+            "Id": "19653653",
+            "Href": "v1pre3/appresults/19653653",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:32:45.0000000",
+            "TotalSize": 2934819692,
+            "AppSession": {
+              "Id": "21900622",
+              "Name": "071114-3-N BWA",
+              "Href": "v1pre3/appsessions/21900622",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:20:49.0000000",
+              "ModifiedOn": "2014-12-18T07:35:40.0000000",
+              "DateCompleted": "2014-12-18T07:35:29.0000000",
+              "TotalSize": 2934819692
+            }
+          },
+          {
+            "Id": "19636755",
+            "Href": "v1pre3/appresults/19636755",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "100214-1_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:14:54.0000000",
+            "TotalSize": 4893352641,
+            "AppSession": {
+              "Id": "21898763",
+              "Name": "100214-1-N BWA",
+              "Href": "v1pre3/appsessions/21898763",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:13:30.0000000",
+              "ModifiedOn": "2014-12-18T07:18:56.0000000",
+              "DateCompleted": "2014-12-18T07:18:55.0000000",
+              "TotalSize": 4893352641
+            }
+          },
+          {
+            "Id": "19653665",
+            "Href": "v1pre3/appresults/19653665",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-1_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T10:36:17.0000000",
+            "TotalSize": 8799618928,
+            "AppSession": {
+              "Id": "21898731",
+              "Name": "103114-1-S BWA",
+              "Href": "v1pre3/appsessions/21898731",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:10:44.0000000",
+              "ModifiedOn": "2014-12-18T10:43:39.0000000",
+              "DateCompleted": "2014-12-18T10:43:28.0000000",
+              "TotalSize": 8799618928
+            }
+          },
+          {
+            "Id": "19653661",
+            "Href": "v1pre3/appresults/19653661",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-2_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T09:09:17.0000000",
+            "TotalSize": 5063562295,
+            "AppSession": {
+              "Id": "21898750",
+              "Name": "103114-2-S BWA",
+              "Href": "v1pre3/appsessions/21898750",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:12:40.0000000",
+              "ModifiedOn": "2014-12-18T09:14:14.0000000",
+              "DateCompleted": "2014-12-18T09:14:04.0000000",
+              "TotalSize": 5063562295
+            }
+          },
+          {
+            "Id": "19653656",
+            "Href": "v1pre3/appresults/19653656",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "102414-3_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:57:22.0000000",
+            "TotalSize": 5858199198,
+            "AppSession": {
+              "Id": "21899684",
+              "Name": "102414-3-S BWA",
+              "Href": "v1pre3/appsessions/21899684",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:24:02.0000000",
+              "ModifiedOn": "2014-12-18T08:01:06.0000000",
+              "DateCompleted": "2014-12-18T08:01:06.0000000",
+              "TotalSize": 5858199198
+            }
+          },
+          {
+            "Id": "19653655",
+            "Href": "v1pre3/appresults/19653655",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:55:11.0000000",
+            "TotalSize": 4182419061,
+            "AppSession": {
+              "Id": "21900625",
+              "Name": "071114-3-S BWA",
+              "Href": "v1pre3/appsessions/21900625",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:21:29.0000000",
+              "ModifiedOn": "2014-12-18T07:59:07.0000000",
+              "DateCompleted": "2014-12-18T07:59:07.0000000",
+              "TotalSize": 4182419061
+            }
+          },
+          {
+            "Id": "19643868",
+            "Href": "v1pre3/appresults/19643868",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "100214-1_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T06:46:39.0000000",
+            "TotalSize": 2622381135,
+            "AppSession": {
+              "Id": "21898802",
+              "Name": "100214-1-S BWA",
+              "Href": "v1pre3/appsessions/21898802",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:17:05.0000000",
+              "ModifiedOn": "2014-12-18T06:48:17.0000000",
+              "DateCompleted": "2014-12-18T06:48:16.0000000",
+              "TotalSize": 2622381135
+            }
+          }
+        ],
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.AppResults/items",
+        "ItemsDisplayedCount": 10,
+        "ItemsTotalCount": 10
+      },
+      {
+        "Type": "appresult[]",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.compare-app-result-id",
+        "Name": "Input.compare-app-result-id",
+        "Description": "Compare Samples - BWA App Result",
+        "Items": [
+          {
+            "Id": "19653665",
+            "Href": "v1pre3/appresults/19653665",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-1_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T10:36:17.0000000",
+            "TotalSize": 8799618928,
+            "AppSession": {
+              "Id": "21898731",
+              "Name": "103114-1-S BWA",
+              "Href": "v1pre3/appsessions/21898731",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:10:44.0000000",
+              "ModifiedOn": "2014-12-18T10:43:39.0000000",
+              "DateCompleted": "2014-12-18T10:43:28.0000000",
+              "TotalSize": 8799618928
+            }
+          },
+          {
+            "Id": "19653661",
+            "Href": "v1pre3/appresults/19653661",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-2_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T09:09:17.0000000",
+            "TotalSize": 5063562295,
+            "AppSession": {
+              "Id": "21898750",
+              "Name": "103114-2-S BWA",
+              "Href": "v1pre3/appsessions/21898750",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:12:40.0000000",
+              "ModifiedOn": "2014-12-18T09:14:14.0000000",
+              "DateCompleted": "2014-12-18T09:14:04.0000000",
+              "TotalSize": 5063562295
+            }
+          },
+          {
+            "Id": "19653656",
+            "Href": "v1pre3/appresults/19653656",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "102414-3_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:57:22.0000000",
+            "TotalSize": 5858199198,
+            "AppSession": {
+              "Id": "21899684",
+              "Name": "102414-3-S BWA",
+              "Href": "v1pre3/appsessions/21899684",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:24:02.0000000",
+              "ModifiedOn": "2014-12-18T08:01:06.0000000",
+              "DateCompleted": "2014-12-18T08:01:06.0000000",
+              "TotalSize": 5858199198
+            }
+          },
+          {
+            "Id": "19653655",
+            "Href": "v1pre3/appresults/19653655",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:55:11.0000000",
+            "TotalSize": 4182419061,
+            "AppSession": {
+              "Id": "21900625",
+              "Name": "071114-3-S BWA",
+              "Href": "v1pre3/appsessions/21900625",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:21:29.0000000",
+              "ModifiedOn": "2014-12-18T07:59:07.0000000",
+              "DateCompleted": "2014-12-18T07:59:07.0000000",
+              "TotalSize": 4182419061
+            }
+          },
+          {
+            "Id": "19643868",
+            "Href": "v1pre3/appresults/19643868",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "100214-1_S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T06:46:39.0000000",
+            "TotalSize": 2622381135,
+            "AppSession": {
+              "Id": "21898802",
+              "Name": "100214-1-S BWA",
+              "Href": "v1pre3/appsessions/21898802",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:17:05.0000000",
+              "ModifiedOn": "2014-12-18T06:48:17.0000000",
+              "DateCompleted": "2014-12-18T06:48:16.0000000",
+              "TotalSize": 2622381135
+            }
+          }
+        ],
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.compare-app-result-id/items",
+        "ItemsDisplayedCount": 5,
+        "ItemsTotalCount": 5
+      },
+      {
+        "Type": "map[]",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.compare-app-result-id.attributes",
+        "Name": "Input.compare-app-result-id.attributes",
+        "Description": "Compare Samples - BWA App Result Attributes",
+        "Items": [
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653665"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653665"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653661"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653661"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653656"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653656"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653655"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653655"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "compare-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19643868"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19643868"
+              ]
+            }
+          ]
+        ],
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.compare-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 5,
+        "ItemsTotalCount": 5
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_label",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.compare_label",
         "Name": "Input.compare_label",
         "Description": "Group Label",
-        "Content": "senescent"
+        "Content": "comparison"
       },
       {
-        "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_samples",
-        "Name": "Input.compare_samples",
-        "Description": "Comparison Samples",
+        "Type": "appresult[]",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.control-app-result-id",
+        "Name": "Input.control-app-result-id",
+        "Description": "Control Samples - BWA App Result",
         "Items": [
           {
-            "Id": "29661757",
-            "Href": "v1pre3/samples/29661757",
-            "IsMerged": false,
+            "Id": "19653662",
+            "Href": "v1pre3/appresults/19653662",
             "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "100214-1-S",
-            "SampleId": "100214-1-S",
+            "Name": "103114-2_N",
             "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:47:11.0000000",
-            "TotalSize": 3024823673,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 23288105,
-            "NumReadsRaw": 23288105,
-            "TotalReadsRaw": 46576210,
-            "TotalReadsPF": 46576210,
-            "TotalClustersRaw": 23288105,
-            "TotalClustersPF": 23288105,
-            "IsPairedEnd": true
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T09:10:56.0000000",
+            "TotalSize": 6887994081,
+            "AppSession": {
+              "Id": "21898721",
+              "Name": "103114-2-N BWA",
+              "Href": "v1pre3/appsessions/21898721",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:09:35.0000000",
+              "ModifiedOn": "2014-12-18T09:15:28.0000000",
+              "DateCompleted": "2014-12-18T09:15:33.0000000",
+              "TotalSize": 6887994081
+            }
           },
           {
-            "Id": "29658730",
-            "Href": "v1pre3/samples/29658730",
-            "IsMerged": false,
+            "Id": "19654651",
+            "Href": "v1pre3/appresults/19654651",
             "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "071114-3-S",
-            "SampleId": "071114-3-S",
+            "Name": "102414-3_N",
             "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:38:46.0000000",
-            "TotalSize": 3812514916,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 29195371,
-            "NumReadsRaw": 29195371,
-            "TotalReadsRaw": 58390742,
-            "TotalReadsPF": 58390742,
-            "TotalClustersRaw": 29195371,
-            "TotalClustersPF": 29195371,
-            "IsPairedEnd": true
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:48:28.0000000",
+            "TotalSize": 5210558013,
+            "AppSession": {
+              "Id": "21899678",
+              "Name": "102414-3-N BWA",
+              "Href": "v1pre3/appsessions/21899678",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:22:02.0000000",
+              "ModifiedOn": "2014-12-18T07:51:57.0000000",
+              "DateCompleted": "2014-12-18T07:52:01.0000000",
+              "TotalSize": 5210558013
+            }
+          },
+          {
+            "Id": "19653654",
+            "Href": "v1pre3/appresults/19653654",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "103114-1_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:48:11.0000000",
+            "TotalSize": 5450617472,
+            "AppSession": {
+              "Id": "21900616",
+              "Name": "103114-1-N BWA",
+              "Href": "v1pre3/appsessions/21900616",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:19:16.0000000",
+              "ModifiedOn": "2014-12-18T07:52:20.0000000",
+              "DateCompleted": "2014-12-18T07:52:20.0000000",
+              "TotalSize": 5450617472
+            }
+          },
+          {
+            "Id": "19653653",
+            "Href": "v1pre3/appresults/19653653",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "071114-3_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:32:45.0000000",
+            "TotalSize": 2934819692,
+            "AppSession": {
+              "Id": "21900622",
+              "Name": "071114-3-N BWA",
+              "Href": "v1pre3/appsessions/21900622",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:20:49.0000000",
+              "ModifiedOn": "2014-12-18T07:35:40.0000000",
+              "DateCompleted": "2014-12-18T07:35:29.0000000",
+              "TotalSize": 2934819692
+            }
+          },
+          {
+            "Id": "19636755",
+            "Href": "v1pre3/appresults/19636755",
+            "UserOwnedBy": {
+              "Id": "4531551",
+              "Href": "v1pre3/users/4531551",
+              "Name": "Ramsingh Laboratory",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "100214-1_N",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2014-12-18T07:14:54.0000000",
+            "TotalSize": 4893352641,
+            "AppSession": {
+              "Id": "21898763",
+              "Name": "100214-1-N BWA",
+              "Href": "v1pre3/appsessions/21898763",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ]
+              },
+              "UserCreatedBy": {
+                "Id": "4531551",
+                "Href": "v1pre3/users/4531551",
+                "Name": "Ramsingh Laboratory",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2014-12-18T02:13:30.0000000",
+              "ModifiedOn": "2014-12-18T07:18:56.0000000",
+              "DateCompleted": "2014-12-18T07:18:55.0000000",
+              "TotalSize": 4893352641
+            }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.compare_samples/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.control-app-result-id/items",
+        "ItemsDisplayedCount": 5,
+        "ItemsTotalCount": 5
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.compare_samples.attributes",
-        "Name": "Input.compare_samples.attributes",
-        "Description": "Comparison Samples Attributes",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.control-app-result-id.attributes",
+        "Name": "Input.control-app-result-id.attributes",
+        "Description": "Control Samples - BWA App Result Attributes",
         "Items": [
           [
             {
               "Key": "FieldId",
               "Values": [
-                "compare_samples"
+                "control-app-result-id"
               ]
             },
             {
               "Key": "ResourceType",
               "Values": [
-                "sample"
+                "analysis"
               ]
             },
             {
               "Key": "ResourceId",
               "Values": [
-                "29661757"
+                "19653662"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/samples/29661757"
+                "v1pre3/appresults/19653662"
               ]
             }
           ],
@@ -148,169 +1259,121 @@
             {
               "Key": "FieldId",
               "Values": [
-                "compare_samples"
+                "control-app-result-id"
               ]
             },
             {
               "Key": "ResourceType",
               "Values": [
-                "sample"
+                "analysis"
               ]
             },
             {
               "Key": "ResourceId",
               "Values": [
-                "29658730"
+                "19654651"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/samples/29658730"
+                "v1pre3/appresults/19654651"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "control-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653654"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653654"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "control-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19653653"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19653653"
+              ]
+            }
+          ],
+          [
+            {
+              "Key": "FieldId",
+              "Values": [
+                "control-app-result-id"
+              ]
+            },
+            {
+              "Key": "ResourceType",
+              "Values": [
+                "analysis"
+              ]
+            },
+            {
+              "Key": "ResourceId",
+              "Values": [
+                "19636755"
+              ]
+            },
+            {
+              "Key": "ResourceHref",
+              "Values": [
+                "v1pre3/appresults/19636755"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.compare_samples.attributes/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.control-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 5,
+        "ItemsTotalCount": 5
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.control_label",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.control_label",
         "Name": "Input.control_label",
         "Description": "Group Label",
-        "Content": "normal"
-      },
-      {
-        "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.control_samples",
-        "Name": "Input.control_samples",
-        "Description": "Control Samples",
-        "Items": [
-          {
-            "Id": "29660732",
-            "Href": "v1pre3/samples/29660732",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1-N",
-            "SampleId": "100214-1-N",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:52:08.0000000",
-            "TotalSize": 5364219686,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 41176796,
-            "NumReadsRaw": 41176796,
-            "TotalReadsRaw": 82353592,
-            "TotalReadsPF": 82353592,
-            "TotalClustersRaw": 41176796,
-            "TotalClustersPF": 41176796,
-            "IsPairedEnd": true
-          },
-          {
-            "Id": "29664701",
-            "Href": "v1pre3/samples/29664701",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3-N",
-            "SampleId": "071114-3-N",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:29:02.0000000",
-            "TotalSize": 2436686625,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 18575973,
-            "NumReadsRaw": 18575973,
-            "TotalReadsRaw": 37151946,
-            "TotalReadsPF": 37151946,
-            "TotalClustersRaw": 18575973,
-            "TotalClustersPF": 18575973,
-            "IsPairedEnd": true
-          }
-        ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.control_samples/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
-      },
-      {
-        "Type": "map[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.control_samples.attributes",
-        "Name": "Input.control_samples.attributes",
-        "Description": "Control Samples Attributes",
-        "Items": [
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control_samples"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "sample"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "29660732"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/samples/29660732"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control_samples"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "sample"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "29664701"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/samples/29664701"
-              ]
-            }
-          ]
-        ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.control_samples.attributes/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "Content": "control"
       },
       {
         "Type": "project",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.project-id",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.project-id",
         "Name": "Input.project-id",
         "Description": "Save Results To",
         "Content": {
@@ -332,7 +1395,7 @@
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.project-id.attributes",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.project-id.attributes",
         "Name": "Input.project-id.attributes",
         "Description": "Save Results To Attributes",
         "Items": [
@@ -363,13 +1426,13 @@
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.project-id.attributes/items",
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.project-id.attributes/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.Projects",
+        "Href": "v1pre3/appsessions/30465505/properties/Input.Projects",
         "Name": "Input.Projects",
         "Description": "",
         "Items": [
@@ -390,128 +1453,13 @@
             "TotalSize": 14638244900
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.Projects/items",
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Input.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
-        "Type": "sample[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Input.Samples",
-        "Name": "Input.Samples",
-        "Description": "",
-        "Items": [
-          {
-            "Id": "29660732",
-            "Href": "v1pre3/samples/29660732",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1-N",
-            "SampleId": "100214-1-N",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:52:08.0000000",
-            "TotalSize": 5364219686,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 41176796,
-            "NumReadsRaw": 41176796,
-            "TotalReadsRaw": 82353592,
-            "TotalReadsPF": 82353592,
-            "TotalClustersRaw": 41176796,
-            "TotalClustersPF": 41176796,
-            "IsPairedEnd": true
-          },
-          {
-            "Id": "29664701",
-            "Href": "v1pre3/samples/29664701",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3-N",
-            "SampleId": "071114-3-N",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:29:02.0000000",
-            "TotalSize": 2436686625,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 18575973,
-            "NumReadsRaw": 18575973,
-            "TotalReadsRaw": 37151946,
-            "TotalReadsPF": 37151946,
-            "TotalClustersRaw": 18575973,
-            "TotalClustersPF": 18575973,
-            "IsPairedEnd": true
-          },
-          {
-            "Id": "29661757",
-            "Href": "v1pre3/samples/29661757",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1-S",
-            "SampleId": "100214-1-S",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:47:11.0000000",
-            "TotalSize": 3024823673,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 23288105,
-            "NumReadsRaw": 23288105,
-            "TotalReadsRaw": 46576210,
-            "TotalReadsPF": 46576210,
-            "TotalClustersRaw": 23288105,
-            "TotalClustersPF": 23288105,
-            "IsPairedEnd": true
-          },
-          {
-            "Id": "29658730",
-            "Href": "v1pre3/samples/29658730",
-            "IsMerged": false,
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3-S",
-            "SampleId": "071114-3-S",
-            "Status": "Complete",
-            "StatusSummary": "",
-            "DateCreated": "2015-10-16T01:38:46.0000000",
-            "TotalSize": 3812514916,
-            "Read1": 76,
-            "Read2": 76,
-            "NumReadsPF": 29195371,
-            "NumReadsRaw": 29195371,
-            "TotalReadsRaw": 58390742,
-            "TotalReadsPF": 58390742,
-            "TotalClustersRaw": 29195371,
-            "TotalClustersPF": 29195371,
-            "IsPairedEnd": true
-          }
-        ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Input.Samples/items",
-        "ItemsDisplayedCount": 4,
-        "ItemsTotalCount": 4
-      },
-      {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/29601300/properties/Output.Projects",
+        "Href": "v1pre3/appsessions/30465505/properties/Output.Projects",
         "Name": "Output.Projects",
         "Description": "",
         "Items": [
@@ -532,13 +1480,13 @@
             "TotalSize": 14638244900
           }
         ],
-        "HrefItems": "v1pre3/appsessions/29601300/properties/Output.Projects/items",
+        "HrefItems": "v1pre3/appsessions/30465505/properties/Output.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       }
     ],
     "DisplayedCount": 13,
     "TotalCount": 13,
-    "Href": "v1pre3/appsessions/29601300/properties"
+    "Href": "v1pre3/appsessions/30465505/properties"
   }
 }
