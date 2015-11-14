@@ -59,7 +59,7 @@ for (index in seq(numberOfPropertyItems)){
 for (index in seq(numberOfPropertyItems)){
 
   ## Control samples  
-  if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.control_samples'){
+  if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.control-app-result-id'){
     for (sample in seq(length(data[['Properties']][['Items']][[index]][['Items']]))){
       controlID = c(controlID, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Id']])
       controlHref = c(controlHref, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Href']])
@@ -68,7 +68,7 @@ for (index in seq(numberOfPropertyItems)){
   }
   
   ## Compare samples
-  if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.compare_samples'){
+  if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.compare-app-result-id'){
     for (sample in seq(length(data[['Properties']][['Items']][[index]][['Items']]))){
       compareID = c(compareID, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Id']])
       compareHref = c(compareHref, data[['Properties']][['Items']][[index]][['Items']][[sample]][['Href']])
