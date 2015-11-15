@@ -15,10 +15,21 @@ library(knitr)
 ```
 
 
-```{r, echo=FALSE}
-
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 source("parse_AppSession.R")
 
+app_session_name = gsub('/','-', app_session_name)
+
+base_dir = "/data/output/appresults"
+## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
+
+output_dir = file.path(base_dir, project_id, app_session_name)
+
+cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
+system(cmd1)
+
+cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+system(cmd2)
 ```
 
 
@@ -33,27 +44,30 @@ QC metrics for the aligned reads are also computed and displayed. Fragment size 
 
 ```{r, echo = FALSE}
 
-##control.label = "Normal Cells"
-##compare.label = "Senescent Cells"
+## control.label = "Normal Cells"
+## compare.label = "Senescent Cells"
 
 control.label = control
 compare.label = comparison
 
-##fastq_dir="/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq"
+## fastq_dir="/Users/asifzubair/SkyDrive/projects/atacseq/data/fastq"
 
-##control = c("normal1", "normal2", "normal4")
-##compare = c("senescent1", "senescent2", "senescent4")
+## control = c("normal1", "normal2", "normal4")
+## compare = c("senescent1", "senescent2", "senescent4")
 
 control = controlName
 compare = compareName
   
-##control.files = file.path(fastq_dir, paste0(control, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
-##compare.files = file.path(fastq_dir, paste0(compare, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+## control.files = file.path(fastq_dir, paste0(control, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+## compare.files = file.path(fastq_dir, paste0(compare, ".unique_q10minimum_noChrM.hg19.sorted.bam"))
+
+base_dir = "/data/input/appresults"
+## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
 
 control.files = c()
 for (f in controlName){
   
-  fastq_dir = file.path('/data/input/appresults', f)
+  fastq_dir = file.path(base_dir, f)
   control.files = c(control.files, file.path(fastq_dir, paste0(f, ".bam")))
   
   }
@@ -61,7 +75,7 @@ for (f in controlName){
 compare.files = c()
 for (f in compareName){
   
-  fastq_dir = file.path('/data/input/appresults', f)
+  fastq_dir = file.path(base_dir, f)
   compare.files = c(compare.files, file.path(fastq_dir, paste0(f, ".bam")))
   
   }
@@ -86,7 +100,7 @@ kable(design, caption = "Design Matrix")
 
 ```{r,echo=FALSE}
 frag.len <- 150
-# Do we use the minq=50 parameter ?
+## Do we use the minq=50 parameter ?
 pe.first <- readParam(dedup=TRUE, pe="first")
 pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE)
 ```
@@ -127,7 +141,7 @@ for (i in seq(length(compare))){
 
 legend("topright", legend = compare, col = seq(length(compare)), lwd = 1, bty = "n")
 
-colnames(reads_qc) = c("Sample", "Total Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter chromosomal", "Frag. Size > 400 bp")
+colnames(reads_qc) = c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
 kable(reads_qc, caption="Quality metrics for PE reads")
 ```
 
@@ -205,7 +219,7 @@ kable(as.data.frame(filtered.data$totals, row.name=samples), caption="Total numb
 
 
 ```{r, echo=FALSE}
-Norm.factors <- normalize(binned)
+Norm.factors <- normOffsets(binned)
 kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing factors")
 ```
 
@@ -214,7 +228,7 @@ kable(as.data.frame(Norm.factors, row.names=samples), caption="Normalizing facto
 Let's see how the samples are clustered:
 
 ```{r, echo=FALSE}
-#binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
+## binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 plotMDS(bin.adjc, labels=samples)
 ```
@@ -227,7 +241,7 @@ y <- estimateDisp(y, design)
 par(mfrow=c(1,2))
 o <- order(y$AveLogCPM)
 plot(y$AveLogCPM[o], sqrt(y$trended.dispersion[o]), type="l", lwd=2,
-     ylim=c(0,1), xlab="Average log2 CPM", lab=("Biological coefficient of variation"))
+     ylim=c(0,1), xlab="Average log2 CPM", ylab=("Biological coefficient of variation"))
 
 fit <- glmQLFit(y, design, robust=TRUE)
 plotQLDisp(fit)
@@ -240,13 +254,13 @@ kable(topTags(results), caption="Top Tags")
 
 ```{r, echo=FALSE}
 merged <- mergeWindows(rowRanges(filtered.data), tol=1000L)
-kable(merged$region, caption="Merged regions")
+## kable(merged$region, caption="Merged regions")
 ```
 
 
 ```{r, echo=FALSE}
-tabcom <- combineTests(merge$id, results$table)
+tabcom <- combineTests(merged$id, results$table)
 kable(head(tabcom), caption="Combined Tests")
-kable(summary(width(merged$region)))
+## kable(summary(width(merged$region)))
 ```
 

@@ -1,1 +1,9 @@
+data/input/appresults/*/*.bam
+data/input/appresults/*/*.bami
+
 tmp/reference/hg19.*
+
+tmp/scripts/.DS_Store
+tmp/scripts/.Rhistory
+tmp/scripts/install_samblaster.sh
+tmp/scripts/alignment_pipeline.sh
