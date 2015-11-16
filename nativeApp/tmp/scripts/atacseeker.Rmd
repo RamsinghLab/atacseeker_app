@@ -65,18 +65,18 @@ base_dir = "/data/input/appresults"
 ## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
 
 control.files = c()
-for (f in controlName){
+for (f in seq(length(controlName))){
   
-  fastq_dir = file.path(base_dir, f)
-  control.files = c(control.files, file.path(fastq_dir, paste0(f, ".bam")))
+  fastq_dir = file.path(base_dir, controlID[f])
+  control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
   
   }
 
 compare.files = c()
-for (f in compareName){
+for (f in seq(length(compareName))){
   
-  fastq_dir = file.path(base_dir, f)
-  compare.files = c(compare.files, file.path(fastq_dir, paste0(f, ".bam")))
+  fastq_dir = file.path(base_dir, compareID[f])
+  compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
   
   }
 
