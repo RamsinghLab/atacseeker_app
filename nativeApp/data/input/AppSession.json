@@ -1,8 +1,8 @@
 {
   "OriginatingUri": "https://basespace.illumina.com",
-  "Id": "30477560",
-  "Name": "ATACseeker 11/14/2015 3:33:22",
-  "Href": "v1pre3/appsessions/30477560",
+  "Id": "30647663",
+  "Name": "ATACseeker_Test",
+  "Href": "v1pre3/appsessions/30647663",
   "Application": {
     "Id": "2052050",
     "Href": "v1pre3/applications/2052050",
@@ -24,48 +24,48 @@
   },
   "Status": "Initializing",
   "StatusSummary": "",
-  "DateCreated": "2015-11-14T23:36:20.5271250Z",
-  "ModifiedOn": "2015-11-14T23:36:20.9646251Z",
+  "DateCreated": "2015-11-23T03:39:36.6264771Z",
+  "ModifiedOn": "2015-11-23T03:39:37.0014806Z",
   "Properties": {
     "Items": [
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30477560/properties/BaseSpace.Private.IsMultiNode",
+        "Href": "v1pre3/appsessions/30647663/properties/BaseSpace.Private.IsMultiNode",
         "Name": "BaseSpace.Private.IsMultiNode",
         "Description": "",
         "Content": "False"
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.app-session-name",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.app-session-name",
         "Name": "Input.app-session-name",
         "Description": "Analysis Name",
-        "Content": "ATACseeker 11/14/2015 3:33:22"
+        "Content": "ATACseeker_Test"
       },
       {
         "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.AppResults",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.AppResults",
         "Name": "Input.AppResults",
         "Description": "",
         "Items": [
           {
-            "Id": "28089066",
-            "Href": "v1pre3/appresults/28089066",
+            "Id": "28099148",
+            "Href": "v1pre3/appresults/28099148",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "103114-2_N",
+            "Name": "normal2",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:40:11.0000000",
-            "TotalSize": 6308146244,
+            "DateCreated": "2015-11-16T08:26:39.0000000",
+            "TotalSize": 134144198,
             "AppSession": {
-              "Id": "30409554",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 1",
-              "Href": "v1pre3/appsessions/30409554",
+              "Id": "30410881",
+              "Name": "BWA Aligner 11/16/2015 12:12:23 2",
+              "Href": "v1pre3/appsessions/30410881",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -85,36 +85,36 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:42:34.0000000",
-              "DateCompleted": "2015-11-14T21:42:34.0000000"
+              "DateCreated": "2015-11-16T08:13:07.0000000",
+              "ModifiedOn": "2015-11-16T08:27:56.0000000",
+              "DateCompleted": "2015-11-16T08:27:56.0000000"
             }
           },
           {
-            "Id": "28074084",
-            "Href": "v1pre3/appresults/28074084",
+            "Id": "28112119",
+            "Href": "v1pre3/appresults/28112119",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "102414-3_N",
+            "Name": "normal1",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:18:43.0000000",
-            "TotalSize": 5073642279,
+            "DateCreated": "2015-11-16T06:58:37.0000000",
+            "TotalSize": 43456631,
             "AppSession": {
-              "Id": "30409561",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 8",
-              "Href": "v1pre3/appsessions/30409561",
+              "Id": "30406667",
+              "Name": "BWA Aligner 11/15/2015 10:46:11 3",
+              "Href": "v1pre3/appsessions/30406667",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -134,36 +134,36 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:20:57.0000000",
-              "DateCompleted": "2015-11-14T21:20:57.0000000"
+              "DateCreated": "2015-11-16T06:47:27.0000000",
+              "ModifiedOn": "2015-11-16T06:59:40.0000000",
+              "DateCompleted": "2015-11-16T06:59:40.0000000"
             }
           },
           {
-            "Id": "28078068",
-            "Href": "v1pre3/appresults/28078068",
+            "Id": "28114139",
+            "Href": "v1pre3/appresults/28114139",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "103114-1_N",
+            "Name": "senescent2",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:17:21.0000000",
-            "TotalSize": 5018031381,
+            "DateCreated": "2015-11-16T08:27:03.0000000",
+            "TotalSize": 129569746,
             "AppSession": {
-              "Id": "30409560",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 7",
-              "Href": "v1pre3/appsessions/30409560",
+              "Id": "30410880",
+              "Name": "BWA Aligner 11/16/2015 12:12:23 1",
+              "Href": "v1pre3/appsessions/30410880",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -183,36 +183,36 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:19:22.0000000",
-              "DateCompleted": "2015-11-14T21:19:22.0000000"
+              "DateCreated": "2015-11-16T08:13:07.0000000",
+              "ModifiedOn": "2015-11-16T08:28:14.0000000",
+              "DateCompleted": "2015-11-16T08:28:14.0000000"
             }
           },
           {
-            "Id": "28090064",
-            "Href": "v1pre3/appresults/28090064",
+            "Id": "28100142",
+            "Href": "v1pre3/appresults/28100142",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "100214-1_N",
+            "Name": "senescent1",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:10:43.0000000",
-            "TotalSize": 4657910786,
+            "DateCreated": "2015-11-16T06:58:37.0000000",
+            "TotalSize": 43013366,
             "AppSession": {
-              "Id": "30409556",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 3",
-              "Href": "v1pre3/appsessions/30409556",
+              "Id": "30406668",
+              "Name": "BWA Aligner 11/15/2015 10:46:11 4",
+              "Href": "v1pre3/appsessions/30406668",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -232,341 +232,47 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:12:38.0000000",
-              "DateCompleted": "2015-11-14T21:12:38.0000000"
-            }
-          },
-          {
-            "Id": "28074082",
-            "Href": "v1pre3/appresults/28074082",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3_N",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:27:56.0000000",
-            "TotalSize": 2332341302,
-            "AppSession": {
-              "Id": "30409563",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 10",
-              "Href": "v1pre3/appsessions/30409563",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:29:33.0000000",
-              "DateCompleted": "2015-11-14T20:29:32.0000000"
-            }
-          },
-          {
-            "Id": "28090065",
-            "Href": "v1pre3/appresults/28090065",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "103114-1_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T22:00:43.0000000",
-            "TotalSize": 7483319389,
-            "AppSession": {
-              "Id": "30409555",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 2",
-              "Href": "v1pre3/appsessions/30409555",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T22:03:18.0000000",
-              "DateCompleted": "2015-11-14T22:03:18.0000000"
-            }
-          },
-          {
-            "Id": "28074085",
-            "Href": "v1pre3/appresults/28074085",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "102414-3_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:22:54.0000000",
-            "TotalSize": 5500214428,
-            "AppSession": {
-              "Id": "30409557",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 4",
-              "Href": "v1pre3/appsessions/30409557",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:25:00.0000000",
-              "DateCompleted": "2015-11-14T21:25:00.0000000"
-            }
-          },
-          {
-            "Id": "28083062",
-            "Href": "v1pre3/appresults/28083062",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "103114-2_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:09:34.0000000",
-            "TotalSize": 4233966196,
-            "AppSession": {
-              "Id": "30409559",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 6",
-              "Href": "v1pre3/appsessions/30409559",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:11:27.0000000",
-              "DateCompleted": "2015-11-14T21:11:27.0000000"
-            }
-          },
-          {
-            "Id": "28084061",
-            "Href": "v1pre3/appresults/28084061",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:47:52.0000000",
-            "TotalSize": 3560376730,
-            "AppSession": {
-              "Id": "30409558",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 5",
-              "Href": "v1pre3/appsessions/30409558",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:49:38.0000000",
-              "DateCompleted": "2015-11-14T20:49:38.0000000"
-            }
-          },
-          {
-            "Id": "28083060",
-            "Href": "v1pre3/appresults/28083060",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:30:11.0000000",
-            "TotalSize": 2584501203,
-            "AppSession": {
-              "Id": "30409562",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 9",
-              "Href": "v1pre3/appsessions/30409562",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:31:43.0000000",
-              "DateCompleted": "2015-11-14T20:31:43.0000000"
+              "DateCreated": "2015-11-16T06:47:27.0000000",
+              "ModifiedOn": "2015-11-16T06:59:44.0000000",
+              "DateCompleted": "2015-11-16T06:59:44.0000000"
             }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.AppResults/items",
-        "ItemsDisplayedCount": 10,
-        "ItemsTotalCount": 10
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.AppResults/items",
+        "ItemsDisplayedCount": 4,
+        "ItemsTotalCount": 4
       },
       {
         "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.compare-app-result-id",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id",
         "Name": "Input.compare-app-result-id",
         "Description": "Compare Samples - BWA App Result",
         "Items": [
           {
-            "Id": "28090065",
-            "Href": "v1pre3/appresults/28090065",
+            "Id": "28114139",
+            "Href": "v1pre3/appresults/28114139",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "103114-1_S",
+            "Name": "senescent2",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T22:00:43.0000000",
-            "TotalSize": 7483319389,
+            "DateCreated": "2015-11-16T08:27:03.0000000",
+            "TotalSize": 129569746,
             "AppSession": {
-              "Id": "30409555",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 2",
-              "Href": "v1pre3/appsessions/30409555",
+              "Id": "30410880",
+              "Name": "BWA Aligner 11/16/2015 12:12:23 1",
+              "Href": "v1pre3/appsessions/30410880",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -586,36 +292,36 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T22:03:18.0000000",
-              "DateCompleted": "2015-11-14T22:03:18.0000000"
+              "DateCreated": "2015-11-16T08:13:07.0000000",
+              "ModifiedOn": "2015-11-16T08:28:14.0000000",
+              "DateCompleted": "2015-11-16T08:28:14.0000000"
             }
           },
           {
-            "Id": "28074085",
-            "Href": "v1pre3/appresults/28074085",
+            "Id": "28100142",
+            "Href": "v1pre3/appresults/28100142",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "102414-3_S",
+            "Name": "senescent1",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:22:54.0000000",
-            "TotalSize": 5500214428,
+            "DateCreated": "2015-11-16T06:58:37.0000000",
+            "TotalSize": 43013366,
             "AppSession": {
-              "Id": "30409557",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 4",
-              "Href": "v1pre3/appsessions/30409557",
+              "Id": "30406668",
+              "Name": "BWA Aligner 11/15/2015 10:46:11 4",
+              "Href": "v1pre3/appsessions/30406668",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -635,173 +341,26 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:25:00.0000000",
-              "DateCompleted": "2015-11-14T21:25:00.0000000"
-            }
-          },
-          {
-            "Id": "28083062",
-            "Href": "v1pre3/appresults/28083062",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "103114-2_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:09:34.0000000",
-            "TotalSize": 4233966196,
-            "AppSession": {
-              "Id": "30409559",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 6",
-              "Href": "v1pre3/appsessions/30409559",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:11:27.0000000",
-              "DateCompleted": "2015-11-14T21:11:27.0000000"
-            }
-          },
-          {
-            "Id": "28084061",
-            "Href": "v1pre3/appresults/28084061",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:47:52.0000000",
-            "TotalSize": 3560376730,
-            "AppSession": {
-              "Id": "30409558",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 5",
-              "Href": "v1pre3/appsessions/30409558",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:49:38.0000000",
-              "DateCompleted": "2015-11-14T20:49:38.0000000"
-            }
-          },
-          {
-            "Id": "28083060",
-            "Href": "v1pre3/appresults/28083060",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1_S",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:30:11.0000000",
-            "TotalSize": 2584501203,
-            "AppSession": {
-              "Id": "30409562",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 9",
-              "Href": "v1pre3/appsessions/30409562",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:31:43.0000000",
-              "DateCompleted": "2015-11-14T20:31:43.0000000"
+              "DateCreated": "2015-11-16T06:47:27.0000000",
+              "ModifiedOn": "2015-11-16T06:59:44.0000000",
+              "DateCompleted": "2015-11-16T06:59:44.0000000"
             }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.compare-app-result-id/items",
-        "ItemsDisplayedCount": 5,
-        "ItemsTotalCount": 5
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.compare-app-result-id.attributes",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id.attributes",
         "Name": "Input.compare-app-result-id.attributes",
         "Description": "Compare Samples - BWA App Result Attributes",
         "Items": [
@@ -821,13 +380,13 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28090065"
+                "28114139"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28090065"
+                "v1pre3/appresults/28114139"
               ]
             }
           ],
@@ -847,130 +406,52 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28074085"
+                "28100142"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28074085"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "compare-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28083062"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28083062"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "compare-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28084061"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28084061"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "compare-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28083060"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28083060"
+                "v1pre3/appresults/28100142"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.compare-app-result-id.attributes/items",
-        "ItemsDisplayedCount": 5,
-        "ItemsTotalCount": 5
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.compare_label",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.compare_label",
         "Name": "Input.compare_label",
         "Description": "Group Label",
         "Content": "senescent"
       },
       {
         "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.control-app-result-id",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id",
         "Name": "Input.control-app-result-id",
         "Description": "Control Samples - BWA App Result",
         "Items": [
           {
-            "Id": "28089066",
-            "Href": "v1pre3/appresults/28089066",
+            "Id": "28099148",
+            "Href": "v1pre3/appresults/28099148",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "103114-2_N",
+            "Name": "normal2",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:40:11.0000000",
-            "TotalSize": 6308146244,
+            "DateCreated": "2015-11-16T08:26:39.0000000",
+            "TotalSize": 134144198,
             "AppSession": {
-              "Id": "30409554",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 1",
-              "Href": "v1pre3/appsessions/30409554",
+              "Id": "30410881",
+              "Name": "BWA Aligner 11/16/2015 12:12:23 2",
+              "Href": "v1pre3/appsessions/30410881",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -990,36 +471,36 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:42:34.0000000",
-              "DateCompleted": "2015-11-14T21:42:34.0000000"
+              "DateCreated": "2015-11-16T08:13:07.0000000",
+              "ModifiedOn": "2015-11-16T08:27:56.0000000",
+              "DateCompleted": "2015-11-16T08:27:56.0000000"
             }
           },
           {
-            "Id": "28074084",
-            "Href": "v1pre3/appresults/28074084",
+            "Id": "28112119",
+            "Href": "v1pre3/appresults/28112119",
             "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "102414-3_N",
+            "Name": "normal1",
             "Status": "Complete",
             "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:18:43.0000000",
-            "TotalSize": 5073642279,
+            "DateCreated": "2015-11-16T06:58:37.0000000",
+            "TotalSize": 43456631,
             "AppSession": {
-              "Id": "30409561",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 8",
-              "Href": "v1pre3/appsessions/30409561",
+              "Id": "30406667",
+              "Name": "BWA Aligner 11/15/2015 10:46:11 3",
+              "Href": "v1pre3/appsessions/30406667",
               "Application": {
                 "Id": "2084082",
                 "Href": "v1pre3/applications/2084082",
@@ -1039,173 +520,26 @@
                 ]
               },
               "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
               "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:20:57.0000000",
-              "DateCompleted": "2015-11-14T21:20:57.0000000"
-            }
-          },
-          {
-            "Id": "28078068",
-            "Href": "v1pre3/appresults/28078068",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "103114-1_N",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:17:21.0000000",
-            "TotalSize": 5018031381,
-            "AppSession": {
-              "Id": "30409560",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 7",
-              "Href": "v1pre3/appsessions/30409560",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:19:22.0000000",
-              "DateCompleted": "2015-11-14T21:19:22.0000000"
-            }
-          },
-          {
-            "Id": "28090064",
-            "Href": "v1pre3/appresults/28090064",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "100214-1_N",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T21:10:43.0000000",
-            "TotalSize": 4657910786,
-            "AppSession": {
-              "Id": "30409556",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 3",
-              "Href": "v1pre3/appsessions/30409556",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T21:12:38.0000000",
-              "DateCompleted": "2015-11-14T21:12:38.0000000"
-            }
-          },
-          {
-            "Id": "28074082",
-            "Href": "v1pre3/appresults/28074082",
-            "UserOwnedBy": {
-              "Id": "4531551",
-              "Href": "v1pre3/users/4531551",
-              "Name": "Ramsingh Laboratory",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "071114-3_N",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-14T20:27:56.0000000",
-            "TotalSize": 2332341302,
-            "AppSession": {
-              "Id": "30409563",
-              "Name": "BWA multi-sample run: 5k vs 5k HSPC N/S ATACseq 10",
-              "Href": "v1pre3/appsessions/30409563",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "4531551",
-                "Href": "v1pre3/users/4531551",
-                "Name": "Ramsingh Laboratory",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/3025ac424d23e0b6afe304fd40e13fac.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-14T19:30:59.0000000",
-              "ModifiedOn": "2015-11-14T20:29:33.0000000",
-              "DateCompleted": "2015-11-14T20:29:32.0000000"
+              "DateCreated": "2015-11-16T06:47:27.0000000",
+              "ModifiedOn": "2015-11-16T06:59:40.0000000",
+              "DateCompleted": "2015-11-16T06:59:40.0000000"
             }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.control-app-result-id/items",
-        "ItemsDisplayedCount": 5,
-        "ItemsTotalCount": 5
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.control-app-result-id.attributes",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id.attributes",
         "Name": "Input.control-app-result-id.attributes",
         "Description": "Control Samples - BWA App Result Attributes",
         "Items": [
@@ -1225,13 +559,13 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28089066"
+                "28099148"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28089066"
+                "v1pre3/appresults/28099148"
               ]
             }
           ],
@@ -1251,109 +585,31 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28074084"
+                "28112119"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28074084"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28078068"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28078068"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28090064"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28090064"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28074082"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28074082"
+                "v1pre3/appresults/28112119"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.control-app-result-id.attributes/items",
-        "ItemsDisplayedCount": 5,
-        "ItemsTotalCount": 5
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 2,
+        "ItemsTotalCount": 2
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.control_label",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.control_label",
         "Name": "Input.control_label",
         "Description": "Group Label",
         "Content": "normal"
       },
       {
         "Type": "project",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.project-id",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.project-id",
         "Name": "Input.project-id",
         "Description": "Save Results To",
         "Content": {
@@ -1368,14 +624,14 @@
           "Name": "atacseq_test",
           "Description": "",
           "DateCreated": "2015-09-21T04:09:44.0000000",
-          "DateModified": "2015-10-16T02:35:28.0000000",
+          "DateModified": "2015-11-17T02:01:53.0000000",
           "HasCollaborators": false,
-          "TotalSize": 14638244900
+          "TotalSize": 21724247132
         }
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.project-id.attributes",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.project-id.attributes",
         "Name": "Input.project-id.attributes",
         "Description": "Save Results To Attributes",
         "Items": [
@@ -1406,13 +662,13 @@
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.project-id.attributes/items",
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.project-id.attributes/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Input.Projects",
+        "Href": "v1pre3/appsessions/30647663/properties/Input.Projects",
         "Name": "Input.Projects",
         "Description": "",
         "Items": [
@@ -1428,18 +684,18 @@
             "Name": "atacseq_test",
             "Description": "",
             "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-10-16T02:35:28.0000000",
+            "DateModified": "2015-11-17T02:01:53.0000000",
             "HasCollaborators": false,
-            "TotalSize": 14638244900
+            "TotalSize": 21724247132
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Input.Projects/items",
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/30477560/properties/Output.Projects",
+        "Href": "v1pre3/appsessions/30647663/properties/Output.Projects",
         "Name": "Output.Projects",
         "Description": "",
         "Items": [
@@ -1455,18 +711,18 @@
             "Name": "atacseq_test",
             "Description": "",
             "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-10-16T02:35:28.0000000",
+            "DateModified": "2015-11-17T02:01:53.0000000",
             "HasCollaborators": false,
-            "TotalSize": 14638244900
+            "TotalSize": 21724247132
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30477560/properties/Output.Projects/items",
+        "HrefItems": "v1pre3/appsessions/30647663/properties/Output.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       }
     ],
     "DisplayedCount": 13,
     "TotalCount": 13,
-    "Href": "v1pre3/appsessions/30477560/properties"
+    "Href": "v1pre3/appsessions/30647663/properties"
   }
 }
