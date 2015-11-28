@@ -52,7 +52,10 @@ control = controlName
 compare = compareName
 
 ## base_dir = "/data/input/appresults"
+## dump_dir = "/data/scratch"
+
 base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
+dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
 
 control.files = c()
 for (f in seq(length(controlName))){
@@ -90,14 +93,17 @@ kable(design, caption = "Design Matrix")
 
 ```{r,echo=FALSE}
 frag.len <- 150
+blacklist <- bed2GRanges("../../data/wgEncodeDacMapabilityConsensusExcludable.bed")
+chroms <- paste0("chr", c(seq(22), "X", "Y"))
 ## Do we use the minq=50 parameter ?
 pe.first <- readParam(dedup=TRUE, pe="first")
-pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE)
+pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE, fast.pe = TRUE)
+discard.param <- readParam(pe="both", restrict = chrom, discard = blacklist, max.frag = 150, dedup = TRUE)
 ```
 
 Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
 
-```{r, echo=FALSE, out.width=100}
+```{r, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
 library(parallel)
 

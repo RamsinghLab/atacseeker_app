@@ -5,6 +5,37 @@
 ###############################################################
 
 
+## Load bed file and generate GRanges file
+
+#' BED to GRanges
+#'
+#' This function loads a BED-like file and stores it as a GRanges object.
+#' The tab-delimited file must be ordered as 'chr', 'start', 'end', 'id', 'score', 'strand'.
+#' The minimal BED file must have the 'chr', 'start', 'end' columns.
+#' Any columns after the strand column are ignored.
+#' 
+#' @param file Location of your file
+#' @keywords BED GRanges
+#' @export
+#' @examples
+#' bed_to_granges('my_bed_file.bed')
+
+bed2GRanges <- function(file){
+  df <- read.table(file, header=F, stringsAsFactors=F)
+  
+  header <- c('chr','start','end','id','score','strand')
+  names(df) <- header
+  
+  if('strand' %in% colnames(df)){
+    df$strand <- gsub(pattern="[^+-]+", replacement = '*', x = df$strand)
+  }
+  
+  gr <- makeGRangesFromDataFrame(df, starts.in.df.are.0based=TRUE)
+
+  return(gr)
+}
+
+
 ## Wrapper for getPESizes function. 
 getQC <- function(name, pe.bam) { 
   out <- getPESizes(pe.bam)

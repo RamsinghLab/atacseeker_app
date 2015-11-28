@@ -203,6 +203,9 @@ dev.copy2pdf(file="NormFactors.pdf")
 par(mfrow=c(1,1))
 
 # MDS plot -- any particular reason to leave the width at 1000?
+
+
+
 binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 saveRDS(bin.adjc, file="bin.adjc.rds")
