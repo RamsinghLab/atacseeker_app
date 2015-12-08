@@ -91,14 +91,19 @@ kable(design, caption = "Design Matrix")
 
 ## QC Metrics ##
 
-```{r,echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 frag.len <- 150
-blacklist <- bed2GRanges("../../data/wgEncodeDacMapabilityConsensusExcludable.bed")
+blacklist <- bed2GRanges(file.path("..","..","data","wgEncodeDacMapabilityConsensusExcludable.bed"))
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
+
 ## Do we use the minq=50 parameter ?
+
 pe.first <- readParam(dedup=TRUE, pe="first")
 pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE, fast.pe = TRUE)
-discard.param <- readParam(pe="both", restrict = chrom, discard = blacklist, max.frag = 150, dedup = TRUE)
+discard.param <- readParam(pe="both", restrict = chrom, discard = blacklist, max.frag = frag.len, dedup = TRUE)
+
+bam.dmp.files <- mcmapply(dumpPE, bam.file=bam.files, prefix=file.path(dump_dir, samples), param = discard.param, overwrite=FALSE)
+bam.dmp.files <- as.vector(bam.dmp.files)
 ```
 
 Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
@@ -120,7 +125,6 @@ if (!file.exists("compareQC.rds")) {
 } else { 
   compareQC <- readRDS("compareQC.rds")
 }
-
 
 # side by side 
 par(mfrow=c(1,2))
