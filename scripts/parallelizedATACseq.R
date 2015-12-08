@@ -203,9 +203,6 @@ dev.copy2pdf(file="NormFactors.pdf")
 par(mfrow=c(1,1))
 
 # MDS plot -- any particular reason to leave the width at 1000?
-
-
-
 binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 saveRDS(bin.adjc, file="bin.adjc.rds")
@@ -287,17 +284,23 @@ res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
 saveRDS(res, file="motifEnrichmentNS.hg19.rds")
 
 # Top 10 motifs by enrichment
-kable(head(motifRankingForGroup(res), 10))
+top10p <- head(motifRankingForGroup(res), 10)
+top10 <- data.frame(motifName=names(top10p), pvalue=top10p)
+kable(top10, digits=20, 
+      caption="Top 10 motifs within differentially accessible regions")
 
-# Point to the PDF of motif enrichment? (try not to fuck up formatting it)
+# plot
+rep <- groupReport(res)
+plot(rep[1:10])
+dev.copy2pdf(file="top10motifs.pdf")
 
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
 sessionInfo()
 
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work!")
-citation(ATACseekeR)
-citation(csaw)
-citation(PWMEnrich)
-citation(LOLA)
-
+citation("ATACseekeR")
+citation("csaw")
+citation("PWMEnrich")
+citation("LOLA")
+citation()
