@@ -13,6 +13,7 @@ library(statmod)
 library(locfit)
 library(knitr)
 library(parallel)
+library(rtracklayer)
 ```
 
 
@@ -93,15 +94,18 @@ kable(design, caption = "Design Matrix")
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 frag.len <- 150
-blacklist <- bed2GRanges(file.path("..","..","data","wgEncodeDacMapabilityConsensusExcludable.bed"))
+blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 
 ## Do we use the minq=50 parameter ?
 
-pe.first <- readParam(dedup=TRUE, pe="first")
-pe.param <- readParam(max.frag = frag.len, pe = "both", dedup=TRUE, fast.pe = TRUE)
-discard.param <- readParam(pe="both", restrict = chrom, discard = blacklist, max.frag = frag.len, dedup = TRUE)
+## Define parameters for read extraction
+pe.first <- readParam(pe = "first", dedup = TRUE)
+pe.param <- readParam(pe = "both", max.frag = frag.len, dedup=TRUE)
+discard.param <- readParam(pe = "both", restrict = chrom, discard = blacklist, max.frag = frag.len, dedup = TRUE)
+fast.param <- reform(discard.param, fast.pe = TRUE)
 
+## Dump all paired end reads into /data/scratch
 bam.dmp.files <- mcmapply(dumpPE, bam.file=bam.files, prefix=file.path(dump_dir, samples), param = discard.param, overwrite=FALSE)
 bam.dmp.files <- as.vector(bam.dmp.files)
 ```
@@ -165,6 +169,7 @@ Coverage plot for choosing window size:
 ```{r, echo=FALSE}
 collected <- list()
 
+## Should parallelize ? 
 for (curbam in bam.files) {
   windowed <- windowCounts(curbam, spacing=50, width=50, param=pe.param, filter=20)
   rwsms <- rowSums(assay(windowed))
@@ -202,7 +207,7 @@ kable(as.data.frame(data$totals, row.name=samples), caption="Total number of rea
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 ```
 
-Keep only high abundance regions according to a pre-defined threshold.
+Keep only high abundance regions relative to a  global background.
 
 ```{r, echo=FALSE}
 filter.stat <- filterWindows(data, background=binned, type="global")
@@ -265,4 +270,21 @@ tabcom <- combineTests(merged$id, results$table)
 kable(head(tabcom), caption="Combined Tests")
 ## kable(summary(width(merged$region)))
 ```
+
+
+
+## Session Info ##
+```{r}
+# Dump session info for versioning, debugging, CITATIONS (!), etc.
+sessionInfo()
+
+# Explicitly remind user: cite us and/or the various components of the pipeline!
+message("Please do not forget to appropriately cite this work.")
+citation("ATACseekeR")
+citation("csaw")
+citation("PWMEnrich")
+citation("LOLA")
+```
+
+
 

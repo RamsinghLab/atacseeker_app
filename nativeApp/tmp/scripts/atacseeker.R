@@ -5,22 +5,6 @@
 ###############################################################
 
 
-## Load bed file and generate GRanges file
-bed2GRanges <- function(file){
-
-  df <- read.table(file, header=F, stringsAsFactors=F)
-  header <- c('chr','start','end','id','score','strand')
-  names(df) <- header
-  
-  if('strand' %in% colnames(df)){
-    df$strand <- gsub(pattern="[^+-]+", replacement = '*', x = df$strand)
-  }
-  
-  gr <- makeGRangesFromDataFrame(df, starts.in.df.are.0based=TRUE)
-  return(gr)
-}
-
-
 ## Wrapper for getPESizes function. 
 getQC <- function(name, pe.bam) { 
   out <- getPESizes(pe.bam)
