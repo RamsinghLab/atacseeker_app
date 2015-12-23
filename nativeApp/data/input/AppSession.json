@@ -1,8 +1,8 @@
 {
   "OriginatingUri": "https://basespace.illumina.com",
-  "Id": "30647663",
-  "Name": "ATACseeker_Test",
-  "Href": "v1pre3/appsessions/30647663",
+  "Id": "31421484",
+  "Name": "ATACseeker1",
+  "Href": "v1pre3/appsessions/31421484",
   "Application": {
     "Id": "2052050",
     "Href": "v1pre3/applications/2052050",
@@ -14,7 +14,9 @@
     "PublishStatus": "Development",
     "IsBillingActivated": false,
     "Category": "Native",
-    "Classifications": []
+    "Classifications": [],
+    "AppFamilySlug": "univ.-of-southern-california.atacseeker",
+    "AppVersionSlug": "univ.-of-southern-california.atacseeker.1.0.0"
   },
   "UserCreatedBy": {
     "Id": "6061071",
@@ -24,65 +26,67 @@
   },
   "Status": "Initializing",
   "StatusSummary": "",
-  "DateCreated": "2015-11-23T03:39:36.6264771Z",
-  "ModifiedOn": "2015-11-23T03:39:37.0014806Z",
+  "DateCreated": "2015-12-23T09:43:15.6817288Z",
+  "ModifiedOn": "2015-12-23T09:43:15.9629803Z",
   "Properties": {
     "Items": [
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30647663/properties/BaseSpace.Private.IsMultiNode",
+        "Href": "v1pre3/appsessions/31421484/properties/BaseSpace.Private.IsMultiNode",
         "Name": "BaseSpace.Private.IsMultiNode",
         "Description": "",
         "Content": "False"
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.app-session-name",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.app-session-name",
         "Name": "Input.app-session-name",
         "Description": "Analysis Name",
-        "Content": "ATACseeker_Test"
+        "Content": "ATACseeker1"
       },
       {
         "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.AppResults",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.AppResults",
         "Name": "Input.AppResults",
         "Description": "",
         "Items": [
           {
-            "Id": "28099148",
-            "Href": "v1pre3/appresults/28099148",
+            "Id": "29012015",
+            "Href": "v1pre3/appresults/29012015",
             "UserOwnedBy": {
               "Id": "6061071",
               "Href": "v1pre3/users/6061071",
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "normal2",
+            "Name": "071114-3-N",
             "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T08:26:39.0000000",
-            "TotalSize": 134144198,
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2015-12-23T06:42:33.0000000",
+            "TotalSize": 1010513229,
             "AppSession": {
-              "Id": "30410881",
-              "Name": "BWA Aligner 11/16/2015 12:12:23 2",
-              "Href": "v1pre3/appsessions/30410881",
+              "Id": "31415507",
+              "Name": "BWA 071114-3-N",
+              "Href": "v1pre3/appsessions/31415507",
               "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
                 "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
                 "PublishStatus": "Published",
                 "IsBillingActivated": false,
-                "Category": "Native",
+                "Category": "Instance",
                 "Classifications": [
                   "Resequencing",
-                  "TargetedSequencing"
-                ]
+                  "VariantAnalysis"
+                ],
+                "AppFamilySlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0",
+                "AppVersionSlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0.1.0.0"
               },
               "UserCreatedBy": {
                 "Id": "6061071",
@@ -91,47 +95,50 @@
                 "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T08:13:07.0000000",
-              "ModifiedOn": "2015-11-16T08:27:56.0000000",
-              "DateCompleted": "2015-11-16T08:27:56.0000000"
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2015-12-23T00:50:20.0000000",
+              "ModifiedOn": "2015-12-23T06:43:47.0000000",
+              "DateCompleted": "2015-12-23T06:43:42.0000000",
+              "TotalSize": 1010513229
             }
           },
           {
-            "Id": "28112119",
-            "Href": "v1pre3/appresults/28112119",
+            "Id": "29012010",
+            "Href": "v1pre3/appresults/29012010",
             "UserOwnedBy": {
               "Id": "6061071",
               "Href": "v1pre3/users/6061071",
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "normal1",
+            "Name": "100214-1-S",
             "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T06:58:37.0000000",
-            "TotalSize": 43456631,
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2015-12-23T04:52:49.0000000",
+            "TotalSize": 726277677,
             "AppSession": {
-              "Id": "30406667",
-              "Name": "BWA Aligner 11/15/2015 10:46:11 3",
-              "Href": "v1pre3/appsessions/30406667",
+              "Id": "31415504",
+              "Name": "BWA  100214-1-S",
+              "Href": "v1pre3/appsessions/31415504",
               "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
                 "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
                 "PublishStatus": "Published",
                 "IsBillingActivated": false,
-                "Category": "Native",
+                "Category": "Instance",
                 "Classifications": [
                   "Resequencing",
-                  "TargetedSequencing"
-                ]
+                  "VariantAnalysis"
+                ],
+                "AppFamilySlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0",
+                "AppVersionSlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0.1.0.0"
               },
               "UserCreatedBy": {
                 "Id": "6061071",
@@ -140,227 +147,84 @@
                 "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T06:47:27.0000000",
-              "ModifiedOn": "2015-11-16T06:59:40.0000000",
-              "DateCompleted": "2015-11-16T06:59:40.0000000"
-            }
-          },
-          {
-            "Id": "28114139",
-            "Href": "v1pre3/appresults/28114139",
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "senescent2",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T08:27:03.0000000",
-            "TotalSize": 129569746,
-            "AppSession": {
-              "Id": "30410880",
-              "Name": "BWA Aligner 11/16/2015 12:12:23 1",
-              "Href": "v1pre3/appsessions/30410880",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "6061071",
-                "Href": "v1pre3/users/6061071",
-                "Name": "Asif Zubair",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T08:13:07.0000000",
-              "ModifiedOn": "2015-11-16T08:28:14.0000000",
-              "DateCompleted": "2015-11-16T08:28:14.0000000"
-            }
-          },
-          {
-            "Id": "28100142",
-            "Href": "v1pre3/appresults/28100142",
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "senescent1",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T06:58:37.0000000",
-            "TotalSize": 43013366,
-            "AppSession": {
-              "Id": "30406668",
-              "Name": "BWA Aligner 11/15/2015 10:46:11 4",
-              "Href": "v1pre3/appsessions/30406668",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "6061071",
-                "Href": "v1pre3/users/6061071",
-                "Name": "Asif Zubair",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T06:47:27.0000000",
-              "ModifiedOn": "2015-11-16T06:59:44.0000000",
-              "DateCompleted": "2015-11-16T06:59:44.0000000"
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2015-12-23T00:48:50.0000000",
+              "ModifiedOn": "2015-12-23T04:53:33.0000000",
+              "DateCompleted": "2015-12-23T04:53:34.0000000",
+              "TotalSize": 726277677
             }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.AppResults/items",
-        "ItemsDisplayedCount": 4,
-        "ItemsTotalCount": 4
-      },
-      {
-        "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id",
-        "Name": "Input.compare-app-result-id",
-        "Description": "Compare Samples - BWA App Result",
-        "Items": [
-          {
-            "Id": "28114139",
-            "Href": "v1pre3/appresults/28114139",
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "senescent2",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T08:27:03.0000000",
-            "TotalSize": 129569746,
-            "AppSession": {
-              "Id": "30410880",
-              "Name": "BWA Aligner 11/16/2015 12:12:23 1",
-              "Href": "v1pre3/appsessions/30410880",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "6061071",
-                "Href": "v1pre3/users/6061071",
-                "Name": "Asif Zubair",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T08:13:07.0000000",
-              "ModifiedOn": "2015-11-16T08:28:14.0000000",
-              "DateCompleted": "2015-11-16T08:28:14.0000000"
-            }
-          },
-          {
-            "Id": "28100142",
-            "Href": "v1pre3/appresults/28100142",
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "senescent1",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T06:58:37.0000000",
-            "TotalSize": 43013366,
-            "AppSession": {
-              "Id": "30406668",
-              "Name": "BWA Aligner 11/15/2015 10:46:11 4",
-              "Href": "v1pre3/appsessions/30406668",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "6061071",
-                "Href": "v1pre3/users/6061071",
-                "Name": "Asif Zubair",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T06:47:27.0000000",
-              "ModifiedOn": "2015-11-16T06:59:44.0000000",
-              "DateCompleted": "2015-11-16T06:59:44.0000000"
-            }
-          }
-        ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id/items",
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.AppResults/items",
         "ItemsDisplayedCount": 2,
         "ItemsTotalCount": 2
       },
       {
+        "Type": "appresult[]",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.compare-app-result-id",
+        "Name": "Input.compare-app-result-id",
+        "Description": "Compare Samples - BWA App Result",
+        "Items": [
+          {
+            "Id": "29012010",
+            "Href": "v1pre3/appresults/29012010",
+            "UserOwnedBy": {
+              "Id": "6061071",
+              "Href": "v1pre3/users/6061071",
+              "Name": "Asif Zubair",
+              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+            },
+            "Name": "100214-1-S",
+            "Status": "Complete",
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2015-12-23T04:52:49.0000000",
+            "TotalSize": 726277677,
+            "AppSession": {
+              "Id": "31415504",
+              "Name": "BWA  100214-1-S",
+              "Href": "v1pre3/appsessions/31415504",
+              "Application": {
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
+                "VersionNumber": "1.0.0",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
+                "PublishStatus": "Published",
+                "IsBillingActivated": false,
+                "Category": "Instance",
+                "Classifications": [
+                  "Resequencing",
+                  "VariantAnalysis"
+                ],
+                "AppFamilySlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0",
+                "AppVersionSlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0.1.0.0"
+              },
+              "UserCreatedBy": {
+                "Id": "6061071",
+                "Href": "v1pre3/users/6061071",
+                "Name": "Asif Zubair",
+                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
+              },
+              "Status": "Complete",
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2015-12-23T00:48:50.0000000",
+              "ModifiedOn": "2015-12-23T04:53:33.0000000",
+              "DateCompleted": "2015-12-23T04:53:34.0000000",
+              "TotalSize": 726277677
+            }
+          }
+        ],
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.compare-app-result-id/items",
+        "ItemsDisplayedCount": 1,
+        "ItemsTotalCount": 1
+      },
+      {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id.attributes",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.compare-app-result-id.attributes",
         "Name": "Input.compare-app-result-id.attributes",
         "Description": "Compare Samples - BWA App Result Attributes",
         "Items": [
@@ -380,95 +244,71 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28114139"
+                "29012010"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28114139"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "compare-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28100142"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28100142"
+                "v1pre3/appresults/29012010"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.compare-app-result-id.attributes/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.compare-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 1,
+        "ItemsTotalCount": 1
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.compare_label",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.compare_label",
         "Name": "Input.compare_label",
         "Description": "Group Label",
         "Content": "senescent"
       },
       {
         "Type": "appresult[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.control-app-result-id",
         "Name": "Input.control-app-result-id",
         "Description": "Control Samples - BWA App Result",
         "Items": [
           {
-            "Id": "28099148",
-            "Href": "v1pre3/appresults/28099148",
+            "Id": "29012015",
+            "Href": "v1pre3/appresults/29012015",
             "UserOwnedBy": {
               "Id": "6061071",
               "Href": "v1pre3/users/6061071",
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Name": "normal2",
+            "Name": "071114-3-N",
             "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T08:26:39.0000000",
-            "TotalSize": 134144198,
+            "StatusSummary": " Application Complete",
+            "DateCreated": "2015-12-23T06:42:33.0000000",
+            "TotalSize": 1010513229,
             "AppSession": {
-              "Id": "30410881",
-              "Name": "BWA Aligner 11/16/2015 12:12:23 2",
-              "Href": "v1pre3/appsessions/30410881",
+              "Id": "31415507",
+              "Name": "BWA 071114-3-N",
+              "Href": "v1pre3/appsessions/31415507",
               "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
+                "Id": "279279",
+                "Href": "v1pre3/applications/279279",
+                "Name": "BWA Whole Genome Sequencing v1.0",
+                "CompanyName": "Illumina, Inc.",
                 "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
+                "HomepageUri": "http://support.illumina.com/help/BaseSpace_App_WGS_BWA_help/BWA_WGS_Help.htm",
+                "ShortDescription": "Processes whole-genome sequencing data using BWA alignment and GATK variant calling.",
+                "DateCreated": "2013-08-06T00:20:31.0000000",
+                "DatePublished": "2014-01-14T00:00:00.0000000",
                 "PublishStatus": "Published",
                 "IsBillingActivated": false,
-                "Category": "Native",
+                "Category": "Instance",
                 "Classifications": [
                   "Resequencing",
-                  "TargetedSequencing"
-                ]
+                  "VariantAnalysis"
+                ],
+                "AppFamilySlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0",
+                "AppVersionSlug": "illumina-inc.bwa-whole-genome-sequencing-v1.0.1.0.0"
               },
               "UserCreatedBy": {
                 "Id": "6061071",
@@ -477,69 +317,21 @@
                 "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
               },
               "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T08:13:07.0000000",
-              "ModifiedOn": "2015-11-16T08:27:56.0000000",
-              "DateCompleted": "2015-11-16T08:27:56.0000000"
-            }
-          },
-          {
-            "Id": "28112119",
-            "Href": "v1pre3/appresults/28112119",
-            "UserOwnedBy": {
-              "Id": "6061071",
-              "Href": "v1pre3/users/6061071",
-              "Name": "Asif Zubair",
-              "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-            },
-            "Name": "normal1",
-            "Status": "Complete",
-            "StatusSummary": "Application completed successfully",
-            "DateCreated": "2015-11-16T06:58:37.0000000",
-            "TotalSize": 43456631,
-            "AppSession": {
-              "Id": "30406667",
-              "Name": "BWA Aligner 11/15/2015 10:46:11 3",
-              "Href": "v1pre3/appsessions/30406667",
-              "Application": {
-                "Id": "2084082",
-                "Href": "v1pre3/applications/2084082",
-                "Name": "BWA Aligner",
-                "CompanyName": "BaseSpace Labs",
-                "VersionNumber": "1.0.0",
-                "HomepageUri": "http://www.illumina.com",
-                "ShortDescription": "Align samples with the BWA-MEM aligner to a reference genome, including custom references created from imported FASTA files.",
-                "DateCreated": "2015-09-29T17:43:58.0000000",
-                "DatePublished": "2015-11-10T21:06:51.0000000",
-                "PublishStatus": "Published",
-                "IsBillingActivated": false,
-                "Category": "Native",
-                "Classifications": [
-                  "Resequencing",
-                  "TargetedSequencing"
-                ]
-              },
-              "UserCreatedBy": {
-                "Id": "6061071",
-                "Href": "v1pre3/users/6061071",
-                "Name": "Asif Zubair",
-                "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
-              },
-              "Status": "Complete",
-              "StatusSummary": "Application completed successfully",
-              "DateCreated": "2015-11-16T06:47:27.0000000",
-              "ModifiedOn": "2015-11-16T06:59:40.0000000",
-              "DateCompleted": "2015-11-16T06:59:40.0000000"
+              "StatusSummary": " Application Complete",
+              "DateCreated": "2015-12-23T00:50:20.0000000",
+              "ModifiedOn": "2015-12-23T06:43:47.0000000",
+              "DateCompleted": "2015-12-23T06:43:42.0000000",
+              "TotalSize": 1010513229
             }
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.control-app-result-id/items",
+        "ItemsDisplayedCount": 1,
+        "ItemsTotalCount": 1
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id.attributes",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.control-app-result-id.attributes",
         "Name": "Input.control-app-result-id.attributes",
         "Description": "Control Samples - BWA App Result Attributes",
         "Items": [
@@ -559,79 +351,53 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "28099148"
+                "29012015"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/appresults/28099148"
-              ]
-            }
-          ],
-          [
-            {
-              "Key": "FieldId",
-              "Values": [
-                "control-app-result-id"
-              ]
-            },
-            {
-              "Key": "ResourceType",
-              "Values": [
-                "analysis"
-              ]
-            },
-            {
-              "Key": "ResourceId",
-              "Values": [
-                "28112119"
-              ]
-            },
-            {
-              "Key": "ResourceHref",
-              "Values": [
-                "v1pre3/appresults/28112119"
+                "v1pre3/appresults/29012015"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.control-app-result-id.attributes/items",
-        "ItemsDisplayedCount": 2,
-        "ItemsTotalCount": 2
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.control-app-result-id.attributes/items",
+        "ItemsDisplayedCount": 1,
+        "ItemsTotalCount": 1
       },
       {
         "Type": "string",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.control_label",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.control_label",
         "Name": "Input.control_label",
         "Description": "Group Label",
         "Content": "normal"
       },
       {
         "Type": "project",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.project-id",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.project-id",
         "Name": "Input.project-id",
         "Description": "Save Results To",
         "Content": {
-          "Id": "25350325",
+          "Id": "27393372",
           "UserOwnedBy": {
             "Id": "6061071",
             "Href": "v1pre3/users/6061071",
             "Name": "Asif Zubair",
             "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
           },
-          "Href": "v1pre3/projects/25350325",
-          "Name": "atacseq_test",
+          "Href": "v1pre3/projects/27393372",
+          "Name": "atacseq",
           "Description": "",
-          "DateCreated": "2015-09-21T04:09:44.0000000",
-          "DateModified": "2015-11-17T02:01:53.0000000",
+          "DateCreated": "2015-12-23T00:00:00.0000000",
+          "DateModified": "2015-12-23T06:43:47.0000000",
           "HasCollaborators": false,
-          "TotalSize": 21724247132
+          "TotalSize": 4440930217
         }
       },
       {
         "Type": "map[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.project-id.attributes",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.project-id.attributes",
         "Name": "Input.project-id.attributes",
         "Description": "Save Results To Attributes",
         "Items": [
@@ -651,78 +417,78 @@
             {
               "Key": "ResourceId",
               "Values": [
-                "25350325"
+                "27393372"
               ]
             },
             {
               "Key": "ResourceHref",
               "Values": [
-                "v1pre3/projects/25350325"
+                "v1pre3/projects/27393372"
               ]
             }
           ]
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.project-id.attributes/items",
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.project-id.attributes/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Input.Projects",
+        "Href": "v1pre3/appsessions/31421484/properties/Input.Projects",
         "Name": "Input.Projects",
         "Description": "",
         "Items": [
           {
-            "Id": "25350325",
+            "Id": "27393372",
             "UserOwnedBy": {
               "Id": "6061071",
               "Href": "v1pre3/users/6061071",
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Href": "v1pre3/projects/25350325",
-            "Name": "atacseq_test",
+            "Href": "v1pre3/projects/27393372",
+            "Name": "atacseq",
             "Description": "",
-            "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-11-17T02:01:53.0000000",
+            "DateCreated": "2015-12-23T00:00:00.0000000",
+            "DateModified": "2015-12-23T06:43:47.0000000",
             "HasCollaborators": false,
-            "TotalSize": 21724247132
+            "TotalSize": 4440930217
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Input.Projects/items",
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Input.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       },
       {
         "Type": "project[]",
-        "Href": "v1pre3/appsessions/30647663/properties/Output.Projects",
+        "Href": "v1pre3/appsessions/31421484/properties/Output.Projects",
         "Name": "Output.Projects",
         "Description": "",
         "Items": [
           {
-            "Id": "25350325",
+            "Id": "27393372",
             "UserOwnedBy": {
               "Id": "6061071",
               "Href": "v1pre3/users/6061071",
               "Name": "Asif Zubair",
               "GravatarUrl": "https://secure.gravatar.com/avatar/e4101e585877065ca779acdc35bf6d53.jpg?s=20&d=https%3a%2f%2fbasespace.illumina.com%2fpublic%2fimages%2fDefaultCustomerGravatar.png&r=PG"
             },
-            "Href": "v1pre3/projects/25350325",
-            "Name": "atacseq_test",
+            "Href": "v1pre3/projects/27393372",
+            "Name": "atacseq",
             "Description": "",
-            "DateCreated": "2015-09-21T04:09:44.0000000",
-            "DateModified": "2015-11-17T02:01:53.0000000",
+            "DateCreated": "2015-12-23T00:00:00.0000000",
+            "DateModified": "2015-12-23T06:43:47.0000000",
             "HasCollaborators": false,
-            "TotalSize": 21724247132
+            "TotalSize": 4440930217
           }
         ],
-        "HrefItems": "v1pre3/appsessions/30647663/properties/Output.Projects/items",
+        "HrefItems": "v1pre3/appsessions/31421484/properties/Output.Projects/items",
         "ItemsDisplayedCount": 1,
         "ItemsTotalCount": 1
       }
     ],
     "DisplayedCount": 13,
     "TotalCount": 13,
-    "Href": "v1pre3/appsessions/30647663/properties"
+    "Href": "v1pre3/appsessions/31421484/properties"
   }
 }

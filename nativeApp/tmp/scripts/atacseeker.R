@@ -34,3 +34,24 @@ qcPlot <- function(frag.dists, label) {
 
 
 
+
+plotRegion <- function(region) { 
+  olReads <- lapply(BAMs, extractReads, region=region, param=param)
+  for (x in names(olReads)) 
+    metadata(olReads[[x]])$totals <- colData(data[,x])$totals
+  covs <- GRangesList(lapply(olReads, function(x) 
+    as(coverage(x) / metadata(x)$totals, "GRanges")))
+  maxDepth <- max(sapply(covs, function(x) max(score(x))))
+  cols <- c("darkred","darkgreen")[seq_along(BAMs) %% 2 + 1]
+  names(cols) <- BAMs
+  collected <- list()
+  for(i in BAMs) {
+    covr <- covs[[i]]
+    ctrack <- DataTrack(covr, type="histogram", lwd=0, fill=cols[i], name=i, 
+                        ylim=c(0,maxDepth), col.axis="black", col.title="black")
+    collected[[i]] <- OverlayTrack(trackList=list(coverage=ctrack))
+  }
+  gax <- GenomeAxisTrack(col="black")
+  plotTracks(c(gax, collected), from=start(region), to=end(region))
+  invisible(covs)
+}

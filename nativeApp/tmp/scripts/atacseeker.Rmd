@@ -45,7 +45,6 @@ QC metrics for the aligned reads are also computed and displayed. Fragment size 
 
 
 ```{r, echo = FALSE}
-
 control.label = control
 compare.label = comparison
 
@@ -62,7 +61,8 @@ control.files = c()
 for (f in seq(length(controlName))){
   
   fastq_dir = file.path(base_dir, controlID[f])
-  control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
+  ## control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
+  control.files = c(control.files, list.files(file.path(base_dir, controlID[f]), "*bam$", full.names = TRUE))
   
   }
 
@@ -70,8 +70,8 @@ compare.files = c()
 for (f in seq(length(compareName))){
   
   fastq_dir = file.path(base_dir, compareID[f])
-  compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
-  
+  ## compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
+  compare.files = c(compare.files, list.files(file.path(base_dir, compareID[f]), "*bam$", full.names = TRUE))
   }
 
 samples = c(control, compare)
@@ -93,28 +93,27 @@ kable(design, caption = "Design Matrix")
 ## QC Metrics ##
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-frag.len <- 150
+## frag.len <- 150
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 
 ## Do we use the minq=50 parameter ?
 
 ## Define parameters for read extraction
-pe.first <- readParam(pe = "first", dedup = TRUE)
-pe.param <- readParam(pe = "both", max.frag = frag.len, dedup=TRUE)
-discard.param <- readParam(pe = "both", restrict = chrom, discard = blacklist, max.frag = frag.len, dedup = TRUE)
-fast.param <- reform(discard.param, fast.pe = TRUE)
+## pe.first <- readParam(pe = "first", dedup = TRUE)
+## pe.param <- readParam(pe = "both", max.frag = frag.len, dedup=TRUE)
+discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, dedup = TRUE)
+## fast.param <- reform(discard.param, fast.pe = TRUE)
 
 ## Dump all paired end reads into /data/scratch
-bam.dmp.files <- mcmapply(dumpPE, bam.file=bam.files, prefix=file.path(dump_dir, samples), param = discard.param, overwrite=FALSE)
-bam.dmp.files <- as.vector(bam.dmp.files)
+## bam.dmp.files <- mcmapply(dumpPE, bam.file=bam.files, prefix=file.path(dump_dir, samples), param = discard.param, overwrite=FALSE)
+## bam.dmp.files <- as.vector(bam.dmp.files)
 ```
 
 Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
 
 ```{r, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
-library(parallel)
 
 # use mcmapply(), but only if we haven't already...
 if (!file.exists("controlQC.rds")) {
@@ -157,7 +156,7 @@ kable(readqc, caption="Quality metrics for PE reads")
 
 ```{r, echo=FALSE}
 max.delay <- 400
-x <- correlateReads(bam.files, max.delay, param=pe.first)
+x <- correlateReads(bam.files, max.delay, param=discard.se.param)
 plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
 title("Cross Correlation Plot")
 ```
@@ -171,7 +170,7 @@ collected <- list()
 
 ## Should parallelize ? 
 for (curbam in bam.files) {
-  windowed <- windowCounts(curbam, spacing=50, width=50, param=pe.param, filter=20)
+  windowed <- windowCounts(curbam, spacing=50, width=50, param=discard.se.param, filter=20, ext=0)
   rwsms <- rowSums(assay(windowed))
   maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
   collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
@@ -200,11 +199,11 @@ abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 Read extraction parameters:
 
 ```{r, echo=FALSE, comment=""}
-pe.param
-window.width <- 75
-data <- windowCounts(bam.files, width = window.width, param = pe.param)
+discard.se.param
+window.width <- 100
+data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=0)
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
-binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
+binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param, ext=0)
 ```
 
 Keep only high abundance regions relative to a  global background.
