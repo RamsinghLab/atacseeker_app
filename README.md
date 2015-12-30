@@ -6,8 +6,7 @@ This repository contains code for a Illumina BaseSpace Native App for doing ATAC
 
 The elements of the approach are as follows: 
 
-* Docker image with all packages (*bwa, samtools, samblaster etc.*) installed. 
-* R wrapper for the alignment pipeline. 
+* Docker image with all packages installed. 
 * Quality checks on aligned reads.
 * Pipe reads through `csaw` for differential accessibility testing.
 * Deploy as Native App on BaseSpace. 
