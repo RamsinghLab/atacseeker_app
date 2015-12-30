@@ -7,13 +7,19 @@ output: html_document
 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-library(csaw) 
-library(edgeR)
+## CRAN
 library(statmod)
 library(locfit)
 library(knitr)
 library(parallel)
+
+## Bioconductor packages
+library(csaw) 
+library(edgeR)
 library(rtracklayer)
+library(Rsamtools)
+library(Homo.sapiens)
+library(LOLA) 
 ```
 
 
@@ -22,16 +28,16 @@ source("parse_AppSession.R")
 
 app_session_name = gsub('/','-', app_session_name)
 
-## base_dir = "/data/output/appresults"
-base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
+base_dir = "/data/output/appresults"
+## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
 
 output_dir = file.path(base_dir, project_id, app_session_name)
 
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
 
-## cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
-## system(cmd2)
+cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+system(cmd2)
 ```
 
 
@@ -51,18 +57,18 @@ compare.label = comparison
 control = controlName
 compare = compareName
 
-## base_dir = "/data/input/appresults"
-## dump_dir = "/data/scratch"
+base_dir = "/data/input/appresults"
+dump_dir = "/data/scratch"
 
-base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
-dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
+## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
+## dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
 
 control.files = c()
 for (f in seq(length(controlName))){
   
   fastq_dir = file.path(base_dir, controlID[f])
   ## control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
-  control.files = c(control.files, list.files(file.path(base_dir, controlID[f]), "*bam$", full.names = TRUE))
+  control.files = c(control.files, list.files(fastq_dir, "*bam$", full.names = TRUE))
   
   }
 
@@ -71,7 +77,7 @@ for (f in seq(length(compareName))){
   
   fastq_dir = file.path(base_dir, compareID[f])
   ## compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
-  compare.files = c(compare.files, list.files(file.path(base_dir, compareID[f]), "*bam$", full.names = TRUE))
+  compare.files = c(compare.files, list.files(fastq_dir, "*bam$", full.names = TRUE))
   }
 
 samples = c(control, compare)
@@ -102,7 +108,7 @@ chroms <- paste0("chr", c(seq(22), "X", "Y"))
 ## Define parameters for read extraction
 ## pe.first <- readParam(pe = "first", dedup = TRUE)
 ## pe.param <- readParam(pe = "both", max.frag = frag.len, dedup=TRUE)
-discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, dedup = TRUE)
+discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ## fast.param <- reform(discard.param, fast.pe = TRUE)
 
 ## Dump all paired end reads into /data/scratch
@@ -110,44 +116,61 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 ## bam.dmp.files <- as.vector(bam.dmp.files)
 ```
 
+```{r, echo=FALSE}
+proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
+
+wincounts <- windowCounts(bam.files, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+tssWindows <- queryHits(findOverlaps(wincounts, proms))
+nonTssWindows <- setdiff(seq_len(nrow(wincounts)), tssWindows)
+
+TSS.bamCounts <- colSums(assays(wincounts[tssWindows,])$counts)
+nonTSS.bamCounts <- colSums(assays(wincounts[nonTssWindows,])$counts)
+TSSvsNonTSS <- TSS.bamCounts / nonTSS.bamCounts # ideally > 10...
+names(TSSvsNonTSS) <- samples
+barplot(TSSvsNonTSS, xlim = c(0,1), width = 0.1, las=3, main="TSS vs Non-TSS Counts")
+```
+
 Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
 
 ```{r, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
 
-# use mcmapply(), but only if we haven't already...
-if (!file.exists("controlQC.rds")) {
-  controlQC <- mcmapply(getQC, name=control, pe.bam=control.files, SIMPLIFY=F)
-  saveRDS(controlQC, "controlQC.rds")
-} else { 
-  controlQC <- readRDS("controlQC.rds")
+if(testPairedEndBam(bam.files[1])){
+
+    # use mcmapply(), but only if we haven't already...
+    if (!file.exists("controlQC.rds")) {
+        controlQC <- mcmapply(getQC, name=control, pe.bam=control.files, SIMPLIFY=F)
+        saveRDS(controlQC, "controlQC.rds")
+    } else { 
+        controlQC <- readRDS("controlQC.rds")
+    }
+    if (!file.exists("compareQC.rds")) {
+        compareQC <- mcmapply(getQC, name=compare, pe.bam=compare.files, SIMPLIFY=F)
+        saveRDS(compareQC, file="compareQC.rds")  
+    } else { 
+        compareQC <- readRDS("compareQC.rds")
+    }
+
+
+    # side by side 
+    par(mfrow=c(1,2))
+
+    # plot fragment sizes for control samples
+    frag.dists.control <- lapply(controlQC, `[[`, "frag.dist")
+    qcPlot(frag.dists.control, control.label)
+
+    # plot fragment sizes for comparison samples
+    frag.dists.compare <- lapply(compareQC, `[[`, "frag.dist")
+    qcPlot(frag.dists.compare, compare.label)
+
+    # now dump a diagnostic table 
+    combinedQC <- append(controlQC, compareQC)
+    readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
+    colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
+    kable(readqc, caption="Quality metrics for PE reads")
+
 }
-if (!file.exists("compareQC.rds")) {
-  compareQC <- mcmapply(getQC, name=compare, pe.bam=compare.files, SIMPLIFY=F)
-  saveRDS(compareQC, file="compareQC.rds")  
-} else { 
-  compareQC <- readRDS("compareQC.rds")
-}
 
-# side by side 
-par(mfrow=c(1,2))
-
-# plot fragment sizes for control samples
-frag.dists.control <- lapply(controlQC, `[[`, "frag.dist")
-qcPlot(frag.dists.control, control.label)
-
-# plot fragment sizes for comparison samples
-frag.dists.compare <- lapply(compareQC, `[[`, "frag.dist")
-qcPlot(frag.dists.compare, compare.label)
-
-# now dump a diagnostic table 
-combinedQC <- append(controlQC, compareQC)
-readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
-colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
-kable(readqc, caption="Quality metrics for PE reads")
-
-# one plot-per-window
-# par(mfrow=c(1,1))
 ```
 
 
@@ -155,6 +178,10 @@ kable(readqc, caption="Quality metrics for PE reads")
 
 
 ```{r, echo=FALSE}
+
+# one plot-per-window
+ par(mfrow=c(1,1))
+
 max.delay <- 400
 x <- correlateReads(bam.files, max.delay, param=discard.se.param)
 plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
@@ -170,11 +197,12 @@ collected <- list()
 
 ## Should parallelize ? 
 for (curbam in bam.files) {
-  windowed <- windowCounts(curbam, spacing=50, width=50, param=discard.se.param, filter=20, ext=0)
-  rwsms <- rowSums(assay(windowed))
-  maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
-  collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
-                                      param=pe.param, weight=1/rwsms[maxed])
+    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
+##    windowed <- windowCounts(curbam, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+    rwsms <- rowSums(assay(windowed))
+    maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
+    collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
+                                        param=discard.se.param, weight=1/rwsms[maxed])
 }
 
 xranged <- as.integer(names(collected[[1]]))
@@ -200,8 +228,8 @@ Read extraction parameters:
 
 ```{r, echo=FALSE, comment=""}
 discard.se.param
-window.width <- 100
-data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=0)
+window.width <- 150
+data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param, ext=0)
 ```
@@ -271,17 +299,79 @@ kable(head(tabcom), caption="Combined Tests")
 ```
 
 
+## Output Results ##
+
+
+```{r, echo=FALSE}
+# annotated:
+is.sig <- tabcom$FDR <= 0.05
+anno <- detailRanges(merged$region, txdb=Homo.sapiens, orgdb=Homo.sapiens)
+combined <- data.frame(as.data.frame(merged$region)[,1:3], tabcom, anno)
+accRanges <- makeGRangesFromDataFrame(combined, keep=TRUE)
+diffAccRanges <- accRanges[accRanges$FDR <= 0.1] 
+
+# export to a BED file
+# library(rtracklayer)
+
+# -log10(p) as bed file "score", could also export to bigWig
+score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
+
+# Output sites as a BED file (post-FDR-correction, chop at 0.1 or 0.01?) 
+export(diffAccRanges, "diffAccRanges.NS.fdrLt01.hg19.bed")
+
+# print out the significant (FDR <= 0.1) results 
+kable(as(diffAccRanges, "data.frame"))
+```
+
+
+## LOLA ##
+
+```{r, eval=FALSE, echo=FALSE}
+# run LOLA? Yes!
+dbPath <- system.file("extdata", "hg19", package="LOLA")
+regionDB <- loadRegionDB(dbPath)
+data("sample_input", package="LOLA") # load userSets
+data("sample_universe", package="LOLA") # load userUniverse
+if (FALSE) show(userUniverse)
+locResults <- runLOLA(diffAccRanges, userUniverse, regionDB, cores=1)
+kable(locResults[order(qValue),]) # this is just a demo, fix for app
+
+if(FALSE) {
+
+  # for later
+  library(rtracklayer)
+  CTCFsites <- import("ubiquitousCTCFsites.hg19.bed")
+  repeatRegions <- import("repeatmasker.hg19.bed")
+
+  # FIXME: use erma for this 
+  hspcChromHMM <- import("CD34.chromImpute.hg19.bed")
+}
+
+# Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
+library(PWMEnrich)
+library(PWMEnrich.Hsapiens.background)
+library(BSgenome.Hsapiens.UCSC.hg19)
+data(PWMLogn.hg19.MotifDb.Hsap)
+seqs <- getSeq(Hsapiens, diffAccRanges)
+res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
+saveRDS(res, file="motifEnrichmentNS.hg19.rds")
+
+# Top 10 motifs by enrichment
+kable(head(motifRankingForGroup(res), 10))
+```
+
 
 ## Session Info ##
-```{r}
+
+```{r, echo=FALSE}
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
 sessionInfo()
 
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
-citation("ATACseekeR")
+## citation("ATACseekeR")
 citation("csaw")
-citation("PWMEnrich")
+## citation("PWMEnrich")
 citation("LOLA")
 ```
 

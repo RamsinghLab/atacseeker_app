@@ -1,5 +1,6 @@
 data/input/appresults/*/*.bam
 data/input/appresults/*/*.bami
+data/*
 
 tmp/reference/hg19.*
 

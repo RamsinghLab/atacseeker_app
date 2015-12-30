@@ -25,7 +25,7 @@ hg19.*
 chr22*
 *.rds
 *.gz
+*.html
 
-nativeApp/tmp/scripts/atacseeker.html
 literature/
 nativeApp/assets/

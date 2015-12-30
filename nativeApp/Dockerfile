@@ -34,7 +34,7 @@ RUN mkdir -p /atacseeker/scripts
 ## COPY tmp/reference /atacseeker/reference
 COPY tmp/scripts /atacseeker/scripts
 
-## Install R packages - knitr, rmarkdown, rjson, statmod, locfit, edgeR, csaw
+## Install R packages 
 
 RUN Rscript /atacseeker/scripts/install_packages.R
 

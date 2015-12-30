@@ -34,7 +34,7 @@ qcPlot <- function(frag.dists, label) {
 
 
 
-
+## plot the top differentially accessible regions using Gviz
 plotRegion <- function(region) { 
   olReads <- lapply(BAMs, extractReads, region=region, param=param)
   for (x in names(olReads)) 
