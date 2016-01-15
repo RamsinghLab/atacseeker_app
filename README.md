@@ -1,4 +1,4 @@
-# ATACseeker #
+# ATACseeker App #
 
 Illumina BaseSpace ATACseq pipeline. 
 
