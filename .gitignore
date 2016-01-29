@@ -1,7 +1,3 @@
-.DS_Store
-
-# Vim swap files
-*.swp
 # History files
 .Rhistory
 .Rapp.history
@@ -16,9 +12,11 @@
 vignettes/*.html
 vignettes/*.pdf
 
-# data files
+## data files ##
+################
+*.swp
 *.bam
-*.bai
+*.bai*
 *.fastq
 *.fa
 hg19.*
@@ -27,5 +25,7 @@ chr22*
 *.gz
 *.html
 
+.DS_Store
+AppSession.json
 literature/
 nativeApp/assets/

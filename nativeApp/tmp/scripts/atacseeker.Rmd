@@ -65,20 +65,25 @@ dump_dir = "/data/scratch"
 
 control.files = c()
 for (f in seq(length(controlName))){
-  
-  fastq_dir = file.path(base_dir, controlID[f])
-  ## control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
-  control.files = c(control.files, list.files(fastq_dir, "*bam$", full.names = TRUE))
-  
-  }
+    
+    fastq_dir = file.path(base_dir, controlID[f])
+    ## control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
+    bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
+    system(paste("samtools index", bam.tmp))
+    control.files = c(control.files, bam.tmp)
+    
+    }
 
 compare.files = c()
 for (f in seq(length(compareName))){
-  
-  fastq_dir = file.path(base_dir, compareID[f])
-  ## compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
-  compare.files = c(compare.files, list.files(fastq_dir, "*bam$", full.names = TRUE))
-  }
+    
+    fastq_dir = file.path(base_dir, compareID[f])
+    ## compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
+    bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
+    system(paste("samtools index", bam.tmp))
+    compare.files = c(compare.files, bam.tmp)
+    
+    }
 
 samples = c(control, compare)
 bam.files = c(control.files, compare.files)
