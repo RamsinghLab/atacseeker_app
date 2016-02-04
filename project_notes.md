@@ -2,7 +2,7 @@
 
 ## Mt-DNA Variant Calling ##
 
-## ATACseq Pipeline ##
+## ATACseq Analysis Pipeline ##
 
 ### preseqR ###
 
