@@ -2,6 +2,62 @@
 
 ## Mt-DNA Variant Calling ##
 
+Because in ATACseq a lot of the reads are biased for the mitochondrial DNA, it seems like an obvious thing to use ATACseq reads to call variants on mt-DNA. There are a few caveats though. The mt-DNA is haploid, inherited completely from the mother. However, most callers like `gatk` and `samtools` assume a diploid genome. 
+
+This [post](http://gatkforums.broadinstitute.org/gatk/discussion/1214/can-i-use-gatk-on-non-diploid-organisms) says that post-version 3.3 `gatk` should be able to handle non-diploid genome. But a later [post](http://gatkforums.broadinstitute.org/gatk/discussion/3345/question-about-ploidy-when-mtdna-variants-calling) categorically denied any work by gatk relating to mt-DNA. 
+
+`samtools mpileup` explicitly says that it is for diploid genomes - as seen here:
+
+```
+Asifs-iMac:~ asifzubair$ samtools mpileup
+
+Usage: samtools mpileup [options] in1.bam [in2.bam [...]]
+
+  ...
+  ...
+  ...
+
+Notes: Assuming diploid individuals.
+
+```
+
+However, a question that begs to be asked is that - if indeed we go out looking for heteroplasmy, shouldn't a heterozygous position by `samtools` give us evidence of the same. I fear my reasoning might be naive. 
+
+In any case, I tried using samtools to call variants following the [CUREFFI](http://www.cureffi.org/2012/09/07/an-alternative-exome-sequencing-pipeline-using-bowtie2-and-samtools) folks. However, as I am interested in only reads that align with the mt-DNA, I filtered for those first. 
+
+```
+## Get chrM reads
+for file in *bam; do  
+    samtools view -b $file chrM > $(basename $file .bam)".chrM.bam"; 
+done
+
+## call variants
+samtools mpileup -d 200 -D -B -f ../../tmp/reference/chrM.fa -b bamlist.txt -u | \
+bcftools view -  > variants.vcf
+```
+
+However, when I looked at the VCF all calls were reported as missing. Also, in some cases `samtools` complained that the mate was missing. I then got counsel from this biostar [page](https://www.biostars.org/p/74386/) which says to use the `-r` option in place of filtering, which made my command even simpler.
+
+```
+samtools mpileup -d 200 -D -B -f ../../tmp/reference/hg19.fa -r chrM -b bamlist.txt -u | \
+bcftools view -  > variants.vcf
+```
+
+Still, no cigar ! 
+
+I checked that `bedtools` can be used for checking [coverage](https://github.com/arq5x/bedtools-protocols/blob/master/bedtools.md) and I tried to do the same for one ATACseq sample. I can't remember the exact command, but it was probably something like this.
+
+```
+# Calculate a histogram of coverage for each chromosome
+    # as well as genome-wide.
+    # Estimate: 30 minutes
+    bedtools genomecov \
+             -ibam NA19146.bam \
+    > NA19146.coverage.hist.txt
+```
+
+I remember that when I ran the above command, per nucleotide coverage in chrM was quite high - above 100 bases. 
+
 ## ATACseq Analysis Pipeline ##
 
 ### preseqR ###
@@ -49,3 +105,34 @@ Illumina.BaseSpace.SDK.BaseSpaceException: GET:v1pre3/appresults/28995055 status
 ```
 
 I think this has to be related to the app results I chose. I might not have permissions for them. 
+
+When I used only bams from the BWA Aligner app I had the following errors:
+
+```
+  ...
+  ...
+2[bam_index_build2] fail to create the index file.
+2[bam_index_build2] fail to create the index file.
+2[bam_index_build2] fail to create the index file.
+2[bam_index_build2] fail to create the index file.
+  ...
+  ...
+  ordinary text without R code
+
+K
+  |                                                                       K
+  |....................                                             |  31%
+label: unnamed-chunk-6 (with options) 
+List of 1
+ $ echo: logi FALSE
+
+.Quitting from lines 125-136 (atacseeker.Rmd) 
+�Error in plot.window(xlim, ylim, log = log, ...) : 
+  need finite 'ylim' values
+Calls: <Anonymous> ... eval -> eval -> barplot -> barplot.default -> plot.window
+
+Execution halted
+cp: 1cannot stat '/atacseeker/scripts/atacseeker.html': No such file or directory
+```
+
+So, it seems that creating index is failing. This might be because I have to write everything to scratch - which is pretty agonizing. 
