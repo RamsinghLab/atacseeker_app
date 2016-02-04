@@ -1,4 +1,4 @@
-# ATACseeker App Project Notes #
+# ATACseeker App #
 
 ## Mt-DNA Variant Calling ##
 
