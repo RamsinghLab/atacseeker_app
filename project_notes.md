@@ -122,12 +122,12 @@ When I used only bams from the BWA Aligner app I had the following errors:
 K
   |                                                                       K
   |....................                                             |  31%
-label: unnamed-chunk-6 (with options) 
+..label:.. ..unnamed-chunk-6 (with options) 
 List of 1
  $ echo: logi FALSE
 
 .Quitting from lines 125-136 (atacseeker.Rmd) 
-�Error in plot.window(xlim, ylim, log = log, ...) : 
+Error in plot.window(xlim, ylim, log = log, ...) : 
   need finite 'ylim' values
 Calls: <Anonymous> ... eval -> eval -> barplot -> barplot.default -> plot.window
 
