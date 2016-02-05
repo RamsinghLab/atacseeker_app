@@ -139,6 +139,16 @@ So, it seems that creating index is failing. This might be because I have to wri
 
 I spoke to Anthony and my hunch was right. When `bsfs` is enabled, the `spacedock` directories are read only. This means I'll have to copy everything to `/data/scratch` and build my indexes there.
 
+After I fixed the `/data/scratch` issue, I ran into this error:
+
+```
+Quitting from lines 138-176 (atacseeker.Rmd) 
+Error in mcmapply(getQC, name = control, pe.bam = control.files, SIMPLIFY = F) : 
+  'names' attribute [2] must be the same length as the vector [1]
+Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcmapply
+```
+ 
+... which is weird, because I am not seeing this when I run the app locally. 
 
 **report builder**
 
