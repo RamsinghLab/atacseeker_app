@@ -140,7 +140,7 @@ So, it seems that creating index is failing. This might be because I have to wri
 I spoke to Anthony and my hunch was right. When `bsfs` is enabled, the `spacedock` directories are read only. This means I'll have to copy everything to `/data/scratch` and build my indexes there.
 
 
-***report builder**
+**report builder**
 
 `ilmn` has a weird report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
