@@ -138,3 +138,20 @@ Calls: <Anonymous> ... eval -> eval -> barplot -> barplot.default -> plot.window
 So, it seems that creating index is failing. This might be because I have to write everything to scratch - which is pretty agonizing. 
 
 I spoke to Anthony and my hunch was right. When `bsfs` is enabled, the `spacedock` directories are read only. This means I'll have to copy everything to `/data/scratch` and build my indexes there.
+
+
+***report builder**
+
+`ilmn` has a weird report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
+
+```
+{% comment %}
+  BaseSpace Report Builder!
+  <td>{{ result.files["atacseeker.html"] | append: "bar" }}</td>
+{% endcomment %}
+
+{% for key in result.files %}
+  <iframe src={{ result.files[key].href }} frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%">
+  </iframe>
+{% endfor %}
+```
