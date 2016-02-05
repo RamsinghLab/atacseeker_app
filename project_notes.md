@@ -136,3 +136,5 @@ Calls: <Anonymous> ... eval -> eval -> barplot -> barplot.default -> plot.window
 ```
 
 So, it seems that creating index is failing. This might be because I have to write everything to scratch - which is pretty agonizing. 
+
+I spoke to Anthony and my hunch was right. When `bsfs` is enabled, the `spacedock` directories are read only. This means I'll have to copy everything to `/data/scratch` and build my indexes there.
