@@ -58,7 +58,7 @@ I checked that `bedtools` can be used for checking [coverage](https://github.com
 
 I remember that when I ran the above command, per nucleotide coverage in chrM was quite high - above 100 bases. 
 
-## ATACseq Analysis Pipeline ##
+## ATACseeker Pipeline ##
 
 ### preseqR ###
 
