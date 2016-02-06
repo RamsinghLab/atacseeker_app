@@ -148,7 +148,7 @@ Error in mcmapply(getQC, name = control, pe.bam = control.files, SIMPLIFY = F) :
 Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcmapply
 ```
  
-... which is weird, because I am not seeing this when I run the app locally. 
+... which is weird, because I am not seeing this when I run the app locally. My hunch here is that this could be a memory issue with `mcmapply`. 
 
 **report builder**
 
