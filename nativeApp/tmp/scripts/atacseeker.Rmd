@@ -24,20 +24,30 @@ library(LOLA)
 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
+test = TRUE
+
 source("parse_AppSession.R")
 
 app_session_name = gsub('/','-', app_session_name)
 
 base_dir = "/data/output/appresults"
-## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
+
+if (test){
+    base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
+    }
 
 output_dir = file.path(base_dir, project_id, app_session_name)
 
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
 
-cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
-system(cmd2)
+if (!test){
+    
+    cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    system(cmd2)
+    
+}
+
 ```
 
 
@@ -57,20 +67,30 @@ compare.label = comparison
 control = controlName
 compare = compareName
 
+
 base_dir = "/data/input/appresults"
 dump_dir = "/data/scratch"
 
-## base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
-## dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
+if(test){
+    base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
+    dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
+}
+
 
 control.files = c()
 for (f in seq(length(controlName))){
     
     fastq_dir = file.path(base_dir, controlID[f])
-    ## control.files = c(control.files, file.path(fastq_dir, paste0(controlName[f], ".bam")))
+    
     bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
-    system(paste("samtools index", bam.tmp))
-    control.files = c(control.files, bam.tmp)
+    bam.dmp = file.path(dump_dir, basename(bam.tmp))
+
+    if (!test){
+        system(paste("cp", bam.tmp, dump_dir))
+        system(paste("samtools index", bam.dmp))
+        }
+    
+    control.files = c(control.files, bam.dmp)
     
     }
 
@@ -78,10 +98,16 @@ compare.files = c()
 for (f in seq(length(compareName))){
     
     fastq_dir = file.path(base_dir, compareID[f])
-    ## compare.files = c(compare.files, file.path(fastq_dir, paste0(compareName[f], ".bam")))
+    
     bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
-    system(paste("samtools index", bam.tmp))
-    compare.files = c(compare.files, bam.tmp)
+    bam.dmp = file.path(dump_dir, basename(bam.tmp))
+    
+    if (!test){
+        system(paste("cp", bam.tmp, dump_dir))
+        system(paste("samtools index", bam.dmp))
+        }
+
+    compare.files = c(compare.files, bam.dmp)
     
     }
 
@@ -104,21 +130,10 @@ kable(design, caption = "Design Matrix")
 ## QC Metrics ##
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-## frag.len <- 150
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 
-## Do we use the minq=50 parameter ?
-
-## Define parameters for read extraction
-## pe.first <- readParam(pe = "first", dedup = TRUE)
-## pe.param <- readParam(pe = "both", max.frag = frag.len, dedup=TRUE)
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
-## fast.param <- reform(discard.param, fast.pe = TRUE)
-
-## Dump all paired end reads into /data/scratch
-## bam.dmp.files <- mcmapply(dumpPE, bam.file=bam.files, prefix=file.path(dump_dir, samples), param = discard.param, overwrite=FALSE)
-## bam.dmp.files <- as.vector(bam.dmp.files)
 ```
 
 ```{r, echo=FALSE}
