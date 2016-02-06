@@ -73,7 +73,7 @@ I remember that when I ran the above command, per nucleotide coverage in chrM wa
 
 **testing basespace app**
 
-`ilmn` has a weird way of testing these apps. essentially, i downloaded the native app development [image](https://da1s119xsxmu0.cloudfront.net/sites/developer/native/nativeappsvm/BaseSpace%20Native%20Apps%20VM%20v14.ova) and then loaded it in virtual box. You need to login to the image via the terminal - `ssh basespace@localhost -p2222` . The password is `basespace`. 
+`ilmn` has an  interesting way of testing these apps. essentially, i downloaded the native app development [image](https://da1s119xsxmu0.cloudfront.net/sites/developer/native/nativeappsvm/BaseSpace%20Native%20Apps%20VM%20v14.ova) and then loaded it in virtual box. You need to login to the image via the terminal - `ssh basespace@localhost -p2222` . The password is `basespace`. 
 
 This image contains all software to test native apps - docker, spacedock etc. Also the versions should be up-to-date with the ones `ilmn` has. 
 
@@ -152,7 +152,7 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcm
 
 **report builder**
 
-`ilmn` has a weird report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
+`ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
 ```
 {% comment %}
