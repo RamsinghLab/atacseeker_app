@@ -170,7 +170,9 @@ So, my hunch was correct! Since these jobs are sent to my computer to be run loc
 
 This hack works pretty well, especially after `ilmn` changed their layout. However, I found a problem with the links I put in my report. I want those to open in a new window, otherwise it goes into unending loading phase. [SO](http://stackoverflow.com/questions/3492153/markdown-open-a-new-window-link), like always, has some ideas about that. 
 
-Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` syntax - `<a href="http://example.com/" target="_blank">example</a>` or this hybrid syntax that I am not too sure about `[link](url){:target="_blank"}`  
+Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` syntax - `<a href="http://example.com/" target="_blank">example</a>` or this hybrid syntax that I am not too sure about `[link](url){:target="_blank"}` 
+
+A final idea for the analysis report is that it can be useful to researchers to use in grant applications/supplements "as is". I have seen software that include this as a feature. We could include a downloadable PDF report in the output. This should be trivial once we have the `html` document - `pandoc` can do it for us as mentiond in this [r-bloggers](http://www.r-bloggers.com/converting-a-markdown-file-to-pdf-using-pandoc) page.   
 
 ## ATACseq Data Analysis ##
 
