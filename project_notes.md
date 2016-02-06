@@ -150,7 +150,7 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcm
  
 ... which is weird, because I am not seeing this when I run the app locally. My hunch here is that this could be a memory issue with `mcmapply`. 
 
-So, my hunch was correct! Since these jobs are sent to my computer to be run locally, I could increas the memory available to the VM and that should facilitate job completion ... and it did! 
+So, my hunch was correct! Since these jobs are sent to my computer to be run locally, I could increase the memory available to the VM and that should facilitate job completion ... and it did! 
 
 **report builder**
 
