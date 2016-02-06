@@ -150,6 +150,8 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcm
  
 ... which is weird, because I am not seeing this when I run the app locally. My hunch here is that this could be a memory issue with `mcmapply`. 
 
+So, my hunch was correct! Since these jobs are sent to my computer to be run locally, I could increas the memory available to the VM and that should facilitate job completion ... and it did! 
+
 **report builder**
 
 `ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
@@ -166,4 +168,10 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcm
 {% endfor %}
 ```
 
+This hack works pretty well, especially after `ilmn` changed their layout. However, I found a problem with the links I put in my report. I want those to open in a new window, otherwise it goes into unending loading phase. [SO](http://stackoverflow.com/questions/3492153/markdown-open-a-new-window-link), like always, has some ideas about that. 
+
+Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` syntax - `<a href="http://example.com/" target="_blank">example</a>` or this hybrid syntax that I am not too sure about `[link](url){:target="_blank"}`  
+
 ## ATACseq Data Analysis ##
+
+**data and experiment**
