@@ -62,6 +62,39 @@ I remember that when I ran the above command, per nucleotide coverage in chrM wa
 
 ### preseqR ###
 
+[preseqR](https://cran.r-project.org/web/packages/preseqR/index.html) is a software package, provided by the smith lab here at usc, that computes library complexity. it seems sensible to estimate complexity of your library before starting any analysis. 
+
+before we get into `preseqR`, maybe it is better to figure out what the complexity beast is. 
+
+**library complexity**  
+
+Library complexity refers to the number of unique fragments present in a given library.  
+
+Complexity is affected by:
+* Amount of starting material
+* Amount of DNA lost during cleanups and size selection
+* Amount of duplication introduced via PCR
+
+This [page](https://www.kapabiosystems.com/ngs/guide-ngs-coverage-uniformity-bias-library-complexity) by `kapabiosystems` talks about library complexity from the experimental perspective. Mostly about how protocol change can help improve the complexity of the library. i found the section on - good starting amount of DNA but low coverage - most interesting.  
+
+Even with good amount of starting dna, one can get uneven coverage because sequences with particular characteristics pass through each step of the sample prep and sequencing workflow with different efficiencies and some become relatively enriched at the expense of others, which are left behind.  
+
+while a lot of experimental biases can not be overcome, suboptimal pcr during library amplification can introduce a lot of bias. also, base composition bias is another important consideration - GC vs. AT.  
+
+this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-computational-and-systems-biology-spring-2014/video-lectures/lecture-5-library-complexity-and-short-read-alignment-mapping) also introduces complexity. it introduces the NB model for estimating library complexity. Also, how a simple poisson model maybe wrong, mostly because it doesn't capture the over-dispersion in the library.  
+
+**back to preseqR**
+
+with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does.  
+
+
+**finally** - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The ZTNB model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.
+
+
+**library complexity for atacseq data**
+
+something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. 
+
 ### csaw ###
 
 ### lola ###
@@ -117,22 +150,22 @@ When I used only bams from the BWA Aligner app I had the following errors:
 2[bam_index_build2] fail to create the index file.
   ...
   ...
-  ordinary text without R code
-
-K
-  |                                                                       K
-  |....................                                             |  31%
-..label:.. ..unnamed-chunk-6 (with options) 
-List of 1
- $ echo: logi FALSE
-
+  ordinary text without R code
+
+K
+  |                                                                       K
+  |....................                                             |  31%
+..label:.. ..unnamed-chunk-6 (with options) 
+List of 1
+ $ echo: logi FALSE
+
 .Quitting from lines 125-136 (atacseeker.Rmd) 
 Error in plot.window(xlim, ylim, log = log, ...) : 
   need finite 'ylim' values
 Calls: <Anonymous> ... eval -> eval -> barplot -> barplot.default -> plot.window
-
+
 Execution halted
-cp: 1cannot stat '/atacseeker/scripts/atacseeker.html': No such file or directory
+cp: 1cannot stat '/atacseeker/scripts/atacseeker.html': No such file or directory
 ```
 
 So, it seems that creating index is failing. This might be because I have to write everything to scratch - which is pretty agonizing. 
