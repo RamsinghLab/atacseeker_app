@@ -87,6 +87,9 @@ this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-compu
 
 with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).
 
+tim D has a good [thread](http://seqanswers.com/forums/showthread.php?t=18439&goto=nextnewest) on `seqanswers` on `preseqR`. importantly, i might have to subsample read before i do the library complexity.  
+
+
 
 
 Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The ZTNB model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
