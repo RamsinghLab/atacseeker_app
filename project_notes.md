@@ -87,7 +87,7 @@ this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-compu
 
 with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).  
 
-seems like `preseqR` uses a [empirical Bayes](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) approach to estimate complexity and is based on rational function approximation [RFA] to the power series of [Good and Toulmin](http://biomet.oxfordjournals.org/content/43/1-2/45.abstract).
+seems like `preseqR` uses a [empirical Bayes](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) approach to estimate complexity and is based on rational function approximation, [RFA](https://en.wikipedia.org/wiki/Pad%C3%A9_approximant), to the power series of [Good and Toulmin](http://biomet.oxfordjournals.org/content/43/1-2/45.abstract).
 
 towards the more implementation side, tim D has a good [thread](http://seqanswers.com/forums/showthread.php?t=18439&goto=nextnewest) on `seqanswers` on `preseqR`. importantly, i might have to subsample reads before i do the library complexity.  
 
@@ -100,6 +100,8 @@ something that tim T wants to do is look at 5' cut sites for library complexity 
 i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea.  
 
 ### csaw ###
+
+`csaw` actually was written for ChIP-seq data but we appropriate it for atacseq data as the same assumptions apply. in it's basic form, `csaw` does read counting in windows along the chromosome and then uses `limma`'s negative-binomial model to find differential binding regions across experiments. 
 
 
 
