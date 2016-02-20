@@ -83,7 +83,7 @@ while a lot of experimental biases can not be overcome, suboptimal pcr during li
 
 this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-computational-and-systems-biology-spring-2014/video-lectures/lecture-5-library-complexity-and-short-read-alignment-mapping) also introduces complexity. it introduces the NB model for estimating library complexity. Also, how a simple poisson model maybe wrong, mostly because it doesn't capture the over-dispersion in the library.  
 
-####back to preseqR####
+#### back to preseqR ####
 
 with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).  
 
@@ -93,7 +93,7 @@ towards the more implementation side, tim D has a good [thread](http://seqanswer
 
 Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The zero-truncated negative binomial (ZTNB) model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
 
-####library complexity for atacseq data####
+#### library complexity for atacseq data ####
 
 something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. notably `preseR` references this [paper](http://www.nature.com/nmeth/journal/v9/n1/full/nmeth.1778.html) for identifying unique molecules. Also - this from tim D's paper - In sequencing applications that identify genomic intervals such as protein-binding sites in chromatin immunoprecipita- tion and sequencing (ChIP-seq) or expressed exons in RNA sequencing (RNA-seq), the number of distinct molecules in the library may be of secondary interest to the `number of distinct genomic intervals identified` after processing mapped reads.  
 
@@ -102,7 +102,6 @@ i feel this is a good direction for the pipeline, and i should figure out how to
 ### csaw ###
 
 `csaw` actually was written for ChIP-seq data but we appropriate it for atacseq data as the same assumptions apply. in it's basic form, `csaw` does read counting in windows along the chromosome and then uses `limma`'s negative-binomial model to find differential binding regions across experiments. 
-
 
 
 ### lola ###
