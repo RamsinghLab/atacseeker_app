@@ -66,7 +66,7 @@ I remember that when I ran the above command, per nucleotide coverage in chrM wa
 
 before we get into `preseqR`, maybe it is better to figure out what the complexity beast is. 
 
-**library complexity**  
+#### library complexity ####
 
 Library complexity refers to the number of unique fragments present in a given library.  
 
@@ -83,23 +83,17 @@ while a lot of experimental biases can not be overcome, suboptimal pcr during li
 
 this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-computational-and-systems-biology-spring-2014/video-lectures/lecture-5-library-complexity-and-short-read-alignment-mapping) also introduces complexity. it introduces the NB model for estimating library complexity. Also, how a simple poisson model maybe wrong, mostly because it doesn't capture the over-dispersion in the library.  
 
-**back to preseqR**
+####back to preseqR####
 
 with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).  
 
 seems like `preseqR` uses a [empirical Bayes](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) approach to estimate complexity and is based on rational function approximation [RFA] to the power series of [Good and Toulmin](http://biomet.oxfordjournals.org/content/43/1-2/45.abstract).
 
-
-
-
 towards the more implementation side, tim D has a good [thread](http://seqanswers.com/forums/showthread.php?t=18439&goto=nextnewest) on `seqanswers` on `preseqR`. importantly, i might have to subsample reads before i do the library complexity.  
-
-
-
 
 Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The zero-truncated negative binomial (ZTNB) model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
 
-**library complexity for atacseq data**
+####library complexity for atacseq data####
 
 something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. notably `preseR` references this [paper](http://www.nature.com/nmeth/journal/v9/n1/full/nmeth.1778.html) for identifying unique molecules. Also - this from tim D's paper - In sequencing applications that identify genomic intervals such as protein-binding sites in chromatin immunoprecipita- tion and sequencing (ChIP-seq) or expressed exons in RNA sequencing (RNA-seq), the number of distinct molecules in the library may be of secondary interest to the `number of distinct genomic intervals identified` after processing mapped reads.  
 
