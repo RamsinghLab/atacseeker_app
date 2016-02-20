@@ -88,18 +88,24 @@ this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-compu
 with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does.  
 
 
-**finally** - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The ZTNB model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.
-
+Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The ZTNB model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
 
 **library complexity for atacseq data**
 
-something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. 
+something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea.  
 
 ### csaw ###
 
+
+
 ### lola ###
 
+
+
 ## Docker ##
+
+
+
 
 ## Native App ##
 
