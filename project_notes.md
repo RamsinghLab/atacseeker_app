@@ -97,12 +97,15 @@ Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadins
 
 something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. notably `preseR` references this [paper](http://www.nature.com/nmeth/journal/v9/n1/full/nmeth.1778.html) for identifying unique molecules. Also - this from tim D's paper - In sequencing applications that identify genomic intervals such as protein-binding sites in chromatin immunoprecipita- tion and sequencing (ChIP-seq) or expressed exons in RNA sequencing (RNA-seq), the number of distinct molecules in the library may be of secondary interest to the `number of distinct genomic intervals identified` after processing mapped reads.  
 
-i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea.  
+i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea. however, a thing that is troubling me that perhaps `preseqR` needs raw reads and the way the pipeline is set up right now is that it takes `bam` files. a way around this might be to 
 
 ### csaw ###
 
 `csaw` actually was written for ChIP-seq data but we appropriate it for atacseq data as the same assumptions apply. in it's basic form, `csaw` does read counting in windows along the chromosome and then uses `limma`'s negative-binomial model to find differential binding regions across experiments. 
 
+#### qc, read-counting ####
+
+`csaw`'s `windowCounts` is the main functio which does read counting over chromosomes. it does some read extension for forward and reverse reads to account for fragment length. for the atacseq data, i don't want to do any read extension and i think i need to set `ext` option to `NA` (it defaults to a 100). another thing i want to add to the pipeline output is the options used for `windowCounts`, something like `metadata(data)` should do this for me. this is cool stuff - read extension was bothering me for some time now.  
 
 ### lola ###
 
