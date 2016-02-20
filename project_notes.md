@@ -25,7 +25,7 @@ However, a question that begs to be asked is that - if indeed we go out looking 
 
 In any case, I tried using samtools to call variants following the [CUREFFI](http://www.cureffi.org/2012/09/07/an-alternative-exome-sequencing-pipeline-using-bowtie2-and-samtools) folks. However, as I am interested in only reads that align with the mt-DNA, I filtered for those first. 
 
-```
+```shell
 ## Get chrM reads
 for file in *bam; do  
     samtools view -b $file chrM > $(basename $file .bam)".chrM.bam"; 
@@ -85,18 +85,25 @@ this mit [lecture](http://ocw.mit.edu/courses/biology/7-91j-foundations-of-compu
 
 **back to preseqR**
 
-with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).
+with that very biref introduction, and more importantly for me - atleast a basic model understanding - let's see what `preseqR` actually does. paper is [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612374/).  
 
-tim D has a good [thread](http://seqanswers.com/forums/showthread.php?t=18439&goto=nextnewest) on `seqanswers` on `preseqR`. importantly, i might have to subsample read before i do the library complexity.  
-
-
+seems like `preseqR` uses a [empirical Bayes](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) approach to estimate complexity and is based on rational function approximation [RFA] to the power series of [Good and Toulmin](http://biomet.oxfordjournals.org/content/43/1-2/45.abstract).
 
 
-Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The ZTNB model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
+
+
+towards the more implementation side, tim D has a good [thread](http://seqanswers.com/forums/showthread.php?t=18439&goto=nextnewest) on `seqanswers` on `preseqR`. importantly, i might have to subsample reads before i do the library complexity.  
+
+
+
+
+Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadinstitute.github.io/picard) also does complexity estimation. however, like tim D pointed out in the thread - it appears that `estimateLibrarySize` assumes a simple Lander-Waterman model, which would correspond to a simple Poisson model. The zero-truncated negative binomial (ZTNB) model is much broader class that includes the simple Poisson model (taking alpha -> 0). Therefore, the estimates from such a model can only be more biased than the ZTNB estimates.  
 
 **library complexity for atacseq data**
 
-something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea.  
+something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. notably `preseR` references this [paper](http://www.nature.com/nmeth/journal/v9/n1/full/nmeth.1778.html) for identifying unique molecules. Also - this from tim D's paper - In sequencing applications that identify genomic intervals such as protein-binding sites in chromatin immunoprecipita- tion and sequencing (ChIP-seq) or expressed exons in RNA sequencing (RNA-seq), the number of distinct molecules in the library may be of secondary interest to the `number of distinct genomic intervals identified` after processing mapped reads.  
+
+i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea.  
 
 ### csaw ###
 
@@ -199,7 +206,7 @@ So, my hunch was correct! Since these jobs are sent to my computer to be run loc
 
 `ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
-```
+```javascript
 {% comment %}
   BaseSpace Report Builder!
   <td>{{ result.files["atacseeker.html"] | append: "bar" }}</td>
