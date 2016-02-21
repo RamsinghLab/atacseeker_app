@@ -139,7 +139,7 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 ```{r, echo=FALSE}
 proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
 
-wincounts <- windowCounts(bam.files, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
 tssWindows <- queryHits(findOverlaps(wincounts, proms))
 nonTssWindows <- setdiff(seq_len(nrow(wincounts)), tssWindows)
 
@@ -150,7 +150,7 @@ names(TSSvsNonTSS) <- samples
 barplot(TSSvsNonTSS, xlim = c(0,1), width = 0.1, las=3, main="TSS vs Non-TSS Counts")
 ```
 
-Fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. 
+If the input data is **paired-end**, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
 ```{r, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
@@ -249,9 +249,9 @@ Read extraction parameters:
 ```{r, echo=FALSE, comment=""}
 discard.se.param
 window.width <- 150
-data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
+data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=NA)
 kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
-binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param, ext=0)
+binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
 
 Keep only high abundance regions relative to a  global background.
@@ -319,7 +319,7 @@ kable(head(tabcom), caption="Combined Tests")
 ```
 
 
-## Output Results ##
+## Results ##
 
 
 ```{r, echo=FALSE}
