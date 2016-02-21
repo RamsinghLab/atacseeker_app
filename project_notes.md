@@ -244,6 +244,7 @@ For a Differential Accessibility analysis I want to do, library-specific biases 
 - composition biases
 - efficiency biases
 - trended biases  
+
 Thus, normalization between libraries is required to remove these biases prior to any statistical analysis.
 
 
