@@ -342,7 +342,7 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> mcm
 
 So, my hunch was correct! Since these jobs are sent to my computer to be run locally, I could increase the memory available to the VM and that should facilitate job completion ... and it did! 
 
-#### report builder ####
+### report builder ###
 
 `ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
