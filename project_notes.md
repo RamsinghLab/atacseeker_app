@@ -8,7 +8,7 @@ This [post](http://gatkforums.broadinstitute.org/gatk/discussion/1214/can-i-use-
 
 `samtools mpileup` explicitly says that it is for diploid genomes - as seen here:
 
-```
+```shell
 Asifs-iMac:~ asifzubair$ samtools mpileup
 
 Usage: samtools mpileup [options] in1.bam [in2.bam [...]]
@@ -223,6 +223,28 @@ windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, 
 ```
 
 i've set the `spacing` and width set to 150 but I think I should set it to 50. also, `ext=NA` should be done. but, i am not sure if I should `bin` it. also, i am calling this function in a loop, but I think there should be a way to vectorise this. **must** ask Tim. 
+
+#### Filtering ####
+
+Removing such uninteresting or ineffective tests reduces the severity of the multiple testing correction, increases detection power amongst the remaining tests and reduces computational work. Filtering is valid so long as [it is independent of the test statistic](http://www.pnas.org/content/107/21/9546.long) under the null hypothesis [Bourgon et al., 2010]. In the negative binomial (NB) framework, this (probably) corresponds to filtering on the overall NB mean.
+
+three approaches are suggested:
+- by count size  
+- by proportion  
+	- here we assume that only a small proportion of the dna is accessible and then retain only those windows with rank ratios above the unbound proportion of the genome
+- by global enrichment  
+	- involves choosing a filter threshold based on the fold change over the level of non-specific enrichment. The degree of background enrichment can be estimated by counting reads into large bins across the genome.
+	- The effect of filtering can also be visualized with a histogram. This allows users to confirm that the bulk of (assumed) background bins are discarded upon filtering. Note that bins containing genuine binding sites will usually **not** be visible on such plots.
+
+currently, i am using the global enrichment strategy to filter windows. However, as a general rule, I should filter **less aggressively** if there is any uncertainty about the features of interest. In particular, the thresholds shown in this chapter for each filtering statistic are fairly mild.
+
+#### Normaliation ####
+
+For a Differential Accessibility analysis I want to do, library-specific biases are of particular interest as they can introduce spurious differences between conditions. This includes 
+- composition biases
+- efficiency biases
+- trended biases  
+Thus, normalization between libraries is required to remove these biases prior to any statistical analysis.
 
 
 ### LOLA ###
