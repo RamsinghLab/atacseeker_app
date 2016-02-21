@@ -261,7 +261,7 @@ Thus, normalization between libraries is required to remove these biases prior t
 ## Native App ##
 
 
-**testing basespace app**
+### testing basespace app ###
 
 `ilmn` has an  interesting way of testing these apps. essentially, i downloaded the native app development [image](https://da1s119xsxmu0.cloudfront.net/sites/developer/native/nativeappsvm/BaseSpace%20Native%20Apps%20VM%20v14.ova) and then loaded it in virtual box. You need to login to the image via the terminal - `ssh basespace@localhost -p2222` . The password is `basespace`. 
 
