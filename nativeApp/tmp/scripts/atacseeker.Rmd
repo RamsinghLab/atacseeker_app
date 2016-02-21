@@ -319,7 +319,7 @@ kable(head(tabcom), caption="Combined Tests")
 ```
 
 
-## Results ##
+### Results ###
 
 
 ```{r, echo=FALSE}
