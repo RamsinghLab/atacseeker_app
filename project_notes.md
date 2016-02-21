@@ -117,7 +117,7 @@ we've re-formulated the probelm so that `csaw` now gives us differentially acces
 one of the first things about the atacseq data is that it has a lot of reads biased to the mt-DNA. thus, we restrict analysis to the autosomes and sex-chromosomes. also, we take out blacklisted regions as defined [here](https://sites.google.com/site/anshulkundaje/projects/blacklists).  
 
 programmatically, this can be implemented in `csaw` as 
-```
+```R
 readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ``` 
 
@@ -133,13 +133,13 @@ the first QC metrics we compute is the plot of `TSSvsNonTSS` counts. if i rememb
 
 in light of the above, i think we need to change our `windowCounts` call from:
 
-```
+```R
 windowCounts(bam.files, ext=0, shift=4, bin=TRUE, param=discard.se.param)
 ```
 
 to:
 
-```
+```R
 windowCounts(bam.files, ext=NA, shift=4, bin=TRUE, param=discard.se.param)
 ```
 
@@ -161,7 +161,7 @@ also, when `bin` is TRUE, then the following flags are set:
 
 as we can see, `ext` is set to `1L`, `final.ext` is `NA` and also `filter` is set to `0/1`, `width` will default to 100. So I guess, even this should work:
 
-```
+```R
 windowCounts(bam.files, shift=4, bin=TRUE, param=discard.se.param)
 ```
 
@@ -199,7 +199,7 @@ i think i will stick with setting `ext=NA` but less sure about how to interpret 
 
 i used `Rsamtools`'s `testPairedEndBam` function to finding out if the user data is PE and plot fragment size density. While I am not using fragment sizes for the pipeline, the idea here is that there should be within group similarity and outside group dissimilarity for the distribution. if this is not the case, something might be weird - who knows - library swap (?) etc.  
 
-_cross correlation plot_  
+__cross correlation plot__  
 
 `csaw` cites this [paper](http://www.nature.com/nbt/journal/v26/n12/full/nbt.1508.html) for the cross-correlation plot. For ChIP-seq data, this plot provide a measure of the immunoprecipitation (IP) efficiency of a ChIP-seq experiment. Efficient IP should yield a smooth peak at a delay distance corresponding to the average fragment length.
 
@@ -211,14 +211,14 @@ A sharp spike may also observed in the plot at a distance corresponding to the r
 
 currently, i have `pe="none"`. confused whether `pe="both"` will give me back the fragment-size distribution plot ?
 
-_coverage plot_
+__coverage plot__
 
 The coverage profile around potential binding sites can be obtained with the `profileSites` function. Here, the binding sites are defined by taking high-abundance `50 bp` windows and identifying those that are __locally maximal__ using `findMaxima`. For each selected window, `profileSites` records the coverage across the flanking regions as a function of the distance from the edge of the window. This is divided by the count for the window itself to obtain a relative coverage, based on the specification of `weight`. The values are then averaged across all windows to obtain an aggregated coverage profile for each library.
 
 The version of this plot in the manual for ChIP-seq data seems to be quite smooth. however, my plot is a little jagged and i am not sure if this is due to truncated data. 
 
 also, the `windowCounts` function curently looks like this:
-```
+```R
 windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
 ```
 
@@ -248,7 +248,7 @@ Associated with every app, is a `spacedock` command which in my case is - `sudo 
 
 My first attempt wasn't so successful. I checked the `spacedock` log and saw this relevant part. 
 
-```
+```shell
 2016-02-03 22:46:13.719 [THREAD Threadpool worker] [DEBUG] Illumina.SpaceDock.JobExecutorLogic                Error during JobExecutionStage DOWNLOADING
 Illumina.BaseSpace.SDK.BaseSpaceException: GET:v1pre3/appresults/28995055 status: 410 (Gone) Message: This resource and its underlying data has been removed by its owner (BASESPACE.COMMON.RESOURCE_REMOVED) ---> ServiceStack.ServiceClient.Web.WebServiceException: Gone
   at ServiceStack.ServiceClient.Web.ServiceClientBase.ThrowWebServiceException[ErrorResponse] (System.Exception ex, System.String requestUri) [0x00000] in <filename unknown>:0 
@@ -275,7 +275,7 @@ I think this has to be related to the app results I chose. I might not have perm
 
 When I used only bams from the BWA Aligner app I had the following errors:
 
-```
+```shell
   ...
   ...
 2[bam_index_build2] fail to create the index file.
@@ -308,7 +308,7 @@ I spoke to Anthony and my hunch was right. When `bsfs` is enabled, the `spacedoc
 
 After I fixed the `/data/scratch` issue, I ran into this error:
 
-```
+```R
 Quitting from lines 138-176 (atacseeker.Rmd) 
 Error in mcmapply(getQC, name = control, pe.bam = control.files, SIMPLIFY = F) : 
   'names' attribute [2] must be the same length as the vector [1]
