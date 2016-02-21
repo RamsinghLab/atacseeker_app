@@ -226,7 +226,7 @@ i've set the `spacing` and width set to 150 but I think I should set it to 50. a
 
 #### Filtering ####
 
-Removing such uninteresting or ineffective tests reduces the severity of the multiple testing correction, increases detection power amongst the remaining tests and reduces computational work. Filtering is valid so long as [it is independent of the test statistic](http://www.pnas.org/content/107/21/9546.long) under the null hypothesis [Bourgon et al., 2010]. In the negative binomial (NB) framework, this (probably) corresponds to filtering on the overall NB mean.
+Removing such uninteresting or ineffective tests reduces the severity of the multiple testing correction, increases detection power amongst the remaining tests and reduces computational work. Filtering is valid so long as [it is independent of the test statistic](http://www.pnas.org/content/107/21/9546.long) under the null hypothesis. In the negative binomial (NB) framework, this (probably) corresponds to filtering on the overall NB mean.
 
 three approaches are suggested:
 - by count size  
@@ -247,6 +247,7 @@ For a Differential Accessibility analysis I want to do, library-specific biases 
 
 Thus, normalization between libraries is required to remove these biases prior to any statistical analysis.
 
+in the pipeline right now, i've composition bias normalisation is implemented. Highly enriched regions consume more sequencing resources and thereby suppress the representation of other regions. Differences in the magnitude of suppression between libraries can lead to spurious DA calls. This is a typical normalisation that i have seen in rna-seq data as well.  
 
 ### LOLA ###
 
