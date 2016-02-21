@@ -97,15 +97,93 @@ Also - it seems that `EstimateLibraryComplexity.jar` of [picard](http://broadins
 
 something that tim T wants to do is look at 5' cut sites for library complexity for atacseq data. notably `preseR` references this [paper](http://www.nature.com/nmeth/journal/v9/n1/full/nmeth.1778.html) for identifying unique molecules. Also - this from tim D's paper - In sequencing applications that identify genomic intervals such as protein-binding sites in chromatin immunoprecipita- tion and sequencing (ChIP-seq) or expressed exons in RNA sequencing (RNA-seq), the number of distinct molecules in the library may be of secondary interest to the `number of distinct genomic intervals identified` after processing mapped reads.  
 
-i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea. however, a thing that is troubling me that perhaps `preseqR` needs raw reads and the way the pipeline is set up right now is that it takes `bam` files. a way around this might be to 
+i feel this is a good direction for the pipeline, and i should figure out how to implement tim's idea. however, a thing that is troubling me that perhaps `preseqR` needs raw reads and the way the pipeline is set up right now is that it takes `bam` files.  
+
+tim T said that the best thing to do is just use our [atacseeker](https://github.com/RamsinghLab/ATACseeker), which is great because it is in-house. i'm quite excited about this direction.  
+
 
 ### CSAW ###
 
-`csaw` actually was written for ChIP-seq data but we appropriate it for atacseq data as the same assumptions apply. in it's basic form, `csaw` does read counting in windows along the chromosome and then uses `limma`'s negative-binomial model to find differential binding regions across experiments. 
+`csaw` actually was written for ChIP-seq data but we appropriate it for atacseq data as the same assumptions apply.  
+
+in it's basic form, `csaw` does read counting in windows along the chromosome and then uses `limma`'s negative-binomial model to find differential binding regions across experiments.  
+
+we've re-formulated the probelm so that `csaw` now gives us differentially accessible regions based on atacseq data.  
 
 #### qc, read-counting ####
 
-`csaw`'s `windowCounts` is the main functio which does read counting over chromosomes. it does some read extension for forward and reverse reads to account for fragment length. for the atacseq data, i don't want to do any read extension and i think i need to set `ext` option to `NA` (it defaults to a 100). another thing i want to add to the pipeline output is the options used for `windowCounts`, something like `metadata(data)` should do this for me. this is cool stuff - read extension was bothering me for some time now.  
+[aaron](https://github.com/LTLA) really did a good job putting together `csaw`. the documentation is great and the options carefully chosen.  
+
+one of the first things about the atacseq data is that it has a lot of reads biased to the mt-DNA. thus, we restrict analysis to the autosomes and sex-chromosomes. also, we take out blacklisted regions as defined [here](https://sites.google.com/site/anshulkundaje/projects/blacklists).  
+
+programmatically, this can be implemented in `csaw` as `readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)` . we also, filter for bad quality reads and remove duplicates.  
+
+aaron claims that removing dupes is not as straightforward as we think. since, it also caps the number of reads at each position. This can lead to loss of DB detection power in high abundance regions. Spurious differences may also be introduced when the same upper bound is applied to libraries of varying size. Thus, duplicate removal is not recommended for routine DB analyses. Of course, it may be unavoidable in some cases, e.g., involving libraries generated from low quantities of DNA.  
+
+the first QC metrics we compute is the plot of `TSSvsNonTSS` counts. if i remember correctly, tim T said that this should be above 10 for good data. 
+
+`csaw`'s `windowCounts` is the main function which does read counting over chromosomes. it does some read extension for forward and reverse reads to account for fragment length. for the atacseq data, i don't want to do any read extension and i think i need to set `ext` option to `NA` (it defaults to a 100). another thing i want to add to the pipeline output is the options used for `windowCounts`, something like `metadata(data)` should do this for me. this is cool stuff - read extension was bothering me for some time now.  
+
+in light of the above, i think we need to change our `windowCounts` call from:
+```
+windowCounts(bam.files, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+```
+to:
+```
+windowCounts(bam.files, ext=NA, shift=4, bin=TRUE, param=discard.se.param)
+```
+
+the `shift` parameter is for `specifying how much the start of each window should be shifted to the left`.By default, the first window on a chromosome starts at base position 1. This can be shifted to the left by specifying an appropriate value for `shift`.  
+
+however, I am not sure why Tim set it to 4 and i should ask him. 
+
+also, when `bin` is TRUE, then the following flags are set:
+
+```R
+	# A convenience flag, which assigns sensible arguments to everything else.
+	spacing <- as.integer(width)
+	left <- as.integer(shift)
+	right <- spacing - 1L - left
+	ext <- 1L
+	final.ext <- NA
+	filter <- min(1, filter)
+```
+
+as we can see that `ext` is set to `1L` and also `filter` is set to `0/1`. So I guess, even this should work:
+
+```
+windowCounts(bam.files, shift=4, bin=TRUE, param=discard.se.param)
+```
+
+i got curious about `ext` and dug up the funciton to which `ext` is passed to get the `final.ext`:
+```R
+.collateExt <- function(nbam, ext)
+# Collates the extension parameters into a set of ext and remainder values.
+# The idea is to extend each read directionally to 'ext', and then extend in
+# both directions by 'remainder' to reach the desired fragment length.
+
+{
+	final.ext <- attributes(ext)$final.ext # Do this, before attributes are lost.
+	if (is.null(final.ext)) { final.ext <- NA }
+	final.ext <- as.integer(final.ext)
+	if (length(final.ext)!=1L || (!is.na(final.ext) && final.ext <= 0L)) { 
+		stop("final extension length must be a positive integer or NA") 
+	}
+	
+	if (length(ext)==1L) { 
+		ext <- rep(ext, nbam)
+	} else if (length(ext)!=nbam) {
+		stop("length of extension vector is not consistent with number of libraries")
+	}
+	ext <- as.integer(ext)
+	if (any(!is.na(ext) & ext <= 0L)) { stop("extension length must be NA or a positive integer") }
+
+	list(ext=ext, final=final.ext)
+}
+```
+
+i think i will stick with setting `ext=NA` but less sure now about how to interpret it.  
+
 
 ### LOLA ###
 
@@ -220,8 +298,8 @@ This hack works pretty well, especially after `ilmn` changed their layout. Howev
 
 Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` syntax - `<a href="http://example.com/" target="_blank">example</a>` or this hybrid syntax that I am not too sure about `[link](url){:target="_blank"}` 
 
-A final idea for the analysis report is that it can be useful to researchers to use in grant applications/supplements "as is". I have seen software that include this as a feature. We could include a downloadable PDF report in the output. This should be trivial once we have the `html` document - `pandoc` can do it for us as mentiond in this [r-bloggers](http://www.r-bloggers.com/converting-a-markdown-file-to-pdf-using-pandoc) page.   
+A final idea for the analysis report is that it can be useful to researchers to use in grant applications/supplements "as is". I have seen software that include this as a feature. We could include a downloadable PDF report in the output. This should be trivial once we have the `html` document - `pandoc` can do it for us as mentiond in this r-bloggers [page](http://www.r-bloggers.com/converting-a-markdown-file-to-pdf-using-pandoc).   
 
 ## ATACseq Data Analysis ##
 
-**data and experiment**
+###data and experiment###
