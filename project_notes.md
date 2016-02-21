@@ -38,7 +38,7 @@ bcftools view -  > variants.vcf
 
 However, when I looked at the VCF all calls were reported as missing. Also, in some cases `samtools` complained that the mate was missing. I then got counsel from this biostar [page](https://www.biostars.org/p/74386/) which says to use the `-r` option in place of filtering, which made my command even simpler.
 
-```
+```shell
 samtools mpileup -d 200 -D -B -f ../../tmp/reference/hg19.fa -r chrM -b bamlist.txt -u | \
 bcftools view -  > variants.vcf
 ```
@@ -47,7 +47,7 @@ Still, no cigar !
 
 Based on a recommendation by [GGD](http://www.gettinggeneticsdone.com/2014/03/visualize-coverage-exome-targeted-ngs-bedtools.html), I checked that `bedtools` can be used for checking [coverage](https://github.com/arq5x/bedtools-protocols/blob/master/bedtools.md) and I tried to do the same for one ATACseq sample. I can't remember the exact command, but it was probably something like this.
 
-```
+```shell
 # Calculate a histogram of coverage for each chromosome
     # as well as genome-wide.
     # Estimate: 30 minutes
@@ -110,25 +110,35 @@ in it's basic form, `csaw` does read counting in windows along the chromosome an
 
 we've re-formulated the probelm so that `csaw` now gives us differentially accessible regions based on atacseq data.  
 
-#### qc, read-counting ####
+#### QC ####
 
 [aaron](https://github.com/LTLA) really did a good job putting together `csaw`. the documentation is great and the options carefully chosen.  
 
 one of the first things about the atacseq data is that it has a lot of reads biased to the mt-DNA. thus, we restrict analysis to the autosomes and sex-chromosomes. also, we take out blacklisted regions as defined [here](https://sites.google.com/site/anshulkundaje/projects/blacklists).  
 
-programmatically, this can be implemented in `csaw` as `readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)` . we also, filter for bad quality reads and remove duplicates.  
+programmatically, this can be implemented in `csaw` as 
+```
+readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
+``` 
 
-aaron claims that removing dupes is not as straightforward as we think. since, it also caps the number of reads at each position. This can lead to loss of DB detection power in high abundance regions. Spurious differences may also be introduced when the same upper bound is applied to libraries of varying size. Thus, duplicate removal is not recommended for routine DB analyses. Of course, it may be unavoidable in some cases, e.g., involving libraries generated from low quantities of DNA.  
+an important thing here is that we have fixed `pe="none"`, effectively, treating the data as single-end irrespective of what type it is. i should clear this up with tim, but the idea here is that read extension might give us spurious results especially when a large fragment, which might be straddled by nucleosomes, is sequenced. while the ends of the fragment are accessible, it is **wrong** if we do read extension and think that the region with nucleosomes is also accessible.
 
-the first QC metrics we compute is the plot of `TSSvsNonTSS` counts. if i remember correctly, tim T said that this should be above 10 for good data. 
+we also, filter for bad quality reads and **remove duplicates**.  
+
+aaron claims that removing dupes is not as straightforward as we think. per aaron, for the ChIP-seq case, it also caps the number of reads at each position. This can lead to loss of DB detection power in high abundance regions. Spurious differences may also be introduced when the same upper bound is applied to libraries of varying size. Thus, duplicate removal is not recommended for routine DB analyses. Of course, it may be unavoidable in some cases, e.g., involving libraries generated from low quantities of DNA. i **need** to figure out if this applies to atacseq data as well.  
+
+the first QC metrics we compute is the plot of `TSSvsNonTSS` counts. if i remember correctly, tim T said that this should be above 10 for good quality data. 
 
 `csaw`'s `windowCounts` is the main function which does read counting over chromosomes. it does some read extension for forward and reverse reads to account for fragment length. for the atacseq data, i don't want to do any read extension and i think i need to set `ext` option to `NA` (it defaults to a 100). another thing i want to add to the pipeline output is the options used for `windowCounts`, something like `metadata(data)` should do this for me. this is cool stuff - read extension was bothering me for some time now.  
 
 in light of the above, i think we need to change our `windowCounts` call from:
+
 ```
 windowCounts(bam.files, ext=0, shift=4, bin=TRUE, param=discard.se.param)
 ```
+
 to:
+
 ```
 windowCounts(bam.files, ext=NA, shift=4, bin=TRUE, param=discard.se.param)
 ```
@@ -149,13 +159,16 @@ also, when `bin` is TRUE, then the following flags are set:
 	filter <- min(1, filter)
 ```
 
-as we can see that `ext` is set to `1L` and also `filter` is set to `0/1`. So I guess, even this should work:
+as we can see, `ext` is set to `1L`, `final.ext` is `NA` and also `filter` is set to `0/1`, `width` will default to 100. So I guess, even this should work:
 
 ```
 windowCounts(bam.files, shift=4, bin=TRUE, param=discard.se.param)
 ```
 
-i got curious about `ext` and dug up the funciton to which `ext` is passed to get the `final.ext`:
+i guess onething, i **must** do is check `metadata` with these settings.  
+
+Also, i got curious about `ext` and dug up the funciton to which `ext` is passed to get the `final.ext`:
+
 ```R
 .collateExt <- function(nbam, ext)
 # Collates the extension parameters into a set of ext and remainder values.
@@ -182,10 +195,38 @@ i got curious about `ext` and dug up the funciton to which `ext` is passed to ge
 }
 ```
 
-i think i will stick with setting `ext=NA` but less sure now about how to interpret it.  
+i think i will stick with setting `ext=NA` but less sure about how to interpret it now.  
+
+i used `Rsamtools`'s `testPairedEndBam` function to finding out if the user data is PE and plot fragment size density. While I am not using fragment sizes for the pipeline, the idea here is that there should be within group similarity and outside group dissimilarity for the distribution. if this is not the case, something might be weird - who knows - library swap (?) etc.  
+
+_cross correlation plot_  
+
+`csaw` cites this [paper](http://www.nature.com/nbt/journal/v26/n12/full/nbt.1508.html) for the cross-correlation plot. For ChIP-seq data, this plot provide a measure of the immunoprecipitation (IP) efficiency of a ChIP-seq experiment. Efficient IP should yield a smooth peak at a delay distance corresponding to the average fragment length.
+
+For atacseq data, however, the fragmet sizes are greatly varied and so I don't expect this plot to be smooth. Interestingly, for the truncated data that I used for the initial analysis - i see two well-separated sharp peaks.
+
+A sharp spike may also observed in the plot at a distance corresponding to the read length. This is thought to be an **artifact**, caused by the preference of aligners towards uniquely mapped reads. Duplicate removal is typically required here (`dedup=TRUE` in `readParam`) to reduce the size of this spike. Otherwise, the fragment length peak will not be visible as a separate entity. The size of the smooth peak can also be compared to the height of the spike to [assess the signal-to-noise ratio](http://genome.cshlp.org/content/22/9/1813.long) of the data. Poor IP efficiency will result in a smaller or absent peak as bimodality is less pronounced. However, still has to be assessed what this will mena for atacseq data.  
+
+`csaw` also supports paired-end data, whereby correlations are computed using only those reads in proper pairs. This may be less meaningful as the presence of proper pairs will inevitably result in a strong peak at the fragment length. Instead, IP efficiency can be diagnosed by treating paired-end data as single-end, e.g., with `pe="first"` in `readParam`.
+
+currently, i have `pe="none"`. confused whether `pe="both"` will give me back the fragment-size distribution plot ?
+
+_coverage plot_
+
+The coverage profile around potential binding sites can be obtained with the `profileSites` function. Here, the binding sites are defined by taking high-abundance `50 bp` windows and identifying those that are __locally maximal__ using `findMaxima`. For each selected window, `profileSites` records the coverage across the flanking regions as a function of the distance from the edge of the window. This is divided by the count for the window itself to obtain a relative coverage, based on the specification of `weight`. The values are then averaged across all windows to obtain an aggregated coverage profile for each library.
+
+The version of this plot in the manual for ChIP-seq data seems to be quite smooth. however, my plot is a little jagged and i am not sure if this is due to truncated data. 
+
+also, the `windowCounts` function curently looks like this:
+```
+windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
+```
+
+i've set the `spacing` and width set to 150 but I think I should set it to 50. also, `ext=NA` should be done. but, i am not sure if I should `bin` it. also, i am calling this function in a loop, but I think there should be a way to vectorise this. **must** ask Tim. 
 
 
 ### LOLA ###
+
 
 
 
