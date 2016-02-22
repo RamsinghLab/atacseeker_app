@@ -249,14 +249,16 @@ Thus, normalization between libraries is required to remove these biases prior t
 
 in the pipeline right now, i've composition bias normalisation is implemented. Highly enriched regions consume more sequencing resources and thereby suppress the representation of other regions. Differences in the magnitude of suppression between libraries can lead to spurious DA calls. This is a typical normalisation that i have seen in rna-seq data as well.  
 
+#### Clustering ####
+
+
+#### Differential Accesibility Testing ####
+
+
 ### LOLA ###
 
 
-
-
 ## Docker ##
-
-
 
 
 ## Native App ##
