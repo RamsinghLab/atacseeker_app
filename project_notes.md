@@ -238,7 +238,7 @@ three approaches are suggested:
 
 currently, i am using the global enrichment strategy to filter windows. However, as a general rule, I should filter __less aggressively__ if there is any uncertainty about the features of interest. In particular, the thresholds shown in this chapter for each filtering statistic are fairly mild.
 
-#### Normaliation ####
+#### Normalisation ####
 
 For a Differential Accessibility analysis I want to do, library-specific biases are of particular interest as they can introduce spurious differences between conditions. This includes 
 - composition biases
