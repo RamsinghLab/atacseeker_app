@@ -222,11 +222,11 @@ also, the `windowCounts` function curently looks like this:
 windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
 ```
 
-i've set the `spacing` and width set to 150 but I think I should set it to 50. also, `ext=NA` should be done. but, i am not sure if I should `bin` it. also, i am calling this function in a loop, but I think there should be a way to vectorise this. **must** ask Tim. 
+i've set the `spacing` and width set to 150 but I think I should set it to 50. also, `ext=NA` should be done. but, i am not sure if I should `bin` it. also, i am calling this function in a loop, but I think there should be a way to vectorise this. __must__ ask Tim. 
 
 #### Filtering ####
 
-Removing such uninteresting or ineffective tests reduces the severity of the multiple testing correction, increases detection power amongst the remaining tests and reduces computational work. Filtering is valid so long as [it is independent of the test statistic](http://www.pnas.org/content/107/21/9546.long) under the null hypothesis [Bourgon et al., 2010]. In the negative binomial (NB) framework, this (probably) corresponds to filtering on the overall NB mean.
+Removing such uninteresting or ineffective tests reduces the severity of the multiple testing correction, increases detection power amongst the remaining tests and reduces computational work. Filtering is valid so long as [it is independent of the test statistic](http://www.pnas.org/content/107/21/9546.long) under the null hypothesis. In the negative binomial (NB) framework, this (probably) corresponds to filtering on the overall NB mean.
 
 three approaches are suggested:
 - by count size  
@@ -234,11 +234,11 @@ three approaches are suggested:
 	- here we assume that only a small proportion of the dna is accessible and then retain only those windows with rank ratios above the unbound proportion of the genome
 - by global enrichment  
 	- involves choosing a filter threshold based on the fold change over the level of non-specific enrichment. The degree of background enrichment can be estimated by counting reads into large bins across the genome.
-	- The effect of filtering can also be visualized with a histogram. This allows users to confirm that the bulk of (assumed) background bins are discarded upon filtering. Note that bins containing genuine binding sites will usually **not** be visible on such plots.
+	- The effect of filtering can also be visualized with a histogram. This allows users to confirm that the bulk of (assumed) background bins are discarded upon filtering. Note that bins containing genuine binding sites will usually __not__ be visible on such plots.
 
-currently, i am using the global enrichment strategy to filter windows. However, as a general rule, I should filter **less aggressively** if there is any uncertainty about the features of interest. In particular, the thresholds shown in this chapter for each filtering statistic are fairly mild.
+currently, i am using the global enrichment strategy to filter windows. However, as a general rule, I should filter __less aggressively__ if there is any uncertainty about the features of interest. In particular, the thresholds shown in this chapter for each filtering statistic are fairly mild.
 
-#### Normaliation ####
+#### Normalisation ####
 
 For a Differential Accessibility analysis I want to do, library-specific biases are of particular interest as they can introduce spurious differences between conditions. This includes 
 - composition biases
@@ -247,15 +247,46 @@ For a Differential Accessibility analysis I want to do, library-specific biases 
 
 Thus, normalization between libraries is required to remove these biases prior to any statistical analysis.
 
+in the pipeline right now, i've implemented composition bias normalisation. Highly enriched regions consume more sequencing resources and thereby suppress the representation of other regions. Differences in the magnitude of suppression between libraries can lead to spurious DA calls. This is a typical normalisation that i have seen in rna-seq data as well.  
+
+#### Clustering ####
+
+`csaw` recommends generating the [MDS](https://en.wikipedia.org/wiki/Multidimensional_scaling) plot to investigate how the samples are clustered. Currently, I am using binned counts for making the plots. However, it seems that `csaw` doesn't do this in the manual.  
+
+```R
+> par(mfrow=c(2,2), mar=c(5,4,2,2))
+> adj.counts <- cpm(y, log=TRUE)
+> for (top in c(100, 500, 1000, 5000)) {
++ out <- plotMDS(adj.counts, main=top, col=c("blue", "blue", "red", "red"), 
++ labels=c("es.1", "es.2", "tn.1", "tn.2"), top=top)
++}
+```
+Also, I should use the `col` argument to label samples.  
+
+It is a little confusing to me wheher I should use bins or not. `csaw` says this:  
+
+> The distance between each pair of libraries is computed as the __square root of the mean squared log-fold change__ across the top set of bins with the highest absolute log-fold changes. A small top set visualizes the most extreme differences whereas a large set visualizes overall differences. Checking a range of top values may be useful when the scope of DB is unknown. Again, __counting with large bins is recommended__ as fold changes will be undefined in the presence of zero counts.
+
+#### Differential Accesibility Testing ####
+
+`csaw` uses the [quasi-likelihood framework](http://scripts.mit.edu/~pazoulay/docs/wooldridge_QML.pdf) of  `edgeR` for testing DB. NB distribution is used to model counts and the usual argument of NB distributions accounting for overdispersion is given.  
+
+quasi-likelihood estimation is one way of allowing for __overdispersion__, that is, greater variability in the data than would be expected from the statistical model used. It is most often used with models for count data or grouped binary data, i.e. data that otherwise be modelled using the Poisson or binomial distribution.  
+
+Instead of specifying a probability distribution for the data, only a __relationship between the mean and the variance__ is specified in the form of a __variance function__ giving the variance as a function of the mean. Generally, this function is allowed to include a multiplicative factor known as the __overdispersion parameter or scale parameter__ that is estimated from the data. Most commonly, the variance function is of a form such that __fixing the overdispersion parameter at unity results in the variance-mean relationship of an actual probability distribution such as the binomial or__ [Poisson](https://en.wikipedia.org/wiki/Generalized_linear_model#Count_data).
+
+__Stabilising estimates with empirical Bayes__
+
+Under the QL framework, both the QL and NB dispersions are used to [model biological variability in the data](http://www.statsci.org/smyth/pubs/QuasiSeqPreprint.pdf). The former ensures that the NB mean-variance re- lationship is properly specified with appropriate contributions from the Poisson and Gamma components. The latter accounts for variability and uncertainty in the dispersion estimate.
+
+Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-applied-statistician-i-find-the-frequentists-versus-bayesians-debate-completely-inconsequential) on bayesian vs. frequentist approaches where he briefly mentioned empirical Bayes approach. It might also be instructive to go over this [r-bloggers](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) example.  
+
+
 
 ### LOLA ###
 
 
-
-
 ## Docker ##
-
-
 
 
 ## Native App ##
