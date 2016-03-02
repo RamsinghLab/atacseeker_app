@@ -277,13 +277,33 @@ Instead of specifying a probability distribution for the data, only a __relation
 
 __Stabilising estimates with empirical Bayes__
 
-Under the QL framework, both the QL and NB dispersions are used to [model biological variability in the data](http://www.statsci.org/smyth/pubs/QuasiSeqPreprint.pdf). The former ensures that the NB mean-variance re- lationship is properly specified with appropriate contributions from the Poisson and Gamma components. The latter accounts for variability and uncertainty in the dispersion estimate.
+Under the QL framework, both the QL and NB dispersions are used to [model biological variability in the data](http://www.statsci.org/smyth/pubs/QuasiSeqPreprint.pdf). The former ensures that the NB mean-variance relationship is properly specified with appropriate contributions from the Poisson and Gamma components. The latter accounts for variability and uncertainty in the dispersion estimate.  
 
-Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-applied-statistician-i-find-the-frequentists-versus-bayesians-debate-completely-inconsequential) on bayesian vs. frequentist approaches where he briefly mentioned empirical Bayes approach. It might also be instructive to go over this [r-bloggers](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) example.  
+The effect of EB stabilisation can be visualized by examining the biological coefficient of variation (for the NB dispersion) and the quarter-root deviance (for the QL dispersion). These plots can also be used to __decide whether the fitted trend is appropriate__. Sudden irregulaties may be indicative of an __underlying structure in the data__ which cannot be modelled with the mean-dispersion trend. Discrete patterns in the raw dispersions are indicative of low counts and suggest that __more aggressive filtering__ is required.
+
+__Important:__ A strong trend may also be observed where the NB dispersion drops sharply with increasing average abundance. It is difficult to accurately fit an empirical curve to these strong trends. As a consequence, the dispersions at high abundances may be overestimated. __Filtering__ of low-abundance regions provides some protection by removing the strongest part of the trend.  
+
+Users can compare raw and filtered results to see whether it makes any difference. Example code below:  
+```R
+> relevant <- rowSums(assay(data)) >= 20 # some filtering; otherwise, it takes too long.
+> yo <- asDGEList(data[relevant], norm.factors=normfacs)
+> yo <- estimateDisp(yo, design)
+> oo <- order(yo$AveLogCPM)
+> plot(yo$AveLogCPM[oo], sqrt(yo$trended.dispersion[oo]), type="l", lwd=2,
++ ylim=c(0, max(sqrt(yo$trended))), xlab=expression("Ave."~Log[2]~"CPM"),
++   ylab=("Biological coefficient of variation"))
+> lines(y$AveLogCPM[o], sqrt(y$trended[o]), lwd=2, col="grey")
+> legend("topright", c("raw", "filtered"), col=c("black", "grey"), lwd=2)
+```
+
+__Note:__Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-applied-statistician-i-find-the-frequentists-versus-bayesians-debate-completely-inconsequential) on bayesian vs. frequentist approaches where he briefly mentioned empirical Bayes approach. It might also be instructive to go over this [r-bloggers](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) example.  
+
+#### Multiple Testing Correction ####
 
 
 
 ### LOLA ###
+
 
 
 ## Docker ##
