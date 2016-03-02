@@ -4,13 +4,6 @@ Illumina BaseSpace ATACseq pipeline.
 
 This repository contains code for a Illumina BaseSpace Native App for doing ATACseq analysis.
 
-The elements of the approach are as follows: 
-
-* Docker image with all packages installed. 
-* Quality checks on aligned reads.
-* Pipe reads through `csaw` for differential accessibility testing.
-* Deploy as Native App on BaseSpace. 
-
 ## Directories
 
 Main development directory for BaseSpace App is `nativeApp`.
