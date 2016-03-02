@@ -300,7 +300,7 @@ plot(y$AveLogCPM[o], sqrt(y$trended.dispersion[o]), type="l", lwd=2,
 fit <- glmQLFit(y, design, robust=TRUE)
 plotQLDisp(fit)
 
-results <- glmQLFTest(fit)
+results <- glmQLFTest(fit, contrast=c(0,1))
 kable(topTags(results), caption="Top Tags")
 ```
 
@@ -339,8 +339,13 @@ score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 # Output sites as a BED file (post-FDR-correction, chop at 0.1 or 0.01?) 
 export(diffAccRanges, "diffAccRanges.NS.fdrLt01.hg19.bed")
 
+if (!test){
+    cmd3 = paste0("echo cp /atacseeker/scripts/diffAccRanges.NS.fdrLt01.hg19.bed \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    system(cmd3)
+}
+
 # print out the significant (FDR <= 0.1) results 
-kable(as(diffAccRanges, "data.frame"))
+kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
 ```
 
 
