@@ -296,7 +296,7 @@ Users can compare raw and filtered results to see whether it makes any differenc
 > legend("topright", c("raw", "filtered"), col=c("black", "grey"), lwd=2)
 ```
 
-__Note:__Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-applied-statistician-i-find-the-frequentists-versus-bayesians-debate-completely-inconsequential) on bayesian vs. frequentist approaches where he briefly mentioned empirical Bayes approach. It might also be instructive to go over this [r-bloggers](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) example.  
+__Note:__ Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-applied-statistician-i-find-the-frequentists-versus-bayesians-debate-completely-inconsequential) on bayesian vs. frequentist approaches where he briefly mentioned empirical Bayes approach. It might also be instructive to go over this [r-bloggers](http://www.r-bloggers.com/understanding-empirical-bayes-estimation-using-baseball-statistics) example.  
 
 #### Multiple Testing Correction ####
 
