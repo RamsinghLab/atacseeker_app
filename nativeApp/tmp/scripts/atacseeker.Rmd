@@ -383,7 +383,7 @@ kable(head(motifRankingForGroup(res), 10))
 
 ## Session Info ##
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, comment=""}
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
 sessionInfo()
 
