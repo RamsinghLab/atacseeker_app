@@ -113,7 +113,8 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 
 ```{r, echo=FALSE}
 proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
-wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
+# wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
+wincounts <- windowCounts(bam.files, bin=TRUE, param=discard.se.param)
 
 tssWindows <- queryHits(findOverlaps(wincounts, proms))
 nonTssWindows <- setdiff(seq_len(nrow(wincounts)), tssWindows)
@@ -186,8 +187,9 @@ collected <- list()
 
 ## Should parallelize ? 
 for (curbam in bam.files) {
-    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
+##    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
 ##    windowed <- windowCounts(curbam, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=NA)
     rwsms <- rowSums(assay(windowed))
     maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
     collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
