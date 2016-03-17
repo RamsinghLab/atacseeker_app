@@ -106,6 +106,7 @@ kable(design, caption = "Design Matrix")
 ## QC Metrics ##
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+## make sure the blacklist if for the same reference which was used for the alignment.
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
@@ -192,13 +193,12 @@ for (curbam in bam.files) {
     windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=NA)
     rwsms <- rowSums(assay(windowed))
     maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
-    collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed],
-                                        param=discard.se.param, weight=1/rwsms[maxed])
+    collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed], param=discard.se.param, weight=1/rwsms[maxed])
 }
 
 xranged <- as.integer(names(collected[[1]]))
 for (i in seq(length(samples))){
-  if (i ==1)
+  if (i==1)
     plot(xranged, collected[[i]], type="l", col=i, lwd=1,
      xlim=c(-1000, 1000), ylim=c(0, 1.0), 
      xlab="Distance (bp)", ylab="Relative coverage per base")
@@ -229,8 +229,8 @@ Keep only high abundance regions relative to a  global background.
 filter.stat <- filterWindows(data, background=binned, type="global")
 keep <- filter.stat$filter > log2(3)
 
-hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, 
-     main="", xlim=c(min(filter.stat$back.abundances), 0))
+# hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, main="", xlim=c(min(filter.stat$back.abundances), 0))
+hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=50, main="")
 global.bg <- filter.stat$abundances - filter.stat$filter
 abline(v=global.bg[1], col="red", lwd=2)
 abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
@@ -252,7 +252,9 @@ Let's see how the samples are clustered:
 ```{r, echo=FALSE}
 ## binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
-plotMDS(bin.adjc, labels=samples)
+color = c(rep("red", length(control)), rep("blue",length(compare)))
+plotMDS(bin.adjc, labels=samples, col=color)
+## add legend
 ```
 
 ```{r, echo=FALSE}
