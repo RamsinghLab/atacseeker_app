@@ -113,6 +113,17 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 ```
 
 ```{r, echo=FALSE}
+par(mfrow=c(2,1)
+
+command = paste0("samtools view", samples, "| wc -l")
+counts = mcmapply(system, command)
+chrM_command = paste0("samtools view", samples, "| grep chrM | wc -l")
+chrM_counts = mcmapply(system, chrM_command)
+chrMvsOther = (100*chrM_counts) / counts 
+
+barplot(chrMvsOther)
+barplot(chrMvsOther)
+
 proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
 # wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
 wincounts <- windowCounts(bam.files, bin=TRUE, param=discard.se.param)
@@ -125,7 +136,8 @@ nonTSS.bamCounts <- colSums(assays(wincounts[nonTssWindows,])$counts)
 TSSvsNonTSS <- TSS.bamCounts / nonTSS.bamCounts # ideally > 10...
 names(TSSvsNonTSS) <- samples
 
-barplot(TSSvsNonTSS, xlim = c(0,1), width = 0.1, las=3, main="TSS vs Non-TSS Counts")
+barplot(TSSvsNonTSS[1:lengeth(contol_samples)], xlim = c(0,1), width = 0.1, las=3, col = "blue", main="TSS vs Non-TSS Counts")
+barplot(TSSvsNonTSS[], xlim = c(0,1), width = 0.1, las=3, col= "red", main="TSS vs Non-TSS Counts")
 ```
 
 If the input data is **paired-end**, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
@@ -164,8 +176,7 @@ if(testPairedEndBam(bam.files[1])){
     combinedQC <- append(controlQC, compareQC)
     readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
     colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
-    kable(readqc, caption="Quality metrics for PE reads")
-
+    kable(readqc, caption="Quality metrics for PE reads", row.names=FALSE)
 }
 ```
 
