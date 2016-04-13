@@ -8,8 +8,8 @@ Reading mtDNA sequence...
 Reading pileup file...
 Assembling...
 Basic statistics:
-Assembled bases: 99.99%
-Mean coverage depth: 228.88
+Assembled bases: 100.00%
+Mean coverage depth: 3352.48
 Number of Contigs: 1
 Base composition [A,C,G,T]: 0.31,0.31,0.13,0.25
 

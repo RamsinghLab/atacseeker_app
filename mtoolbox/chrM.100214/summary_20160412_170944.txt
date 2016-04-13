@@ -11,7 +11,7 @@ WARNING: If minimum distance of indels from read end is < 5, it is deprecated an
 ==============================
 
 Sample	mtDNA Coverage	Per base depth	Best predicted haplogroup(s)	N. of homoplasmic variants	N. of heteroplasmic variants HF>=0.8	N. of heteroplasmic variants HF<0.8	N. of variants	N. of prioritized variants
-chrm	99.9940	228.878	H2a2a1	13	2		50	
+chrm	100.0000	3352.476	H2a2a1	8	5		50	
 
 ==============================
 
