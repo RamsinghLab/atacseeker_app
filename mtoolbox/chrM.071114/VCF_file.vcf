@@ -7,7 +7,7 @@
 ##FORMAT=<ID=CIUP,Number=.,Type=Float,Description="Value defining the upper limit of the confidence interval of the heteroplasmy fraction">
 ##INFO=<ID=AC,Number=.,Type=Integer,Description="Allele count in genotypes">
 ##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	chrm
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	out
 chrMT	73	.	A	G	.	PASS	AC=1;AN=1	GT:DP:HF:CILOW:CIUP	1:147:1.0:0.969:1.0
 chrMT	152	.	T	C	.	PASS	AC=1;AN=1	GT:DP:HF:CILOW:CIUP	1:105:1.0:0.958:1.0
 chrMT	199	.	T	C	.	PASS	AC=1;AN=1	GT:DP:HF:CILOW:CIUP	1:93:1.0:0.952:1.0
