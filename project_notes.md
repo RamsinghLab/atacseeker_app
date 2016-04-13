@@ -58,6 +58,15 @@ Based on a recommendation by [GGD](http://www.gettinggeneticsdone.com/2014/03/vi
 
 I remember that when I ran the above command, per nucleotide coverage in chrM was quite high - above 100 bases. 
 
+__4/13__: I finally got [MToolbox](https://github.com/mitoNGS/MToolBox) to work. The trick was getting the right indexes for `gsnap`. I used `gsnapv7` which is the same as the `MToolbox`'s page. A thing I had difficulty with is that my compiled version of `gsnap` will not work on all nodes on the cluster. 
+
+To get all the mtDNA reads from aligned bams, I did the following:
+```shell
+samtools view -h atac.bam "chrM" > out.sam
+samtools view -Sb out.sam > out.bam
+```
+[Biostar](https://www.biostars.org/p/56246) has some comments on using the `-f 4` flag with `samtools`. __must__ check with Tim.
+
 ## ATACseeker Pipeline ##
 
 ### preseqR ###
