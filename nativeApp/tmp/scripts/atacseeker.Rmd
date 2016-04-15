@@ -90,6 +90,9 @@ for (f in seq(length(compareName))){
 }
 
 samples = c(control, compare)
+num_control = length(control)
+num_compare = length(compare)
+num_samples = length(samples)
 bam.files = c(control.files, compare.files)
 ```
 
@@ -113,16 +116,18 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 ```
 
 ```{r, echo=FALSE}
-par(mfrow=c(2,1)
+par(mfrow=c(1,2))
 
-command = paste0("samtools view", samples, "| wc -l")
-counts = mcmapply(system, command)
-chrM_command = paste0("samtools view", samples, "| grep chrM | wc -l")
-chrM_counts = mcmapply(system, chrM_command)
-chrMvsOther = (100*chrM_counts) / counts 
-
-barplot(chrMvsOther)
-barplot(chrMvsOther)
+command = paste("samtools view", bam.files, "| wc -l")
+counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
+chrM_command = paste("samtools view -f 4", bam.files, "\"chrM\" | wc -l")
+chrM_counts = mcmapply(system, command = chrM_command, intern = rep(TRUE, num_samples))
+chrMvsOther = (100*strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
+names(chrMvsOther) <- samples
+ylim = 1.1*max(chrMvsOther)
+    
+barplot(chrMvsOther[1:num_control], col = "blue", xlim = c(0,1), width = 1/(num_control+1), main = control.label, ylab = "fraction of mitochondrial reads", ylim = c(0, ylim))
+barplot(chrMvsOther[num_control+1:num_samples], col = "red", xlim = c(0,1), width = 1/(num_compare+1), main = compare.label, ylim = c(0, ylim))
 
 proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
 # wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
@@ -135,9 +140,10 @@ TSS.bamCounts <- colSums(assays(wincounts[tssWindows,])$counts)
 nonTSS.bamCounts <- colSums(assays(wincounts[nonTssWindows,])$counts)
 TSSvsNonTSS <- TSS.bamCounts / nonTSS.bamCounts # ideally > 10...
 names(TSSvsNonTSS) <- samples
+ylim = 1.1*max(TSSvsNonTSS)
 
-barplot(TSSvsNonTSS[1:lengeth(contol_samples)], xlim = c(0,1), width = 0.1, las=3, col = "blue", main="TSS vs Non-TSS Counts")
-barplot(TSSvsNonTSS[], xlim = c(0,1), width = 0.1, las=3, col= "red", main="TSS vs Non-TSS Counts")
+barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), main = control.label)
+barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, col= "red", ylim = c(0, ylim), main = compare.label)
 ```
 
 If the input data is **paired-end**, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
