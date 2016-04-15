@@ -1,0 +1,39 @@
+#  Calling the dynamic library
+useDynLib(csaw, .registration=TRUE, .fixes="cxx_")
+
+#  All functions exported, arranged by sequence of usage.
+export(csawUsersGuide,
+	readParam, reformList, checkList,
+	makeExtVector, "[.extVector",
+	correlateReads, maximizeCcf, profileSites, wwhm,
+	getPESizes, dumpPE,
+	regionCounts, windowCounts, strandedCounts,
+	getWidths, scaledAverage, findMaxima, filterWindows,
+	combineTests, getBestTest, mergeWindows, clusterFDR,
+	consolidateSizes, upweightSummit,
+	combineOverlaps, getBestOverlaps, summitOverlaps,
+	detailRanges,
+	checkBimodality,
+	extractReads)
+
+#  Importing required packages
+import(GenomicRanges, SummarizedExperiment, Rsamtools,
+	S4Vectors, IRanges, GenomeInfoDb,
+	edgeR, 
+	methods)
+
+importFrom("GenomicAlignments", cigarWidthAlongReferenceSpace)
+importFrom("GenomicFeatures", exonsBy)
+importFrom("AnnotationDbi", select)
+importFrom("limma", loessFit)
+
+#  Exporting classes and methods
+exportClasses(
+	readParam
+)
+
+exportMethods(
+	show, "$", reform, normOffsets, asDGEList
+    , normalize
+)
+

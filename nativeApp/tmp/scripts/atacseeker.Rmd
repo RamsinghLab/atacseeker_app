@@ -236,7 +236,7 @@ Read extraction parameters:
 discard.se.param
 window.width <- 150
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=NA)
-kable(as.data.frame(data$totals, row.name=samples), caption="Total number of reads in each library")
+kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="Total number of reads in each library", col.names = "total reads")
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
 
@@ -254,7 +254,7 @@ abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
 filtered.data <- data[keep,]
-kable(as.data.frame(filtered.data$totals, row.name=samples), caption="Total number of reads post filtering.")
+kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 
 ```{r, echo=FALSE}
