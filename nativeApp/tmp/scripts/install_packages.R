@@ -18,3 +18,7 @@ install.packages(c("knitr", "rmarkdown", "rjson", "statmod", "locfit"))
 ## Bioconductor packages
 source("https://bioconductor.org/biocLite.R")
 biocLite(pkgs=c("Rsamtools", "rtracklayer", "edgeR", "csaw", "Homo.sapiens", "LOLA", "PWMEnrich", "PWMEnrich.Hsapiens.background", "BSgenome.Hsapiens.UCSC.hg19"))
+
+## Github package
+library(devtools)
+install_github("RamsinghLab/ATACseeker")
