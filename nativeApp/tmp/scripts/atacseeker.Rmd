@@ -20,9 +20,8 @@ library(Rsamtools)
 library(Homo.sapiens)
 library(LOLA) 
 
-## Github
-library(devtools)
-install_github("RamsinghLab/ATACseeker")
+## Github package
+library(ATACseeker)
 ```
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -46,8 +45,10 @@ if (!test){
     system(cmd2)
     cmd3 = paste0("echo cp -r ", file.path(dump_dir, "mtDNA_assembly")," \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
     system(cmd3)
-    cmd4 = paste0("echo cp /atacseeker/scripts/diffAccRanges.NS.fdrLt01.hg19.bed \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    cmd4 = paste0("echo cp ", file.path(dump_dir, "library_complexity.pdf")," \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
     system(cmd4)
+    cmd5 = paste0("echo cp /atacseeker/scripts/diffAccRanges.NS.fdrLt01.hg19.bed \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    system(cmd5)
 }
 ```
 
@@ -130,8 +131,38 @@ kable(design, caption = "Design Matrix")
 
 ## QC Metrics ##
 
+We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
+
+```{r, message=FALSE}
+firstBp <- 1
+lastBp <- 249250621
+chr1_5primeCuts <- lapply(bam.files[1:2], function(BAM) 
+                          resize(extractReads(bam.file=BAM,
+                                              region=GRanges("chr1", 
+                                                             IRanges(firstBp,
+                                                                     lastBp))),
+                           1, fix="start"))
+ests <- lapply(chr1_5primeCuts, getEsts)
+
+# write all the complexity graphs for each library to file.
+pdf(file.path(dump_dir, "library_complexity.pdf"))
+
+for (i in seq(length(control.files))){
+    plotComplexity(chr1_5primeCuts[[i]], ests=ests[[i]])
+    legend("bottomright", legend = control[i], col = "red", pch = 18)
+}
+
+for (i in seq(length(compare.files))){
+    t = length(control.files) + i
+    plotComplexity(chr1_5primeCuts[[t]], ests=ests[[t]])
+    legend("bottomright", legend = compare[i], col = "red", pch = 18)
+}
+
+dev.off()
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-## make sure the blacklist if for the same reference which was used for the alignment.
+## make sure the blacklist is for the same reference which was used for the alignment.
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
@@ -168,7 +199,7 @@ barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), 
 barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, col= "red", ylim = c(0, ylim), main = compare.label)
 ```
 
-If the input data is **paired-end**, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
+If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
 ```{r, echo=FALSE}
 source("atacseeker.R")
@@ -257,7 +288,7 @@ Read extraction parameters:
 ```{r, echo=FALSE, comment=""}
 discard.se.param
 window.width <- 150
-data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=NA)
+data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="Total number of reads in each library", col.names = "total reads")
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
@@ -382,7 +413,7 @@ saveRDS(res, file="motifEnrichmentNS.hg19.rds")
 kable(head(motifRankingForGroup(res), 10))
 ```
 
-## Session Info ##
+## Session Info and References ##
 
 ```{r, echo=FALSE, comment=""}
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
@@ -390,7 +421,8 @@ sessionInfo()
 
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
-## citation("ATACseekeR")
+citation("preseqR")
+citation("ATACseeker")
 citation("csaw")
 ## citation("PWMEnrich")
 citation("LOLA")
