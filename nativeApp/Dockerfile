@@ -16,6 +16,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 RUN apt-get update && apt-get install -y --force-yes \
     libcurl4-gnutls-dev \
+    libssh2-1-dev \
+    libssl-dev \
     libxml2-dev \
     r-base \
     r-base-dev \
@@ -42,3 +44,8 @@ RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp
 RUN cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin
 RUN rm -rf /tmp/rstudio*
 
+## Install samtools v < 1.0
+RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
+RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp
+RUN cp /tmp/rstudio-0.99.486/samtools /usr/local/bin
+RUN rm -rf /tmp/rstudio*
