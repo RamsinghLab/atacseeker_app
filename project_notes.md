@@ -1,6 +1,12 @@
 # ATACseeker App #
 
-## Mt-DNA Variant Calling ##
+## mt-DNA Variant Calling ##
+
+### mt-DNA Reference ###
+
+This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some information on the different references available for mtDNA
+
+### ATACseq mt-DNA ###
 
 Because in ATACseq a lot of the reads are biased for the mitochondrial DNA, it seems like an obvious thing to use ATACseq reads to call variants on mt-DNA. There are a few caveats though. The mt-DNA is haploid, inherited completely from the mother. However, most callers like `gatk` and `samtools` assume a diploid genome. 
 
