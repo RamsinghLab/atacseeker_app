@@ -43,12 +43,6 @@ system(cmd1)
 if (!test){
     cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
     system(cmd2)
-    cmd3 = paste0("echo cp -r ", file.path(dump_dir, "mtDNA_assembly")," \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
-    system(cmd3)
-    cmd4 = paste0("echo cp ", file.path(dump_dir, "library_complexity.pdf")," \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
-    system(cmd4)
-    cmd5 = paste0("echo cp /atacseeker/scripts/diffAccRanges.NS.fdrLt01.hg19.bed \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
-    system(cmd5)
 }
 ```
 
@@ -109,6 +103,10 @@ chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",sampl
 chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
 tmp <- mcmapply(system, command = chrM_command)
 tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
+
+cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," \\''", output_dir, "'\\'")
+system(cmd3)
+
 ```
 
 ## Workflow Description ##
@@ -160,6 +158,9 @@ for (i in seq(length(compare.files))){
 }
 
 dev.off()
+
+cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," \\''", output_dir, "'\\'")
+system(cmd4)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -372,7 +373,11 @@ diffAccRanges <- accRanges[accRanges$FDR <= 0.1]
 score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 
 # Output sites as a BED file (post-FDR-correction, chop at 0.1 or 0.01?) 
-export(diffAccRanges, "diffAccRanges.NS.fdrLt01.hg19.bed")
+export(diffAccRanges, file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"))
+
+cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"), " \\''", output_dir, "'\\'")
+system(cmd5)
+
 
 # print out the significant (FDR <= 0.1) results 
 kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
