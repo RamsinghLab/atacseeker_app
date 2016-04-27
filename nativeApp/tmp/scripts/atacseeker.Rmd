@@ -104,7 +104,7 @@ chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -S
 tmp <- mcmapply(system, command = chrM_command)
 tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
 
-cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," \\''", output_dir, "'\\'")
+cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
 system(cmd3)
 
 ```
@@ -159,7 +159,7 @@ for (i in seq(length(compare.files))){
 
 dev.off()
 
-cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," \\''", output_dir, "'\\'")
+cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
 system(cmd4)
 ```
 
@@ -375,7 +375,7 @@ score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 # Output sites as a BED file (post-FDR-correction, chop at 0.1 or 0.01?) 
 export(diffAccRanges, file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"))
 
-cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"), " \\''", output_dir, "'\\'")
+cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"), " '", output_dir, "'")
 system(cmd5)
 
 
