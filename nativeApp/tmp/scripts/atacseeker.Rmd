@@ -5,7 +5,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r load_library, message=FALSE, warning=FALSE, echo=FALSE}
 ## CRAN
 library(statmod)
 library(locfit)
@@ -24,7 +24,7 @@ library(LOLA)
 library(ATACseeker)
 ```
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r setup_out_scratch, message=FALSE, warning=FALSE, echo=FALSE}
 ## Defining Output and Scratch directories.
 test = TRUE
 
@@ -46,7 +46,7 @@ if (!test){
 }
 ```
 
-```{r, message=FALSE, warning=FALSE, echo = FALSE}
+```{r setup_var_input, message=FALSE, warning=FALSE, echo = FALSE}
 ## Setting up Control and Compare variables and Input directory.
 control.label = control
 compare.label = comparison
@@ -93,7 +93,7 @@ num_samples = length(samples)
 bam.files = c(control.files, compare.files)
 ```
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r mtDNA_analysis, message=FALSE, warning=FALSE, echo=FALSE}
 ## Mitochondrial assembly
 system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
 command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
@@ -119,7 +119,7 @@ QC metrics for the aligned reads are also computed and displayed. Fragment size 
 
 The design matrix used for the two-sample comparison is provided below.
 
-```{r, echo=FALSE}
+```{r design, echo=FALSE}
 treatment = c(rep("N", length(control)), rep("Y",length(compare)))
 design <- model.matrix(~treatment) 
 colnames(design) <- c("Intercept", compare.label)
@@ -131,7 +131,7 @@ kable(design, caption = "Design Matrix")
 
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
 
-```{r, message=FALSE, echo=TRUE, eval=FALSE}
+```{r lib_complexity, message=FALSE, echo=TRUE, eval=FALSE}
 # NOTE: This chunk is NOT evaluated.
 firstBp <- 1
 lastBp <- 249250621
@@ -163,14 +163,14 @@ cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_
 system(cmd4)
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r read_param, echo=FALSE, message=FALSE, warning=FALSE}
 ## make sure the blacklist is for the same reference which was used for the alignment.
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
 par(mfrow=c(1,2))
 
 command = paste("samtools view", bam.files, "| wc -l")
@@ -203,7 +203,7 @@ barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_
 
 If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
-```{r, echo=FALSE}
+```{r pe_metrics, echo=FALSE}
 source("atacseeker.R")
 if(testPairedEndBam(bam.files[1])){
 
@@ -245,7 +245,7 @@ if(testPairedEndBam(bam.files[1])){
 
 <!-- TODO: Add description for cross correlation plot -->
 
-```{r, echo=FALSE}
+```{r cross_corr, echo=FALSE}
 # one plot-per-window
 par(mfrow=c(1,1))
 
@@ -257,7 +257,7 @@ title("Cross Correlation Plot")
 
 Coverage plot for choosing window size:
 
-```{r, echo=FALSE}
+```{r cov_plot, echo=FALSE}
 collected <- list()
 
 ## Should parallelize ? 
@@ -289,7 +289,7 @@ abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 
 Read extraction parameters:
 
-```{r, echo=FALSE, comment=""}
+```{r read_extraction, echo=FALSE, comment=""}
 discard.se.param
 window.width <- 150
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
@@ -299,7 +299,7 @@ binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 
 Keep only high abundance regions relative to a  global background.
 
-```{r, echo=FALSE}
+```{r filter_global, echo=FALSE}
 filter.stat <- filterWindows(data, background=binned, type="global")
 keep <- filter.stat$filter > log2(3)
 
@@ -314,7 +314,7 @@ filtered.data <- data[keep,]
 kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 
-```{r, echo=FALSE}
+```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
 barplot(as.data.frame(Norm.factors, row.names=samples), main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8)
 ```
@@ -323,7 +323,7 @@ barplot(as.data.frame(Norm.factors, row.names=samples), main = "Normalizing fact
 
 Let's see how the samples are clustered:
 
-```{r, echo=FALSE}
+```{r cluster, echo=FALSE}
 ## binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 color = c(rep("blue", length(control)), rep("red",length(compare)))
@@ -331,7 +331,7 @@ plotMDS(bin.adjc, labels=samples, col=color)
 ## add legend
 ```
 
-```{r, echo=FALSE}
+```{r est_disp, echo=FALSE}
 y <- asDGEList(filtered.data, norm.factors=Norm.factors)
 y <- estimateDisp(y, design)
 
@@ -349,7 +349,7 @@ kable(as.data.frame(topTags(results)), caption="Top Tags", row.names = FALSE)
 
 ### Multiple Testing Correction ###
 
-```{r, echo=FALSE}
+```{r multiple_test, echo=FALSE}
 merged <- mergeWindows(rowRanges(filtered.data), tol=1000L)
 ## kable(merged$region, caption="Merged regions")
 tabcom <- combineTests(merged$id, results$table)
@@ -359,7 +359,7 @@ kable(head(tabcom), caption="Combined Tests")
 
 ### Results ###
 
-```{r, echo=FALSE}
+```{r results, echo=FALSE}
 # annotated:
 is.sig <- tabcom$FDR <= 0.05
 anno <- detailRanges(merged$region, txdb=Homo.sapiens, orgdb=Homo.sapiens)
@@ -385,7 +385,7 @@ kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
 
 ## LOLA ##
 
-```{r, eval=FALSE, echo=TRUE}
+```{r lola, eval=FALSE, echo=TRUE}
 # NOTE: This chunk is NOT evaluated.
 # run LOLA? Yes!
 dbPath <- system.file("extdata", "hg19", package="LOLA")
@@ -421,13 +421,13 @@ kable(head(motifRankingForGroup(res), 10))
 
 ## Session Info ##
 
-```{r, echo=FALSE, comment=""}
+```{r sess_info, echo=FALSE, comment=""}
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
 sessionInfo()
 ```
 
 ## References ##
-```{r, echo=FALSE, comment="", warning=FALSE}
+```{r references, echo=FALSE, comment="", warning=FALSE}
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
 citation("preseqR")
