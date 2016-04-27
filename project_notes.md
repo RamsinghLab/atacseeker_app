@@ -432,7 +432,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 
 ## Releases ##
 
-- `asifzubair/atacseeker:v3`
+- `asifzubair/atacseeker:v5`
 - `asifzubair/atacseeker:v6`
 	- move output files instead of copy
 	- added mtDNA assembly code
