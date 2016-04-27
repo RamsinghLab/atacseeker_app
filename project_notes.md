@@ -430,6 +430,16 @@ Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` 
 
 A final idea for the analysis report is that it can be useful to researchers to use in grant applications/supplements "as is". I have seen software that include this as a feature. We could include a downloadable PDF report in the output. This should be trivial once we have the `html` document - `pandoc` can do it for us as mentiond in this r-bloggers [page](http://www.r-bloggers.com/converting-a-markdown-file-to-pdf-using-pandoc).   
 
+## Releases ##
+
+- `asifzubair/atacseeker:v3`
+- `asifzubair/atacseeker:v6`
+	- added mtDNA assembly code
+	- complexity code: OFF
+	- fixed axis labels for barplots: used `cex.names = 0.8`
+	- LOLA code: OFF
+- `asifzubair/atacseeker:v7`
+	
 ## ATACseq Data Analysis ##
 
 Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf?mkt_tok=3RkMMJWWfF9wsRokv6%2FBdu%2FhmjTEU5z16eglWK%2B0hIkz2EFye%2BLIHETpodcMTcdgM7DYDBceEJhqyQJxPr3DLNANwtBlRhjgDw%3D%3D) of Greenleaf:
