@@ -443,6 +443,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- copy and don't move files
 	- have a flag to do mtDNA analysis
 	- fix `assembleMTgenome.py` to not sort and index
+	- fix plot size for fragment size distribution and adjust `cex.names`
 	- write UP and DOWN to separate pdfs
 	- visualization for top 5 regions
 	- create `bed` file with fold changes
