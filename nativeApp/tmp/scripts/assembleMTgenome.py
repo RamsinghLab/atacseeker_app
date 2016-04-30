@@ -8,6 +8,8 @@ Reference:
 by Ernesto Picardi (1,2)  and Graziano Pesole (1,2)
 1 Dipartimento di Bioscienze, Biotecnologie e Scienze Farmacologiche, Universita di Bari, 70125 Bari, Italy
 2 Istituto di Biomembrane e Bioenergetica, Consiglio Nazionale delle Ricerche, 70125 Bari, Italy.
+
+Edited by Asif Zubair
 """
 
 import getopt, sys, os, re
@@ -37,6 +39,7 @@ mtt={}
 def usage():
     print """Assembling MT-DNA from SAM/BAM/Pileup files
 Version 1.0 - Ernesto Picardi - 2011-2012
+Edited by Asif Zubair
 Options:
     -f      Reference MT-DNA in fasta 
     -i      Input File [.pileup .sam or .bam]
@@ -199,13 +202,14 @@ if ext=='sam':
     os.system(cmd)
     ext='bam'
 if ext=='bam':
-    print 'Sorting and indexing BAM...'
-    cmd1='%s sort %s.bam %s-sorted' %(sexe,basext,basext)
-    cmd2='%s index %s-sorted.bam' %(sexe,basext)
-    os.system(cmd1)
-    os.system(cmd2)
+#    print 'Sorting and indexing BAM...'
+#    cmd1='%s sort %s.bam %s-sorted' %(sexe,basext,basext)
+#    cmd2='%s index %s-sorted.bam' %(sexe,basext)
+#    os.system(cmd1)
+#    os.system(cmd2)
     print 'Creating pileup...'
-    cmd3='%s mpileup -f %s %s-sorted.bam > %s.pileup' %(sexe,hgenome,basext,basext)
+#    cmd3='%s mpileup -f %s %s-sorted.bam > %s.pileup' %(sexe,hgenome,basext,basext)
+    cmd3='%s mpileup -f %s %s.bam > %s.pileup' %(sexe,hgenome,basext,basext)
     os.system(cmd3)
     
 mtdna={}
@@ -232,7 +236,7 @@ for i in f:
     except:
         print i,
         print "\n is not covered by any reads"
-        ref,seq,qual=l[2],'*',1
+        ref, seq, qual = l[2], '*', 1
     s,q='',0
     for j in range(len(seq)):
         if seq[j] not in '<>*' and ord(qual[j])-33 >= mqual:
