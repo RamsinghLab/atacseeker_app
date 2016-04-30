@@ -412,7 +412,7 @@ So, my hunch was correct! Since these jobs are sent to my computer to be run loc
 
 `ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
-```javascript
+```js
 {% comment %}
   BaseSpace Report Builder!
   <td>{{ result.files["atacseeker.html"] | append: "bar" }}</td>
@@ -440,6 +440,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- fixed axis labels for barplots: used `cex.names = 0.8`
 	- LOLA code: OFF
 - `asifzubair/atacseeker:v7`
+	- added chunk names
 	- copy and don't move files
 	- have a flag to do mtDNA analysis
 	- fix `assembleMTgenome.py` to not sort and index
