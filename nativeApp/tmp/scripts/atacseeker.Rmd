@@ -95,18 +95,19 @@ bam.files = c(control.files, compare.files)
 
 ```{r mtDNA_analysis, message=FALSE, warning=FALSE, echo=FALSE}
 ## Mitochondrial assembly
-system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
-command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
-tmp <- mcmapply(system, command = command)
+if (do_mtdNA_analysis){
+    system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
+    command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
+    tmp <- mcmapply(system, command = command)
 
-chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
-chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
-tmp <- mcmapply(system, command = chrM_command)
-tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
+    chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
+    chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
+    tmp <- mcmapply(system, command = chrM_command)
+    tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
 
-cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
-system(cmd3)
-
+    cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
+    system(cmd3)
+}
 ```
 
 ## Workflow Description ##
