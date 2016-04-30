@@ -171,7 +171,7 @@ chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ```
 
-```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
+```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE, fig.width=20, fig.height=10}
 par(mfrow=c(1,2))
 
 command = paste("samtools view", bam.files, "| wc -l")
