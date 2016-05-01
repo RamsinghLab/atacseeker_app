@@ -172,7 +172,7 @@ chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ```
 
-```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE, fig.width=20, fig.height=10}
+```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
 par(mfrow=c(1,2))
 
 command = paste("samtools view", bam.files, "| wc -l")
@@ -205,7 +205,7 @@ barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_
 
 If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
-```{r pe_metrics, echo=FALSE}
+```{r pe_metrics, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
 if(testPairedEndBam(bam.files[1])){
 
@@ -295,7 +295,6 @@ Read extraction parameters:
 discard.se.param
 window.width <- 150
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
-kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="Total number of reads in each library", col.names = "total reads")
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
 
@@ -312,13 +311,15 @@ abline(v=global.bg[1], col="red", lwd=2)
 abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
+kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="Total number of reads in each library", col.names = "total reads")
+
 filtered.data <- data[keep,]
 kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 
 ```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
-barplot(as.data.frame(Norm.factors, row.names=samples), main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8)
+barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8)
 ```
 
 ## Differential Accessibility Testing ##
@@ -385,10 +386,8 @@ system(cmd5)
 HTML(diffAccRanges[diffAccRanges$logFC.up > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
 HTML(diffAccRanges[diffAccRanges$logFC.down > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 
-cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.UP.html"), " '", output_dir, "'")
+cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
 system(cmd6)
-cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"), " '", output_dir, "'")
-system(cmd7)
 ```
 
 Regions containing windows which are more accessible regions are [here](diffAccRegions.logFC.UP.html) and  less accessible regions are [here](diffAccRegions.logFC.DOWN.html). A `bed` file with differentially accessible regions has been dumped to the output folder where the score indicates the negative-log of the p-value.
