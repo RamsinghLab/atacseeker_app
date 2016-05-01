@@ -297,7 +297,7 @@ window.width <- 150
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
-
+### Filtering ###
 Keep only high abundance regions relative to a  global background.
 
 ```{r filter_global, echo=FALSE}
@@ -316,10 +316,10 @@ kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="To
 filtered.data <- data[keep,]
 kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
-
+### Normalization ###
 ```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
-barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8)
+barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
 ```
 
 ## Differential Accessibility Testing ##
@@ -383,8 +383,8 @@ system(cmd5)
 
 # print out the significant (FDR <= 0.1) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
-HTML(diffAccRanges[diffAccRanges$logFC.up > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
-HTML(diffAccRanges[diffAccRanges$logFC.down > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
+HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
+HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
 system(cmd6)
