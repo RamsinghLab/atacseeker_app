@@ -298,6 +298,7 @@ data <- windowCounts(bam.files, width = window.width, param = discard.se.param, 
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
 ### Filtering ###
+
 Keep only high abundance regions relative to a  global background.
 
 ```{r filter_global, echo=FALSE}
@@ -317,6 +318,7 @@ filtered.data <- data[keep,]
 kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 ### Normalization ###
+
 ```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
 barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
@@ -390,7 +392,7 @@ cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", o
 system(cmd6)
 ```
 
-Regions containing windows which are more accessible regions are [here](diffAccRegions.logFC.UP.html) and  less accessible regions are [here](diffAccRegions.logFC.DOWN.html). A `bed` file with differentially accessible regions has been dumped to the output folder where the score indicates the negative-log of the p-value.
+Regions containing windows which are more accessible regions are in `diffAccRegions.logFC.UP.html` and less accessible regions are in `diffAccRegions.logFC.DOWN.html`. A `bed` file containing differentially accessible regions has been dumped to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
 
 ## LOLA ##
 
