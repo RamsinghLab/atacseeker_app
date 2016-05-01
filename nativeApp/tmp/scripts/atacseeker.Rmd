@@ -11,6 +11,7 @@ library(statmod)
 library(locfit)
 library(knitr)
 library(parallel)
+library(R2HTML)
 
 ## Bioconductor packages
 library(csaw) 
@@ -379,9 +380,13 @@ export(diffAccRanges, file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"))
 cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.NS.fdrLt01.hg19.bed"), " '", output_dir, "'")
 system(cmd5)
 
-
 # print out the significant (FDR <= 0.1) results 
-kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
+# kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
+HTML(diffAccRanges[diffAccRanges$logFC.up > 0,], file=file.path(dump_dir, "diffAccRegions.html"))
+HTML(diffAccRanges[diffAccRanges$logFC.down > 0,], file=file.path(dump_dir, "diffAccRegions.html"))
+
+cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.html"), " '", output_dir, "'")
+system(cmd6)
 ```
 
 ## LOLA ##
