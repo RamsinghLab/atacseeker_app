@@ -382,12 +382,16 @@ system(cmd5)
 
 # print out the significant (FDR <= 0.1) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
-HTML(diffAccRanges[diffAccRanges$logFC.up > 0,], file=file.path(dump_dir, "diffAccRegions.html"))
-HTML(diffAccRanges[diffAccRanges$logFC.down > 0,], file=file.path(dump_dir, "diffAccRegions.html"))
+HTML(diffAccRanges[diffAccRanges$logFC.up > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
+HTML(diffAccRanges[diffAccRanges$logFC.down > 0,], file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 
-cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.html"), " '", output_dir, "'")
+cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.UP.html"), " '", output_dir, "'")
 system(cmd6)
+cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"), " '", output_dir, "'")
+system(cmd7)
 ```
+
+Regions containing windows which are more accessible regions are [here](diffAccRegions.logFC.UP.html) and  less accessible regions are [here](diffAccRegions.logFC.DOWN.html). A `bed` file with differentially accessible regions has been dumped to the output folder where the score indicates the negative-log of the p-value.
 
 ## LOLA ##
 
