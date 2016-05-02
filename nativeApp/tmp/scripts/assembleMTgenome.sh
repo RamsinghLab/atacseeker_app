@@ -22,3 +22,5 @@ python assembleMTgenome.py \
 -a ${BASE}/reference/hg19.fa \
 -q 25 -c 0.75 -d 5 -s `which samtools` -FCUP \
 -o ${dir}/${in_base}
+
+rm -rf ${chrM_bam} ${chrM_bam}.bai ${dir}/${in_base}.sorted.bam
