@@ -398,9 +398,7 @@ cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", o
 system(cmd6)
 cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
 system(cmd7)
-```
 
-```{r bed_track_view, echo=FALSE}
 accessByScore <- diffAccessible[rev(order(diffAccessible$score))]
 plotRegion(accessByScore[1]) 
 ```
