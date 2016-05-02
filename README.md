@@ -8,6 +8,7 @@ Main development directory is `nativeApp`.
 * docker 
 * samtools (<v1.0), pandoc, wget
 * R
-  * CRAN: knitr, locfit, rjson, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), statmod
-  * Bioconductor:  [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html), edgeR, preseqR
+    * Bioconductor:  [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html), edgeR, preseqR 
+    * CRAN: knitr, locfit, rjson, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), statmod
+    * Github: ATACseeker 
 * python v2.7
