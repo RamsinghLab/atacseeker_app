@@ -444,9 +444,13 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- added chunk names
 	- have a flag to do mtDNA analysis
 	- fix `assembleMTgenome.py` to not sort and index
-	- fix plot size for fragment size distribution and adjust `cex.names`
-	- write UP and DOWN to separate pdfs
-	- visualization for top 5 regions
+	- fix plot size for fragment size distribution
+	- write UP and DOWN to separate HTMLs
+- `asifzubair/atacseeker:v8`
+	- `assembleMTgenome.sh` will clean up after itself
+	- installed Gviz
+	- fix plots to adjust `cex.names`
+	- visualization for top region
 	- create `bed` file with fold changes
 
 ## ATACseq Data Analysis ##
