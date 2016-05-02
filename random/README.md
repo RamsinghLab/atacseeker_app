@@ -1,3 +1,5 @@
 # Random #
 
-Obligatory _random_ directory; contains scripts and previous attempts at docker and `csaw`.
+Obligatory _random_ directory. 
+
+It contains code from previous attempts at docker, `csaw`, `mtoolbox` etc.
