@@ -172,7 +172,7 @@ chroms <- paste0("chr", c(seq(22), "X", "Y"))
 discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
 ```
 
-```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
+```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE, fig.width=20, fig.height=10}
 par(mfrow=c(1,2))
 
 command = paste("samtools view", bam.files, "| wc -l")
@@ -323,7 +323,7 @@ kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), ca
 
 We account for composition bias.
 
-```{r normalization, echo=FALSE}
+```{r normalization, echo=FALSE, fig.width=20, fig.height=10}
 Norm.factors <- normOffsets(binned)
 barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
 ```
@@ -392,11 +392,21 @@ system(cmd5)
 HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
 HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 
+write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions.tsv"), row.names=FALSE, sep="\t")
+
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
 system(cmd6)
+cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
+system(cmd7)
 ```
 
-Regions containing windows which are more accessible regions are in `diffAccRegions.logFC.UP.html` and less accessible regions are in `diffAccRegions.logFC.DOWN.html`. A `bed` file containing differentially accessible regions has been dumped to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
+```{r bed_track_view, echo=FALSE}
+accessByScore <- diffAccessible[rev(order(diffAccessible$score))]
+plotRegion(accessByScore[1]) 
+```
+
+Regions containing windows which are more accessible are in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html`. A raw text file with all differentially accessible regions is written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
+
 
 ## LOLA ##
 
