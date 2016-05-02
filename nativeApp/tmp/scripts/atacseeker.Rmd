@@ -297,6 +297,7 @@ window.width <- 150
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 ```
+
 ### Filtering ###
 
 Keep only high abundance regions relative to a  global background.
@@ -317,7 +318,10 @@ kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="To
 filtered.data <- data[keep,]
 kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
 ```
+
 ### Normalization ###
+
+We account for composition bias.
 
 ```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
