@@ -412,7 +412,7 @@ So, my hunch was correct! Since these jobs are sent to my computer to be run loc
 
 `ilmn` uses report builder which relies on liquid/javascript etc. but quite frankly fails to impress. I thought of publishing my report as a `html` document and then using iframes for serving this to the user. 
 
-```javascript
+```js
 {% comment %}
   BaseSpace Report Builder!
   <td>{{ result.files["atacseeker.html"] | append: "bar" }}</td>
@@ -440,7 +440,15 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- fixed axis labels for barplots: used `cex.names = 0.8`
 	- LOLA code: OFF
 - `asifzubair/atacseeker:v7`
-	
+	- prevent downloading of all files by fixing report_builder
+	- added chunk names
+	- have a flag to do mtDNA analysis
+	- fix `assembleMTgenome.py` to not sort and index
+	- fix plot size for fragment size distribution and adjust `cex.names`
+	- write UP and DOWN to separate pdfs
+	- visualization for top 5 regions
+	- create `bed` file with fold changes
+
 ## ATACseq Data Analysis ##
 
 Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf?mkt_tok=3RkMMJWWfF9wsRokv6%2FBdu%2FhmjTEU5z16eglWK%2B0hIkz2EFye%2BLIHETpodcMTcdgM7DYDBceEJhqyQJxPr3DLNANwtBlRhjgDw%3D%3D) of Greenleaf:

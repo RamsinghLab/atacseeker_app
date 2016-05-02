@@ -26,7 +26,7 @@ compareDir = c()
 ##
 # Collect all the AppSession properties
 ##
-
+do_mtdNA_analysis = FALSE
 for (index in seq(numberOfPropertyItems)){
   
     if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.app-session-name'){
@@ -48,7 +48,12 @@ for (index in seq(numberOfPropertyItems)){
         project_id = data[['Properties']][['Items']][[index]][['Items']][[1]][['Id']]
         params = c(params, project_id)    
     }
+    
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mtdna-analysis'){
+        do_mtdNA_analysis = TRUE
+    }
 }
+params = c(params, do_mtdNA_analysis) 
 
 ##
 # Collect all sample names and IDs

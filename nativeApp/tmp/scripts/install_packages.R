@@ -13,11 +13,11 @@ rm(r)
 ##
 
 ## CRAN packages
-install.packages(c("knitr", "rmarkdown", "rjson", "statmod", "locfit"))
+install.packages(c("devtools", "knitr", "locfit", "preseqR", "R2HTML", "rjson", "rmarkdown", "statmod"))
 
 ## Bioconductor packages
 source("https://bioconductor.org/biocLite.R")
-biocLite(pkgs=c("Rsamtools", "rtracklayer", "edgeR", "csaw", "Homo.sapiens", "LOLA", "PWMEnrich", "PWMEnrich.Hsapiens.background", "BSgenome.Hsapiens.UCSC.hg19"))
+biocLite(pkgs=c("BSgenome.Hsapiens.UCSC.hg19", "csaw", "edgeR", "Homo.sapiens", "LOLA", "PWMEnrich", "PWMEnrich.Hsapiens.background", "Rsamtools", "rtracklayer"))
 
 ## Github package
 library(devtools)

@@ -9,7 +9,7 @@
             "size": 400,
             "minLength": 0,
             "maxLength": 150,
-            "value": "Example [LocalDateTime]",
+            "value": "default value!",
             "label": "Analysis Name",
             "required": true,
             "requiredMessage": "Please enter name for your app session.",
@@ -86,8 +86,25 @@
             "required": true,
             "requiredMessage": "Please choose an app result",
             "id": "compare-app-result-id"
-        }
+        }, 
         
+        {
+            "$type": "SectionBreak",
+            "id": "section-break-3",
+            "title": "Advanced Options"
+        },
+        
+        {
+            "$type": "CheckBox", 
+            "id" : "mtdna-analysis", 
+            "label": "Do mtDNA analysis",
+            "choices": [
+                {
+                    "value": 1,
+                    "checked": true 
+                }
+            ]
+        }
 
     ],
     
