@@ -1,7 +1,5 @@
 # ATACseeker App #
 
-Illumina BaseSpace ATACseq pipeline. 
-
 This repository contains code for a Illumina BaseSpace Native App for doing ATACseq analysis.
 
 ## Directories
