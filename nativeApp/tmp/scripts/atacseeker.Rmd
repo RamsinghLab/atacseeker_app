@@ -399,8 +399,8 @@ system(cmd6)
 cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
 system(cmd7)
 
-accessByScore <- diffAccessible[rev(order(diffAccessible$score))]
-plotRegion(accessByScore[1]) 
+accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
+plotRegion(accessByScore[1])
 ```
 
 Regions containing windows which are more accessible are in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html`. A raw text file with all differentially accessible regions is written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
