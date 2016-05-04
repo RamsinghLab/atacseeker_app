@@ -448,11 +448,11 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- write UP and DOWN to separate HTMLs
 - `asifzubair/atacseeker:v8`
 	- `assembleMTgenome.sh` will clean up after itself
-	- installed Gviz
+	- install Gviz
 	- fix plots to adjust `cex.names`
 	- visualization for top region
-	- create `bed` file with fold changes
 	- bam2bigwig converter
+	- add best window information to diffAccRegions
 
 ## ATACseq Data Analysis ##
 
