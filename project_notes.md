@@ -452,6 +452,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- fix plots to adjust `cex.names`
 	- visualization for top region
 	- create `bed` file with fold changes
+	- bam2bigwig converter
 
 ## ATACseq Data Analysis ##
 
