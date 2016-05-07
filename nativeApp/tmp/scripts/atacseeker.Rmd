@@ -7,19 +7,21 @@ output: html_document
 
 ```{r load_library, message=FALSE, warning=FALSE, echo=FALSE}
 ## CRAN
-library(statmod)
-library(locfit)
+library(Gviz)
 library(knitr)
+library(locfit)
 library(parallel)
 library(R2HTML)
+library(statmod)
+
 
 ## Bioconductor packages
 library(csaw) 
 library(edgeR)
-library(rtracklayer)
-library(Rsamtools)
 library(Homo.sapiens)
 library(LOLA) 
+library(Rsamtools)
+library(rtracklayer)
 
 ## Github package
 library(ATACseeker)
@@ -404,7 +406,7 @@ cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir
 system(cmd7)
 ```
 
-We visualize the most significantly differentially expressed region. The region details are also output.
+We visualize the most significantly differentially accessible region. The region details are also output.
 ```{r, echo=FALSE}
 kable(as.data.frame(region))
 accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
@@ -418,7 +420,12 @@ A `bed` file containing differentially accessible regions has also been written 
 In addition, we also output the the coverage of the `bam` files in bigwig format. Theses along with the above `bed` file can be used for viualisation in the IGV browser.
 
 ```{r make_bw, echo = FALSE}
-# stay tuned
+system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
+command = paste("bash bamToBigWig.sh", bam.files)
+tmp <- mcmapply(system, command = command)
+system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
+cmd8 = paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'")
+system(cmd8)
 ```
 ## LOLA ##
 
