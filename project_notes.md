@@ -450,6 +450,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- `assembleMTgenome.sh` will clean up after itself
 	- install Gviz
 	- fix plots to adjust `cex.names`
+	- add max.width for merge
 	- visualization for top region
 	- bam2bigwig converter
 	- add best window information to diffAccRegions
