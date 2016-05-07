@@ -453,7 +453,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- add max.width for merge
 	- visualization for top region
 	- bam2bigwig converter
-		- installed `bedtools` & [bedGrapgToBigWig](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64)
+		- installed `bedtools` & [bedGraphToBigWig](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64)
 		- got chrom.sizes from [here](https://genome.ucsc.edu/goldenpath/help/hg19.chrom.sizes)
 	- add best window information to diffAccRegions
 
