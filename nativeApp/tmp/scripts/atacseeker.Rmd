@@ -361,7 +361,7 @@ kable(as.data.frame(topTags(results)), caption="Top Tags", row.names = FALSE)
 ### Multiple Testing Correction ###
 
 ```{r multiple_test, echo=FALSE}
-merged <- mergeWindows(rowRanges(filtered.data), tol=1000L)
+merged <- mergeWindows(rowRanges(filtered.data), tol=100, max.width=5000)
 ## kable(merged$region, caption="Merged regions")
 tabcom <- combineTests(merged$id, results$table)
 kable(head(tabcom), caption="Combined Tests")
@@ -474,8 +474,8 @@ sessionInfo()
 ```{r references, echo=FALSE, comment="", warning=FALSE}
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
-citation("preseqR")
 citation("ATACseeker")
+citation("preseqR")
 citation("csaw")
 ## citation("PWMEnrich")
 citation("LOLA")
