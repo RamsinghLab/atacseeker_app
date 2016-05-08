@@ -97,11 +97,35 @@
         {
             "$type": "CheckBox", 
             "id" : "mtdna-analysis", 
-            "label": "Do mtDNA analysis",
+            "label": "Generate mitochondrial DNA assembly",
+            "choices": [
+                {
+                    "value": 1,
+                    "checked": false 
+                }
+            ]
+        },
+        
+        {
+            "$type": "CheckBox", 
+            "id" : "bigwigs", 
+            "label": "Output BigWig files",
             "choices": [
                 {
                     "value": 1,
                     "checked": true 
+                }
+            ]
+        },        
+
+        {
+            "$type": "CheckBox", 
+            "id" : "motif-analysis", 
+            "label": "Do motif enrichment analysis",
+            "choices": [
+                {
+                    "value": 1,
+                    "checked": false 
                 }
             ]
         }
