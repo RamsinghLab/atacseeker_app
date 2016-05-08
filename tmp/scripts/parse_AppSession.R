@@ -54,6 +54,14 @@ for (index in seq(numberOfPropertyItems)){
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mtdna-analysis'){
         do_mtdNA_analysis = TRUE
     }
+    
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.bigwigs'){
+        generate_BigWigs = TRUE
+    }
+    
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.motif-analysis'){
+        do_motif_analysis = TRUE
+    }
 }
 params = c(params, do_mtdNA_analysis) 
 
