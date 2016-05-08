@@ -428,6 +428,17 @@ This hack works pretty well, especially after `ilmn` changed their layout. Howev
 
 Essentially, since `Rmarkdown` can parse `html` also, I could simply use `html` syntax - `<a href="http://example.com/" target="_blank">example</a>` or this hybrid syntax that I am not too sure about `[link](url){:target="_blank"}` 
 
+The above `js` code was actually downloading all the files. I changed it to the foloowing:
+```js
+{% for key in result.files %}
+    {% if key contains 'atacseeker.html' %}
+        <iframe src={{ result.files[key].href }} frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%">
+        </iframe>
+    {% endif %}
+{% endfor %}
+```
+
+
 A final idea for the analysis report is that it can be useful to researchers to use in grant applications/supplements "as is". I have seen software that include this as a feature. We could include a downloadable PDF report in the output. This should be trivial once we have the `html` document - `pandoc` can do it for us as mentiond in this r-bloggers [page](http://www.r-bloggers.com/converting-a-markdown-file-to-pdf-using-pandoc).   
 
 ## Releases ##
