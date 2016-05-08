@@ -26,6 +26,7 @@ compareDir = c()
 ##
 # Collect all the AppSession properties
 ##
+
 do_mtdNA_analysis = FALSE
 generate_BigWigs = FALSE
 do_motif_analysis = FALSE
