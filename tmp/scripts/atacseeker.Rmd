@@ -334,7 +334,6 @@ Let's see how the samples are clustered:
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 color = c(rep("blue", length(control)), rep("red",length(compare)))
 plotMDS(bin.adjc, labels=samples, col=color)
-## add legend
 ```
 
 ```{r est_disp, echo=FALSE}
@@ -353,20 +352,24 @@ results <- glmQLFTest(fit, contrast=c(0,1))
 kable(as.data.frame(topTags(results)), caption="Top Tags", row.names = FALSE)
 ```
 
-### Multiple Testing Correction ###
+### Region-Level Analysis ###
 
-```{r multiple_test, echo=FALSE}
+Closely clustered windows are merged together to generate region-level FDR. 
+
+The distribution of region widths post-merging:
+```{r multiple_test, echo=FALSE, comment=""}
 merged <- mergeWindows(rowRanges(filtered.data), tol=100, max.width=5000)
 ## kable(merged$region, caption="Merged regions")
+summary(width(merged$region))
 tabcom <- combineTests(merged$id, results$table)
 kable(head(tabcom), caption="Combined Tests")
-summary(width(merged$region))
 tabbest <- getBestTest(merged$id, results$table)
 ```
 
 ### Results ###
 
-```{r results, echo=FALSE}
+The following gives the number of significantly differentially accessible regions:
+```{r results, echo=FALSE, comment=""}
 # annotated:
 # is.sig <- tabcom$FDR <= 0.05
 anno <- detailRanges(merged$region, txdb=Homo.sapiens, orgdb=Homo.sapiens)
@@ -408,11 +411,9 @@ kable(as.data.frame(accessByScore[1]))
 plotRegion(accessByScore[1])
 ```
 
-Regions containing windows which are more accessible are in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is written to output folder. 
+Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
 
-A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
-
-In addition, we also output the the coverage of the `bam` files in bigwig format. Theses along with the above `bed` file can be used for viualisation in the IGV browser.
+In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the [IGV](https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer) browser.
 
 ```{r make_bw, echo = FALSE}
 system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
@@ -446,7 +447,7 @@ if(FALSE) {
 
 ## Motif Enrichment ##
 
-```{r pwm, echo=TRUE}
+```{r pwm, echo=FALSE, message=FALSE, warning=FALSE}
 # Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
 library(PWMEnrich)
 library(PWMEnrich.Hsapiens.background)
