@@ -459,8 +459,9 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- library complexity - `tryCatch`
 		- followed advice in this [SO](http://stackoverflow.com/questions/8093914/skip-to-next-value-of-loop-upon-error-in-r-trycatch) for error handling
 	- add best window information to diffAccRegions
-	- `LOLA` code
+- `asifzubair/atacseeker:v10`
 	- `PWMEnrich` analysis
+	- `LOLA` code
 
 ## ATACseq Data Analysis ##
 
