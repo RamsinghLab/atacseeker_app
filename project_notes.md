@@ -456,6 +456,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 		- installed `bedtools` & [bedGraphToBigWig](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64)
 		- got chrom.sizes from [here](https://genome.ucsc.edu/goldenpath/help/hg19.chrom.sizes)
 	- add best window information to diffAccRegions
+	- `LOLA` code
 	- `PWMEnrich` analysis
 
 ## ATACseq Data Analysis ##
