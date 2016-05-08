@@ -36,8 +36,8 @@ app_session_name = gsub('/','-', app_session_name)
 base_dir = "/data/output/appresults"
 dump_dir = "/data/scratch"
 if(test){
-    base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/output/appresults"
-    dump_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/scratch"
+    base_dir = "/Users/asifzubair/projects/atacseq_counts/data/output/appresults"
+    dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
 }
 
 output_dir = file.path(base_dir, project_id, app_session_name)
@@ -58,7 +58,7 @@ compare = compareName
 
 base_dir = "/data/input/appresults"
 if(test){
-    base_dir = "/Users/asifzubair/projects/atacseq_counts/nativeApp/data/input/appresults"
+    base_dir = "/Users/asifzubair/projects/atacseq_counts/data/input/appresults"
 }
 
 control.files = c()
