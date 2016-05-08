@@ -375,7 +375,7 @@ combined <- data.frame(as.data.frame(merged$region)[,1:3], tabcom,
                        best.logFC=tabbest$logFC,  anno)
 accRanges <- makeGRangesFromDataFrame(combined, keep=TRUE)
 
-is.sig <- accRanges$FDR <= 1
+is.sig <- accRanges$FDR <= 0.05
 diffAccRanges <- accRanges[is.sig] 
 summary(is.sig)
 
