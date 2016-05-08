@@ -456,7 +456,8 @@ A final idea for the analysis report is that it can be useful to researchers to 
 		- got chrom.sizes from [here](https://genome.ucsc.edu/goldenpath/help/hg19.chrom.sizes)
 - `asifzubair/atacseeker:v9`
 	- fix figure size and margin width
-	- library complexit - `try`, `catch`
+	- library complexity - `tryCatch`
+		- followed advice in this [SO](http://stackoverflow.com/questions/8093914/skip-to-next-value-of-loop-upon-error-in-r-trycatch) for error handling
 	- add best window information to diffAccRegions
 	- `LOLA` code
 	- `PWMEnrich` analysis
