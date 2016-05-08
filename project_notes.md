@@ -476,7 +476,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 
 ## ATACseq Data Analysis ##
 
-Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf?mkt_tok=3RkMMJWWfF9wsRokv6%2FBdu%2FhmjTEU5z16eglWK%2B0hIkz2EFye%2BLIHETpodcMTcdgM7DYDBceEJhqyQJxPr3DLNANwtBlRhjgDw%3D%3D) of Greenleaf:
+Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf) of Greenleaf:
 
 > You can determine whether the reads that you’re getting are from __nucleosomal or nucleosome-free regions__ based on the predicted length. 
 
