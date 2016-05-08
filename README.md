@@ -2,8 +2,6 @@
 
 This repository contains code for a Illumina BaseSpace Native App for doing ATACseq analysis.
 
-Main development directory is `nativeApp`.
-
 *requires*: 
 * docker 
 * samtools (<v1.0), pandoc, wget
