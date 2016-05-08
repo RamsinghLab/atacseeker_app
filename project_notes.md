@@ -449,12 +449,14 @@ A final idea for the analysis report is that it can be useful to researchers to 
 - `asifzubair/atacseeker:v8`
 	- `assembleMTgenome.sh` will clean up after itself
 	- install Gviz
-	- fix plots to adjust `cex.names`
 	- add max.width for merge
 	- visualization for top region
 	- bam2bigwig converter
 		- installed `bedtools` & [bedGraphToBigWig](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64)
 		- got chrom.sizes from [here](https://genome.ucsc.edu/goldenpath/help/hg19.chrom.sizes)
+- `asifzubair/atacseeker:v9`
+	- fix figure size and margin width
+	- library complexit - `try`, `catch`
 	- add best window information to diffAccRegions
 	- `LOLA` code
 	- `PWMEnrich` analysis
