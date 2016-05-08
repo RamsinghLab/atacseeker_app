@@ -4,9 +4,9 @@ This repository contains code for a Illumina BaseSpace Native App for doing ATAC
 
 *requires*: 
 * docker 
-* samtools (<v1.0), pandoc, wget
+* bedtools, bedGraphToBigWig, samtools (<v1.0), pandoc, wget
 * R
-    * Bioconductor:  [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html), edgeR, preseqR 
+    * Bioconductor:  [csaw](http://bioconductor.org/packages/release/bioc/html/csaw.html), edgeR, Gviz, rtracklayer, preseqR 
     * CRAN: knitr, locfit, rjson, [rmarkdown](https://cran.r-project.org/web/packages/rmarkdown/index.html), statmod
     * Github: [ATACseeker](https://github.com/RamsinghLab/ATACseeker) 
 * python v2.7
