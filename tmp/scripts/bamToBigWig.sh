@@ -18,6 +18,6 @@ CHROM_SIZES="chrom.sizes/"$GENOME".chrom.sizes"
 echo -n "Creating coverage bedgraph for ${in_base} ... "
 genomeCoverageBed -bg -split -ibam ${dir}/${in_base}.bam -g $CHROMSIZES > ${dir}/${in_base}.cov.bg && \
 	sort -k1,1 -k2,2n ${dir}/${in_base}.cov.bg > ${dir}/${in_base}.cov.sorted.bg && \
-	./bedGraphToBigWig ${dir}/${in_base}.cov.sorted.bg $CHROM_SIZES ${dir}/${in_base}.Signal.bw && \
+	./bedGraphToBigWig ${dir}/${in_base}.cov.sorted.bg $CHROM_SIZES ${dir}/${in_base}.bw && \
 	rm ${dir}/${in_base}.cov.bg  ${dir}/${in_base}.cov.sorted.bg
 echo "...done."
