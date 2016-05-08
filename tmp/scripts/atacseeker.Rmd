@@ -444,6 +444,7 @@ if(FALSE) {
 }
 ```
 
+## Motif Enrichment ##
 
 ```{r pwm, echo=TRUE}
 # Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
