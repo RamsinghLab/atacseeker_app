@@ -161,6 +161,8 @@ if (compute_library_complexity){
 
     cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
     system(cmd4)
+} else {
+    cat("Library complexity estimation was not requested")
 }
 ```
 
@@ -465,6 +467,8 @@ if (do_motif_analysis){
     system(paste0("mv ", file.path(dump_dir, "motifEnrichmentNS.hg19.rds")," '", output_dir, "'"))
     # Top 10 motifs by enrichment
     kable(head(motifRankingForGroup(res), 10))
+} else {
+    cat("Motif Enrichment Analysis was not requested")
 }
 ```
 
