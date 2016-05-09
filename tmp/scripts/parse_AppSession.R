@@ -27,9 +27,11 @@ compareDir = c()
 # Collect all the AppSession properties
 ##
 
+compute_library_complexity = FALSE
 do_mtdNA_analysis = FALSE
-generate_BigWigs = FALSE
 do_motif_analysis = FALSE
+generate_BigWigs = FALSE
+
 for (index in seq(numberOfPropertyItems)){
   
     if (data[['Properties']][['Items']][[index]]['Name'] == 'Input.app-session-name'){
@@ -51,17 +53,21 @@ for (index in seq(numberOfPropertyItems)){
         project_id = data[['Properties']][['Items']][[index]][['Items']][[1]][['Id']]
         params = c(params, project_id)    
     }
+ 
+     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.library-complexity'){
+        compute_library_complexity = TRUE
+    }
     
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mtdna-analysis'){
         do_mtdNA_analysis = TRUE
     }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.motif-analysis'){
+        do_motif_analysis = TRUE
+    }
     
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.bigwigs'){
         generate_BigWigs = TRUE
-    }
-    
-    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.motif-analysis'){
-        do_motif_analysis = TRUE
     }
 }
 params = c(params, do_mtdNA_analysis) 
