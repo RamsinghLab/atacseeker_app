@@ -135,31 +135,33 @@ kable(design, caption = "Design Matrix")
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
 
 ```{r lib_complexity, message=FALSE, echo=TRUE}
-firstBp <- 1
-lastBp <- 249250621
-chr1_5primeCuts <- lapply(bam.files, function(BAM) 
-                          resize(extractReads(bam.file=BAM,
-                                              region=GRanges("chr1", 
-                                                             IRanges(firstBp,
-                                                                     lastBp))),
-                           1, fix="start"))
+if (compute_library_complexity){
+    firstBp <- 1
+    lastBp <- 249250621
+    chr1_5primeCuts <- lapply(bam.files, function(BAM) 
+                              resize(extractReads(bam.file=BAM,
+                                                  region=GRanges("chr1", 
+                                                                 IRanges(firstBp,
+                                                                         lastBp))),
+                               1, fix="start"))
 
-plot_complexity <- function(fivePrimeCuts, ii){
-    ests <- getEsts(fivePrimeCuts)
-    plotComplexity(fivePrimeCuts, ests=ests)
-    legend("bottomright", legend = samples[ii], col = "red", pch = 18)
+    plot_complexity <- function(fivePrimeCuts, ii){
+        ests <- getEsts(fivePrimeCuts)
+        plotComplexity(fivePrimeCuts, ests=ests)
+        legend("bottomright", legend = samples[ii], col = "red", pch = 18)
+    }
+
+    # write all the complexity graphs for each library to file.
+    pdf(file.path(dump_dir, "library_complexity.pdf"))
+    for (i in seq(num_samples)){
+        possibleError <- tryCatch(plot_complexity(chr1_5primeCuts[[i]], i), error=function(e) e)
+        if(inherits(possibleError, "error")) next
+    }
+    dev.off()
+
+    cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
+    system(cmd4)
 }
-
-# write all the complexity graphs for each library to file.
-pdf(file.path(dump_dir, "library_complexity.pdf"))
-for (i in seq(num_samples)){
-    possibleError <- tryCatch(plot_complexity(chr1_5primeCuts[[i]], i), error=function(e) e)
-    if(inherits(possibleError, "error")) next
-}
-dev.off()
-
-cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
-system(cmd4)
 ```
 
 ```{r read_param, echo=FALSE, message=FALSE, warning=FALSE}
