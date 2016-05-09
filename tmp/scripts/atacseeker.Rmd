@@ -134,7 +134,7 @@ kable(design, caption = "Design Matrix")
 
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
 
-```{r lib_complexity, message=FALSE, echo=TRUE}
+```{r lib_complexity, message=FALSE, echo=FALSE}
 if (compute_library_complexity){
     firstBp <- 1
     lastBp <- 249250621
@@ -157,7 +157,7 @@ if (compute_library_complexity){
         possibleError <- tryCatch(plot_complexity(chr1_5primeCuts[[i]], i), error=function(e) e)
         if(inherits(possibleError, "error")) next
     }
-    dev.off()
+    tmp <- dev.off()
 
     cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
     system(cmd4)
