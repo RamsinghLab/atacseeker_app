@@ -471,10 +471,13 @@ A final idea for the analysis report is that it can be useful to researchers to 
 		- followed advice in this [SO](http://stackoverflow.com/questions/8093914/skip-to-next-value-of-loop-upon-error-in-r-trycatch) for error handling
 	- add best window information to diffAccRegions
 - `asifzubair/atacseeker:v10`
-	-  fix margin width
 	- `PWMEnrich` analysis
+- `asifzubair/atacseeker:v11`
+	- change default behaviour and add advanced `csaw` options for form builder
+	- add QC option
+	- fix margin width
 	- `LOLA` code
-
+	- parallelize `PWMEnrich` code
 ## ATACseq Data Analysis ##
 
 Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf) of Greenleaf:
