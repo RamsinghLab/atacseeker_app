@@ -54,23 +54,42 @@ for (index in seq(numberOfPropertyItems)){
         params = c(params, project_id)    
     }
  
-     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.library-complexity'){
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.library-complexity'){
         compute_library_complexity = TRUE
+        params = c(params, compute_library_complexity) 
     }
     
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mtdna-analysis'){
         do_mtdNA_analysis = TRUE
+        params = c(params, do_mtdNA_analysis)        
     }
 
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.motif-analysis'){
         do_motif_analysis = TRUE
+        params = c(params, do_motif_analysis)         
     }
     
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.bigwigs'){
         generate_BigWigs = TRUE
+        params = c(params, generate_BigWigs)
+    }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.dedup'){
+        dedup = strtoi(data[['Properties']][['Items']][[index]][['Content']])
+        dedup = ifelse(dedup, TRUE, FALSE)
+        params = c(params, dedup)
+    }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mapQ'){
+        mapQ = strtoi(data[['Properties']][['Items']][[index]][['Content']])
+        params = c(params, mapQ)        
+    }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.win.width'){
+        win.width = strtoi(data[['Properties']][['Items']][[index]][['Content']])
+        params = c(params, win.width)
     }
 }
-params = c(params, do_mtdNA_analysis) 
 
 ##
 # Collect all sample names and IDs

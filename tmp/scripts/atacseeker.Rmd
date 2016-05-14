@@ -170,7 +170,7 @@ if (compute_library_complexity){
 ## make sure the blacklist is for the same reference which was used for the alignment.
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
-discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = 10, dedup = TRUE)
+discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = mapQ, dedup = dedup)
 ```
 
 ```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
@@ -294,9 +294,10 @@ Read extraction parameters:
 
 ```{r read_extraction, echo=FALSE, comment=""}
 discard.se.param
-window.width <- 150
+window.width <- win.width
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
+cat(paste("Window width for counting reads is", window.width))
 ```
 
 ### Filtering ###
