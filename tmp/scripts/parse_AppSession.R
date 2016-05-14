@@ -27,8 +27,9 @@ compareDir = c()
 # Collect all the AppSession properties
 ##
 
-compute_library_complexity = FALSE
 do_mtdNA_analysis = FALSE
+compute_library_complexity = FALSE
+do_QC = FALSE
 do_motif_analysis = FALSE
 generate_BigWigs = FALSE
 
@@ -53,15 +54,20 @@ for (index in seq(numberOfPropertyItems)){
         project_id = data[['Properties']][['Items']][[index]][['Items']][[1]][['Id']]
         params = c(params, project_id)    
     }
- 
-    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.library-complexity'){
-        compute_library_complexity = TRUE
-        params = c(params, compute_library_complexity) 
-    }
     
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.mtdna-analysis'){
         do_mtdNA_analysis = TRUE
         params = c(params, do_mtdNA_analysis)        
+    }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.library-complexity'){
+        compute_library_complexity = TRUE
+        params = c(params, compute_library_complexity) 
+    }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.do-qc'){
+        do_QC = TRUE
+        params = c(params, do_QC) 
     }
 
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.motif-analysis'){

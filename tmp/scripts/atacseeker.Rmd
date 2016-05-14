@@ -174,118 +174,126 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 ```
 
 ```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
-par(mfrow=c(1,2))
+if (do_QC){ 
+    par(mfrow=c(1,2))
 
-command = paste("samtools view", bam.files, "| wc -l")
-counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
-chrM_command = paste("samtools view", bam.files, "\"chrM\" | wc -l")
-chrM_counts = mcmapply(system, command = chrM_command, intern = rep(TRUE, num_samples))
-chrMvsOther = (strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
-names(chrMvsOther) <- samples
-ylim = 1.1*max(chrMvsOther)
+    command = paste("samtools view", bam.files, "| wc -l")
+    counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
+    chrM_command = paste("samtools view", bam.files, "\"chrM\" | wc -l")
+    chrM_counts = mcmapply(system, command = chrM_command, intern = rep(TRUE, num_samples))
+    chrMvsOther = (strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
+    names(chrMvsOther) <- samples
+    ylim = 1.1*max(chrMvsOther)
     
-barplot(chrMvsOther[1:num_control], col = "blue", xlim = c(0,1), width = 1/(num_control+1), main = control.label, ylab = "fraction - mtDNA reads", ylim = c(0, ylim), las=3, cex.names = 0.8)
-barplot(chrMvsOther[num_control+1:num_samples], col = "red", xlim = c(0,1), width = 1/(num_compare+1), main = compare.label, ylim = c(0, ylim), las=3, cex.names = 0.8)
+    barplot(chrMvsOther[1:num_control], col = "blue", xlim = c(0,1), width = 1/(num_control+1), main = control.label, ylab = "fraction - mtDNA reads", ylim = c(0, ylim), las=3, cex.names = 0.8)
+    barplot(chrMvsOther[num_control+1:num_samples], col = "red", xlim = c(0,1), width = 1/(num_compare+1), main = compare.label, ylim = c(0, ylim), las=3, cex.names = 0.8)
 
-proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
-# wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
-wincounts <- windowCounts(bam.files, bin=TRUE, param=discard.se.param)
+    proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
+    # wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
+    wincounts <- windowCounts(bam.files, bin=TRUE, param=discard.se.param)
 
-tssWindows <- queryHits(findOverlaps(wincounts, proms))
-nonTssWindows <- setdiff(seq_len(nrow(wincounts)), tssWindows)
+    tssWindows <- queryHits(findOverlaps(wincounts, proms))
+    nonTssWindows <- setdiff(seq_len(nrow(wincounts)), tssWindows)
 
-TSS.bamCounts <- colSums(assays(wincounts[tssWindows,])$counts)
-nonTSS.bamCounts <- colSums(assays(wincounts[nonTssWindows,])$counts)
-TSSvsNonTSS <- TSS.bamCounts / nonTSS.bamCounts # ideally > 10...
-names(TSSvsNonTSS) <- samples
-ylim = 1.1*max(TSSvsNonTSS)
+    TSS.bamCounts <- colSums(assays(wincounts[tssWindows,])$counts)
+    nonTSS.bamCounts <- colSums(assays(wincounts[nonTssWindows,])$counts)
+    TSSvsNonTSS <- TSS.bamCounts / nonTSS.bamCounts # ideally > 10...
+    names(TSSvsNonTSS) <- samples
+    ylim = 1.1*max(TSSvsNonTSS)
 
-barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), main = control.label, cex.names = 0.8)
-barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, col= "red", ylim = c(0, ylim), main = compare.label, cex.names = 0.8)
+    barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), main = control.label, cex.names = 0.8)
+    barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, col= "red", ylim = c(0, ylim), main = compare.label, cex.names = 0.8)
+}
 ```
 
 If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
 ```{r pe_metrics, echo=FALSE, fig.width=20, fig.height=10}
 source("atacseeker.R")
-if(testPairedEndBam(bam.files[1])){
+if (do_QC){ 
+    if(testPairedEndBam(bam.files[1])){
 
-    # use mcmapply(), but only if we haven't already...
-    if (!file.exists("controlQC.rds")) {
-        controlQC <- mcmapply(getQC, name=control, pe.bam=control.files, SIMPLIFY=F)
-        if(test)
-            saveRDS(controlQC, "controlQC.rds")
-    } else { 
-        controlQC <- readRDS("controlQC.rds")
+        # use mcmapply(), but only if we haven't already...
+        if (!file.exists("controlQC.rds")) {
+            controlQC <- mcmapply(getQC, name=control, pe.bam=control.files, SIMPLIFY=F)
+            if(test)
+                saveRDS(controlQC, "controlQC.rds")
+        } else { 
+            controlQC <- readRDS("controlQC.rds")
+        }
+
+        if (!file.exists("compareQC.rds")) {
+            compareQC <- mcmapply(getQC, name=compare, pe.bam=compare.files, SIMPLIFY=F)
+            if(test)
+                saveRDS(compareQC, file="compareQC.rds")  
+        } else { 
+            compareQC <- readRDS("compareQC.rds")
+        }
+
+        # side by side 
+        par(mfrow=c(1,2))
+
+        # plot fragment sizes for control samples
+        frag.dists.control <- lapply(controlQC, `[[`, "frag.dist")
+        qcPlot(frag.dists.control, control.label)
+
+        # plot fragment sizes for comparison samples
+        frag.dists.compare <- lapply(compareQC, `[[`, "frag.dist")
+        qcPlot(frag.dists.compare, compare.label)
+
+        # now dump a diagnostic table 
+        combinedQC <- append(controlQC, compareQC)
+        readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
+        colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
+        kable(readqc, caption="Quality metrics for PE reads", row.names=FALSE)
     }
-
-    if (!file.exists("compareQC.rds")) {
-        compareQC <- mcmapply(getQC, name=compare, pe.bam=compare.files, SIMPLIFY=F)
-        if(test)
-            saveRDS(compareQC, file="compareQC.rds")  
-    } else { 
-        compareQC <- readRDS("compareQC.rds")
-    }
-
-    # side by side 
-    par(mfrow=c(1,2))
-
-    # plot fragment sizes for control samples
-    frag.dists.control <- lapply(controlQC, `[[`, "frag.dist")
-    qcPlot(frag.dists.control, control.label)
-
-    # plot fragment sizes for comparison samples
-    frag.dists.compare <- lapply(compareQC, `[[`, "frag.dist")
-    qcPlot(frag.dists.compare, compare.label)
-
-    # now dump a diagnostic table 
-    combinedQC <- append(controlQC, compareQC)
-    readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
-    colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
-    kable(readqc, caption="Quality metrics for PE reads", row.names=FALSE)
 }
 ```
 
 <!-- TODO: Add description for cross correlation plot -->
 
 ```{r cross_corr, echo=FALSE}
-# one plot-per-window
-par(mfrow=c(1,1))
+if (do_QC){ 
+    # one plot-per-window
+    par(mfrow=c(1,1))
 
-max.delay <- 400
-x <- correlateReads(bam.files, max.delay, param=discard.se.param)
-plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
-title("Cross Correlation Plot")
+    max.delay <- 400
+    x <- correlateReads(bam.files, max.delay, param=discard.se.param)
+    plot(0:max.delay, x, type="l", ylab="CCF", xlab="Delay (bp)")
+    title("Cross Correlation Plot")
+}
 ```
 
 Coverage plot for choosing window size:
 
 ```{r cov_plot, echo=FALSE}
-collected <- list()
+if (do_QC){ 
+    collected <- list()
 
-## Should parallelize ? 
-for (curbam in bam.files) {
-##    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
-##    windowed <- windowCounts(curbam, ext=0, shift=4, bin=TRUE, param=discard.se.param)
-    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=NA)
-    rwsms <- rowSums(assay(windowed))
-    maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
-    collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed], param=discard.se.param, weight=1/rwsms[maxed])
+    ## Should parallelize ? 
+    for (curbam in bam.files) {
+    ##    windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=1)
+    ##    windowed <- windowCounts(curbam, ext=0, shift=4, bin=TRUE, param=discard.se.param)
+        windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=NA)
+        rwsms <- rowSums(assay(windowed))
+        maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
+        collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed], param=discard.se.param, weight=1/rwsms[maxed])
+    }
+
+    xranged <- as.integer(names(collected[[1]]))
+    for (i in seq(length(samples))){
+        if (i==1)
+            plot(xranged, collected[[i]], type="l", col=i, lwd=1,
+                xlim=c(-1000, 1000), ylim=c(0, 1.0), 
+                xlab="Distance (bp)", ylab="Relative coverage per base")
+        else
+            lines(xranged, collected[[i]], col=i, lwd=1)
+    }
+
+    legend("topright", col=seq(length(samples)), samples, pch=16)
+    title("Coverage Profile")
+    abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 }
-
-xranged <- as.integer(names(collected[[1]]))
-for (i in seq(length(samples))){
-  if (i==1)
-    plot(xranged, collected[[i]], type="l", col=i, lwd=1,
-     xlim=c(-1000, 1000), ylim=c(0, 1.0), 
-     xlab="Distance (bp)", ylab="Relative coverage per base")
-  else
-    lines(xranged, collected[[i]], col=i, lwd=1)
-}
-
-legend("topright", col=seq(length(samples)), samples, pch=16)
-title("Coverage Profile")
-abline(v=c(-150,150), col="gray", lty=3, lwd=4)
 ```
 
 ## Windowed read counts, Filtering, Normalization ##
