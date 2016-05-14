@@ -476,6 +476,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- change default behaviour and add advanced `csaw` options for form builder
 	- add QC option
 	- fix margin width
+	- after mtDNA assembly, remove `pileup` files
 	- `LOLA` code
 	- parallelize `PWMEnrich` code
 
