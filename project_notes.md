@@ -478,6 +478,7 @@ A final idea for the analysis report is that it can be useful to researchers to 
 	- fix margin width
 	- `LOLA` code
 	- parallelize `PWMEnrich` code
+
 ## ATACseq Data Analysis ##
 
 Notes from `ILMN` [interview](http://www.illumina.com/content/dam/illumina-marketing/documents/icommunity/greenleaf-stanford-interview-miseq-hiseq-cancer-immune-1070-2015-003.pdf) of Greenleaf:
