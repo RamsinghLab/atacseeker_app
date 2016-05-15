@@ -420,10 +420,14 @@ system(cmd7)
 ```
 
 We visualize the most significantly differentially accessible region. The region details are also output.
-```{r, echo=FALSE}
+```{r plot_region, echo=FALSE, comment=""}
 accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
-kable(as.data.frame(accessByScore[1]))
-plotRegion(accessByScore[1])
+if (dim(accessByScore)[1] > 0){
+    kable(as.data.frame(accessByScore[1]))
+    plotRegion(accessByScore[1])
+} else {
+    cat("\No significant regions found. Skipping track plot")
+}
 ```
 
 Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
@@ -444,7 +448,7 @@ if (generate_BigWigs){
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
 } else {
-    cat("\tBigWigs files were not requested"}
+    cat("\tBigWigs files were not requested")
 }
 ```
 ## LOLA ##
@@ -504,6 +508,6 @@ message("Please do not forget to appropriately cite this work.")
 citation("ATACseeker")
 citation("preseqR")
 citation("csaw")
-## citation("PWMEnrich")
+citation("PWMEnrich")
 citation("LOLA")
 ```
