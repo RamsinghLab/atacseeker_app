@@ -460,10 +460,10 @@ if (generate_BigWigs){
     system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
     if (dedup){
         command = paste("bash bamToBigWig_dedup.sh", bam.files)
-        tmp <- mcmapply(system, command = command)
+        tmp <- mapply(system, command = command)
     } else {
         command = paste("bash bamToBigWig.sh", bam.files)
-        tmp <- mcmapply(system, command = command)
+        tmp <- mapply(system, command = command)
     }
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
