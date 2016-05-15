@@ -347,7 +347,9 @@ We account for composition bias.
 
 ```{r normalization, echo=FALSE}
 Norm.factors <- normOffsets(binned)
-barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", col = c(rep("blue", length(control)), rep("red",length(compare))), cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
+barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", 
+    col = c(rep("blue", length(control)), rep("red",length(compare))), 
+    cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
 ```
 
 ## Differential Accessibility Testing ##
