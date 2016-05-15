@@ -43,7 +43,8 @@ output_dir = file.path(base_dir, project_id, app_session_name)
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
 if (!test){
-    cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, 
+        "'\\' >> /atacseeker/scripts/atacseeker.sh")
     system(cmd2)
 }
 ```
@@ -105,7 +106,8 @@ if (do_mtdNA_analysis){
     chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
     chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
     tmp <- mcmapply(system, command = chrM_command)
-    tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
+    tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
+        file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
 
     cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
     system(cmd3)
@@ -186,8 +188,10 @@ if (do_QC){
     names(chrMvsOther) <- samples
     ylim = 1.1*max(chrMvsOther)
     
-    barplot(chrMvsOther[1:num_control], col = "blue", xlim = c(0,1), width = 1/(num_control+1), main = control.label, ylab = "fraction - mtDNA reads", ylim = c(0, ylim), las=3, cex.names = 0.8)
-    barplot(chrMvsOther[num_control+1:num_samples], col = "red", xlim = c(0,1), width = 1/(num_compare+1), main = compare.label, ylim = c(0, ylim), las=3, cex.names = 0.8)
+    barplot(chrMvsOther[1:num_control], col = "blue", xlim = c(0,1), width = 1/(num_control+1), 
+        main = control.label, ylab = "fraction - mtDNA reads", ylim = c(0, ylim), las=3, cex.names = 0.8)
+    barplot(chrMvsOther[num_control+1:num_samples], col = "red", xlim = c(0,1), width = 1/(num_compare+1), 
+        main = compare.label, ylim = c(0, ylim), las=3, cex.names = 0.8)
 
     proms <- promoters(Homo.sapiens, upstream=2000, downstream=2000) # for hg19
     # wincounts <- windowCounts(bam.files,  shift=4, bin=TRUE, param=discard.se.param)
@@ -202,8 +206,11 @@ if (do_QC){
     names(TSSvsNonTSS) <- samples
     ylim = 1.1*max(TSSvsNonTSS)
 
-    barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), main = control.label, cex.names = 0.8)
-    barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, col= "red", ylim = c(0, ylim), main = compare.label, cex.names = 0.8)
+    barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, 
+        col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), 
+        main = control.label, cex.names = 0.8)
+    barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, 
+        col= "red", ylim = c(0, ylim), main = compare.label, cex.names = 0.8)
 }
 ```
 
@@ -245,7 +252,8 @@ if (do_QC){
         # now dump a diagnostic table 
         combinedQC <- append(controlQC, compareQC)
         readqc <- as.data.frame(do.call(rbind, lapply(combinedQC, `[[`, "qc")))
-        colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
+        colnames(readqc) <- c("Sample", "Total Reads", "Mapped Reads", "Single Read", 
+            "Mate Unmapped", "Unoriented", "Inter Chromosomal", "Frag. Size > 400 bp")
         kable(readqc, caption="Quality metrics for PE reads", row.names=FALSE)
     }
 }
@@ -317,17 +325,20 @@ Keep only high abundance regions relative to a  global background.
 filter.stat <- filterWindows(data, background=binned, type="global")
 keep <- filter.stat$filter > log2(3)
 
-# hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, main="", xlim=c(min(filter.stat$back.abundances), 0))
+# hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, main="", 
+# xlim=c(min(filter.stat$back.abundances), 0))
 hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=50, main="")
 global.bg <- filter.stat$abundances - filter.stat$filter
 abline(v=global.bg[1], col="red", lwd=2)
 abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
-kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), caption="Total number of reads in each library", col.names = "total reads")
+kable(as.data.frame(colSums(assays(data)$counts), row.name=samples), 
+    caption="Total number of reads in each library", col.names = "total reads")
 
 filtered.data <- data[keep,]
-kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), caption="Total number of reads post filtering.", col.names = "total reads")
+kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples), 
+    caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 
 ### Normalization ###
@@ -424,9 +435,11 @@ system(cmd5)
 # print out the significant (FDR <= 0.05) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
 if (sum(diffAccRanges$logFC.up > 0) > 0)
-    HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
+    HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), 
+        file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
 if (sum(diffAccRanges$logFC.down > 0) > 0)
-    HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
+    HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), 
+        file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions.tsv"), row.names=FALSE, sep="\t")
 
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
