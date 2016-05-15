@@ -420,7 +420,7 @@ score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 We visualize the most significantly differentially accessible region. The region details are also output.
 ```{r plot_region, echo=FALSE, comment=""}
 accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
-if (dim(accessByScore)[1] != 0){
+if (sum(is.sig) > 0){
     kable(as.data.frame(accessByScore[1]))
     plotRegion(accessByScore[1])
 } else {
