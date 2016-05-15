@@ -134,7 +134,7 @@ kable(design, caption = "Design Matrix")
 
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
 
-```{r lib_complexity, message=FALSE, echo=FALSE}
+```{r lib_complexity, message=FALSE, echo=FALSE, comment=""}
 if (compute_library_complexity){
     firstBp <- 1
     lastBp <- 249250621
@@ -162,7 +162,7 @@ if (compute_library_complexity){
     cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
     system(cmd4)
 } else {
-    cat("Library complexity estimation was not requested")
+    cat("\tLibrary complexity estimation was not requested")
 }
 ```
 
@@ -305,7 +305,7 @@ discard.se.param
 window.width <- win.width
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
 binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
-cat(paste("Window width for counting reads is", window.width))
+cat(paste("\tWindow width for counting reads is", window.width))
 ```
 
 ### Filtering ###
@@ -407,8 +407,10 @@ system(cmd5)
 
 # print out the significant (FDR <= 0.05) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
-HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
-HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
+if (sum(diffAccRanges$logFC.up > 0) > 0)
+    HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.UP.html"))
+if (sum(diffAccRanges$logFC.down > 0) > 0)
+    HTML(as(diffAccRanges[diffAccRanges$logFC.down > 0,], "data.frame"), file=file.path(dump_dir, "diffAccRegions.logFC.DOWN.html"))
 write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions.tsv"), row.names=FALSE, sep="\t")
 
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
@@ -428,14 +430,21 @@ Regions containing windows which are more accessible are written in `diffAccRegi
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the [IGV](https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer) browser.
 
-```{r make_bw, echo = FALSE}
+```{r make_bw, echo = FALSE, comment=""}
 ## Generate BigWig files
 if (generate_BigWigs){
     system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
-    command = paste("bash bamToBigWig.sh", bam.files)
-    tmp <- mcmapply(system, command = command)
+    if (dedup){
+        command = paste("bash bamToBigWig_dedup.sh", bam.files)
+        tmp <- mcmapply(system, command = command)
+    } else {
+        command = paste("bash bamToBigWig.sh", bam.files)
+        tmp <- mcmapply(system, command = command)
+    }
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
+} else {
+    cat("\tBigWigs files were not requested"}
 }
 ```
 ## LOLA ##
@@ -463,7 +472,7 @@ if(FALSE) {
 
 ## Motif Enrichment ##
 
-```{r pwm, echo=FALSE, message=FALSE, warning=FALSE}
+```{r pwm, echo=FALSE, message=FALSE, warning=FALSE, comment=""}
 # Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
 if (do_motif_analysis){ 
     library(PWMEnrich)
@@ -477,7 +486,7 @@ if (do_motif_analysis){
     # Top 10 motifs by enrichment
     kable(head(motifRankingForGroup(res), 10))
 } else {
-    cat("Motif Enrichment Analysis was not requested")
+    cat("\tMotif Enrichment Analysis was not requested")
 }
 ```
 
