@@ -130,6 +130,13 @@ rownames(design) <- samples
 kable(design, caption = "Design Matrix")
 ```
 
+```{r read_param, echo=FALSE, message=FALSE, warning=FALSE}
+## make sure the blacklist is for the same reference which was used for the alignment.
+blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
+chroms <- paste0("chr", c(seq(22), "X", "Y"))
+discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = mapQ, dedup = dedup)
+```
+
 ## QC Metrics ##
 
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
@@ -166,12 +173,6 @@ if (compute_library_complexity){
 }
 ```
 
-```{r read_param, echo=FALSE, message=FALSE, warning=FALSE}
-## make sure the blacklist is for the same reference which was used for the alignment.
-blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
-chroms <- paste0("chr", c(seq(22), "X", "Y"))
-discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklist, minq = mapQ, dedup = dedup)
-```
 
 ```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
 if (do_QC){ 
@@ -399,6 +400,21 @@ summary(is.sig)
 score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 ```
 
+We visualize the most significantly differentially accessible region. The region details are also output.
+```{r plot_region, echo=FALSE, comment=""}
+accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
+if (dim(accessByScore)[1] != 0){
+    kable(as.data.frame(accessByScore[1]))
+    plotRegion(accessByScore[1])
+} else {
+    cat("\tNo significant regions found. Skipping plotting tracks")
+}
+```
+
+Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
+
+In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
+
 ```{r export_files, echo=FALSE}
 # Output sites as a BED file (post-FDR-correction) 
 export(diffAccRanges, file.path(dump_dir, "diffAccRanges.NS.fdrLt005.hg19.bed"))
@@ -419,21 +435,6 @@ cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir
 system(cmd7)
 ```
 
-We visualize the most significantly differentially accessible region. The region details are also output.
-```{r plot_region, echo=FALSE, comment=""}
-accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
-if (dim(accessByScore)[1] > 0){
-    kable(as.data.frame(accessByScore[1]))
-    plotRegion(accessByScore[1])
-} else {
-    cat("\No significant regions found. Skipping track plot")
-}
-```
-
-Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
-
-In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the [IGV](https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer) browser.
-
 ```{r make_bw, echo = FALSE, comment=""}
 ## Generate BigWig files
 if (generate_BigWigs){
@@ -448,7 +449,7 @@ if (generate_BigWigs){
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
 } else {
-    cat("\tBigWigs files were not requested")
+    cat("\tBigWig files were not requested")
 }
 ```
 ## LOLA ##
@@ -506,8 +507,10 @@ sessionInfo()
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
 citation("ATACseeker")
-citation("preseqR")
+if (compute_library_complexity)
+    citation("preseqR")
 citation("csaw")
-citation("PWMEnrich")
-citation("LOLA")
+if (do_motif_analysis)
+    citation("PWMEnrich")
+## citation("LOLA")
 ```
