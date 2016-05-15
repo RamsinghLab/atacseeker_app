@@ -286,7 +286,8 @@ if (do_QC){
         windowed <- windowCounts(curbam, spacing=150, width=150, param=discard.se.param, filter=20, ext=NA)
         rwsms <- rowSums(assay(windowed))
         maxed <- findMaxima(rowRanges(windowed), range=1000, metric=rwsms)
-        collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed], param=discard.se.param, weight=1/rwsms[maxed])
+        collected[[curbam]] <- profileSites(curbam, rowRanges(windowed)[maxed], 
+            param=discard.se.param, weight=1/rwsms[maxed])
     }
 
     xranged <- as.integer(names(collected[[1]]))
@@ -301,7 +302,7 @@ if (do_QC){
 
     legend("topright", col=seq(length(samples)), samples, pch=16)
     title("Coverage Profile")
-    abline(v=c(-150,150), col="gray", lty=3, lwd=4)
+    abline(v=c(-win.width, win.width), col="gray", lty=3, lwd=4)
 }
 ```
 
