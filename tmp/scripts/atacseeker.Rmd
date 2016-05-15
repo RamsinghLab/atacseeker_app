@@ -94,6 +94,8 @@ num_control = length(control)
 num_compare = length(compare)
 num_samples = length(samples)
 bam.files = c(control.files, compare.files)
+margin = max(sapply(samples, nchar))
+mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```
 
 ```{r mtDNA_analysis, message=FALSE, warning=FALSE, echo=FALSE}
@@ -178,7 +180,7 @@ if (compute_library_complexity){
 
 ```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
 if (do_QC){ 
-    par(mfrow=c(1,2))
+    par(mfrow = c(1,2), mar = mars)
 
     command = paste("samtools view", bam.files, "| wc -l")
     counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
@@ -347,6 +349,7 @@ kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples),
 We account for composition bias.
 
 ```{r normalization, echo=FALSE}
+par(mar = mars)
 Norm.factors <- normOffsets(binned)
 barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", 
     col = c(rep("blue", length(control)), rep("red",length(compare))), 
