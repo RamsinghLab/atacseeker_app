@@ -10,14 +10,11 @@ in_bam=$1
 in_base=`basename ${in_bam} .bam`
 dir=`dirname ${in_bam}`
 
-samtools index ${in_bam}
-samtools sort ${in_bam} ${dir}/${in_base}.sorted
-samtools rmdup ${dir}/${in_base}.sorted.bam ${dir}/${in_base}.sorted.nodup.bam
-samtools index ${dir}/${in_base}.sorted.nodup.bam
+samtools rmdup ${dir}/${in_base}.bam ${dir}/${in_base}.nodup.bam
+samtools index ${dir}/${in_base}.nodup.bam
 
-in_bam="${dir}/${in_base}.sorted.nodup.bam"
+in_bam="${dir}/${in_base}.nodup.bam"
 in_base=`basename ${in_bam} .bam`
-dir=`dirname ${in_bam}`
 
 GENOME=${2:-"hg19"}
 CHROM_SIZES="chrom.sizes/"$GENOME".chrom.sizes"
