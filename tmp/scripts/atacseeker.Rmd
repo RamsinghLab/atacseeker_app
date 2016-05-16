@@ -503,11 +503,17 @@ if (do_motif_analysis){
         library(PWMEnrich)
         library(PWMEnrich.Hsapiens.background)
         library(BSgenome.Hsapiens.UCSC.hg19)
+
+        registerCoresPWMEnrich(4)
+        useBigMemoryPWMEnrich(TRUE)
+
         data(PWMLogn.hg19.MotifDb.Hsap)
         seqs <- getSeq(Hsapiens, diffAccRanges)
         res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
+
         saveRDS(res, file=file.path(dump_dir,"motifEnrichmentNS.hg19.rds"))
         system(paste0("mv ", file.path(dump_dir, "motifEnrichmentNS.hg19.rds")," '", output_dir, "'"))
+
         # Top 10 motifs by enrichment
         kable(head(motifRankingForGroup(res), 10))
     } else {
