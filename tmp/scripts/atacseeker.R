@@ -41,7 +41,8 @@ plotRegion <- function(region) {
     covs <- GRangesList(lapply(olReads, function(x) 
         as(coverage(x) *1e6/ metadata(x)$totals, "GRanges")))
     maxDepth <- max(sapply(covs, function(x) max(score(x))))
-    cols <- c("darkred","darkgreen")[seq_along(bam.files) %% 2 + 1]
+    ##cols <- c("darkred","darkgreen")[seq_along(bam.files) %% 2 + 1]
+    cols <- c(rep("blue", length(control)), rep("red",length(compare)))
     names(cols) <- samples
     collected <- list()
     for(i in seq(num_samples)) {
