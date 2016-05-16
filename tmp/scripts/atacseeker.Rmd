@@ -499,16 +499,20 @@ if(FALSE) {
 ```{r pwm, echo=FALSE, message=FALSE, warning=FALSE, comment=""}
 # Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
 if (do_motif_analysis){ 
-    library(PWMEnrich)
-    library(PWMEnrich.Hsapiens.background)
-    library(BSgenome.Hsapiens.UCSC.hg19)
-    data(PWMLogn.hg19.MotifDb.Hsap)
-    seqs <- getSeq(Hsapiens, diffAccRanges)
-    res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
-    saveRDS(res, file=file.path(dump_dir,"motifEnrichmentNS.hg19.rds"))
-    system(paste0("mv ", file.path(dump_dir, "motifEnrichmentNS.hg19.rds")," '", output_dir, "'"))
-    # Top 10 motifs by enrichment
-    kable(head(motifRankingForGroup(res), 10))
+    if (sum(is.sig) > 0){
+        library(PWMEnrich)
+        library(PWMEnrich.Hsapiens.background)
+        library(BSgenome.Hsapiens.UCSC.hg19)
+        data(PWMLogn.hg19.MotifDb.Hsap)
+        seqs <- getSeq(Hsapiens, diffAccRanges)
+        res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
+        saveRDS(res, file=file.path(dump_dir,"motifEnrichmentNS.hg19.rds"))
+        system(paste0("mv ", file.path(dump_dir, "motifEnrichmentNS.hg19.rds")," '", output_dir, "'"))
+        # Top 10 motifs by enrichment
+        kable(head(motifRankingForGroup(res), 10))
+    } else {
+        cat("\tNo significant regions found. Skipping Motif Enrichment Analysis")
+    }
 } else {
     cat("\tMotif Enrichment Analysis was not requested")
 }
