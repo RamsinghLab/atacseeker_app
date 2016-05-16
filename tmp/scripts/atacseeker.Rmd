@@ -434,8 +434,8 @@ In addition, if requested, we also output the the coverage of the `bam` files in
 
 ```{r export_files, echo=FALSE}
 # Output sites as a BED file (post-FDR-correction) 
-export(diffAccRanges, file.path(dump_dir, "diffAccRanges.NS.fdrLt005.hg19.bed"))
-cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.NS.fdrLt005.hg19.bed"), " '", output_dir, "'")
+export(diffAccRanges, file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"))
+cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'")
 system(cmd5)
 
 # print out the significant (FDR <= 0.05) results 
@@ -457,7 +457,7 @@ system(cmd7)
 ```{r mem_clean_up, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=ls())
 gc()
-diffAccRanges = import(file.path(output_dir, "diffAccRanges.NS.fdrLt005.hg19.bed"), genome="hg19")
+diffAccRanges = import(file.path(output_dir, "diffAccRanges.fdrLt005.hg19.bed"), genome="hg19")
 ```
 
 ```{r make_bw, echo = FALSE, comment=""}
@@ -517,8 +517,8 @@ if (do_motif_analysis){
         seqs <- getSeq(Hsapiens, diffAccRanges)
         res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
 
-        saveRDS(res, file=file.path(dump_dir,"motifEnrichmentNS.hg19.rds"))
-        system(paste0("mv ", file.path(dump_dir, "motifEnrichmentNS.hg19.rds")," '", output_dir, "'"))
+        saveRDS(res, file=file.path(dump_dir,"motifEnrichment.hg19.rds"))
+        system(paste0("mv ", file.path(dump_dir, "motifEnrichment.hg19.rds")," '", output_dir, "'"))
 
         # Top 10 motifs by enrichment
         kable(head(motifRankingForGroup(res), 10))
