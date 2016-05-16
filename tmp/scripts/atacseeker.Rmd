@@ -454,16 +454,22 @@ cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir
 system(cmd7)
 ```
 
+```{r mem_clean_up, echo=FALSE, message=FALSE, warning=FALSE}
+rm(list=ls())
+gc()
+diffAccRanges = import(file.path(output_dir, "diffAccRanges.NS.fdrLt005.hg19.bed"), genome="hg19")
+```
+
 ```{r make_bw, echo = FALSE, comment=""}
 ## Generate BigWig files
 if (generate_BigWigs){
     system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
     if (dedup){
         command = paste("bash bamToBigWig_dedup.sh", bam.files)
-        tmp <- mapply(system, command = command)
+        tmp <- mcmapply(system, command = command)
     } else {
         command = paste("bash bamToBigWig.sh", bam.files)
-        tmp <- mapply(system, command = command)
+        tmp <- mcmapply(system, command = command)
     }
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
