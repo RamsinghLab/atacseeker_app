@@ -459,9 +459,11 @@ system(cmd8)
 ```
 
 ```{r mem_clean_up, echo=FALSE, message=FALSE, warning=FALSE}
-rm(list=ls())
+rm(list=setdiff(ls(),
+    c("test", "dump_dir", "output_dir", "dedup", "bam.files", 
+    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
+    "is.sig", "diffAccRanges")))
 gc()
-diffAccRanges = import(file.path(output_dir, "diffAccRanges.fdrLt005.hg19.bed"), genome="hg19")
 ```
 
 ```{r make_bw, echo = FALSE, comment=""}
