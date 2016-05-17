@@ -475,7 +475,7 @@ if (generate_BigWigs){
         tmp <- mcmapply(system, command = command)
     } else {
         command = paste("bash bamToBigWig.sh", bam.files)
-        tmp <- mcmapply(system, command = command)
+        tmp <- mapply(system, command = command)
     }
     system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
@@ -515,10 +515,10 @@ if (do_motif_analysis){
         library(PWMEnrich)
         library(PWMEnrich.Hsapiens.background)
         library(BSgenome.Hsapiens.UCSC.hg19)
-
-        registerCoresPWMEnrich(4)
-        useBigMemoryPWMEnrich(TRUE)
-
+        if (dedup){
+            registerCoresPWMEnrich(4)
+            useBigMemoryPWMEnrich(TRUE)
+        }
         data(PWMLogn.hg19.MotifDb.Hsap)
         seqs <- getSeq(Hsapiens, diffAccRanges)
         res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
