@@ -463,7 +463,7 @@ system(cmd8)
 
 ```{r mem_clean_up, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=setdiff(ls(),
-    c("test", "dump_dir", "output_dir", "dedup", "bam.files", 
+    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
     "is.sig", "diffAccRanges")))
 cleanMem()
