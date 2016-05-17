@@ -47,6 +47,8 @@ if (!test){
         "'\\' >> /atacseeker/scripts/atacseeker.sh")
     system(cmd2)
 }
+
+cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
 ```
 
 ```{r setup_var_input, message=FALSE, warning=FALSE, echo = FALSE}
@@ -432,7 +434,7 @@ Regions containing windows which are more accessible are written in `diffAccRegi
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
 
-```{r export_files, echo=FALSE}
+```{r export_files, echo=FALSE, message=FALSE, warning=FALSE}
 # Output sites as a BED file (post-FDR-correction) 
 export(diffAccRanges, file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"))
 cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'")
@@ -450,6 +452,7 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
+cleanMem()
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
 system(cmd6)
 cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
@@ -463,7 +466,7 @@ rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", 
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
     "is.sig", "diffAccRanges")))
-tmp <- gc()
+cleanMem()
 ```
 
 ```{r make_bw, echo = FALSE, comment=""}
