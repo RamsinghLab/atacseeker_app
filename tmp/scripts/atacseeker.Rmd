@@ -434,11 +434,18 @@ Regions containing windows which are more accessible are written in `diffAccRegi
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
 
+```{r mem_clean_up_one, echo=FALSE, message=FALSE, warning=FALSE}
+rm(list=setdiff(ls(),
+    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
+    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
+    "data", "binned", "y", "is.sig", "diffAccRanges")))
+cleanMem()
+```
+
 ```{r export_files, echo=FALSE, message=FALSE, warning=FALSE}
 # Output sites as a BED file (post-FDR-correction) 
 export(diffAccRanges, file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"))
-cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'")
-system(cmd5)
+
 
 # print out the significant (FDR <= 0.05) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
@@ -452,7 +459,8 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
-cleanMem()
+cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'")
+system(cmd5)
 cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
 system(cmd6)
 cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
@@ -461,7 +469,7 @@ cmd8 = paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output
 system(cmd8)
 ```
 
-```{r mem_clean_up, echo=FALSE, message=FALSE, warning=FALSE}
+```{r mem_clean_up_two, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
