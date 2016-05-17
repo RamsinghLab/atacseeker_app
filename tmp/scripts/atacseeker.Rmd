@@ -463,7 +463,7 @@ rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", 
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
     "is.sig", "diffAccRanges")))
-gc()
+tmp <- gc()
 ```
 
 ```{r make_bw, echo = FALSE, comment=""}
