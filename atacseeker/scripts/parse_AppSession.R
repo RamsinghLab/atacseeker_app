@@ -97,7 +97,7 @@ for (index in seq(numberOfPropertyItems)){
     }
 
     if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.fdr'){
-        fdr.cut.off = strtoi(data[['Properties']][['Items']][[index]][['Content']])
+        fdr.cut.off = as.numeric(data[['Properties']][['Items']][[index]][['Content']])
         params = c(params, fdr.cut.off)
     }
 }
