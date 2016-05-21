@@ -43,9 +43,12 @@ output_dir = file.path(base_dir, project_id, app_session_name)
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
 if (!test){
-    cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, 
-        "'\\' >> /atacseeker/scripts/atacseeker.sh")
-    system(cmd2)
+    #cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, 
+    #    "'\\' >> /atacseeker/scripts/atacseeker.sh")
+    #system(cmd2)
+    
+    cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
+        file = "atacseeker.sh", append=TRUE)  
 }
 
 cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
@@ -411,7 +414,7 @@ combined <- data.frame(as.data.frame(merged$region)[,1:3], tabcom,
                        best.logFC=tabbest$logFC,  anno)
 accRanges <- makeGRangesFromDataFrame(combined, keep=TRUE)
 
-is.sig <- accRanges$FDR <= 0.05
+is.sig <- accRanges$FDR <= fdr.cut.off
 diffAccRanges <- accRanges[is.sig] 
 summary(is.sig)
 
@@ -447,8 +450,7 @@ cleanMem()
 # Output sites as a BED file (post-FDR-correction) 
 export(diffAccRanges, file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"))
 
-
-# print out the significant (FDR <= 0.05) results 
+# print out the significant (FDR <= fdr.cut.off) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
 if (sum(diffAccRanges$logFC.up > 0) > 0)
     HTML(as(diffAccRanges[diffAccRanges$logFC.up > 0,], "data.frame"), 
@@ -459,15 +461,6 @@ if (sum(diffAccRanges$logFC.down > 0) > 0)
 write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions.tsv"), row.names=FALSE, sep="\t")
 
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
-
-# cmd5 = paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'")
-# system(cmd5)
-# cmd6 = paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'")
-# system(cmd6)
-# cmd7 = paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'")
-# system(cmd7)
-# cmd8 = paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output_dir, "'")
-# system(cmd8)
 
 cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'\n"), 
     file = "atacseeker.sh", append=TRUE)
@@ -504,9 +497,10 @@ if (generate_BigWigs){
     cat("\tBigWig files were not requested")
 }
 ```
-## LOLA ##
 
-```{r lola, eval=FALSE, echo=TRUE}
+<!-- TODO: implement LOLA -->
+
+```{r lola, eval=FALSE, echo=FALSE}
 # NOTE: This chunk is NOT evaluated.
 # run LOLA? Yes!
 dbPath <- system.file("extdata", "hg19", package="LOLA")
