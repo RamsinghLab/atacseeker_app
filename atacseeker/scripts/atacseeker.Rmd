@@ -313,7 +313,7 @@ if (do_QC){
 }
 ```
 
-## Windowed read counts, Filtering, Normalization ##
+## CSAW Settings ##
 
 Read extraction parameters:
 
@@ -325,7 +325,7 @@ binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
 cat(paste("\tWindow width for counting reads is", window.width))
 ```
 
-### Filtering ###
+## Filtering ##
 
 Keep only high abundance regions relative to a  global background.
 
@@ -349,7 +349,7 @@ kable(as.data.frame(colSums(assays(filtered.data)$counts), row.name=samples),
     caption="Total number of reads post filtering.", col.names = "total reads")
 ```
 
-### Normalization ###
+## Normalization ##
 
 We account for composition bias.
 
