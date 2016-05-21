@@ -417,6 +417,8 @@ accRanges <- makeGRangesFromDataFrame(combined, keep=TRUE)
 is.sig <- accRanges$FDR <= fdr.cut.off
 diffAccRanges <- accRanges[is.sig] 
 summary(is.sig)
+cat(paste(sum(diffAccRanges$logFC.up > 0), "regions had logFC UP windows and", 
+    sum(diffAccRanges$logFC.down > 0), "regions had logFC DOWN windows.")
 
 # -log10(p) as bed file "score", could also export to bigWig
 score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
