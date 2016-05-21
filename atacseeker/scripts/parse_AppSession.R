@@ -95,6 +95,11 @@ for (index in seq(numberOfPropertyItems)){
         win.width = strtoi(data[['Properties']][['Items']][[index]][['Content']])
         params = c(params, win.width)
     }
+
+    if (data[['Properties']][['Items']][[index]][['Name']] == 'Input.fdr'){
+        fdr.cut.off = strtoi(data[['Properties']][['Items']][[index]][['Content']])
+        params = c(params, fdr.cut.off)
+    }
 }
 
 ##
