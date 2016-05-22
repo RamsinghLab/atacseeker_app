@@ -42,14 +42,8 @@ if(test){
 output_dir = file.path(base_dir, project_id, app_session_name)
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
-if (!test){
-    #cmd2 = paste0("echo cp /atacseeker/scripts/atacseeker.html \\''", output_dir, 
-    #    "'\\' >> /atacseeker/scripts/atacseeker.sh")
-    #system(cmd2)
-    
-    cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
-        file = "atacseeker.sh", append=TRUE)  
-}
+cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
+    file = "atacseeker.sh", append=TRUE)  
 
 cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
 ```
@@ -214,7 +208,7 @@ if (do_QC){
     ylim = 1.1*max(TSSvsNonTSS)
 
     barplot(TSSvsNonTSS[1:num_control], xlim = c(0,1), width = 1/(num_control + 1), las=3, 
-        col = "blue", ylab = "fraction - TSS vs Non-TSS Counts", ylim = c(0, ylim), 
+        col = "blue", ylab = "ratio - TSS vs Non-TSS Counts", ylim = c(0, ylim), 
         main = control.label, cex.names = 0.8)
     barplot(TSSvsNonTSS[num_control+1 : num_samples], xlim = c(0,1), width = 1/(num_compare+1), las=3, 
         col= "red", ylim = c(0, ylim), main = compare.label, cex.names = 0.8)
