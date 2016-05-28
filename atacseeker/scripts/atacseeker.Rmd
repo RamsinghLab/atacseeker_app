@@ -307,7 +307,7 @@ if (do_QC){
 }
 ```
 
-## CSAW Settings ##
+## CSAW Parameters ##
 
 Read extraction parameters:
 
