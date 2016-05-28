@@ -91,13 +91,13 @@
         {
             "$type": "SectionBreak",
             "id": "section-break-3",
-            "title": "Advanced Options"
+            "title": "Analysis Options"
         },
-        
+
         {
             "$type": "CheckBox", 
             "id" : "mtdna-analysis", 
-            "label": "Generate mitochondrial DNA assembly",
+            "label": "Assemble mitochondrial genome",
             "choices": [
                 {
                     "value": 1,
@@ -105,11 +105,24 @@
                 }
             ]
         },
-        
+
         {
             "$type": "CheckBox", 
-            "id" : "bigwigs", 
-            "label": "Output BigWig files",
+            "id" : "library-complexity", 
+            "label": "Compute library complexity",
+            "choices": [
+                {
+                    "value": 1,
+                    "checked": true 
+                }
+            ]
+        },
+
+
+        {
+            "$type": "CheckBox", 
+            "id" : "do-qc", 
+            "label": "Compute QC metrics",
             "choices": [
                 {
                     "value": 1,
@@ -128,8 +141,188 @@
                     "checked": false 
                 }
             ]
-        }
+        },
 
+        {
+            "$type": "CheckBox", 
+            "id" : "bigwigs", 
+            "label": "Output BigWig files",
+            "choices": [
+                {
+                    "value": 1,
+                    "checked": true 
+                }
+            ]
+        },
+        
+        {
+            "$type": "FieldSet",
+            "id": "advanced-options",
+            "label": "CSAW",
+            "isCollapsible": true, 
+            "isOpen": false, 
+            "helpText": "Advanced options for csaw.",
+            "fields": [
+                {
+                    "$type": "Select",
+	                "id": "dedup",
+	                "label": "Remove PCR duplicates",
+	                "multiselect": false,
+	                "choices": [
+		                {
+                            "$type": "SelectListItem",
+			                "value": 0, 
+        		        	"text": "FALSE",
+        		        	"selected": true
+        		        },
+		        
+                        {
+                            "$type": "SelectListItem",
+			                "value": 1,
+			                "text": "TRUE",
+			                "selected": false
+		                }
+        	        ]
+
+                },
+
+                {
+                    "$type": "Select",
+                	"id": "mapQ",
+            	    "label": "MapQ value for read filtering",
+            	    "multiselect": false,
+            	    "choices": [
+                		{
+                			"value": 10,
+                			"text": "10",
+                			"selected": true   
+                		},
+                
+        	        	{
+        			        "value": 20,
+        			        "text": "20",
+        			        "selected": false
+        		        },
+
+                    	{
+                			"value": 30,
+                			"text": "30",
+                			"selected": false   
+                		},
+                
+        	        	{
+	        		        "value": 40,
+        			        "text": "40",
+        			        "selected": false
+        		        },
+
+                    	{
+        			        "value": 50,
+        			        "text": "50",
+        			        "selected": false
+	        	        }
+
+                    ]
+                },
+
+                {
+                    "$type": "Select",
+                    "id": "win.width",
+            	    "label": "Window width for counting reads",
+            	    "multiselect": false,
+            	    "choices": [
+                		{
+                			"value": 50,
+                			"text": "50",
+                			"selected": false   
+                		},
+                
+        	        	{
+        			        "value": 100,
+        			        "text": "100",
+        			        "selected": false
+        		        },
+                
+                        {
+        			        "value": 150,
+        			        "text": "150",
+        			        "selected": true
+        		        },
+                
+                        {
+            		        "value": 200,
+        			        "text": "200",
+        			        "selected": false
+        		        },
+
+                        {
+                	        "value": 250,
+        			        "text": "250",
+        			        "selected": false
+        		        },
+
+                        {
+            		        "value": 300,
+        			        "text": "300",
+        			        "selected": false
+        		        },
+                
+                        {
+            		        "value": 350,
+        			        "text": "350",
+        			        "selected": false
+        		        },
+                
+                        {
+                	        "value": 400,
+        			        "text": "400",
+        			        "selected": false
+        		        },
+                
+                        {
+                            "value": 450,
+        			        "text": "450",
+	        		        "selected": false
+        		        },
+                    
+                        {
+                            "value": 500,
+        			        "text": "500",
+        			        "selected": false
+        		        }    
+                
+        	        ]
+                },
+                
+                {
+                    "$type": "Select",
+                    "id": "fdr",
+            	    "label": "significance threshold for fdr",
+            	    "multiselect": false,
+            	    "choices": [
+                		{
+                			"value": 0.01,
+                			"text": "0.01",
+                			"selected": false   
+                		},
+                
+        	        	{
+        			        "value": 0.05,
+        			        "text": "0.05",
+        			        "selected": true
+        		        },
+
+                    	{
+                			"value": 0.1,
+                			"text": "0.1",
+                			"selected": false   
+                		}
+
+                    ]
+                }                
+
+            ]
+        }
     ],
     
     "rulesets":[
