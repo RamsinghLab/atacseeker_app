@@ -336,24 +336,24 @@ abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
 raw = colSums(assays(data)$counts)
-filtered = colSums(assays(filtered.data)$counts)
-
-kable(as.data.frame(raw, row.name=samples), 
-    caption="Total number of reads in each library", col.names = "total reads")
+#kable(as.data.frame(raw, row.name=samples), 
+#    caption="Total number of reads in each library", col.names = "total reads")
 
 filtered.data <- data[keep,]
-kable(as.data.frame(filtered, row.name=samples), 
-    caption="Total number of reads post filtering.", col.names = "total reads")
+filtered = colSums(assays(filtered.data)$counts)
+#kable(as.data.frame(filtered, row.name=samples), 
+#    caption="Total number of reads post filtering.", col.names = "total reads")
 
 par(mar = mars)
 m = as.matrix(rbind(raw, filtered))
 colnames(m) = samples
 barplot(as.matrix(c), beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*length(compare))), 
-    cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
+    cex.names = 0.8, width = 1/(num_samples + 1), las = 3,
+    main = "Window counts")
 barplot(as.matrix(c), add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,5), 
     cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
-legend("top", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=c("blue", "blue", "red", "red"))
-legend("top", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=1, angle=45, density=c(0,5))
+#legend("topright", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=c("blue", "blue", "red", "red"))
+#legend("topright", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=1, angle=45, density=c(0,5))
 ```
 
 ## Normalization ##
@@ -363,9 +363,10 @@ We account for composition bias.
 ```{r normalization, echo=FALSE}
 par(mar = mars)
 Norm.factors <- normOffsets(binned)
+ylim = 1.1*max(as.vector(Norm.factors))
 barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", 
     col = c(rep("blue", length(control)), rep("red",length(compare))), 
-    cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
+    cex.names = 0.8, width = 1/(num_samples + 1), las = 3, ylim = ylim)
 ```
 
 ## Differential Accessibility Testing ##
