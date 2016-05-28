@@ -153,7 +153,7 @@ if (compute_library_complexity){
                                                   region=GRanges("chr1", 
                                                                  IRanges(firstBp,
                                                                          lastBp))),
-                               1, fix="start"))
+                                1, fix="start"))
 
     plot_complexity <- function(fivePrimeCuts, ii){
         ests <- getEsts(fivePrimeCuts)
@@ -526,7 +526,7 @@ if (do_motif_analysis){
         library(PWMEnrich)
         library(PWMEnrich.Hsapiens.background)
         library(BSgenome.Hsapiens.UCSC.hg19)
-        if (dedup){
+        if (TRUE){
             registerCoresPWMEnrich(4)
             useBigMemoryPWMEnrich(TRUE)
         }
