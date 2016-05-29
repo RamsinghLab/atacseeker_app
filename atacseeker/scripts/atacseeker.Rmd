@@ -42,8 +42,9 @@ if(test){
 output_dir = file.path(base_dir, project_id, app_session_name)
 cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
 system(cmd1)
-cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)  
+if (!test)
+    cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
+        file = "atacseeker.sh", append=TRUE)  
 
 cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
 ```
@@ -347,13 +348,14 @@ filtered = colSums(assays(filtered.data)$counts)
 par(mar = mars)
 m = as.matrix(rbind(raw, filtered))
 colnames(m) = samples
-barplot(as.matrix(c), beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*length(compare))), 
-    cex.names = 0.8, width = 1/(num_samples + 1), las = 3,
+barplot(m, beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*length(compare))), 
+    cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3,
     main = "Window counts")
-barplot(as.matrix(c), add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,5), 
-    cex.names = 0.8, width = 1/(num_samples + 1), las = 3)
-#legend("topright", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=c("blue", "blue", "red", "red"))
-#legend("topright", legend=letters[1:4], ncol=4, fill=TRUE, cex=1.5, col=1, angle=45, density=c(0,5))
+barplot(m, add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,15), 
+    cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3)
+#legend("topright", legend=letters[1:4], ncol=2, fill=c("blue", "blue", "red", "red"), bty="n", cex=1.15)
+#legend("topright", legend=letters[1:4], ncol=2, fill=c("blue", "black", "red", "black"), angle =45, density = c(0,15), bty="n", cex=1.15)
+legend("topright", legend="filtered", fill=T, angle=45, density = 15, bty="n", cex=1.25)
 ```
 
 ## Normalization ##
