@@ -353,8 +353,10 @@ barplot(m, beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*len
     main = "Window counts")
 barplot(m, add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,15), 
     cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3)
-#legend("topright", legend=letters[1:4], ncol=2, fill=c("blue", "blue", "red", "red"), bty="n", cex=1.15)
-#legend("topright", legend=letters[1:4], ncol=2, fill=c("blue", "black", "red", "black"), angle =45, density = c(0,15), bty="n", cex=1.15)
+# legend("topright", legend=letters[1:4], ncol=2, 
+#   fill=c("blue", "blue", "red", "red"), bty="n", cex=1.15)
+# legend("topright", legend=letters[1:4], ncol=2, 
+#   fill=c("blue", "black", "red", "black"), angle =45, density = c(0,15), bty="n", cex=1.15)
 legend("topright", legend="filtered", fill=T, angle=45, density = 15, bty="n", cex=1.25)
 ```
 
@@ -449,6 +451,28 @@ if (sum(is.sig) > 0){
 Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
+
+The columns in `diffAccRegions.tsv1` are described below:
+
+|Column Name | Description |
+|:---------|---|
+|seqnames   |   |
+|start   |   |
+|end   |   |
+|width   |   |
+|strand   |   |
+|nWindows   |   |
+|logFC.up   |   |
+|logFC.down   |   |
+|PValue   |   |
+|FDR | |
+|best.pos | |
+|best.logFC | |
+|overlap | |
+|left | |
+|right | |
+|score | |
+
 
 ```{r mem_clean_up_one, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=setdiff(ls(),
