@@ -368,7 +368,7 @@ Norm.factors <- normOffsets(binned)
 ylim = 1.1*max(as.vector(Norm.factors))
 barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", 
     col = c(rep("blue", length(control)), rep("red",length(compare))), 
-    cex.names = 0.8, width = 1/(num_samples + 1), las = 3, ylim = ylim)
+    cex.names = 0.8, width = 1/(num_samples + 1), las = 3, ylim = c(0,ylim))
 ```
 
 ## Differential Accessibility Testing ##
