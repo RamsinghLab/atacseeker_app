@@ -4,7 +4,11 @@
 
 ### mt-DNA Reference ###
 
-This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some information on the different references available for mtDNA
+This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some information on the different references available for mtDNA. 
+
+Katrina's talk
+- mentioned this [paper](http://onlinelibrary.wiley.com/doi/10.1002/bies.201500082/abstract) related to mitochondria.
+- mtDNA copy number / cell = 2 * (mtDNA average covearge) / (autosomal DNA average coverage ) 
 
 ### ATACseq mt-DNA ###
 
