@@ -476,7 +476,7 @@ The columns in `diffAccRegions.tsv1` are described below:
 The annotation is performed using the `detailRanges` function of `csaw`. The function identifies all overlapping genic features for each region and reports them in a string form. The features are reported as `SYMBOL|EXONS|STRAND` where 
 - `SYMBOL` represents the gene symbol
 - `EXON` lists the overlapping exons (`0` for promoters, `I` for introns)
-- `STRAND` reports the strand
+- `STRAND` reports the strand  
 Features in flanking regions of the region of interest are also reported. These features are formatted with the same scheme as above except with an extra `[DISTANCE]` field, which represents the distance between the feature and the region of interest. Only those flanking features which are within 5kbp of each region are considered.
 
 
