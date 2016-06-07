@@ -448,11 +448,9 @@ if (sum(is.sig) > 0){
 }
 ```
 
-Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder. A raw text file with all differentially accessible regions is also written to output folder. A `bed` file containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
+Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder.  Corresponding `bed` files containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
 
-In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
-
-The columns in `diffAccRegions.tsv1` are described below:
+A raw text file, `a`, with all differentially accessible regions is also written to output folder. The columns in the file are described below:
 
 |Column Name | Description |
 |:-----------|-------------|
@@ -491,7 +489,8 @@ cleanMem()
 
 ```{r export_files, echo=FALSE, message=FALSE, warning=FALSE}
 # Output sites as a BED file (post-FDR-correction) 
-export(diffAccRanges, file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"))
+export(diffAccRanges[diffAccRanges$logFC.up > 0,], file.path(dump_dir, "diffAccRanges.logFC.UP.hg19.bed"))
+export(diffAccRanges[diffAccRanges$logFC.down > 0,], file.path(dump_dir, "diffAccRanges.logFC.DOWN.hg19.bed"))
 
 # print out the significant (FDR <= fdr.cut.off) results 
 # kable(as(diffAccRanges, "data.frame"), caption="Significant Results")
@@ -505,7 +504,9 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
-cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.fdrLt005.hg19.bed"), " '", output_dir, "'\n"), 
+cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.UP.hg19.bed"), " '", output_dir, "'\n"), 
+    file = "atacseeker.sh", append=TRUE)
+cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.DOWN.hg19.bed"), " '", output_dir, "'\n"), 
     file = "atacseeker.sh", append=TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'\n"), 
     file = "atacseeker.sh", append=TRUE)
@@ -522,6 +523,8 @@ rm(list=setdiff(ls(),
     "is.sig", "diffAccRanges")))
 cleanMem()
 ```
+
+In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
 
 ```{r make_bw, echo = FALSE, comment=""}
 ## Generate BigWig files
