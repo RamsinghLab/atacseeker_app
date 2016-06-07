@@ -455,23 +455,29 @@ In addition, if requested, we also output the the coverage of the `bam` files in
 The columns in `diffAccRegions.tsv1` are described below:
 
 |Column Name | Description |
-|:---------|---|
-|seqnames   |   |
-|start   |   |
-|end   |   |
-|width   |   |
-|strand   |   |
-|nWindows   |   |
-|logFC.up   |   |
-|logFC.down   |   |
-|PValue   |   |
-|FDR | |
-|best.pos | |
-|best.logFC | |
-|overlap | |
-|left | |
-|right | |
-|score | |
+|:-----------|-------------|
+|seqnames    | chromosome name |
+|start       | start point of region |
+|end         | end point of region |
+|width       | region width  |
+|strand      | strand  |
+|nWindows    | number of windows that were clustered |
+|logFC.up    |  number of windows with logFC increase compared to control |
+|logFC.down  | number of windows with logFC decrease compared to control  |
+|PValue      | signifance p-value  |
+|FDR         | FDR correction for mutliple testing|
+|best.pos    | mid-point of most significant window in region |
+|best.logFC  | logFC of the most significant window |
+|overlap     | gene feature that overlaps with the region |
+|left        | gene feature to the left of the region |
+|right       | gene feature to the right of the region |
+|score       | negative log of the p-value |
+
+The annotation is performed using the `detailRanges` function of `csaw`. The function identifies all overlapping genic features for each region and reports them in a string form. The features are reported as `SYMBOL|EXONS|STRAND` where 
+- `SYMBOL` represents the gene symbol
+- `EXON` lists the overlapping exons (`0` for promoters, `I` for introns)
+- `STRAND` reports the strand
+Features in flanking regions of the region of interest are also reported. These features are formatted with the same scheme as above except with an extra `[DISTANCE]` field, which represents the distance between the feature and the region of interest. Only those flanking features which are within 5kbp of each region are considered.
 
 
 ```{r mem_clean_up_one, echo=FALSE, message=FALSE, warning=FALSE}
