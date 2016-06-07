@@ -450,10 +450,10 @@ if (sum(is.sig) > 0){
 
 Regions containing windows which are more accessible are written in `diffAccRegions.logFC.UP.html` and those with less accessible windows are in `diffAccRegions.logFC.DOWN.html` in the output folder.  Corresponding `bed` files containing differentially accessible regions has also been written to the output folder. The score column of the `bed` file indicates the negative-log of the p-value.
 
-A raw text file, `a`, with all differentially accessible regions is also written to output folder. The columns in the file are described below:
+A raw text file, `diffAccRegions.tsv`, with all differentially accessible regions is also written to output folder. The columns in the file are described below:
 
 |Column Name | Description |
-|:-----------|-------------|
+|:-----------|:-------------|
 |seqnames    | chromosome name |
 |start       | start point of region |
 |end         | end point of region |
@@ -469,7 +469,7 @@ A raw text file, `a`, with all differentially accessible regions is also written
 |overlap     | gene feature that overlaps with the region |
 |left        | gene feature to the left of the region |
 |right       | gene feature to the right of the region |
-|score       | negative log of the p-value |
+|score       | negative log of the significance p-value |
 
 The annotation is performed using the `detailRanges` function of `csaw`. The function identifies all overlapping genic features for each region and reports them in a string form. The features are reported as `SYMBOL|EXONS|STRAND` where 
 - `SYMBOL` represents the gene symbol
