@@ -85,6 +85,19 @@ samtools view -Sb out.sam > out.bam
 ```
 [Biostar](https://www.biostars.org/p/56246) has some comments on using the `-f 4` flag with `samtools`. __must__ check with Tim.
 
+Current mtDNA Variant calling pipeline
+- extract mitochondiral reads from `bam` file and convert to `fastq`
+- archive `bam` files
+- map reads to RSRS reference
+- archive `fastq` files
+- mark duplicates, sort and index mapped `bam` file
+- if requested, realign to known indels
+- remove duplicates using `samtools`
+- reconvert bam output to sam
+- asseemble mtDNA 
+- output VCF file
+
+
 ## ATACseeker Pipeline ##
 
 ### preseqR ###
