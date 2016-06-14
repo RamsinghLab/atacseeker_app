@@ -48,8 +48,9 @@ bwa mem $GENOME $FASTQS | \
 ##
 
 SORTED=`basename $OUT_BAM .bam`.sorted
-samtools sort $OUT_BAM $SORTED 
-samtools index ${SORTED}".bam"
-samtools view ${SORTED}".bam" > $SORTED".sam"
+DIR=`dirname $SAMPLE`
+samtools sort $OUT_BAM $DIR"/"$SORTED 
+samtools index $DIR"/"${SORTED}".bam"
+## samtools view ${SORTED}".bam" > $SORTED".sam"
 
 echo "alignment file created ..." ${SORTED}".bam"
