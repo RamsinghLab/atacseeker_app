@@ -98,7 +98,8 @@ python assembleMTgenome.py \
 	-i $DIR"/"${SORTED}".nodup.bam" \
 	-a hg19.fa \
 	-s `which samtools` -FCUP \
-	-o $DIR"/"${in_bam}
+#	-o $DIR"/"${in_bam}
+	-o ${in_bam}
 echo "Done."
 echo ""
 

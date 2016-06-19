@@ -8,6 +8,7 @@ Edited by Claudia Calabrese - claudia.calabrese23@gmail.com
 
 import getopt, sys, os, re, ast
 from mtVariantCaller import mtvcf_main_analysis, get_consensus_single
+import pandas as pd
 
 mt_track="""track db="hg18" type="bed" name="mtGenes" description="Annotation" visibility="3" itemRgb="On"
 chrRSRS 0 578 D-Loop 0 - 1 578 165,42,42
@@ -47,6 +48,7 @@ Options:
 	-g		min. gap lentgh [10]
 	-o		output base name [mtDNAassembly]
 	-s		samtools executable [/usr/local/bin/samtools]
+	-v		samtools version [default is 0]
 	-t		minimum distance from read end(s) for indels to be detected. Values < 5 will be ignored. [5]
 	-z		heteroplasmy threshold for variants to be reported in consensus FASTA [0.8]
 	-F		generate fasta output [no]
@@ -60,7 +62,7 @@ Options:
 	"""
 
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "hf:i:q:c:d:o:g:a:r:s:FCUPNA:D:z:t:")
+	opts, args = getopt.getopt(sys.argv[1:], "hf:i:q:c:d:o:g:a:r:s:v:FCUPNA:D:z:t:")
 except getopt.GetoptError, err:
 	print str(err) 
 	usage()
@@ -75,6 +77,7 @@ cov=5
 glen=10
 basename='mtDNAassembly'
 sexe='samtools'
+sversion=0
 crf=0
 crc=0
 cru=0
@@ -98,6 +101,7 @@ for o,a in opts:
 	elif o == "-o": basename = a
 	elif o == "-r": fasta_dir = a
 	elif o == "-s": sexe = a
+	elif o == "-v": sversion = float(a)
 #	elif o == "-t": tail = int(a)
 	elif o == "-t":
 		if int(a)<5:
@@ -118,11 +122,11 @@ for o,a in opts:
 # DS
 mtdnafile=fasta_dir+mtdna_fasta
 hgenome=fasta_dir+hgenome_fasta
-print mtdnafile
-print hgenome
+print "Path to mitochondrial reference genome: {0}\n".format(mtdnafile)
+print "Path to nuclear and mitochondrial reference genome: {0}\n".format(hgenome)
+print 'Samtools version is {0}\n'.format(sversion)
 
-sample_name = os.getcwd().split('/')[-1].split('_')[1]
-print "assembleMTgenome for sample", sample_name
+
 
 if not os.path.exists(mtdnafile):
 	usage()
@@ -130,6 +134,20 @@ if not os.path.exists(mtdnafile):
 if not os.path.exists(inputfile):
 	usage()
 	sys.exit('File %s does not exist.' %(inputfile))	
+
+
+
+try:
+	sample_name = basename.split('/')[-1]
+#	if len(sample_name)!=1:
+#		sample_name="_".join(sample_name)
+	print "assembleMTgenome for sample", sample_name
+except:
+	sample_name = ''
+	print "no OUT_samplename folder found", sample_name
+
+
+
 ext=inputfile.split('.')[-1]
 basext=inputfile.replace('.'+ext,'')
 if ext not in ['sam','bam','pileup']:
@@ -221,13 +239,16 @@ if ext=='sam':
 	os.system(cmd)
 	ext='bam'
 if ext=='bam':
-	print 'Sorting and indexing BAM...'
-	cmd1='%s sort %s.bam %s-sorted' %(sexe,basext,basext)
-	cmd2='%s index %s-sorted.bam' %(sexe,basext)
-	os.system(cmd1)
-	os.system(cmd2)
+	#print 'Sorting and indexing BAM...'
+	#if int(sversion) == 0:
+		#cmd1='%s sort %s.bam %s-sorted' %(sexe,basext,basext)
+	#else:
+		#cmd1='%s sort %s.bam -o %s-sorted.bam' %(sexe,basext,basext)
+	#cmd2='%s index %s-sorted.bam' %(sexe,basext)
+	#os.system(cmd1)
+	#os.system(cmd2)
 	print 'Creating pileup...'
-	cmd3='%s mpileup -B -f %s %s-sorted.bam > %s.pileup' %(sexe,hgenome,basext,basext)
+	cmd3='%s mpileup -B -f %s %s.bam > %s.pileup' %(sexe,hgenome,basext,basext)
 	os.system(cmd3)
 	
 mtdna={}
@@ -450,19 +471,27 @@ for i in contigs:
 		# of the consensus information
 		#
 		#print "CONSENSUS SINGLE: ", consensus_single
-		for p_info in consensus_single:
-			if p_info[0] in dict_seq.keys():
-				#print "P_INFO: ", p_info
-				# maybe I don't need to consider mismatch but I'll do anyway
-				if p_info[-1] == 'mism':
-					dict_seq[p_info[0]] = p_info[1][0] # check THIS
-				elif p_info[-1] == 'ins':
-					# in the consensus, the ins is reported as the nuc of pos of the ins + the inserted bases
-					dict_seq[p_info[0]+'.1'] = p_info[1][0][1:]
-					# alternatively it could be
-					# dict_seq[p_info[0]] = p_info[1][0]
-				elif p_info[-1] == 'del':
-					for deleted_pos in p_info[1]:
+		#check if there are repeated positions with different mut type
+		df= pd.DataFrame(consensus_single)
+		positions=df[0]
+		dup_positions = positions[positions.duplicated()].values
+		for x in dup_positions:
+			d = df[df[0]==x][2] #check the mut type. If ins, report ins instead of del or mism 
+			if 'ins' in d.values:
+				idx = d[d!='ins'].index[0]
+				df.drop(df.index[[idx]],inplace=True)
+			elif 'del' in d.values:
+				idx = d[d!='del'].index[0]
+				df.drop(df.index[[idx]],inplace=True) #If ambiguity between mism and del, report deletion instead of mism in the consensus
+			
+		for idx in df.index:
+			if df[0][idx] in dict_seq.keys(): #if position is in the dict
+				if df[2][idx] == 'mism': #if mut type is mism
+					dict_seq[df[0][idx]] = df[1][idx][0] #then substitute the dict value with the correspondent nt sequence
+				elif df[2][idx] == 'ins':
+					dict_seq[df[0][idx]] = df[1][idx][0]
+				elif df[2][idx] == 'del':
+					for deleted_pos in df[1][idx]:
 						del(dict_seq[deleted_pos])
 		# sort positions in dict_seq and join to have the sequence
 		contig_seq = ''
