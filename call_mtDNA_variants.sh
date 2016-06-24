@@ -1,10 +1,16 @@
 ## in_bam="chrM.CAP1727A2-041814-1-N.sorted.nodup"
+
+if [ $# -eq 0 ]; then
+    echo "Usage: bash $0 <in.bam> RSRS|RCRS"
+    exit 0
+fi 
+
 in_bam=`dirname $1`"/"`basename $1 .bam`
 externaltoolsfolder="./ext_tools/"
 work_dir=`dirname ${in_bam}`
-reference="../reference/chrRSRS.fa"
-ref="RSRS"
-UseIndelRealigner=true
+reference="./reference/chrRSRS.fa"
+ref=$2
+UseIndelRealigner=false
 
 echo "*****************************"
 echo "Sorting, indexing and extraction of mitochondrial reads from bam file..." ${in_bam}.bam; 
@@ -93,10 +99,10 @@ echo "********************************"
 echo "*** assemble mtDNA"
 echo "********************************"
 python assembleMTgenome.py \
-	-r "../reference/" \
-	-f chrRSRS.fa \
+	-r `dirname $reference`"/" \
+	-f chr${ref}.fa \
 	-i $DIR"/"${SORTED}".nodup.bam" \
-	-a hg19.fa \
+	-a hg19${ref}.fa \
 	-s `which samtools` -FCUP \
 #	-o $DIR"/"${in_bam}
 	-o ${in_bam}
@@ -106,6 +112,6 @@ echo ""
 echo "********************************"
 echo "***  Call mtDNA Variants"
 echo "********************************"
-python VCFoutput.py -r RSRS -i $DIR
+## python VCFoutput.py -r RSRS -i $DIR
 echo "Done."
 echo ""
