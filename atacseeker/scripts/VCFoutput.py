@@ -25,6 +25,7 @@ for o,a in opts:
 		if a in ('RCRS', 'RSRS'):
 			reference_sequence = a
 		else:
+            print "oh man!"
 			print "Reference sequence must be RSRS or RCRS."
 			sys.exit()
 
