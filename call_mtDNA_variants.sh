@@ -40,7 +40,7 @@ echo "*****************************"
 echo "Archiving processed bam files"
 echo "*****************************"
 mkdir ${work_dir}/processed_bam
-mv ${work_dir}/*MT.bam ${work_dir}/*bai ${work_dir}/*sorted.bam ${work_dir}/processed_bam
+mv ${work_dir}/*MT.bam ${work_dir}/*.bai ${work_dir}/*sorted.bam ${work_dir}/processed_bam
 tar -czf ${work_dir}/processed_bam.tar.gz ${work_dir}/processed_bam
 #rm -r ${work_dir}/processed_bam
 
@@ -104,7 +104,6 @@ python assembleMTgenome.py \
 	-i $DIR"/"${SORTED}".nodup.bam" \
 	-a hg19${ref}.fa \
 	-s `which samtools` -FCUP \
-#	-o $DIR"/"${in_bam}
 	-o ${in_bam}
 echo "Done."
 echo ""
