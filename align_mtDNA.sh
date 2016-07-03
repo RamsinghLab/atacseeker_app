@@ -29,7 +29,7 @@ FLAGS="-F 0x100i -F 0x200i -F 0x800i -q 10 -Sb"
 ## spell out these conditions in the resulting BAM file name 
 ## 
 
-OUT_BAM=$SAMPLE".unique_q10minimum."$GENOME_TYPE".nodup.bam"
+OUT_BAM=$SAMPLE".unique_q10minimum."$GENOME_TYPE".bam"
 
 ##
 ## do the alignment
