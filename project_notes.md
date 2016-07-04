@@ -2,7 +2,7 @@
 
 ## mtDNA Analysis ##
 
-### mt-DNA Reference ###
+### mtDNA Reference ###
 
 This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some information on the different references available for mtDNA. 
 
