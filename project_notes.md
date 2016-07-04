@@ -31,6 +31,15 @@ Other papers that might be of interest:
 		- MAF of `0.1`
 		- minor allele observed in atleast __two reads__ in each direction
 
+
+I think the pipeline I want to implement is:
+- Use BWA Aligner to map reads to hg19RCRS reference
+- Pull out chrRSRS reads and convert `bam` to `fastq`
+- Use [MITObim](https://github.com/chrishah/MITObim) or [MIA](https://github.com/mpieva/mapping-iterative-assembler) to make a consensus 
+- align reads using bwa against the consensus
+- use the heteroplasmy python script to detect heteroplasmies
+This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. 
+
 ### ATACseq mt-DNA ###
 
 Because in ATACseq a lot of the reads are biased for the mitochondrial DNA, it seems like an obvious thing to use ATACseq reads to call variants on mt-DNA. There are a few caveats though. The mt-DNA is haploid, inherited completely from the mother. However, most callers like `gatk` and `samtools` assume a diploid genome. 
