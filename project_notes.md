@@ -27,7 +27,7 @@ Other papers that might be of interest:
 	- [MIA](https://github.com/mpieva/mapping-iterative-assembler) assembly used, rCRS reference, 76bps reads, `QS < 10` in at most 2 bases, mean coverage of `76x`
 	- criteria for calling heteroplasmic positions
 		- `QS >= 20`
-		- `QS>= 15` at the 5bp flanking either side
+		- `QS >= 15` at the 5bp flanking either side
 		- MAF of `0.1`
 		- minor allele observed in atleast __two reads__ in each direction
 
