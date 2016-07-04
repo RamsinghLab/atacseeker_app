@@ -10,13 +10,14 @@ This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some info
 
 Katrina's talk
 - mentioned this [paper](http://onlinelibrary.wiley.com/doi/10.1002/bies.201500082/abstract) related to mitochondria.
-- mtDNA copy number / cell = 2 * (mtDNA average covearge) / (autosomal DNA average coverage ) 
+- `mtDNA copy number / cell = 2 * (mtDNA average covearge) / (autosomal DNA average coverage ) `
 
 Other papers that might be of interest:
-- [Quantitative assessment of mitochondrial DNA copies from whole genome sequencing](http://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-13-S7-S5)
-- [Accurate mitochondrial DNA sequencing using off-target reads provides a single test to identify pathogenic point mutations](http://www.nature.com/gim/journal/v16/n12/full/gim201466a.html)
-- [Mitochondrial DNA copy number variation across human cancers](https://elifesciences.org/content/5/e10769)
-- [Assessing Mitochondrial DNA Variation and Copy Number in Lymphocytes of ~2,000 Sardinians Using Tailored Sequencing Analysis Tools](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005306)
+- [2012 - Quantitative assessment of mitochondrial DNA copies from whole genome sequencing](http://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-13-S7-S5)
+- [2014 - Accurate mitochondrial DNA sequencing using off-target reads provides a single test to identify pathogenic point mutations](http://www.nature.com/gim/journal/v16/n12/full/gim201466a.html)
+- [2015 - Assessing Mitochondrial DNA Variation and Copy Number in Lymphocytes of ~2,000 Sardinians Using Tailored Sequencing Analysis Tools](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005306)
+- [2016 - Mitochondrial DNA copy number variation across human cancers](https://elifesciences.org/content/5/e10769)
+
 
 ### ATACseq mt-DNA ###
 
