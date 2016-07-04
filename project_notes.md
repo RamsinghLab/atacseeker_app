@@ -1,6 +1,6 @@
 # ATACseeker App #
 
-## mt-DNA Variant Calling ##
+## mtDNA Analysis ##
 
 ### mt-DNA Reference ###
 
@@ -8,6 +8,7 @@ This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some info
 
 ### Literature ###
 
+#### mtDNA copy number ####
 Katrina's talk
 - mentioned this [paper](http://onlinelibrary.wiley.com/doi/10.1002/bies.201500082/abstract) related to mitochondria.
 - `mtDNA copy number / cell = 2 * (mtDNA average covearge) / (autosomal DNA average coverage ) `
@@ -18,6 +19,17 @@ Other papers that might be of interest:
 - [2015 - Assessing Mitochondrial DNA Variation and Copy Number in Lymphocytes of ~2,000 Sardinians Using Tailored Sequencing Analysis Tools](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005306)
 - [2016 - Mitochondrial DNA copy number variation across human cancers](https://elifesciences.org/content/5/e10769)
 
+#### Heteroplasmy Detection ####
+
+- [2010 - Detecting heteroplasmy from NGS data - Li M, Stoneking M](http://www.cell.com/ajhg/abstract/S0002-9297(10)00370-8)
+	- pathogenic heteroplasmy levels are around `0.7-0.9`
+	- many non-disease related heteroplasmies have been discovered
+	- [MIA](https://github.com/mpieva/mapping-iterative-assembler) assembly used, rCRS reference, 76bps reads, `QS < 10` in at most 2 bases, mean coverage of `76x`
+	- criteria for calling heteroplasmic positions
+		- `QS >= 20`
+		- `QS>= 15` at the 5bp flanking either side
+		- MAF of `0.1`
+		- minor allele observed in atleast __two reads__ in each direction
 
 ### ATACseq mt-DNA ###
 
