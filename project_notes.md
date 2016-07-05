@@ -63,7 +63,8 @@ I think the pipeline I want to implement is:
 - Use [MITObim](https://github.com/chrishah/MITObim) or [MIA](https://github.com/mpieva/mapping-iterative-assembler) to make a consensus 
 - align reads using bwa against the consensus
 - use the heteroplasmy python script to detect heteroplasmies
-This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent. Also, I might want to see how I can take care of NUMTs.
+
+This, I think, should account for indels, use rCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent. Also, I might want to see how I can take care of NUMTs.
 
 ### ATACseq mtDNA ###
 
