@@ -30,7 +30,24 @@ Other papers that might be of interest:
 		- `QS >= 15` at the 5bp flanking either side
 		- MAF of `0.1`
 		- minor allele observed in atleast __two reads__ in each direction
-
+- [2012 - NGS of mtDNA uncovers high heteroplasmy](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002737)
+	- rCRS is 16,569 bp
+		- samll (6.8%) non-coding displacement loop (D-loop) or control region
+		- large (93.2%) coding region housing 37 genes 
+			- 22 tRNAs, 13 proteins and 2 rRNA that encode proteins critical to electron transport chain
+	- higher variability than nuclear genome
+	- hypervariability within the D-loop as compared to rest of mtGenome
+	- mtDNA haplogroups are markers of individual ancestry
+	- 100-1000 fold higher mutation rate in mtDNA as compared to nuclear genome is owing to the lack of DNA repair system
+	- 32% of intial reads were eliminated
+	- 120-fold level of sequence coverage
+	- 71 sites were found to be heteroplasmic across 40 samples of European and African ancestry
+	- 17/71 (29%) sites were validated by experiment but FP is not believed by authors
+	- Picardi and Pesole show that ~1% of all reads map to the mtgenome and not to known _numts_
+- [2012 - mtDNA gleaned from WES]()
+	- Higher level of heteroplasmy proposed from 1K genome data than that considered here
+	- This discrepancy is due to the lack of [NumtS](https://en.wikipedia.org/wiki/Numt) sequence filtering in the 1K Genomes study
+- [2013 - MITObim](http://nar.oxfordjournals.org/content/41/13/e129)
 
 I think the pipeline I want to implement is:
 - Use BWA Aligner to map reads to hg19RCRS reference
@@ -38,7 +55,7 @@ I think the pipeline I want to implement is:
 - Use [MITObim](https://github.com/chrishah/MITObim) or [MIA](https://github.com/mpieva/mapping-iterative-assembler) to make a consensus 
 - align reads using bwa against the consensus
 - use the heteroplasmy python script to detect heteroplasmies
-This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. 
+This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent.
 
 ### ATACseq mt-DNA ###
 
