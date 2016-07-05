@@ -61,7 +61,7 @@ tar czf ${work_dir}/processed_fastq.tar.gz ${work_dir}/processed_fastq
 
 
 GENOME_TYPE="chrRSRS" 
-OUT_BAM=${in_bam}".unique_q10minimum."$GENOME_TYPE".nodup.bam"
+OUT_BAM=${in_bam}".unique_q10minimum."$GENOME_TYPE".bam"
 SORTED=`basename $OUT_BAM .bam`.sorted
 DIR=`dirname $OUT_BAM`
 
