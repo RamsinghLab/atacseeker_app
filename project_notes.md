@@ -48,6 +48,14 @@ Other papers that might be of interest:
 	- Higher level of heteroplasmy proposed from 1K genome data than that considered here
 	- This discrepancy is due to the lack of [NumtS](https://en.wikipedia.org/wiki/Numt) sequence filtering in the 1K Genomes study
 - [2013 - MITObim](http://nar.oxfordjournals.org/content/41/13/e129)
+	- other tools [MIA](https://github.com/mpieva/mapping-iterative-assembler) and [IMAGE](https://sourceforge.net/projects/image2)
+	- pre-processing NGS data
+		- Error-correcting NGS read using [SOAPdenovo2](https://github.com/aquaskyline/SOAPdenovo2)
+		- quality trimming using [MIRA](http://sourceforge.net/projects/mira-assembler)
+		- [MITOS](http://mitos.bioinf.uni-leipzig.de/index.py) webserver was used for automated annotation of obtained mtDNA genomes
+- [2014 - MToolBox](http://www.ncbi.nlm.nih.gov/pubmed/25028726)
+	- [RSRS](http://www.cell.com/ajhg/abstract/S0002-9297(12)00146-2): Reconstructed Sapiens Reference Sequence
+	- [rCRS](http://www.nature.com/ng/journal/v23/n2/full/ng1099_147.html): revised Cambridge Reference Sequence
 
 I think the pipeline I want to implement is:
 - Use BWA Aligner to map reads to hg19RCRS reference
@@ -55,7 +63,7 @@ I think the pipeline I want to implement is:
 - Use [MITObim](https://github.com/chrishah/MITObim) or [MIA](https://github.com/mpieva/mapping-iterative-assembler) to make a consensus 
 - align reads using bwa against the consensus
 - use the heteroplasmy python script to detect heteroplasmies
-This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent.
+This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent. Also, I might want to see how I can take care of NUMTs.
 
 ### ATACseq mtDNA ###
 
