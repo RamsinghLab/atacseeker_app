@@ -57,7 +57,7 @@ I think the pipeline I want to implement is:
 - use the heteroplasmy python script to detect heteroplasmies
 This I think should account for indels, use RCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent.
 
-### ATACseq mt-DNA ###
+### ATACseq mtDNA ###
 
 Because in ATACseq a lot of the reads are biased for the mitochondrial DNA, it seems like an obvious thing to use ATACseq reads to call variants on mt-DNA. There are a few caveats though. The mt-DNA is haploid, inherited completely from the mother. However, most callers like `gatk` and `samtools` assume a diploid genome. 
 
