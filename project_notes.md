@@ -58,6 +58,20 @@ Other papers that might be of interest:
 	- [rCRS](http://www.nature.com/ng/journal/v23/n2/full/ng1099_147.html): revised Cambridge Reference Sequence
 	- Outputs `contigs.fa` and finds out haplogroup to investigate private variants that might be of clinical interest
 - [2016 - mtDNA heteroplasmy using ChIP-seq data](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0996-y)
+	- several identical mtDNA copies (2-10) are present in each individual mitochondrion, which means a single cell can contain hundreds to thousands of copies of mtDNA
+	- het detection filters
+		- `QS > 23`
+		- minimum coverage threshold of 20
+		- minimum heteroplasmy level of 0.15
+		- average coverage is 60 (SD 25)
+	- 79 individuals from 16 speicies
+		- 107 positions in 45 individuals across 14 species
+		- 57% of individuals express heteroplasmy
+		- 44 positions in intergenic regions, 39 in non-protein-coding genes, 24 in protein coding genes
+		- in protein coding gene changes, 13 are synonymous and 11 non synonymous varaints
+		- in humans, 5% of positions are associated with disease
+	- [MITOMAP](http://www.mitomap.org/MITOMAP) to check heteroplasmic positions for disease
+	- liver tisue has one of the highest relative number of heteroplasmies compared to other human tissue
 
 I think the pipeline I want to implement is:
 - Use BWA Aligner to map reads to hg19RCRS reference
