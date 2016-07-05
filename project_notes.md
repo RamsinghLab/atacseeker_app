@@ -56,6 +56,7 @@ Other papers that might be of interest:
 - [2014 - MToolBox](http://www.ncbi.nlm.nih.gov/pubmed/25028726)
 	- [RSRS](http://www.cell.com/ajhg/abstract/S0002-9297(12)00146-2): Reconstructed Sapiens Reference Sequence
 	- [rCRS](http://www.nature.com/ng/journal/v23/n2/full/ng1099_147.html): revised Cambridge Reference Sequence
+	- Outputs `contigs.fa` and finds out haplogroup to investigate private variants that might be of clinical interest
 
 I think the pipeline I want to implement is:
 - Use BWA Aligner to map reads to hg19RCRS reference
