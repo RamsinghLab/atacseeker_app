@@ -15,7 +15,7 @@ df2.columns = ["N-Species", "N-Individual", "Position", "N-Major", "N-Minor",
 
 df = pd.merge(df1, df2, on = "Position", how = "outer")
 df.fillna("-", inplace = True)
-
+df.sort_values("Position", inplace = True)
 df[["Position", "S-Major", "S-Minor", "S-Ratio", 
 	"N-Major", "N-Minor", "N-Ratio", 
 	"S-Coverage", "S-Bases", 
