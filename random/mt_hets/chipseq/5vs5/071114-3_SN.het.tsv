@@ -1,0 +1,6 @@
+Position	S-Major	S-Minor	S-Ratio	N-Major	N-Minor	N-Ratio	S-Coverage	S-Bases	N-Coverage	N-Bases
+523.0	C	A	0.245614035088	C	A	0.33333333333299997	57.0	defaultdict(<type 'int'>, {'a': 11, 'A': 3, 'c': 29, 'C': 14})	48.0	defaultdict(<type 'int'>, {'a': 10, 'A': 6, 'c': 23, 'C': 8, 'T': 1})
+6780.0	T	A	0.0125786163522	-	-	-	318.0	defaultdict(<type 'int'>, {'A': 2, 'a': 2, 't': 154, 'T': 160})	-	-
+1413.0	-	-	-	T	C	0.030701754386	-	-	228.0	defaultdict(<type 'int'>, {'A': 2, 'c': 3, 'C': 4, 'T': 125, 't': 94})
+3182.0	-	-	-	A	G	0.017667844523	-	-	283.0	defaultdict(<type 'int'>, {'a': 173, 'A': 105, 'g': 3, 'G': 2})
+15023.0	-	-	-	T	C	0.0267857142857	-	-	336.0	defaultdict(<type 'int'>, {'c': 5, 'C': 4, 't': 157, 'T': 170})
