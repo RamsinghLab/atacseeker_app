@@ -1,0 +1,3 @@
+Species,Individual,Position,Major allele,Minor allele,Ratio,Coverage,Bases
+0711,071114-3_S,523,C,A,0.245614035088,57,"defaultdict(<type 'int'>, {'a': 11, 'A': 3, 'c': 29, 'C': 14})"
+0711,071114-3_S,6780,T,A,0.0125786163522,318,"defaultdict(<type 'int'>, {'A': 2, 'a': 2, 't': 154, 'T': 160})"
