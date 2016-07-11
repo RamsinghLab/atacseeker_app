@@ -110,8 +110,8 @@ if (do_mtdNA_analysis){
     tmp <- mapply(dir.create, path = file.path(dump_dir, "mtDNA_assembly", samples), recursive = TRUE)
     chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
     chrM_command = paste("samtools view -F 4 -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
-    tmp <- mcmapply(system, command = chrM_command)
-    tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
+    tmp <- mapply(system, command = chrM_command)
+    tmp <- mapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
         file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
 
     cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
@@ -531,7 +531,8 @@ In addition, if requested, we also output the the coverage of the `bam` files in
 ```{r make_bw, echo = FALSE, comment=""}
 ## Generate BigWig files
 if (generate_BigWigs){
-    system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
+    dir.create(file.path(dump_dir, "BigWigs"), recursive = TRUE)
+    ## system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
     if (dedup){
         command = paste("bash bamToBigWig_dedup.sh", bam.files)
         tmp <- mcmapply(system, command = command)
@@ -539,7 +540,8 @@ if (generate_BigWigs){
         command = paste("bash bamToBigWig.sh", bam.files)
         tmp <- mapply(system, command = command)
     }
-    system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
+    file.copy(file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs"))
+    ## system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
     system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
 } else {
     cat("\tBigWig files were not requested")
@@ -587,7 +589,8 @@ if (do_motif_analysis){
         res <- motifEnrichment(seqs, PWMLogn.hg19.MotifDb.Hsap)
 
         saveRDS(res, file=file.path(dump_dir,"motifEnrichment.hg19.rds"))
-        system(paste0("mv ", file.path(dump_dir, "motifEnrichment.hg19.rds")," '", output_dir, "'"))
+        tmp <- file.copy(file.path(dump_dir, "motifEnrichment.hg19.rds"), output_dir)
+        ## system(paste0("mv ", file.path(dump_dir, "motifEnrichment.hg19.rds")," '", output_dir, "'"))
 
         # Top 10 motifs by enrichment
         kable(head(motifRankingForGroup(res), 10))
