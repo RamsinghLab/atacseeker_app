@@ -39,6 +39,9 @@ dump_dir = "/data/scratch"
 if(test){
     base_dir = "/Users/asifzubair/projects/atacseq_counts/data/output/appresults"
     dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
+    dedup = TRUE
+    mapQ = 10
+    win.width = 150
 }
 
 output_dir = file.path(base_dir, project_id, app_session_name)
@@ -113,7 +116,6 @@ if (do_mtdNA_analysis){
     tmp <- mapply(system, command = chrM_command)
     tmp <- mapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
         file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
-
     cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
     system(cmd3)
 }
@@ -173,8 +175,9 @@ if (compute_library_complexity){
     }
     tmp <- dev.off()
 
-    cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
-    system(cmd4)
+    ## cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
+    ## system(cmd4)
+    tmp <- file.copy(file.path(dump_dir, "library_complexity.pdf"), output_dir)
 } else {
     cat("\tLibrary complexity estimation was not requested")
 }
@@ -535,7 +538,7 @@ if (generate_BigWigs){
     ## system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
     if (dedup){
         command = paste("bash bamToBigWig_dedup.sh", bam.files)
-        tmp <- mcmapply(system, command = command)
+        tmp <- mapply(system, command = command)
     } else {
         command = paste("bash bamToBigWig.sh", bam.files)
         tmp <- mapply(system, command = command)
