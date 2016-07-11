@@ -42,8 +42,9 @@ if(test){
 }
 
 output_dir = file.path(base_dir, project_id, app_session_name)
-cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
-system(cmd1)
+## cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
+## system(cmd1)
+dir.create(output_dir, recursive = TRUE)
 if (!test)
     cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
         file = "atacseeker.sh", append=TRUE)  
@@ -70,7 +71,7 @@ for (f in seq(length(controlName))){
     bam.dmp = file.path(dump_dir, basename(bam.tmp))
 
     if (!test){
-        file.copy(bam.tmp, dump_dir)
+        tmp <- file.copy(bam.tmp, dump_dir)
         mcmapply(indexBam, bam.dmp)
     }
     
@@ -84,7 +85,7 @@ for (f in seq(length(compareName))){
     bam.dmp = file.path(dump_dir, basename(bam.tmp))
     
     if (!test){
-        file.copy(bam.tmp, dump_dir)
+        tmp <- file.copy(bam.tmp, dump_dir)
         mcmapply(indexBam, bam.dmp)
     }
 
@@ -103,12 +104,12 @@ mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```{r mtDNA_analysis, message=FALSE, warning=FALSE, echo=FALSE}
 ## Mitochondrial assembly
 if (do_mtdNA_analysis){
-    system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
-    command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
-    tmp <- mcmapply(system, command = command)
-
+    ## system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
+    dir.create(file.path(dump_dir, "mtDNA_assembly"), recursive = TRUE)
+    ## command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
+    tmp <- mapply(dir.create, path = file.path(dump_dir, "mtDNA_assembly", samples), recursive = TRUE)
     chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
-    chrM_command = paste("samtools view -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
+    chrM_command = paste("samtools view -F 4 -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
     tmp <- mcmapply(system, command = chrM_command)
     tmp <- mcmapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
         file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
@@ -184,9 +185,9 @@ if (compute_library_complexity){
 if (do_QC){ 
     par(mfrow = c(1,2), mar = mars)
 
-    command = paste("samtools view", bam.files, "| wc -l")
+    command = paste("samtools -F 4 view", bam.files, "| wc -l")
     counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
-    chrM_command = paste("samtools view", bam.files, "\"chrM\" | wc -l")
+    chrM_command = paste("samtools view -F 4 ", bam.files, "\"chrM\" | wc -l")
     chrM_counts = mcmapply(system, command = chrM_command, intern = rep(TRUE, num_samples))
     chrMvsOther = (strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
     names(chrMvsOther) <- samples
