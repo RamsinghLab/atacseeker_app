@@ -24,6 +24,8 @@ library(rtracklayer)
 
 ## Github package
 library(ATACseeker)
+
+source("atacseeker.R")
 ```
 
 ```{r setup_out_scratch, message=FALSE, warning=FALSE, echo=FALSE}
@@ -68,8 +70,8 @@ for (f in seq(length(controlName))){
     bam.dmp = file.path(dump_dir, basename(bam.tmp))
 
     if (!test){
-        mcmapply(system, command = paste("cp", bam.tmp, dump_dir))
-        mcmapply(system, command = paste("samtools index", bam.dmp))
+        file.copy(bam.tmp, dump_dir)
+        mcmapply(indexBam, bam.dmp)
     }
     
     control.files = c(control.files, bam.dmp)
@@ -82,8 +84,8 @@ for (f in seq(length(compareName))){
     bam.dmp = file.path(dump_dir, basename(bam.tmp))
     
     if (!test){
-        mcmapply(system, command = paste("cp", bam.tmp, dump_dir))
-        mcmapply(system, command = paste("samtools index", bam.dmp))
+        file.copy(bam.tmp, dump_dir)
+        mcmapply(indexBam, bam.dmp)
     }
 
     compare.files = c(compare.files, bam.dmp)
@@ -219,7 +221,6 @@ if (do_QC){
 If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
 ```{r pe_metrics, echo=FALSE, fig.width=20, fig.height=10}
-source("atacseeker.R")
 if (do_QC){ 
     if(testPairedEndBam(bam.files[1])){
 
