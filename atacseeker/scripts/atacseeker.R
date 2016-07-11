@@ -8,7 +8,7 @@
 ## copy folder with files
 dir.copy <- function(folder, to){
     dir.create(file.path(to, folder), recursive = TRUE)
-    fs = list.files("folder")
+    fs = list.files(folder)
     file.copy(fs, file.path(to, folder))
 }
 
