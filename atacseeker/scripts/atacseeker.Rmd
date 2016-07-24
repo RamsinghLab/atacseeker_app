@@ -5,7 +5,11 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
 
-```{r load_library, message=FALSE, warning=FALSE, echo=FALSE}
+```{r, include = False, echo = False}
+knitr::opts_chunks$set(echo = F, warning = F, message = F, comment = "")
+```
+
+```{r load_library}
 ## CRAN
 library(Gviz)
 library(knitr)
@@ -28,7 +32,7 @@ library(ATACseeker)
 source("atacseeker.R")
 ```
 
-```{r setup_out_scratch, message=FALSE, warning=FALSE, echo=FALSE}
+```{r setup_out_scratch}
 ## Defining Output and Scratch directories.
 test = TRUE
 
@@ -39,14 +43,12 @@ dump_dir = "/data/scratch"
 if(test){
     base_dir = "/Users/asifzubair/projects/atacseq_counts/data/output/appresults"
     dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
-    dedup = TRUE
-    mapQ = 10
-    win.width = 150
+ ##   dedup = TRUE
+ ##   mapQ = 10
+ ##   win.width = 150
 }
 
 output_dir = file.path(base_dir, project_id, app_session_name)
-## cmd1 = paste0("mkdir -p ", "'", output_dir, "'")
-## system(cmd1)
 dir.create(output_dir, recursive = TRUE)
 if (!test)
     cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
@@ -55,7 +57,7 @@ if (!test)
 cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
 ```
 
-```{r setup_var_input, message=FALSE, warning=FALSE, echo = FALSE}
+```{r setup_var_input}
 ## Setting up Control and Compare variables and Input directory.
 control.label = control
 compare.label = comparison
@@ -104,20 +106,25 @@ margin = max(sapply(samples, nchar))
 mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```
 
-```{r mtDNA_analysis, message=FALSE, warning=FALSE, echo=FALSE}
+```{r mtDNA_analysis}
 ## Mitochondrial assembly
 if (do_mtdNA_analysis){
-    ## system(paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly")))
     dir.create(file.path(dump_dir, "mtDNA_assembly"), recursive = TRUE)
-    ## command = paste("mkdir -p", file.path(dump_dir, "mtDNA_assembly", samples))
     tmp <- mapply(dir.create, path = file.path(dump_dir, "mtDNA_assembly", samples), recursive = TRUE)
+
     chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
     chrM_command = paste("samtools view -F 4 -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
-    tmp <- mapply(system, command = chrM_command)
-    tmp <- mapply(system, command = paste("bash assembleMTgenome.sh", chrM.files, ">", 
-        file.path(dump_dir, "mtDNA_assembly", samples, "mtDNA_analysis.log 2>&1")))
-    cmd3 = paste0("mv ", file.path(dump_dir, "mtDNA_assembly")," '", output_dir, "'")
-    system(cmd3)
+
+    for i in seq(num_samples){
+        cat("samtools view -F 4 -h", bam.files[i], "\"chrM\" | samtools view -Sb - >", chrM.files[i], "\n",
+            file = "atacseeker.sh", append = TRUE)
+        cat("bash assemblyMTgenome.sh", chrM.files[i], ">", 
+            file.path(dump_dir[i], "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1", "\n",
+            file = "atacseeker.sh", append = TRUE)
+    }
+
+    cat(paste0("mv ", file.path(dump_dir, "mtDNA_assembly"), " '", output_dir, "'\n"),
+        file = "attacseeker.sh", append = TRUE)
 }
 ```
 
@@ -131,7 +138,7 @@ QC metrics for the aligned reads are also computed and displayed. Fragment size 
 
 The design matrix used for the two-sample comparison is provided below.
 
-```{r design, echo=FALSE}
+```{r design}
 treatment = c(rep("N", length(control)), rep("Y",length(compare)))
 design <- model.matrix(~treatment) 
 colnames(design) <- c("Intercept", compare.label)
@@ -139,7 +146,7 @@ rownames(design) <- samples
 kable(design, caption = "Design Matrix")
 ```
 
-```{r read_param, echo=FALSE, message=FALSE, warning=FALSE}
+```{r read_param}
 ## make sure the blacklist is for the same reference which was used for the alignment.
 blacklist <- import("wgEncodeDacMapabilityConsensusExcludable.hg19.bed.gz", genome="hg19")
 chroms <- paste0("chr", c(seq(22), "X", "Y"))
@@ -150,7 +157,7 @@ discard.se.param <- readParam(pe = "none", restrict = chroms, discard = blacklis
 
 We use <a href="https://cran.r-project.org/web/packages/preseqR/index.html" target="_blank"> preseqR </a> to estimate library complexity. Library complexity gives an idea of how many unique moelcules have been caputured. 
 
-```{r lib_complexity, message=FALSE, echo=FALSE, comment=""}
+```{r lib_complexity}
 if (compute_library_complexity){
     firstBp <- 1
     lastBp <- 249250621
@@ -173,18 +180,17 @@ if (compute_library_complexity){
         possibleError <- tryCatch(plot_complexity(chr1_5primeCuts[[i]], i), error=function(e) e)
         if(inherits(possibleError, "error")) next
     }
-    tmp <- dev.off()
 
-    ## cmd4 = paste0("mv ", file.path(dump_dir, "library_complexity.pdf")," '", output_dir, "'")
-    ## system(cmd4)
+    tmp <- dev.off()
     tmp <- file.copy(file.path(dump_dir, "library_complexity.pdf"), output_dir)
+
 } else {
     cat("\tLibrary complexity estimation was not requested")
 }
 ```
 
 
-```{r chrM_tssVsNontss, echo=FALSE, message=FALSE, warning=FALSE}
+```{r chrM_tssVsNontss}
 if (do_QC){ 
     par(mfrow = c(1,2), mar = mars)
 
@@ -224,7 +230,7 @@ if (do_QC){
 
 If the input data is __paired-end__, fragment sizes in the control and comparison samples are plotted using csaw's `getPESizes` function. Some diagnostic metrics are also shown to assess data quality.  
 
-```{r pe_metrics, echo=FALSE, fig.width=20, fig.height=10}
+```{r pe_metrics, fig.width=20, fig.height=10}
 if (do_QC){ 
     if(testPairedEndBam(bam.files[1])){
 
@@ -268,7 +274,7 @@ if (do_QC){
 
 <!-- TODO: Add description for cross correlation plot -->
 
-```{r cross_corr, echo=FALSE}
+```{r cross_corr}
 if (do_QC){ 
     # one plot-per-window
     par(mfrow=c(1,1))
@@ -282,7 +288,7 @@ if (do_QC){
 
 Coverage plot for choosing window size:
 
-```{r cov_plot, echo=FALSE}
+```{r cov_plot}
 if (do_QC){ 
     collected <- list()
 
@@ -317,7 +323,7 @@ if (do_QC){
 
 Read extraction parameters:
 
-```{r read_extraction, echo=FALSE, comment=""}
+```{r read_extraction}
 discard.se.param
 window.width <- win.width
 data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
@@ -329,7 +335,7 @@ cat(paste("\tWindow width for counting reads is", window.width))
 
 Keep only high abundance regions relative to a  global background.
 
-```{r filter_global, echo=FALSE}
+```{r filter_global}
 filter.stat <- filterWindows(data, background=binned, type="global")
 keep <- filter.stat$filter > log2(3)
 
@@ -369,7 +375,7 @@ legend("topright", legend="filtered", fill=T, angle=45, density = 15, bty="n", c
 
 We account for composition bias.
 
-```{r normalization, echo=FALSE}
+```{r normalization}
 par(mar = mars)
 Norm.factors <- normOffsets(binned)
 ylim = 1.1*max(as.vector(Norm.factors))
@@ -382,7 +388,7 @@ barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors"
 
 Let's see how the samples are clustered:
 
-```{r cluster, echo=FALSE}
+```{r cluster}
 ## binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
 bin.adjc <- cpm(asDGEList(binned), log=TRUE)
 color = c(rep("blue", length(control)), rep("red",length(compare)))
@@ -410,7 +416,7 @@ kable(as.data.frame(topTags(results)), caption="Top Tags", row.names = FALSE)
 Closely clustered windows are merged together to generate region-level FDR. 
 
 The distribution of region widths post-merging:
-```{r multiple_test, echo=FALSE, comment=""}
+```{r multiple_test}
 merged <- mergeWindows(rowRanges(filtered.data), tol=100, max.width=5000)
 ## kable(merged$region, caption="Merged regions")
 summary(width(merged$region))
@@ -442,7 +448,7 @@ score(diffAccRanges) <- -1 * log10(diffAccRanges$PValue)
 ```
 
 We visualize the most significantly differentially accessible region. The region details are also output.
-```{r plot_region, echo=FALSE, comment=""}
+```{r plot_region}
 accessByScore <- diffAccRanges[rev(order(diffAccRanges$score))]
 if (sum(is.sig) > 0)
     kable(as.data.frame(accessByScore[1]))
@@ -484,7 +490,7 @@ The annotation is performed using the `detailRanges` function of `csaw`. The fun
 
 Features in flanking regions of the region of interest are also reported. These features are formatted with the same scheme as above except with an extra `[DISTANCE]` field, which represents the distance between the feature and the region of interest. Only those flanking features which are within 5kbp of each region are considered.
 
-```{r mem_clean_up_one, echo=FALSE, message=FALSE, warning=FALSE}
+```{r mem_clean_up_one}
 rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
@@ -492,7 +498,7 @@ rm(list=setdiff(ls(),
 cleanMem()
 ```
 
-```{r export_files, echo=FALSE, message=FALSE, warning=FALSE}
+```{r export_files}
 # Output sites as a BED file (post-FDR-correction) 
 export(diffAccRanges[diffAccRanges$logFC.up > 0,], file.path(dump_dir, "diffAccRanges.logFC.UP.hg19.bed"))
 export(diffAccRanges[diffAccRanges$logFC.down > 0,], file.path(dump_dir, "diffAccRanges.logFC.DOWN.hg19.bed"))
@@ -510,18 +516,18 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
 cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.UP.hg19.bed"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
+    file = "atacseeker.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.DOWN.hg19.bed"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
+    file = "atacseeker.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
+    file = "atacseeker.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
+    file = "atacseeker.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)    
+    file = "atacseeker.sh", append = TRUE)    
 ```
 
-```{r mem_clean_up_two, echo=FALSE, message=FALSE, warning=FALSE}
+```{r mem_clean_up_two}
 rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
@@ -531,21 +537,27 @@ cleanMem()
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
 
-```{r make_bw, echo = FALSE, comment=""}
+```{r make_bw}
 ## Generate BigWig files
 if (generate_BigWigs){
     dir.create(file.path(dump_dir, "BigWigs"), recursive = TRUE)
-    ## system(paste("mkdir -p", file.path(dump_dir, "BigWigs")))
+
     if (dedup){
-        command = paste("bash bamToBigWig_dedup.sh", bam.files)
-        tmp <- mapply(system, command = command)
+##        command = paste("bash bamToBigWig_dedup.sh", bam.files)
+##        tmp <- mapply(system, command = command)
+        cat("parallel bash bamToBigWig_dedup.sh {1} ::", bam.files, "\n",
+            file = "atacseeker.sh", append = TRUE))
+
     } else {
         command = paste("bash bamToBigWig.sh", bam.files)
         tmp <- mapply(system, command = command)
+        cat("parallel bash bamToBigWig.sh {1} ::", bam.files, "\n",
+            file = "atacseeker.sh", append = TRUE)
     }
+
     file.copy(file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs"))
-    ## system(paste("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs")))
-    system(paste0("mv ", file.path(dump_dir, "BigWigs")," '", output_dir, "'"))
+    cat(paste0("mv ", file.path(dump_dir, "BigWigs"), " '", output_dir, "'\n"),
+        file = "atacseeker.sh", append = TRUE)
 } else {
     cat("\tBigWig files were not requested")
 }
@@ -553,7 +565,7 @@ if (generate_BigWigs){
 
 <!-- TODO: implement LOLA -->
 
-```{r lola, eval=FALSE, echo=FALSE}
+```{r lola, eval=FALSE}
 # NOTE: This chunk is NOT evaluated.
 # run LOLA? Yes!
 dbPath <- system.file("extdata", "hg19", package="LOLA")
@@ -563,7 +575,6 @@ data("sample_universe", package="LOLA") # load userUniverse
 if (FALSE) show(userUniverse)
 locResults <- runLOLA(diffAccRanges, userUniverse, regionDB, cores=1)
 kable(locResults[order(qValue),]) # this is just a demo, fix for app
-
 if(FALSE) {
   # for later
   CTCFsites <- import("ubiquitousCTCFsites.hg19.bed")
@@ -576,7 +587,7 @@ if(FALSE) {
 
 ## Motif Enrichment ##
 
-```{r pwm, echo=FALSE, message=FALSE, warning=FALSE, comment=""}
+```{r pwm}
 # Motif enrichment (PWM-based, will re-use this for differential ChIP-seq app)
 if (do_motif_analysis){ 
     if (sum(is.sig) > 0){
@@ -593,7 +604,6 @@ if (do_motif_analysis){
 
         saveRDS(res, file=file.path(dump_dir,"motifEnrichment.hg19.rds"))
         tmp <- file.copy(file.path(dump_dir, "motifEnrichment.hg19.rds"), output_dir)
-        ## system(paste0("mv ", file.path(dump_dir, "motifEnrichment.hg19.rds")," '", output_dir, "'"))
 
         # Top 10 motifs by enrichment
         kable(head(motifRankingForGroup(res), 10))
@@ -607,13 +617,13 @@ if (do_motif_analysis){
 
 ## Session Info ##
 
-```{r sess_info, echo=FALSE, comment=""}
+```{r sess_info}
 # Dump session info for versioning, debugging, CITATIONS (!), etc.
 sessionInfo()
 ```
 
 ## References ##
-```{r references, echo=FALSE, comment="", warning=FALSE}
+```{r references}
 # Explicitly remind user: cite us and/or the various components of the pipeline!
 message("Please do not forget to appropriately cite this work.")
 citation("ATACseeker")
