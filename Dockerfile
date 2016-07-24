@@ -45,7 +45,8 @@ RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp && \
     rm -rf /tmp/rstudio*
 
 ## Install samtools v < 1.0
-RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
-RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp
-RUN cp /tmp/rstudio-0.99.486/samtools /usr/local/bin
-RUN rm -rf /tmp/rstudio*
+RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+RUN tar -zxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
+    cp /tmp/samtools-0.1.19 /usr/local/bin && \
+    cd /tmp/samtools-0.1.19 && make && make install && \
+    rm -rf /tmp/samtools-0.1.19.tar.bz2
