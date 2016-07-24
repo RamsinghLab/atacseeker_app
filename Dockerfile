@@ -40,9 +40,9 @@ RUN cp /tmp/bedGraphToBigWig /usr/local/bin
 ## Required for rmarkdown
 ## RStudio is removed once pandoc has been copied to bin
 RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
-RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp
-RUN cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin
-RUN rm -rf /tmp/rstudio*
+RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp && \
+    cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin && \
+    rm -rf /tmp/rstudio*
 
 ## Install samtools v < 1.0
 RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
