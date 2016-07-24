@@ -509,9 +509,7 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
-cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.UP.hg19.bed"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
-cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.DOWN.hg19.bed"), " '", output_dir, "'\n"), 
+cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.*.hg19.bed"), " '", output_dir, "'\n"), 
     file = "atacseeker.sh", append=TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'\n"), 
     file = "atacseeker.sh", append=TRUE)
