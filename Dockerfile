@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     libssh2-1-dev \
     libssl-dev \
     libxml2-dev \
+    parallel \
     python \
     r-base \
     r-base-dev \
