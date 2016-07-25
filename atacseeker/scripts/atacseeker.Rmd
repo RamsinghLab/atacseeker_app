@@ -11,7 +11,6 @@ knitr::opts_chunks$set(echo = F, warning = F, message = F, comment = "")
 
 ```{r load_library}
 ## CRAN
-library(Gviz)
 library(knitr)
 library(locfit)
 library(parallel)
@@ -21,6 +20,7 @@ library(statmod)
 ## Bioconductor packages
 library(csaw) 
 library(edgeR)
+library(Gviz)
 library(Homo.sapiens)
 library(LOLA) 
 library(Rsamtools)
@@ -34,7 +34,7 @@ source("atacseeker.R")
 
 ```{r setup_out_scratch}
 ## Defining Output and Scratch directories.
-test = TRUE
+test = FALSE
 
 source("parse_AppSession.R")
 app_session_name = gsub('/','-', app_session_name)
@@ -115,16 +115,16 @@ if (do_mtdNA_analysis){
     chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
     chrM_command = paste("samtools view -F 4 -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
 
-    for i in seq(num_samples){
+    for (i in seq(num_samples)){
         cat("samtools view -F 4 -h", bam.files[i], "\"chrM\" | samtools view -Sb - >", chrM.files[i], "\n",
             file = "atacseeker.sh", append = TRUE)
         cat("bash assemblyMTgenome.sh", chrM.files[i], ">", 
-            file.path(dump_dir[i], "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1", "\n",
+            file.path(dump_dir, "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1"), "\n",
             file = "atacseeker.sh", append = TRUE)
     }
 
     cat(paste0("mv ", file.path(dump_dir, "mtDNA_assembly"), " '", output_dir, "'\n"),
-        file = "attacseeker.sh", append = TRUE)
+        file = "atacseeker.sh", append = TRUE)
 }
 ```
 
@@ -162,11 +162,7 @@ if (compute_library_complexity){
     firstBp <- 1
     lastBp <- 249250621
     chr1_5primeCuts <- lapply(bam.files, function(BAM) 
-                              resize(extractReads(bam.file=BAM,
-                                                  region=GRanges("chr1", 
-                                                                 IRanges(firstBp,
-                                                                         lastBp))),
-                                1, fix="start"))
+            resize(extractReads(bam.file=BAM, region=GRanges("chr1", IRanges(firstBp, lastBp))), 1, fix="start"))
 
     plot_complexity <- function(fivePrimeCuts, ii){
         ests <- getEsts(fivePrimeCuts)
@@ -183,7 +179,6 @@ if (compute_library_complexity){
 
     tmp <- dev.off()
     tmp <- file.copy(file.path(dump_dir, "library_complexity.pdf"), output_dir)
-
 } else {
     cat("\tLibrary complexity estimation was not requested")
 }
@@ -194,10 +189,10 @@ if (compute_library_complexity){
 if (do_QC){ 
     par(mfrow = c(1,2), mar = mars)
 
-    command = paste("samtools -F 4 view", bam.files, "| wc -l")
-    counts = mcmapply(system, command = command, intern = rep(TRUE, num_samples))
-    chrM_command = paste("samtools view -F 4 ", bam.files, "\"chrM\" | wc -l")
-    chrM_counts = mcmapply(system, command = chrM_command, intern = rep(TRUE, num_samples))
+    command = paste("samtools view -F 4", bam.files, "| wc -l")
+    counts = mcmapply(system, command = command, intern = TRUE)
+    chrM_command = paste("samtools view -F 4", bam.files, "\"chrM\" | wc -l")
+    chrM_counts = mcmapply(system, command = chrM_command, intern = TRUE)
     chrMvsOther = (strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
     names(chrMvsOther) <- samples
     ylim = 1.1*max(chrMvsOther)
@@ -339,22 +334,16 @@ Keep only high abundance regions relative to a  global background.
 filter.stat <- filterWindows(data, background=binned, type="global")
 keep <- filter.stat$filter > log2(3)
 
-# hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=100, main="", 
-# xlim=c(min(filter.stat$back.abundances), 0))
 hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=50, main="")
+# xlim=c(min(filter.stat$back.abundances), 0))
 global.bg <- filter.stat$abundances - filter.stat$filter
 abline(v=global.bg[1], col="red", lwd=2)
 abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
 raw = colSums(assays(data)$counts)
-#kable(as.data.frame(raw, row.name=samples), 
-#    caption="Total number of reads in each library", col.names = "total reads")
-
 filtered.data <- data[keep,]
 filtered = colSums(assays(filtered.data)$counts)
-#kable(as.data.frame(filtered, row.name=samples), 
-#    caption="Total number of reads post filtering.", col.names = "total reads")
 
 par(mar = mars)
 m = as.matrix(rbind(raw, filtered))
@@ -364,10 +353,6 @@ barplot(m, beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*len
     main = "Window counts")
 barplot(m, add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,15), 
     cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3)
-# legend("topright", legend=letters[1:4], ncol=2, 
-#   fill=c("blue", "blue", "red", "red"), bty="n", cex=1.15)
-# legend("topright", legend=letters[1:4], ncol=2, 
-#   fill=c("blue", "black", "red", "black"), angle =45, density = c(0,15), bty="n", cex=1.15)
 legend("topright", legend="filtered", fill=T, angle=45, density = 15, bty="n", cex=1.25)
 ```
 
@@ -540,23 +525,19 @@ if (generate_BigWigs){
     dir.create(file.path(dump_dir, "BigWigs"), recursive = TRUE)
 
     if (dedup){
-##        command = paste("bash bamToBigWig_dedup.sh", bam.files)
-##        tmp <- mapply(system, command = command)
         cat("parallel bash bamToBigWig_dedup.sh {1} ::", bam.files, "\n",
-            file = "atacseeker.sh", append = TRUE))
-
+            file = "atacseeker.sh", append = TRUE)
     } else {
-        command = paste("bash bamToBigWig.sh", bam.files)
-        tmp <- mapply(system, command = command)
         cat("parallel bash bamToBigWig.sh {1} ::", bam.files, "\n",
             file = "atacseeker.sh", append = TRUE)
     }
 
-    file.copy(file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs"))
+    cat("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs"), "\n",
+        file = "atacseeker.sh", append = TRUE)
     cat(paste0("mv ", file.path(dump_dir, "BigWigs"), " '", output_dir, "'\n"),
         file = "atacseeker.sh", append = TRUE)
 } else {
-    cat("\tBigWig files were not requested")
+    cat("\tBigWig files were not requested")   
 }
 ```
 
