@@ -25,11 +25,11 @@ RUN apt-get update && apt-get install -y --force-yes \
     zlib1g-dev
 
 ## Make ATACseeker directory. 
-RUN mkdir -p /atacseeker
+RUN mkdir -p /atacseeker/scripts /atacseeker/reference
 
 ## Copy scripts & reference to atacseeker folder
-COPY atacseeker/scripts /atacseeker 
-COPY atacseeker/reference /atacseeker
+COPY atacseeker/scripts /atacseeker/scripts 
+COPY atacseeker/reference /atacseeker/reference
 
 ## Install R packages 
 RUN Rscript /atacseeker/scripts/install_packages.R
@@ -38,16 +38,16 @@ RUN Rscript /atacseeker/scripts/install_packages.R
 RUN wget --directory-prefix=/tmp http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig
 RUN cp /tmp/bedGraphToBigWig /usr/local/bin
 
+## Install samtools v.<1.0
+RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+RUN tar -zxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
+    cd /tmp/samtools-0.1.19 && make && \
+    cp /tmp/samtools-0.1.19/samtools /usr/local/bin && \
+    rm -rf /tmp/samtools-0.1.19.tar.bz2
+
 ## Install RStudio for pandoc libraries, required for rmarkdown
 ## RStudio is removed once pandoc has been copied to bin
 RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-amd64-debian.tar.gz
 RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp && \
     cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin && \
     rm -rf /tmp/rstudio*
-
-## Install samtools v < 1.0
-RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
-RUN tar -zxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
-    cd /tmp/samtools-0.1.19 && make && \
-    cp /tmp/samtools-0.1.19/samtools /usr/local/bin && \
-    rm -rf /tmp/samtools-0.1.19.tar.bz2
