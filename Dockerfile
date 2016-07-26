@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     zlib1g-dev
 
 ## Make ATACseeker directory. 
-RUN mkdir -p /atacseeker/scripts /atacseeker/reference
+RUN mkdir /atacseeker
 
 ## Copy scripts & reference to atacseeker folder
 COPY atacseeker/scripts /atacseeker/scripts 
@@ -40,7 +40,7 @@ RUN cp /tmp/bedGraphToBigWig /usr/local/bin
 
 ## Install samtools v.<1.0
 RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
-RUN tar -zxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
+RUN tar -jxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
     cd /tmp/samtools-0.1.19 && make && \
     cp /tmp/samtools-0.1.19/samtools /usr/local/bin && \
     rm -rf /tmp/samtools-0.1.19.tar.bz2
