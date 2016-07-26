@@ -36,7 +36,8 @@ RUN Rscript /atacseeker/scripts/install_packages.R
 
 ## Install bedGraphToBigWig
 RUN wget --directory-prefix=/tmp http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig
-RUN cp /tmp/bedGraphToBigWig /usr/local/bin
+RUN cp /tmp/bedGraphToBigWig /usr/local/bin && \
+    chmod +x /usr/local/bin/bedGraphToBigWig
 
 ## Install samtools v.<1.0
 RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
