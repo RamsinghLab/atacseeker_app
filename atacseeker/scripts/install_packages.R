@@ -18,7 +18,7 @@ install.packages(c("devtools", "knitr", "locfit", "preseqR",
 
 ## Bioconductor packages
 source("https://bioconductor.org/biocLite.R")
-biocLite(pkgs=c("BSgenome.Hsapiens.UCSC.hg19", "csaw", "edgeR", "Homo.sapiens", 
+biocLite(pkgs=c("BSgenome.Hsapiens.UCSC.hg19", "csaw", "edgeR", "Gviz", "Homo.sapiens", 
     "LOLA", "PWMEnrich", "PWMEnrich.Hsapiens.background", "Rsamtools", "rtracklayer"))
 
 ## Github package
