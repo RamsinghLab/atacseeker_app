@@ -522,9 +522,9 @@ cat(paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output_di
 ```{r mem_clean_up_two}
 system("free -h")
 rm(list=setdiff(ls(),
-    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
-    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
-    "is.sig", "diffAccRanges")))
+    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem", "collectGarbage"
+    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", "is.sig", 
+    "diffAccRanges")))
 cleanMem()
 collectGarbage()
 system("free -h")
