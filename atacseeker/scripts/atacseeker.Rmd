@@ -525,10 +525,10 @@ if (generate_BigWigs){
     dir.create(file.path(dump_dir, "BigWigs"), recursive = TRUE)
 
     if (dedup){
-        cat("parallel bash bamToBigWig_dedup.sh {1} :::", bam.files, "\n",
+        cat("parallel -j4 bash bamToBigWig_dedup.sh {1} :::", bam.files, "\n",
             file = "atacseeker.sh", append = TRUE)
     } else {
-        cat("parallel bash bamToBigWig.sh {1} :::", bam.files, "\n",
+        cat("parallel -j4 bash bamToBigWig.sh {1} :::", bam.files, "\n",
             file = "atacseeker.sh", append = TRUE)
     }
 
