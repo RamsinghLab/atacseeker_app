@@ -55,7 +55,7 @@ if (!test)
         file = "atacseeker.sh", append=TRUE)  
 
 cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
-collectGarbage <- 
+collectGarbage <- function() {while (gc()[2,4] != gc()[2,4] | gc()[1,4] != gc()[1,4]){}}
 ```
 
 ```{r setup_var_input}
