@@ -66,45 +66,42 @@ control.label = control
 compare.label = comparison
 control = controlName
 compare = compareName
+samples = c(control, compare)
+num_control = length(control)
+num_compare = length(compare)
+num_samples = length(samples)
 
 base_dir = "/data/input/appresults"
 if(test){
     base_dir = "/Users/asifzubair/projects/atacseq_counts/data/input/appresults"
 }
 
-control.files = c()
-for (f in seq(length(controlName))){
-    fastq_dir = file.path(base_dir, controlID[f])
-    bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
-    bam.dmp = file.path(dump_dir, basename(bam.tmp))
-
-    if (!test){
-        tmp <- file.copy(bam.tmp, dump_dir)
-        mcmapply(indexBam, bam.dmp)
+get_bams <- function(IDs, bam_names){
+    group.in = c()
+    group.files = c()
+    for (f in seq(length(bam_names))){
+        fastq_dir = file.path(base_dir, IDs[f])
+        bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
+        bam.dmp = file.path(dump_dir, basename(bam.tmp))
+        group.in = c(group.in, bam.tmp)
+        group.files = c(group.files, bam.dmp)
     }
-    
-    control.files = c(control.files, bam.dmp)
+    return(list(group.in = group.in, group.files = group.files)
 }
 
-compare.files = c()
-for (f in seq(length(compareName))){
-    fastq_dir = file.path(base_dir, compareID[f])
-    bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
-    bam.dmp = file.path(dump_dir, basename(bam.tmp))
-    
-    if (!test){
-        tmp <- file.copy(bam.tmp, dump_dir)
-        mcmapply(indexBam, bam.dmp)
-    }
-
-    compare.files = c(compare.files, bam.dmp)
-}
-
-samples = c(control, compare)
-num_control = length(control)
-num_compare = length(compare)
-num_samples = length(samples)
+tmp <- get_bams(controlID, controlName)
+control.in = tmp$group.in
+control.files = tmp$group.files
+tmp <- get_bams(compareID, compareName)
+compare.in = tmp$group.in
+compare.files = tmp$group.files
+bam.in = c(control.in, compare.in)
 bam.files = c(control.files, compare.files)
+if (!test){
+    tmp <- mcmapply(file.copy, bam.in, bam.files)
+    mcmapply(indexBam, bam.files)
+}
+
 margin = max(sapply(samples, nchar))
 mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```
