@@ -191,9 +191,9 @@ if (do_QC){
     par(mfrow = c(1,2), mar = mars)
 
     command = paste("samtools view -F 4", bam.files, "| wc -l")
-    counts = mcmapply(system, command = command, intern = TRUE)
+    counts = mapply(system, command = command, intern = TRUE)
     chrM_command = paste("samtools view -F 4", bam.files, "\"chrM\" | wc -l")
-    chrM_counts = mcmapply(system, command = chrM_command, intern = TRUE)
+    chrM_counts = mapply(system, command = chrM_command, intern = TRUE)
     chrMvsOther = (strtoi(as.vector(chrM_counts))) / strtoi(as.vector(counts)) 
     names(chrMvsOther) <- samples
     ylim = 1.1*max(chrMvsOther)
