@@ -317,8 +317,8 @@ if (do_QC){
 
 ```{r mem_clean_up_zero}
 if (do_QC){
-    rm(list = c("chr1_5primeCuts", "collected", "combinedQC", "compareQC", "controlQC", "maxed", 
-        "nonTSS.bamCounts", "nonTssWindows", "rwsms", "TSS.bamCounts", "tssWindows", "wincounts", "windowed", "x"))
+    rm(list = c("chr1_5primeCuts", "collected", "combinedQC", "compareQC", "controlQC", "maxed", "x", 
+    "nonTSS.bamCounts", "nonTssWindows", "rwsms", "TSS.bamCounts", "tssWindows", "wincounts", "windowed"))
 }
 cleanMem()
 collectGarbage()
