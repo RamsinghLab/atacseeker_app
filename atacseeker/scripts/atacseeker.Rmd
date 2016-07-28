@@ -29,16 +29,17 @@ library(rtracklayer)
 ## Github package
 library(ATACseeker)
 
+## Helper scripts
 source("atacseeker.R")
+source("parse_AppSession.R")
 ```
 
 ```{r setup_out_scratch}
 system("ulimit")
 system("free")
 ## Defining Output and Scratch directories.
-test = F
+test = T
 
-source("parse_AppSession.R")
 app_session_name = gsub('/','-', app_session_name)
 base_dir = "/data/output/appresults"
 dump_dir = "/data/scratch"
@@ -55,10 +56,8 @@ dir.create(output_dir, recursive = TRUE)
 if (!test)
     cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
         file = "atacseeker.sh", append=TRUE)  
-
-cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
-collectGarbage <- function() {while (gc()[2,4] != gc()[2,4] | gc()[1,4] != gc()[1,4]){}}
 ```
+
 
 ```{r setup_var_input}
 ## Setting up Control and Compare variables and Input directory.
@@ -76,19 +75,6 @@ if(test){
     base_dir = "/Users/asifzubair/projects/atacseq_counts/data/input/appresults"
 }
 
-get_bams <- function(IDs, bam_names){
-    group.in = c()
-    group.files = c()
-    for (f in seq(length(bam_names))){
-        fastq_dir = file.path(base_dir, IDs[f])
-        bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
-        bam.dmp = file.path(dump_dir, basename(bam.tmp))
-        group.in = c(group.in, bam.tmp)
-        group.files = c(group.files, bam.dmp)
-    }
-    return(list(group.in = group.in, group.files = group.files)
-}
-
 tmp <- get_bams(controlID, controlName)
 control.in = tmp$group.in
 control.files = tmp$group.files
@@ -99,7 +85,7 @@ bam.in = c(control.in, compare.in)
 bam.files = c(control.files, compare.files)
 if (!test){
     tmp <- mcmapply(file.copy, bam.in, bam.files)
-    mcmapply(indexBam, bam.files)
+    tmp <- mcmapply(indexBam, bam.files)
 }
 
 margin = max(sapply(samples, nchar))

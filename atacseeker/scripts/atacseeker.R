@@ -13,6 +13,26 @@ dir.copy <- function(folder, to){
 }
 
 
+## garbage clean up files
+cleanMem <- function(n=10) { for (i in 1:n) gc(T,T) }
+collectGarbage <- function() {while (gc()[2,4] != gc()[2,4] | gc()[1,4] != gc()[1,4]){}}
+
+
+## get bam files specs
+get_bams <- function(IDs, bam_names){
+    group.in = c()
+    group.files = c()
+    for (f in seq(length(bam_names))){
+        fastq_dir = file.path(base_dir, IDs[f])
+        bam.tmp = list.files(fastq_dir, "*bam$", full.names = TRUE)
+        bam.dmp = file.path(dump_dir, basename(bam.tmp))
+        group.in = c(group.in, bam.tmp)
+        group.files = c(group.files, bam.dmp)
+    }
+    return(list(group.in = group.in, group.files = group.files))
+}
+
+
 ## Wrapper for getPESizes function. 
 getQC <- function(name, pe.bam) { 
   out <- getPESizes(pe.bam)
