@@ -316,8 +316,11 @@ if (do_QC){
 ```
 
 ```{r mem_clean_up_zero}
-rm(list = c("chr1_5primeCuts", "collected", "combinedQC", "compareQC", "controlQC", "maxed", 
-    "nonTSS.bamCounts", "nonTssWindows", "rwsms", "TSS.bamCounts", "tssWindows", "wincounts", "windowed", "x"))
+if (do_QC){
+    rm(list = c("chr1_5primeCuts", "collected", "combinedQC", "compareQC", "controlQC", "maxed", 
+        "nonTSS.bamCounts", "nonTssWindows", "rwsms", "TSS.bamCounts", "tssWindows", "wincounts", "windowed", "x"))
+}
+cleanMem()
 collectGarbage()
 ```
 
@@ -485,9 +488,9 @@ Features in flanking regions of the region of interest are also reported. These 
 
 ```{r mem_clean_up_one}
 rm(list=setdiff(ls(),
-    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem",
-    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", 
-    "data", "binned", "y", "is.sig", "diffAccRanges")))
+    c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem", "collectGarbage",
+    "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", "data", "binned", 
+    "y", "is.sig", "diffAccRanges")))
 cleanMem()
 collectGarbage()
 ```
