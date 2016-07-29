@@ -16,7 +16,7 @@ samtools sort ${chrM_bam} ${dir}/${in_base}.sorted
 samtools rmdup ${dir}/${in_base}.sorted.bam ${dir}/${in_base}.sorted.nodup.bam
 samtools index ${dir}/${in_base}.sorted.nodup.bam
 
-python assembleMTgenome.py \
+python ${BASE}/scripts/assembleMTgenome.py \
 -f ${BASE}/reference/chrM.fa \
 -i ${dir}/${in_base}.sorted.nodup.bam \
 -a ${BASE}/reference/hg19.fa \
