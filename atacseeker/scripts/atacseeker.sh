@@ -1,3 +1,4 @@
 #!/bin/bash -xv
 
-Rscript -e 'rmarkdown::render("/atacseeker/scripts/atacseeker.Rmd")'
+cd /atacseeker/scripts
+Rscript -e 'rmarkdown::render("atacseeker.Rmd")'
