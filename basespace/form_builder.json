@@ -173,14 +173,14 @@
                             "$type": "SelectListItem",
 			                "value": 0, 
         		        	"text": "FALSE",
-        		        	"selected": true
+        		        	"selected": false
         		        },
 		        
                         {
                             "$type": "SelectListItem",
 			                "value": 1,
 			                "text": "TRUE",
-			                "selected": false
+			                "selected": true
 		                }
         	        ]
 
