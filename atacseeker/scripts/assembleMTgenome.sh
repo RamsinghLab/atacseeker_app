@@ -1,6 +1,6 @@
 #/bin/bash
 
-BASE=".."
+BASE="/atacseeker"
 
 if [ $# -eq 0 ]; then
     echo "Usage: bash $0 <in.bam>"
