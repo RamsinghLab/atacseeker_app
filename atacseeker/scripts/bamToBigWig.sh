@@ -10,7 +10,7 @@ in_bam=$1
 in_base=`basename ${in_bam} .bam`
 dir=`dirname ${in_bam}`
 GENOME=${2:-"hg19"}
-CHROM_SIZES="chrom.sizes/"$GENOME".chrom.sizes"
+CHROM_SIZES="/atacseeker/scripts/chrom.sizes/"$GENOME".chrom.sizes"
 
 ## if we don't already have chrom.sizes for the genome in question, fetch them
 ## test -f $CHROM_SIZES || ./fetchChromSizes $GENOME > $CHROM_SIZES
