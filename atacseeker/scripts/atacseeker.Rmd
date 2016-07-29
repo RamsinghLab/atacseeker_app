@@ -318,8 +318,8 @@ Read extraction parameters:
 ```{r read_extraction}
 discard.se.param
 window.width <- win.width
-data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext=1)
-binned <- windowCounts(bam.files, bin=TRUE, width=1000, param=discard.se.param)
+data <- windowCounts(bam.files, width = window.width, param = discard.se.param, ext = 1)
+binned <- windowCounts(bam.files, bin = TRUE, width = 1000, param = discard.se.param)
 cat(paste("\tWindow width for counting reads is", window.width))
 
 collectGarbage()
@@ -338,14 +338,14 @@ system("free -h")
 Keep only high abundance regions relative to a  global background.
 
 ```{r filter_global}
-filter.stat <- filterWindows(data, background=binned, type="global")
+filter.stat <- filterWindows(data, background = binned, type = "global")
 keep <- filter.stat$filter > log2(3)
 
-hist(filter.stat$back.abundances, xlab="Adjusted bin log-CPM", breaks=50, main="")
+hist(filter.stat$back.abundances, xlab = "Adjusted bin log-CPM", breaks = 50, main = "")
 # xlim=c(min(filter.stat$back.abundances), 0))
 global.bg <- filter.stat$abundances - filter.stat$filter
-abline(v=global.bg[1], col="red", lwd=2)
-abline(v=global.bg[1]+log2(3), col="blue", lwd=2)
+abline(v=global.bg[1], col = "red", lwd = 2)
+abline(v=global.bg[1]+log2(3), col = "blue", lwd = 2)
 legend("topright", lwd=2, col=c('red', 'blue'), legend=c("Background", "Threshold"))
 
 raw = colSums(assays(data)$counts)
@@ -358,9 +358,9 @@ colnames(m) = samples
 barplot(m, beside=TRUE, col = c(rep("blue", 2*length(control)), rep("red", 2*length(compare))), 
     cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3,
     main = "Window counts")
-barplot(m, add=TRUE, beside=TRUE, col=1, angle=45, density=c(0,15), 
+barplot(m, add = T, beside = T, col = 1, angle = 45, density = c(0,15), 
     cex.names = 0.8, width = 1/(2*num_samples + 1), las = 3)
-legend("topright", legend="filtered", fill=T, angle=45, density = 15, bty="n", cex=1.25)
+legend("topright", legend = "filtered", fill = T, angle = 45, density = 15, bty = "n", cex = 1.25)
 ```
 
 ## Normalization ##
@@ -371,7 +371,7 @@ We account for composition bias.
 par(mar = mars)
 Norm.factors <- normOffsets(binned)
 ylim = 1.1*max(as.vector(Norm.factors))
-barplot(as.vector(Norm.factors), names.arg=samples, main = "Normalizing factors", 
+barplot(as.vector(Norm.factors), names.arg = samples, main = "Normalizing factors", 
     col = c(rep("blue", length(control)), rep("red",length(compare))), 
     cex.names = 0.8, width = 1/(num_samples + 1), las = 3, ylim = c(0,ylim))
 ```
@@ -382,25 +382,25 @@ Let's see how the samples are clustered:
 
 ```{r cluster}
 ## binned.2 <- windowCounts(bam.files, bin=TRUE, width=1000, param=pe.param)
-bin.adjc <- cpm(asDGEList(binned), log=TRUE)
+bin.adjc <- cpm(asDGEList(binned), log = T)
 color = c(rep("blue", length(control)), rep("red",length(compare)))
-plotMDS(bin.adjc, labels=samples, col=color)
+plotMDS(bin.adjc, labels = samples, col = color)
 ```
 
 ```{r est_disp, echo=FALSE}
-y <- asDGEList(filtered.data, norm.factors=Norm.factors)
+y <- asDGEList(filtered.data, norm.factors = Norm.factors)
 y <- estimateDisp(y, design)
 
 par(mfrow=c(1,2))
 o <- order(y$AveLogCPM)
-plot(y$AveLogCPM[o], sqrt(y$trended.dispersion[o]), type="l", lwd=2,
-     ylim=c(0,2), xlab="Average log2 CPM", ylab=("Biological coefficient of variation"))
+plot(y$AveLogCPM[o], sqrt(y$trended.dispersion[o]), type = "l", lwd = 2,
+     ylim = c(0,2), xlab = "Average log2 CPM", ylab = ("Biological coefficient of variation"))
 
-fit <- glmQLFit(y, design, robust=TRUE)
+fit <- glmQLFit(y, design, robust = T)
 plotQLDisp(fit)
 
-results <- glmQLFTest(fit, contrast=c(0,1))
-kable(as.data.frame(topTags(results)), caption="Top Tags", row.names = FALSE)
+results <- glmQLFTest(fit, contrast = c(0,1))
+kable(as.data.frame(topTags(results)), caption = "Top Tags", row.names = FALSE)
 ```
 
 ### Region-Level Analysis ###
@@ -409,25 +409,25 @@ Closely clustered windows are merged together to generate region-level FDR.
 
 The distribution of region widths post-merging:
 ```{r multiple_test}
-merged <- mergeWindows(rowRanges(filtered.data), tol=100, max.width=5000)
+merged <- mergeWindows(rowRanges(filtered.data), tol = 100, max.width = 5000)
 ## kable(merged$region, caption="Merged regions")
 summary(width(merged$region))
 tabcom <- combineTests(merged$id, results$table)
-kable(head(tabcom), caption="Combined Tests")
+kable(head(tabcom), caption = "Combined Tests")
 tabbest <- getBestTest(merged$id, results$table)
 ```
 
 ### Results ###
 
 The following gives the number of significantly differentially accessible regions:
-```{r results, echo=FALSE, comment=""}
+```{r results}
 # annotated:
 # is.sig <- tabcom$FDR <= 0.05
-anno <- detailRanges(merged$region, txdb=Homo.sapiens, orgdb=Homo.sapiens)
+anno <- detailRanges(merged$region, txdb = Homo.sapiens, orgdb = Homo.sapiens)
 combined <- data.frame(as.data.frame(merged$region)[,1:3], tabcom,
-                       best.pos=mid(ranges(rowRanges(filtered.data[tabbest$best]))), 
-                       best.logFC=tabbest$logFC,  anno)
-accRanges <- makeGRangesFromDataFrame(combined, keep=TRUE)
+                       best.pos = mid(ranges(rowRanges(filtered.data[tabbest$best]))), 
+                       best.logFC = tabbest$logFC,  anno)
+accRanges <- makeGRangesFromDataFrame(combined, keep = T)
 
 is.sig <- accRanges$FDR <= fdr.cut.off
 diffAccRanges <- accRanges[is.sig] 
@@ -483,7 +483,7 @@ Features in flanking regions of the region of interest are also reported. These 
 
 ```{r mem_clean_up_one}
 system("free -h")
-rm(list=setdiff(ls(),
+rm(list = setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem", "collectGarbage",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", "data", "binned", 
     "y", "is.sig", "diffAccRanges")))
@@ -586,7 +586,7 @@ if (do_motif_analysis){
         library(PWMEnrich.Hsapiens.background)
         library(BSgenome.Hsapiens.UCSC.hg19)
         if (TRUE){
-            registerCoresPWMEnrich(4)
+            registerCoresPWMEnrich(2)
             useBigMemoryPWMEnrich(TRUE)
         }
         data(PWMLogn.hg19.MotifDb.Hsap)

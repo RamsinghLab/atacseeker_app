@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-	echo "Usage: bash $0 <in.bam>"
+	echo "Usage: bash $0 <in.bam> dedup?"
 	exit 0
 fi
 
