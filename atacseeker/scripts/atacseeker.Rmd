@@ -35,8 +35,6 @@ source("parse_AppSession.R")
 ```
 
 ```{r setup_out_scratch}
-system("ulimit")
-system("free -h")
 ## Defining Output and Scratch directories.
 test = F
 
@@ -300,15 +298,13 @@ if (do_QC){
 }
 ```
 
-```{r mem_clean_up_zero}
-system("free -h")
+```{r mem_clean_up_one}
 if (do_QC){
     rm(list = c("chr1_5primeCuts", "collected", "combinedQC", "compareQC", "controlQC", "maxed", "x", 
     "nonTSS.bamCounts", "nonTssWindows", "rwsms", "TSS.bamCounts", "tssWindows", "wincounts", "windowed"))
 }
 cleanMem()
 collectGarbage()
-system("free -h")
 ```
 
 ## CSAW Parameters ##
@@ -323,14 +319,11 @@ binned <- windowCounts(bam.files, bin = TRUE, width = 1000, param = discard.se.p
 cat(paste("\tWindow width for counting reads is", window.width))
 
 collectGarbage()
-system("free -h")
 ```
 
-```{r mem_clean_up_pt5}
-system("free -h")
+```{r mem_clean_up_two}
 cleanMem()
 collectGarbage()
-system("free -h")
 ```
 
 ## Filtering ##
@@ -482,15 +475,13 @@ The annotation is performed using the `detailRanges` function of `csaw`. The fun
 
 Features in flanking regions of the region of interest are also reported. These features are formatted with the same scheme as above except with an extra `[DISTANCE]` field, which represents the distance between the feature and the region of interest. Only those flanking features which are within 5kbp of each region are considered.
 
-```{r mem_clean_up_one}
-system("free -h")
+```{r mem_clean_up_three}
 rm(list = setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem", "collectGarbage",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", "data", "binned", 
     "y", "is.sig", "diffAccRanges")))
 cleanMem()
 collectGarbage()
-system("free -h")
 ```
 
 ```{r export_files}
@@ -520,15 +511,13 @@ cat(paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output_di
     file = "atacseeker_helper.sh", append = TRUE)    
 ```
 
-```{r mem_clean_up_two}
-system("free -h")
+```{r mem_clean_up_four}
 rm(list=setdiff(ls(),
     c("test", "dump_dir", "output_dir", "dedup", "bam.files", "cleanMem", "collectGarbage",
     "compute_library_complexity", "generate_BigWigs", "do_motif_analysis", "is.sig", 
     "diffAccRanges")))
 cleanMem()
 collectGarbage()
-system("free -h")
 ```
 
 In addition, if requested, we also output the the coverage of the `bam` files in bigwig format. These along with the above `bed` file can be used for visualisation in the <a href="https://basespace.illumina.com/apps/1886885/Integrative-Genomics-Viewer" target="_blank"> IGV </a> browser. 
