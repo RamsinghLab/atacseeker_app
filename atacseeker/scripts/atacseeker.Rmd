@@ -55,7 +55,7 @@ output_dir = file.path(base_dir, project_id, app_session_name)
 dir.create(output_dir, recursive = TRUE)
 if (!test)
     cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
-        file = "atacseeker.sh", append=TRUE)  
+        file = "atacseeker_helper.sh", append=TRUE)  
 ```
 
 
@@ -103,14 +103,14 @@ if (do_mtdNA_analysis){
 
     for (i in seq(num_samples)){
         cat("samtools view -F 4 -h", bam.files[i], "\"chrM\" | samtools view -Sb - >", chrM.files[i], "\n",
-            file = "atacseeker.sh", append = TRUE)
+            file = "atacseeker_helper.sh", append = TRUE)
         cat("bash /atacseeker/scripts/assembleMTgenome.sh", chrM.files[i], ">", 
             file.path(dump_dir, "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1"), "\n",
-            file = "atacseeker.sh", append = TRUE)
+            file = "atacseeker_helper.sh", append = TRUE)
     }
 
     cat(paste0("mv ", file.path(dump_dir, "mtDNA_assembly"), " '", output_dir, "'\n"),
-        file = "atacseeker.sh", append = TRUE)
+        file = "atacseeker_helper.sh", append = TRUE)
 }
 ```
 
@@ -510,13 +510,13 @@ write.table(as(diffAccRanges, "data.frame"), file.path(dump_dir, "diffAccRegions
 save(file=file.path(dump_dir, "csaw_edgeR_objects.Rda"), data, binned, y)
 
 cat(paste0("mv ", file.path(dump_dir, "diffAccRanges.logFC.*.hg19.bed"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append=TRUE)
+    file = "atacseeker_helper.sh", append=TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.logFC.*.html"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append = TRUE)
+    file = "atacseeker_helper.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "diffAccRegions.tsv"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append = TRUE)
+    file = "atacseeker_helper.sh", append = TRUE)
 cat(paste0("mv ", file.path(dump_dir, "csaw_edgeR_objects.Rda"), " '", output_dir, "'\n"), 
-    file = "atacseeker.sh", append = TRUE)    
+    file = "atacseeker_helper.sh", append = TRUE)    
 ```
 
 ```{r mem_clean_up_two}
@@ -538,17 +538,17 @@ if (generate_BigWigs){
     dir.create(file.path(dump_dir, "BigWigs"), recursive = TRUE)
 
     if (dedup){
-        cat("parallel -j4 bash /atacseeker/scripts/bamToBigWig_dedup.sh {1} :::", bam.files, "\n",
-            file = "atacseeker.sh", append = TRUE)
+        cat("parallel -j4 bash bamToBigWig.sh {1} dedup :::", bam.files, "\n",
+            file = "atacseeker_helper.sh", append = TRUE)
     } else {
-        cat("parallel -j4 bash /atacseeker/scripts/bamToBigWig.sh {1} :::", bam.files, "\n",
-            file = "atacseeker.sh", append = TRUE)
+        cat("parallel -j4 bash bamToBigWig.sh {1} :::", bam.files, "\n",
+            file = "atacseeker_helper.sh", append = TRUE)
     }
 
     cat("mv", file.path(dump_dir,"*.bw"), file.path(dump_dir, "BigWigs"), "\n",
-        file = "atacseeker.sh", append = TRUE)
+        file = "atacseeker_helper.sh", append = TRUE)
     cat(paste0("mv ", file.path(dump_dir, "BigWigs"), " '", output_dir, "'\n"),
-        file = "atacseeker.sh", append = TRUE)
+        file = "atacseeker_helper.sh", append = TRUE)
 } else {
     cat("\tBigWig files were not requested")   
 }
