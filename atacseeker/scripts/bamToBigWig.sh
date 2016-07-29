@@ -16,8 +16,8 @@ if [[ -n $2 ]]; then
 	in_base=`basename ${in_bam} .bam`
 fi
 
-GENOME=${2:-"hg19"}
-CHROM_SIZES="/atacseeker/scripts/chrom.sizes/"$GENOME".chrom.sizes"
+GENOME=${3:-"hg19"}
+CHROM_SIZES="chrom.sizes/"$GENOME".chrom.sizes"
 
 ## if we don't already have chrom.sizes for the genome in question, fetch them
 ## test -f $CHROM_SIZES || ./fetchChromSizes $GENOME > $CHROM_SIZES
