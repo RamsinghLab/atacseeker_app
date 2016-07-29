@@ -84,8 +84,8 @@ compare.files = tmp$group.files
 bam.in = c(control.in, compare.in)
 bam.files = c(control.files, compare.files)
 if (!test){
-    tmp <- mcmapply(file.copy, bam.in, bam.files)
-    tmp <- mcmapply(indexBam, bam.files)
+    tmp <- mapply(file.copy, bam.in, bam.files)
+    tmp <- mapply(indexBam, bam.files)
 }
 
 margin = max(sapply(samples, nchar))
