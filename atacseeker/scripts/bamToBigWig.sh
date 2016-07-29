@@ -9,7 +9,7 @@ in_bam=$1
 in_base=`basename ${in_bam} .bam`
 dir=`dirname ${in_bam}`
 
-if [[ -z $2 ]]; then
+if [[ -n $2 ]]; then
 	samtools rmdup ${dir}/${in_base}.bam ${dir}/${in_base}.nodup.bam
 	samtools index ${dir}/${in_base}.nodup.bam
 	in_bam="${dir}/${in_base}.nodup.bam"
