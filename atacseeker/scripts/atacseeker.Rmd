@@ -104,7 +104,7 @@ if (do_mtdNA_analysis){
     for (i in seq(num_samples)){
         cat("samtools view -F 4 -h", bam.files[i], "\"chrM\" | samtools view -Sb - >", chrM.files[i], "\n",
             file = "atacseeker_helper.sh", append = TRUE)
-        cat("bash /atacseeker/scripts/assembleMTgenome.sh", chrM.files[i], ">", 
+        cat("bash assembleMTgenome.sh", chrM.files[i], ">", 
             file.path(dump_dir, "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1"), "\n",
             file = "atacseeker_helper.sh", append = TRUE)
     }
