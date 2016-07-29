@@ -38,7 +38,7 @@ source("parse_AppSession.R")
 system("ulimit")
 system("free -h")
 ## Defining Output and Scratch directories.
-test = T
+test = F
 
 app_session_name = gsub('/','-', app_session_name)
 base_dir = "/data/output/appresults"
