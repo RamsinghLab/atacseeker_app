@@ -36,8 +36,7 @@ source("parse_AppSession.R")
 
 ```{r setup_out_scratch}
 ## Defining Output and Scratch directories.
-test = F
-
+test = T
 app_session_name = gsub('/','-', app_session_name)
 base_dir = "/data/output/appresults"
 dump_dir = "/data/scratch"
@@ -51,8 +50,7 @@ if(test){
 
 output_dir = file.path(base_dir, project_id, app_session_name)
 dir.create(output_dir, recursive = TRUE)
-if (!test)
-    cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
+cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
         file = "atacseeker_helper.sh", append=TRUE)  
 ```
 
@@ -76,15 +74,13 @@ if(test){
 tmp <- get_bams(controlID, controlName)
 control.in = tmp$group.in
 control.files = tmp$group.files
-tmp <- get_bams(compareID, compareName)
+compares <- get_bams(compareID, compareName)
 compare.in = tmp$group.in
 compare.files = tmp$group.files
 bam.in = c(control.in, compare.in)
 bam.files = c(control.files, compare.files)
-if (!test){
-    tmp <- mapply(file.symlink, bam.in, bam.files)
-    tmp <- mapply(indexBam, bam.files)
-}
+tmp <- mapply(file.symlink, bam.in, bam.files)
+tmp <- mapply(indexBam, bam.files)
 
 margin = max(sapply(samples, nchar))
 mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
