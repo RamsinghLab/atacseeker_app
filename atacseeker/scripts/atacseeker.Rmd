@@ -36,7 +36,7 @@ source("parse_AppSession.R")
 
 ```{r setup_out_scratch}
 ## Defining Output and Scratch directories.
-test = T
+test = F
 app_session_name = gsub('/','-', app_session_name)
 base_dir = "/data/output/appresults"
 dump_dir = "/data/scratch"
@@ -73,7 +73,7 @@ if(test){
 
 tmp <- get_bams(controlID, controlName)
 control.files = tmp$group.in
-compares <- get_bams(compareID, compareName)
+tmp<- get_bams(compareID, compareName)
 compare.files = tmp$group.in
 bam.files = c(control.files, compare.files)
 margin = max(sapply(samples, nchar))

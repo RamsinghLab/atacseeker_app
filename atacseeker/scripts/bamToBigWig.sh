@@ -8,16 +8,17 @@ fi
 in_bam=$1
 in_base=`basename ${in_bam} .bam`
 dir=`dirname ${in_bam}`
-
+OUT_DIR=${3:-"/data/scratch"}
 
 if [[ -n $2 ]]; then
-	samtools rmdup ${dir}/${in_base}.bam ${dir}/${in_base}.nodup.bam
-	samtools index ${dir}/${in_base}.nodup.bam
-	in_bam="${dir}/${in_base}.nodup.bam"
+	samtools rmdup ${dir}/${in_base}.bam ${OUT_DIR}/${in_base}.nodup.bam
+	samtools index ${OUT_DIR}/${in_base}.nodup.bam
+	in_bam="${OUT_DIR}/${in_base}.nodup.bam"
 	in_base=`basename ${in_bam} .bam`
+	dir="${OUT_DIR}"
 fi
 
-OUT_DIR=${3:-"/data/scratch"}
+
 GENOME=${4:-"hg19"}
 CHROM_SIZES="chrom.sizes/"$GENOME".chrom.sizes"
 
