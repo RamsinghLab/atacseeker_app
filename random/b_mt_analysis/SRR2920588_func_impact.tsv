@@ -1,0 +1,76 @@
+query	tpos	qpos	tnt	qnt	ntchange	allele	calc_locus	calc_aachange	conservation	haplogroup	verbose_haplogroup	patientphenotype	mmutid	rtmutid	polyid	subvar_cnt	is_polymorphism	is_mmut	is_rtmut	is_submitted	gb_cnt	gb_perc	hap_cnt	hap_perc
+SRR2920588	5655	0	T	C	transition	T5655C	A	tRNA	0.00%	L1b	L1b1a15	DEAF enhancer	0	148	1459	2	true	false	true	true	276	0.86	249	93.26
+SRR2920588	8655	0	C	T	transition		ATPase6	syn:I=>I	48.89%	L1b	L1b1a15		0	0	1736	1	true	false	false	true	1819	5.67	266	99.63
+SRR2920588	7389	0	T	C	transition		COI	non-syn:Y=>H	22.22%	L1b	L1b1a15		0	0	2247	2	true	false	false	true	777	2.42	265	99.25
+SRR2920588	12519	0	T	C	transition		ND5	syn:V=>V	4.44%	L1b	L1b1a15		0	0	2607	1	true	false	false	true	287	0.90	265	99.25
+SRR2920588	10688	0	G	A	transition		ND4L	syn:V=>V	51.11%	L1b	L1b1a15		0	0	2383	2	true	false	false	true	1823	5.69	265	99.25
+SRR2920588	1018	0	G	A	transition		12S	rRNA	8.89%	L1b	L1b1a15		0	0	450	2	true	false	false	true	2832	8.83	265	99.25
+SRR2920588	5036	0	A	G	transition		ND2	syn:W=>W	100.00%	L1b	L1b1a15		0	0	3211	2	true	false	false	true	267	0.83	248	92.88
+SRR2920588	16223	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	287	2	true	false	false	true	12546	39.13	247	92.51
+SRR2920588	16126	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	193	2	true	false	false	true	3713	11.58	242	90.64
+SRR2920588	11719	0	G	A	transition		ND4	syn:G=>G	97.78%	L1b	L1b1a15		0	0	975	2	true	false	false	true	24160	75.36	266	99.63
+SRR2920588	1738	0	T	C	transition		16S	rRNA	42.22%	L1b	L1b1a15		0	0	2583	1	true	false	false	true	268	0.84	264	98.88
+SRR2920588	16278	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	347	1	true	false	false	true	3294	10.27	248	92.88
+SRR2920588	152	0	T	C	transition		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		L1b	L1b1a15		0	0	36	1	true	false	false	true	8284	25.84	241	90.26
+SRR2920588	7256	0	C	T	transition		COI	syn:N=>N	100.00%	L1b	L1b1a15		0	0	712	2	true	false	false	true	2722	8.49	261	97.75
+SRR2920588	13789	0	T	C	transition		ND5	non-syn:Y=>H	66.67%	L1b	L1b1a15		0	0	1097	2	true	false	false	true	729	2.27	265	99.25
+SRR2920588	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		L1b	L1b1a15		0	0	87	2	true	false	false	true	29979	93.51	247	92.51
+SRR2920588	2706	0	A	G	transition		16S	rRNA	84.44%	L1b	L1b1a15		0	0	508	3	true	false	false	true	24784	77.31	266	99.63
+SRR2920588	16311	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	376	2	true	false	false	true	6624	20.66	249	93.26
+SRR2920588	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	L1b	L1b1a15		0	0	607	2	true	false	false	true	31182	97.26	266	99.63
+SRR2920588	12342	0	C	T	transition		ND5	syn:T=>T	11.11%	L1b	L1b1a15		0	0	132413	0	true	false	false	false	4	0.01	0	0.00
+SRR2920588	513	-1	G	GCACACACAC	insertion		D-Loop	non-coding		L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	3594	0	C	T	transition		ND1	syn:V=>V	20.00%	L1b	L1b1a15		0	0	1345	3	true	false	false	true	2754	8.59	266	99.63
+SRR2920588	15077	0	G	A	transition	G15077A	Cytb	non-syn:E=>K	88.89%	L1b	L1b1a15	DEAF	200	0	3520	1	true	true	false	true	59	0.18	7	2.62
+SRR2920588	8468	0	C	T	transition		ATPase8	syn:L=>L	15.56%	L1b	L1b1a15		0	0	780	1	true	false	false	true	1773	5.53	266	99.63
+SRR2920588	769	0	G	A	transition		12S	rRNA	15.56%	L1b	L1b1a15		0	0	439	1	true	false	false	true	2840	8.86	266	99.63
+SRR2920588	2758	0	G	A	transition		16S	rRNA	6.67%	L1b	L1b1a15		0	0	509	1	true	false	false	true	1788	5.58	266	99.63
+SRR2920588	9540	0	T	C	transition		COIII	syn:L=>L	97.78%	L1b	L1b1a15		0	0	840	1	true	false	false	true	10553	32.92	266	99.63
+SRR2920588	3308	0	T	C	transition	T3308C	ND1	non-syn:M=>T	84.44%	L1b	L1b1a15	MELAS / DEAF enhancer / hypertension / LVNC	1	0	525	1	true	true	false	true	306	0.95	266	99.63
+SRR2920588	6827	0	T	C	transition		COI	syn:A=>A	100.00%	L1b	L1b1a15		0	0	3196	2	true	false	false	true	307	0.96	266	99.63
+SRR2920588	15115	0	T	C	transition		Cytb	syn:T=>T	33.33%	L1b	L1b1a15		0	0	1203	2	true	false	false	true	327	1.02	266	99.63
+SRR2920588	14178	0	T	C	transition		ND6	non-syn:I=>V	40.00%	L1b	L1b1a15		0	0	1126	2	true	false	false	true	888	2.77	265	99.25
+SRR2920588	13650	0	C	T	transition		ND5	syn:P=>P	51.11%	L1b	L1b1a15		0	0	1084	1	true	false	false	true	2756	8.60	266	99.63
+SRR2920588	750	0	A	G	transition		12S	rRNA	97.78%	L1b	L1b1a15		0	0	437	1	true	false	false	true	31410	97.98	266	99.63
+SRR2920588	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		L1b	L1b1a15		0	0	14	3	true	false	false	true	23631	73.71	248	92.88
+SRR2920588	4104	0	A	G	transition		ND1	syn:L=>L	95.56%	L1b	L1b1a15		0	0	1489	3	true	false	false	true	2732	8.52	266	99.63
+SRR2920588	247	0	G	A	transition		HVS2/OH/TFX/ATT/D-Loop	non-coding		L1b	L1b1a15		0	0	81	0	true	false	false	false	1747	5.45	247	92.51
+SRR2920588	7055	0	A	G	transition		COI	syn:G=>G	100.00%	L1b	L1b1a15		0	0	703	1	true	false	false	true	741	2.31	265	99.25
+SRR2920588	10810	0	T	C	transition		ND4	syn:L=>L	66.67%	L1b	L1b1a15		0	0	2077	2	true	false	false	true	1846	5.76	265	99.25
+SRR2920588	825	0	T	A	transversion		12S	rRNA	20.00%	L1b	L1b1a15		0	0	440	1	true	false	false	true	1811	5.65	264	98.88
+SRR2920588	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	L1b	L1b1a15		0	0	806	5	true	false	false	true	31527	98.34	266	99.63
+SRR2920588	10873	0	T	C	transition		ND4	syn:P=>P	20.00%	L1b	L1b1a15		0	0	926	3	true	false	false	true	10541	32.88	262	98.13
+SRR2920588	12082	0	A	G	transition		ND4	syn:L=>L	48.89%	L1b	L1b1a15		0	0	4030	1	true	false	false	true	10	0.03	0	0.00
+SRR2920588	13105	0	A	G	transition		ND5	non-syn:I=>V	44.44%	L1b	L1b1a15		0	0	1053	1	true	false	false	true	2490	7.77	265	99.25
+SRR2920588	13506	0	C	T	transition		ND5	syn:Y=>Y	93.33%	L1b	L1b1a15		0	0	2384	1	true	false	false	true	1801	5.62	263	98.50
+SRR2920588	14766	-1	C	CTAG	insertion		Cytb		48.89%	L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	14560	0	G	A	transition		ND6	syn:V=>V	64.44%	L1b	L1b1a15		0	0	1156	1	true	false	false	true	893	2.79	263	98.50
+SRR2920588	3693	0	G	A	transition		ND1	syn:L=>L	100.00%	L1b	L1b1a15		0	0	3193	2	true	false	false	true	385	1.20	264	98.88
+SRR2920588	13880	0	C	A	transversion		ND5	non-syn:S=>Y	13.33%	L1b	L1b1a15		0	0	3234	2	true	false	false	true	247	0.77	247	92.51
+SRR2920588	709	-1	G	GC	insertion		12S	rRNA	24.44%	L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	7028	0	C	T	transition		COI	syn:A=>A	100.00%	L1b	L1b1a15		0	0	700	1	true	false	false	true	25290	78.89	266	99.63
+SRR2920588	16187	-1	C	CCC	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	16264	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	328	0	true	false	false	false	375	1.17	231	86.52
+SRR2920588	16292	-1	C	CG	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	6548	0	C	T	transition		COI	syn:L=>L	100.00%	L1b	L1b1a15		0	0	3214	2	true	false	false	true	264	0.82	263	98.50
+SRR2920588	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		L1b	L1b1a15		0	0	432	1	true	false	false	true	19787	61.72	235	88.01
+SRR2920588	16270	0	C	T	transition	C16270T	ATT/D-Loop/HVS1/7S DNA	non-coding		L1b	L1b1a15	Melanoma patients	298	0	339	1	true	true	false	true	1694	5.28	242	90.64
+SRR2920588	5046	0	G	A	transition		ND2	non-syn:V=>I	33.33%	L1b	L1b1a15		0	0	1610	2	true	false	false	true	689	2.15	248	92.88
+SRR2920588	2352	0	T	C	transition	T2352C	16S	rRNA	8.89%	L1b	L1b1a15	Possibly LVNC-associated	0	202	500	1	true	false	true	true	839	2.62	266	99.63
+SRR2920588	14203	0	A	G	transition		ND6	syn:G=>G	91.11%	L1b	L1b1a15		0	0	3238	2	true	false	false	true	266	0.83	247	92.51
+SRR2920588	7867	0	C	T	transition		COII	syn:S=>S	64.44%	L1b	L1b1a15		0	0	741	1	true	false	false	true	320	1.00	266	99.63
+SRR2920588	5393	0	T	C	transition		ND2	syn:S=>S	33.33%	L1b	L1b1a15		0	0	3213	2	true	false	false	true	256	0.80	243	91.01
+SRR2920588	10398	-1	A	ACC	insertion		ND3	frmshft	51.11%	L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	8248	0	A	G	transition		COII	syn:M=>M	20.00%	L1b	L1b1a15		0	0	2600	2	true	false	false	true	266	0.83	265	99.25
+SRR2920588	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	L1b	L1b1a15		0	0	1219	1	true	false	false	true	31512	98.29	266	99.63
+SRR2920588	2885	0	T	C	transition		16S	rRNA	48.89%	L1b	L1b1a15		0	0	512	1	true	false	false	true	1768	5.51	266	99.63
+SRR2920588	2768	0	A	G	transition		16S	rRNA	86.67%	L1b	L1b1a15		0	0	2588	1	true	false	false	true	277	0.86	261	97.75
+SRR2920588	182	-1	C	CAGTCGAG	insertion		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		L1b	L1b1a15		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920588	8701	0	A	G	transition		ATPase6	non-syn:T=>A	42.22%	L1b	L1b1a15		0	0	797	2	true	false	false	true	10523	32.82	266	99.63
+SRR2920588	6989	0	A	G	transition		COI	syn:S=>S	100.00%	L1b	L1b1a15		0	0	3215	2	true	false	false	true	266	0.83	265	99.25
+SRR2920588	357	0	A	G	transition		HVS2/OH/CSB3/ATT/D-Loop	non-coding		L1b	L1b1a15		0	0	116	0	true	false	false	false	246	0.77	246	92.13
+SRR2920588	15103	0	C	T	transition		Cytb	syn:L=>L	95.56%	L1b	L1b1a15		0	0	5644	0	true	false	false	false	10	0.03	7	2.62
+SRR2920588	12705	0	C	T	transition		ND5	syn:I=>I	28.89%	L1b	L1b1a15		0	0	1031	2	true	false	false	true	13381	41.74	265	99.25
+SRR2920588	195	0	T	C	transition	T195C	HVS2/OH/ATT/D-Loop	non-coding		L1b	L1b1a15	BD-associated / melanoma pts	206	0	54	1	true	true	false	true	6574	20.51	231	86.52
+SRR2920588	3666	0	G	A	transition		ND1	syn:G=>G	100.00%	L1b	L1b1a15		0	0	2482	2	true	false	false	true	889	2.77	266	99.63
+

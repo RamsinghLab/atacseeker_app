@@ -1,0 +1,21 @@
+query	tpos	qpos	tnt	qnt	ntchange	allele	calc_locus	calc_aachange	conservation	haplogroup	verbose_haplogroup	patientphenotype	mmutid	rtmutid	polyid	subvar_cnt	is_polymorphism	is_mmut	is_rtmut	is_submitted	gb_cnt	gb_perc	hap_cnt	hap_perc
+SRR2920584	152	0	T	C	transition		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		HV12a	HV12a1		0	0	36	1	true	false	false	true	8284	25.84	2	28.57
+SRR2920584	16243	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		HV12a	HV12a1		0	0	305	0	true	false	false	false	791	2.47	2	28.57
+SRR2920584	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		HV12a	HV12a1		0	0	87	2	true	false	false	true	29979	93.51	7	100.00
+SRR2920584	1438	0	A	G	transition		12S	rRNA	86.67%	HV12a	HV12a1		0	0	469	1	true	false	false	true	30179	94.14	7	100.00
+SRR2920584	2706	0	A	G	transition		16S	rRNA	84.44%	HV12a	HV12a1		0	0	508	3	true	false	false	true	24784	77.31	7	100.00
+SRR2920584	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	HV12a	HV12a1		0	0	806	5	true	false	false	true	31527	98.34	7	100.00
+SRR2920584	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	HV12a	HV12a1		0	0	607	2	true	false	false	true	31182	97.26	7	100.00
+SRR2920584	16342	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		HV12a	HV12a1		0	0	394	0	true	false	false	false	161	0.50	2	28.57
+SRR2920584	16220	0	A	C	transversion		ATT/D-Loop/HVS1/7S DNA	non-coding		HV12a	HV12a1		0	0	281	0	true	false	false	false	106	0.33	7	100.00
+SRR2920584	3892	0	A	G	transition		ND1	non-syn:T=>A	15.56%	HV12a	HV12a1		0	0	130650	0	true	false	false	false	15	0.05	2	28.57
+SRR2920584	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	HV12a	HV12a1		0	0	1219	1	true	false	false	true	31512	98.29	7	100.00
+SRR2920584	14344	0	A	G	transition		ND6	syn:D=>D	31.11%	HV12a	HV12a1		0	0	5193	0	true	false	false	false	21	0.07	2	28.57
+SRR2920584	7028	0	C	T	transition		COI	syn:A=>A	100.00%	HV12a	HV12a1		0	0	700	1	true	false	false	true	25290	78.89	7	100.00
+SRR2920584	16292	-1	C	CG	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		HV12a	HV12a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920584	4254	0	T	C	transition		ND1	syn:P=>P	95.56%	HV12a	HV12a1		0	0	130712	1	true	false	false	true	10	0.03	2	28.57
+SRR2920584	15402	0	C	G	transversion		Cytb	non-syn:T=>S	15.56%	HV12a	HV12a1		0	0	133101	0	true	false	false	false	1	0.00	1	14.29
+SRR2920584	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		HV12a	HV12a1		0	0	432	1	true	false	false	true	19787	61.72	7	100.00
+SRR2920584	750	0	A	G	transition		12S	rRNA	97.78%	HV12a	HV12a1		0	0	437	1	true	false	false	true	31410	97.98	7	100.00
+SRR2920584	13889	0	G	A	transition		ND5	non-syn:C=>Y	2.22%	HV12a	HV12a1		0	0	4504	1	true	false	false	true	41	0.13	7	100.00
+
