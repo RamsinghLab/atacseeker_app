@@ -79,9 +79,6 @@ compare.in = tmp$group.in
 compare.files = tmp$group.files
 bam.in = c(control.in, compare.in)
 bam.files = c(control.files, compare.files)
-tmp <- mapply(file.symlink, bam.in, bam.files)
-tmp <- mapply(indexBam, bam.files)
-
 margin = max(sapply(samples, nchar))
 mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```
