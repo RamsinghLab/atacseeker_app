@@ -1,0 +1,5 @@
+Species,Individual,Position,Major allele,Minor allele,Ratio,Coverage,Bases
+SRR2,SRR2920587,3106,A,C,0.477777777778,90,"defaultdict(<type 'int'>, {'A': 32, 'a': 13, 'C': 24, 'g': 1, 'c': 19, 't': 1})"
+SRR2,SRR2920587,5992,G,A,0.187643020595,874,"defaultdict(<type 'int'>, {'A': 87, 'a': 77, 'G': 399, 'g': 310, 'T': 1})"
+SRR2,SRR2920587,7146,G,A,0.277777777778,36,"defaultdict(<type 'int'>, {'A': 7, 'a': 3, 'g': 23, 'G': 3})"
+SRR2,SRR2920587,13590,G,A,0.17225950783,1341,"defaultdict(<type 'int'>, {'A': 119, 'a': 112, 'g': 634, 'G': 476})"
