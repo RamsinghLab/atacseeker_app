@@ -17,7 +17,7 @@
 
 ### Files ###
 - `var.vcf`
-  - raw variant files
+  - raw variant calls
 - `results.vcf` / `results.tsv`
   - variants filtered with `QUAL > 20`
 - `[Sample ID].tsv`
