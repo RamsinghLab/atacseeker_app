@@ -25,4 +25,4 @@
 -  `[Sample ID]_func_impact.tsv`
   - functional annotation of variants using [MITO MAP](http://www.mitomap.org/MITOMAP)
 - `[Sample ID].het.csv`
-  - Het Calls for positions where minor allele frequency is above 0.1
+  - Het Calls for positions where minor allele frequency is above 0.07
