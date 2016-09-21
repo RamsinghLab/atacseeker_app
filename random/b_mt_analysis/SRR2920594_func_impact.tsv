@@ -1,44 +1,44 @@
+
 query	tpos	qpos	tnt	qnt	ntchange	allele	calc_locus	calc_aachange	conservation	haplogroup	verbose_haplogroup	patientphenotype	mmutid	rtmutid	polyid	subvar_cnt	is_polymorphism	is_mmut	is_rtmut	is_submitted	gb_cnt	gb_perc	hap_cnt	hap_perc
-SRR2920594	3316	0	G	A	transition	G3316A	ND1	non-syn:A=>T	4.44%	U2e	U2e1f	Diabetes / LHON / PEO	2	0	2047	3	true	true	false	true	303	0.95	1	0.43
-SRR2920594	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	U2e	U2e1f		0	0	806	5	true	false	false	true	31527	98.34	229	99.57
-SRR2920594	15907	0	A	G	transition		T	tRNA	60.00%	U2e	U2e1f		0	0	1261	1	true	false	false	true	229	0.71	226	98.26
-SRR2920594	14766	-1	C	CTAA	insertion		Cytb		48.89%	U2e	U2e1f		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920594	12308	0	A	G	transition	A12308G	L(CUN)	tRNA	95.56%	U2e	U2e1f	CPEO / Stroke / CM / Breast & Renal & Prostate Cancer Risk / Altered brain pH /sCJD	0	91	1004	2	true	false	true	true	4193	13.08	228	99.13
-SRR2920594	13734	0	T	C	transition		ND5	syn:F=>F	73.33%	U2e	U2e1f		0	0	1709	1	true	false	false	true	236	0.74	227	98.70
-SRR2920594	16086	0	T	C	transition		ATT/D-Loop/HVS1	non-coding		U2e	U2e1f		0	0	176	1	true	false	false	true	656	2.05	2	0.87
-SRR2920594	10876	0	A	G	transition		ND4	syn:L=>L	97.78%	U2e	U2e1f		0	0	1706	2	true	false	false	true	369	1.15	228	99.13
-SRR2920594	8812	0	A	T	transversion		ATPase6	non-syn:T=>S	97.78%	U2e	U2e1f		0	0	131640	0	true	false	false	false	1	0.00	1	0.43
-SRR2920594	7028	0	C	T	transition		COI	syn:A=>A	100.00%	U2e	U2e1f		0	0	700	1	true	false	false	true	25290	78.89	227	98.70
-SRR2920594	16187	-1	C	CCC	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920594	11467	0	A	G	transition	A11467G	ND4	syn:L=>L	100.00%	U2e	U2e1f	Altered brain pH / sCJD patients	211	0	961	4	true	true	false	true	4213	13.14	229	99.57
-SRR2920594	12372	0	G	A	transition	G12372A	ND5	syn:L=>L	80.00%	U2e	U2e1f	Altered brain pH / sCJD patients	210	0	1009	3	true	true	false	true	4519	14.10	229	99.57
-SRR2920594	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		U2e	U2e1f		0	0	432	1	true	false	false	true	19787	61.72	207	90.00
-SRR2920594	6045	0	C	T	transition		COI	syn:L=>L	88.89%	U2e	U2e1f		0	0	1704	2	true	false	false	true	233	0.73	227	98.70
-SRR2920594	11719	0	G	A	transition		ND4	syn:G=>G	97.78%	U2e	U2e1f		0	0	975	2	true	false	false	true	24160	75.36	229	99.57
-SRR2920594	5390	0	A	G	transition		ND2	syn:M=>M	13.33%	U2e	U2e1f		0	0	1703	2	true	false	false	true	248	0.77	228	99.13
+SRR2920594	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		U2e	U2e1f		0	0	14	3	true	false	false	true	23631	73.71	218	94.78
 SRR2920594	152	0	T	C	transition		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		U2e	U2e1f		0	0	36	1	true	false	false	true	8284	25.84	210	91.30
 SRR2920594	217	0	T	C	transition		HVS2/OH/CSB1/ATT/D-Loop	non-coding		U2e	U2e1f		0	0	68	1	true	false	false	true	297	0.93	200	86.96
-SRR2920594	16051	0	A	G	transition		ATT/D-Loop/HVS1	non-coding		U2e	U2e1f		0	0	164	2	true	false	false	true	830	2.59	219	95.22
-SRR2920594	2414	0	C	A	transversion		16S	rRNA	37.78%	U2e	U2e1f		0	0	130409	0	true	false	false	false	1	0.00	1	0.43
 SRR2920594	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		U2e	U2e1f		0	0	87	2	true	false	false	true	29979	93.51	218	94.78
-SRR2920594	1438	0	A	G	transition		12S	rRNA	86.67%	U2e	U2e1f		0	0	469	1	true	false	false	true	30179	94.14	227	98.70
-SRR2920594	2706	0	A	G	transition		16S	rRNA	84.44%	U2e	U2e1f		0	0	508	3	true	false	false	true	24784	77.31	228	99.13
-SRR2920594	11899	0	T	C	transition		ND4	syn:S=>S	17.78%	U2e	U2e1f		0	0	2224	0	true	false	false	false	237	0.74	0	0.00
-SRR2920594	13350	0	A	G	transition		ND5	syn:M=>M	88.89%	U2e	U2e1f		0	0	1070	0	true	false	false	false	56	0.17	1	0.43
-SRR2920594	16311	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	376	2	true	false	false	true	6624	20.66	6	2.61
-SRR2920594	16129	0	G	C	transversion		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	196	0	true	false	false	false	222	0.69	217	94.35
-SRR2920594	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	U2e	U2e1f		0	0	607	2	true	false	false	true	31182	97.26	226	98.26
-SRR2920594	16362	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	410	2	true	false	false	true	5411	16.88	198	86.09
-SRR2920594	13020	0	T	C	transition		ND5	syn:G=>G	95.56%	U2e	U2e1f		0	0	1525	2	true	false	false	true	384	1.20	228	99.13
-SRR2920594	508	0	A	G	transition		D-Loop	non-coding		U2e	U2e1f		0	0	139	0	true	false	false	false	256	0.80	214	93.04
-SRR2920594	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	U2e	U2e1f		0	0	1219	1	true	false	false	true	31512	98.29	230	100.00
-SRR2920594	1811	0	A	G	transition		16S	rRNA	22.22%	U2e	U2e1f		0	0	480	4	true	false	false	true	2550	7.95	226	98.26
-SRR2920594	5426	0	T	C	transition		ND2	syn:H=>H	11.11%	U2e	U2e1f		0	0	1493	1	true	false	false	true	338	1.05	228	99.13
-SRR2920594	750	0	A	G	transition		12S	rRNA	97.78%	U2e	U2e1f		0	0	437	1	true	false	false	true	31410	97.98	230	100.00
-SRR2920594	6152	0	T	C	transition		COI	syn:V=>V	95.56%	U2e	U2e1f		0	0	1705	2	true	false	false	true	275	0.86	226	98.26
-SRR2920594	15214	0	T	C	transition		Cytb	syn:I=>I	84.44%	U2e	U2e1f		0	0	3643	0	true	false	false	false	5	0.02	1	0.43
-SRR2920594	15519	0	T	C	transition		Cytb	non-syn:L=>P	15.56%	U2e	U2e1f		0	0	2131	2	true	false	false	true	72	0.22	5	2.17
-SRR2920594	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		U2e	U2e1f		0	0	14	3	true	false	false	true	23631	73.71	218	94.78
 SRR2920594	340	0	C	T	transition		HVS2/OH/ATT/D-Loop	non-coding		U2e	U2e1f		0	0	114	1	true	false	false	true	139	0.43	130	56.52
+SRR2920594	508	0	A	G	transition		D-Loop	non-coding		U2e	U2e1f		0	0	139	0	true	false	false	false	256	0.80	214	93.04
+SRR2920594	750	0	A	G	transition		12S	rRNA	97.78%	U2e	U2e1f		0	0	437	1	true	false	false	true	31410	97.98	230	100.00
+SRR2920594	1438	0	A	G	transition		12S	rRNA	86.67%	U2e	U2e1f		0	0	469	1	true	false	false	true	30179	94.14	227	98.70
+SRR2920594	1811	0	A	G	transition		16S	rRNA	22.22%	U2e	U2e1f		0	0	480	4	true	false	false	true	2550	7.95	226	98.26
+SRR2920594	2414	0	C	A	transversion		16S	rRNA	37.78%	U2e	U2e1f		0	0	130409	0	true	false	false	false	1	0.00	1	0.43
+SRR2920594	2706	0	A	G	transition		16S	rRNA	84.44%	U2e	U2e1f		0	0	508	3	true	false	false	true	24784	77.31	228	99.13
+SRR2920594	3316	0	G	A	transition	G3316A	ND1	non-syn:A=>T	4.44%	U2e	U2e1f	Diabetes / LHON / PEO	2	0	2047	3	true	true	false	true	303	0.95	1	0.43
 SRR2920594	3720	0	A	G	transition		ND1	syn:Q=>Q	100.00%	U2e	U2e1f		0	0	1702	1	true	false	false	true	243	0.76	226	98.26
-
+SRR2920594	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	U2e	U2e1f		0	0	607	2	true	false	false	true	31182	97.26	226	98.26
+SRR2920594	5390	0	A	G	transition		ND2	syn:M=>M	13.33%	U2e	U2e1f		0	0	1703	2	true	false	false	true	248	0.77	228	99.13
+SRR2920594	5426	0	T	C	transition		ND2	syn:H=>H	11.11%	U2e	U2e1f		0	0	1493	1	true	false	false	true	338	1.05	228	99.13
+SRR2920594	6045	0	C	T	transition		COI	syn:L=>L	88.89%	U2e	U2e1f		0	0	1704	2	true	false	false	true	233	0.73	227	98.70
+SRR2920594	6152	0	T	C	transition		COI	syn:V=>V	95.56%	U2e	U2e1f		0	0	1705	2	true	false	false	true	275	0.86	226	98.26
+SRR2920594	7028	0	C	T	transition		COI	syn:A=>A	100.00%	U2e	U2e1f		0	0	700	1	true	false	false	true	25290	78.89	227	98.70
+SRR2920594	8812	0	A	T	transversion		ATPase6	non-syn:T=>S	97.78%	U2e	U2e1f		0	0	131640	0	true	false	false	false	1	0.00	1	0.43
+SRR2920594	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	U2e	U2e1f		0	0	806	5	true	false	false	true	31527	98.34	229	99.57
+SRR2920594	10876	0	A	G	transition		ND4	syn:L=>L	97.78%	U2e	U2e1f		0	0	1706	2	true	false	false	true	369	1.15	228	99.13
+SRR2920594	11467	0	A	G	transition	A11467G	ND4	syn:L=>L	100.00%	U2e	U2e1f	Altered brain pH / sCJD patients	211	0	961	4	true	true	false	true	4213	13.14	229	99.57
+SRR2920594	11719	0	G	A	transition		ND4	syn:G=>G	97.78%	U2e	U2e1f		0	0	975	2	true	false	false	true	24160	75.36	229	99.57
+SRR2920594	11899	0	T	C	transition		ND4	syn:S=>S	17.78%	U2e	U2e1f		0	0	2224	0	true	false	false	false	237	0.74	0	0.00
+SRR2920594	12308	0	A	G	transition	A12308G	L(CUN)	tRNA	95.56%	U2e	U2e1f	CPEO / Stroke / CM / Breast & Renal & Prostate Cancer Risk / Altered brain pH /sCJD	0	91	1004	2	true	false	true	true	4193	13.08	228	99.13
+SRR2920594	12372	0	G	A	transition	G12372A	ND5	syn:L=>L	80.00%	U2e	U2e1f	Altered brain pH / sCJD patients	210	0	1009	3	true	true	false	true	4519	14.10	229	99.57
+SRR2920594	13020	0	T	C	transition		ND5	syn:G=>G	95.56%	U2e	U2e1f		0	0	1525	2	true	false	false	true	384	1.20	228	99.13
+SRR2920594	13350	0	A	G	transition		ND5	syn:M=>M	88.89%	U2e	U2e1f		0	0	1070	0	true	false	false	false	56	0.17	1	0.43
+SRR2920594	13734	0	T	C	transition		ND5	syn:F=>F	73.33%	U2e	U2e1f		0	0	1709	1	true	false	false	true	236	0.74	227	98.70
+SRR2920594	14766	-1	C	CTAA	insertion		Cytb		48.89%	U2e	U2e1f		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920594	15214	0	T	C	transition		Cytb	syn:I=>I	84.44%	U2e	U2e1f		0	0	3643	0	true	false	false	false	5	0.02	1	0.43
+SRR2920594	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	U2e	U2e1f		0	0	1219	1	true	false	false	true	31512	98.29	230	100.00
+SRR2920594	15519	0	T	C	transition		Cytb	non-syn:L=>P	15.56%	U2e	U2e1f		0	0	2131	2	true	false	false	true	72	0.22	5	2.17
+SRR2920594	15907	0	A	G	transition		T	tRNA	60.00%	U2e	U2e1f		0	0	1261	1	true	false	false	true	229	0.71	226	98.26
+SRR2920594	16051	0	A	G	transition		ATT/D-Loop/HVS1	non-coding		U2e	U2e1f		0	0	164	2	true	false	false	true	830	2.59	219	95.22
+SRR2920594	16086	0	T	C	transition		ATT/D-Loop/HVS1	non-coding		U2e	U2e1f		0	0	176	1	true	false	false	true	656	2.05	2	0.87
+SRR2920594	16129	0	G	C	transversion		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	196	0	true	false	false	false	222	0.69	217	94.35
+SRR2920594	16187	-1	C	CCC	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920594	16311	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	376	2	true	false	false	true	6624	20.66	6	2.61
+SRR2920594	16362	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		U2e	U2e1f		0	0	410	2	true	false	false	true	5411	16.88	198	86.09
+SRR2920594	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		U2e	U2e1f		0	0	432	1	true	false	false	true	19787	61.72	207	90.00

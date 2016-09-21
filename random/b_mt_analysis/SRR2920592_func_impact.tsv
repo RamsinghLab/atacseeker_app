@@ -1,35 +1,35 @@
+
 query	tpos	qpos	tnt	qnt	ntchange	allele	calc_locus	calc_aachange	conservation	haplogroup	verbose_haplogroup	patientphenotype	mmutid	rtmutid	polyid	subvar_cnt	is_polymorphism	is_mmut	is_rtmut	is_submitted	gb_cnt	gb_perc	hap_cnt	hap_perc
-SRR2920592	16265	0	A	G	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	330	0	true	false	false	false	201	0.63	10	1.15
-SRR2920592	489	0	T	C	transition		ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	133	1	true	false	false	true	7987	24.91	833	95.97
-SRR2920592	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	J1c	J1c8a1		0	0	806	5	true	false	false	true	31527	98.34	860	99.08
-SRR2920592	14766	-1	C	CTAA	insertion		Cytb		48.89%	J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920592	16319	0	G	A	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	382	1	true	false	false	true	1846	5.76	45	5.18
-SRR2920592	15452	0	C	A	transversion		Cytb	non-syn:L=>I	42.22%	J1c	J1c8a1		0	0	1227	1	true	false	false	true	2942	9.18	859	98.96
-SRR2920592	13708	0	G	A	transition	G13708A	ND5	non-syn:A=>T	33.33%	J1c	J1c8a1	LHON / Increased MS risk / higher freq in PD-ADS	48	0	1290	3	true	true	false	true	2185	6.82	854	98.39
-SRR2920592	7028	0	C	T	transition		COI	syn:A=>A	100.00%	J1c	J1c8a1		0	0	700	1	true	false	false	true	25290	78.89	859	98.96
-SRR2920592	309	-1	C	CCTC	insertion		HVS2/OH/CSB2/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920592	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		J1c	J1c8a1		0	0	14	3	true	false	false	true	23631	73.71	838	96.54
+SRR2920592	182	-1	C	CAGACGAA	insertion		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
 SRR2920592	228	0	G	A	transition		HVS2/OH/CSB1/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	74	0	true	false	false	false	875	2.73	687	79.15
+SRR2920592	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	87	2	true	false	false	true	29979	93.51	831	95.74
+SRR2920592	295	0	C	T	transition		HVS2/OH/TFY/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	96	0	true	false	false	false	1454	4.54	820	94.47
+SRR2920592	309	-1	C	CCTC	insertion		HVS2/OH/CSB2/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920592	462	0	C	T	transition		ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	128	0	true	false	false	false	1148	3.58	839	96.66
+SRR2920592	489	0	T	C	transition		ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	133	1	true	false	false	true	7987	24.91	833	95.97
+SRR2920592	750	0	A	G	transition		12S	rRNA	97.78%	J1c	J1c8a1		0	0	437	1	true	false	false	true	31410	97.98	860	99.08
+SRR2920592	1438	0	A	G	transition		12S	rRNA	86.67%	J1c	J1c8a1		0	0	469	1	true	false	false	true	30179	94.14	856	98.62
+SRR2920592	2706	0	A	G	transition		16S	rRNA	84.44%	J1c	J1c8a1		0	0	508	3	true	false	false	true	24784	77.31	841	96.89
 SRR2920592	3010	0	G	A	transition	G3010A	16S	rRNA	20.00%	J1c	J1c8a1	Cyclic Vomiting Syndrome with Migraine	0	266	514	1	true	false	true	true	5046	15.74	858	98.85
-SRR2920592	16126	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	193	2	true	false	false	true	3713	11.58	828	95.39
-SRR2920592	16187	-1	C	CCC	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920592	12612	0	A	G	transition		ND5	syn:V=>V	66.67%	J1c	J1c8a1		0	0	1021	1	true	false	false	true	1591	4.96	860	99.08
+SRR2920592	4216	0	T	C	transition	T4216C	ND1	non-syn:Y=>H	24.44%	J1c	J1c8a1	LHON / Insulin Resistance /possible adaptive high altitude variant	12	0	1280	3	true	true	false	true	3156	9.84	858	98.85
+SRR2920592	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	J1c	J1c8a1		0	0	607	2	true	false	false	true	31182	97.26	859	98.96
+SRR2920592	7028	0	C	T	transition		COI	syn:A=>A	100.00%	J1c	J1c8a1		0	0	700	1	true	false	false	true	25290	78.89	859	98.96
+SRR2920592	8666	0	A	G	transition		ATPase6	non-syn:Q=>R	73.33%	J1c	J1c8a1		0	0	131600	0	true	false	false	false	4	0.01	3	0.35
+SRR2920592	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	J1c	J1c8a1		0	0	806	5	true	false	false	true	31527	98.34	860	99.08
+SRR2920592	9052	0	A	G	transition		ATPase6	non-syn:S=>G	22.22%	J1c	J1c8a1		0	0	816	0	true	false	false	false	67	0.21	9	1.04
+SRR2920592	10084	0	T	C	transition		ND3	non-syn:I=>T	33.33%	J1c	J1c8a1		0	0	870	1	true	false	false	true	245	0.76	46	5.30
 SRR2920592	11251	0	A	G	transition		ND4	syn:L=>L	93.33%	J1c	J1c8a1		0	0	950	1	true	false	false	true	2939	9.17	860	99.08
 SRR2920592	11719	0	G	A	transition		ND4	syn:G=>G	97.78%	J1c	J1c8a1		0	0	975	2	true	false	false	true	24160	75.36	862	99.31
-SRR2920592	462	0	C	T	transition		ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	128	0	true	false	false	false	1148	3.58	839	96.66
-SRR2920592	14798	0	T	C	transition		Cytb	non-syn:F=>L	80.00%	J1c	J1c8a1		0	0	1179	1	true	false	false	true	2360	7.36	856	98.62
-SRR2920592	9052	0	A	G	transition		ATPase6	non-syn:S=>G	22.22%	J1c	J1c8a1		0	0	816	0	true	false	false	false	67	0.21	9	1.04
-SRR2920592	2706	0	A	G	transition		16S	rRNA	84.44%	J1c	J1c8a1		0	0	508	3	true	false	false	true	24784	77.31	841	96.89
-SRR2920592	1438	0	A	G	transition		12S	rRNA	86.67%	J1c	J1c8a1		0	0	469	1	true	false	false	true	30179	94.14	856	98.62
-SRR2920592	295	0	C	T	transition		HVS2/OH/TFY/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	96	0	true	false	false	false	1454	4.54	820	94.47
-SRR2920592	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		J1c	J1c8a1		0	0	87	2	true	false	false	true	29979	93.51	831	95.74
-SRR2920592	16069	0	C	T	transition		ATT/D-Loop/HVS1	non-coding		J1c	J1c8a1		0	0	168	2	true	false	false	true	1546	4.82	837	96.43
-SRR2920592	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	J1c	J1c8a1		0	0	607	2	true	false	false	true	31182	97.26	859	98.96
-SRR2920592	8666	0	A	G	transition		ATPase6	non-syn:Q=>R	73.33%	J1c	J1c8a1		0	0	131600	0	true	false	false	false	4	0.01	3	0.35
-SRR2920592	4216	0	T	C	transition	T4216C	ND1	non-syn:Y=>H	24.44%	J1c	J1c8a1	LHON / Insulin Resistance /possible adaptive high altitude variant	12	0	1280	3	true	true	false	true	3156	9.84	858	98.85
-SRR2920592	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	J1c	J1c8a1		0	0	1219	1	true	false	false	true	31512	98.29	860	99.08
-SRR2920592	182	-1	C	CAGACGAA	insertion		HVS2/OH/ATT/D-Loop/7S DNA	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920592	10084	0	T	C	transition		ND3	non-syn:I=>T	33.33%	J1c	J1c8a1		0	0	870	1	true	false	false	true	245	0.76	46	5.30
-SRR2920592	750	0	A	G	transition		12S	rRNA	97.78%	J1c	J1c8a1		0	0	437	1	true	false	false	true	31410	97.98	860	99.08
+SRR2920592	12612	0	A	G	transition		ND5	syn:V=>V	66.67%	J1c	J1c8a1		0	0	1021	1	true	false	false	true	1591	4.96	860	99.08
+SRR2920592	13708	0	G	A	transition	G13708A	ND5	non-syn:A=>T	33.33%	J1c	J1c8a1	LHON / Increased MS risk / higher freq in PD-ADS	48	0	1290	3	true	true	false	true	2185	6.82	854	98.39
 SRR2920592	14751	0	C	T	transition		Cytb	non-syn:T=>I	80.00%	J1c	J1c8a1		0	0	3742	0	true	false	false	false	21	0.07	3	0.35
-SRR2920592	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		J1c	J1c8a1		0	0	14	3	true	false	false	true	23631	73.71	838	96.54
-
+SRR2920592	14766	-1	C	CTAA	insertion		Cytb		48.89%	J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920592	14798	0	T	C	transition		Cytb	non-syn:F=>L	80.00%	J1c	J1c8a1		0	0	1179	1	true	false	false	true	2360	7.36	856	98.62
+SRR2920592	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	J1c	J1c8a1		0	0	1219	1	true	false	false	true	31512	98.29	860	99.08
+SRR2920592	15452	0	C	A	transversion		Cytb	non-syn:L=>I	42.22%	J1c	J1c8a1		0	0	1227	1	true	false	false	true	2942	9.18	859	98.96
+SRR2920592	16069	0	C	T	transition		ATT/D-Loop/HVS1	non-coding		J1c	J1c8a1		0	0	168	2	true	false	false	true	1546	4.82	837	96.43
+SRR2920592	16126	0	T	C	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	193	2	true	false	false	true	3713	11.58	828	95.39
+SRR2920592	16187	-1	C	CCC	insertion		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920592	16265	0	A	G	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	330	0	true	false	false	false	201	0.63	10	1.15
+SRR2920592	16319	0	G	A	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		J1c	J1c8a1		0	0	382	1	true	false	false	true	1846	5.76	45	5.18

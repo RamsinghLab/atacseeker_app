@@ -1,32 +1,32 @@
+
 query	tpos	qpos	tnt	qnt	ntchange	allele	calc_locus	calc_aachange	conservation	haplogroup	verbose_haplogroup	patientphenotype	mmutid	rtmutid	polyid	subvar_cnt	is_polymorphism	is_mmut	is_rtmut	is_submitted	gb_cnt	gb_perc	hap_cnt	hap_perc
-SRR2920576	13879	0	T	C	transition		ND5	non-syn:S=>P	13.33%	M30	M30+16234		0	0	1105	1	true	false	false	true	250	0.78	0	0.00
-SRR2920576	8568	0	C	T	transition		ATPase8/ATPase6	non-syn:S=>F	22.22%	M30	M30+16234		0	0	131568	0	true	false	false	false	1	0.00	0	0.00
-SRR2920576	15301	0	G	A	transition		Cytb	syn:L=>L	95.56%	M30	M30+16234		0	0	1215	1	true	false	false	true	8833	27.55	35	100.00
+SRR2920576	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		M30	M30+16234		0	0	14	3	true	false	false	true	23631	73.71	35	100.00
+SRR2920576	195	0	T	A	transversion		HVS2/OH/ATT/D-Loop	non-coding		M30	M30+16234		0	0	1983	1	true	false	false	true	84	0.26	35	100.00
 SRR2920576	263	0	A	G	transition		HVS2/OH/ATT/D-Loop	non-coding		M30	M30+16234		0	0	87	2	true	false	false	true	29979	93.51	35	100.00
+SRR2920576	309	-1	C	CCTC	insertion		HVS2/OH/CSB2/ATT/D-Loop	non-coding		M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
 SRR2920576	489	0	T	C	transition		ATT/D-Loop	non-coding		M30	M30+16234		0	0	133	1	true	false	false	true	7987	24.91	35	100.00
+SRR2920576	513	-1	G	GCACACACAC	insertion		D-Loop	non-coding		M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920576	750	0	A	G	transition		12S	rRNA	97.78%	M30	M30+16234		0	0	437	1	true	false	false	true	31410	97.98	35	100.00
 SRR2920576	1438	0	A	G	transition		12S	rRNA	86.67%	M30	M30+16234		0	0	469	1	true	false	false	true	30179	94.14	35	100.00
 SRR2920576	2706	0	A	G	transition		16S	rRNA	84.44%	M30	M30+16234		0	0	508	3	true	false	false	true	24784	77.31	34	97.14
-SRR2920576	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	M30	M30+16234		0	0	806	5	true	false	false	true	31527	98.34	35	100.00
-SRR2920576	10873	0	T	C	transition		ND4	syn:P=>P	20.00%	M30	M30+16234		0	0	926	3	true	false	false	true	10541	32.88	35	100.00
 SRR2920576	4769	0	A	G	transition		ND2	syn:M=>M	24.44%	M30	M30+16234		0	0	607	2	true	false	false	true	31182	97.26	35	100.00
-SRR2920576	14766	-1	C	CTAA	insertion		Cytb		48.89%	M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920576	513	-1	G	GCACACACAC	insertion		D-Loop	non-coding		M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920576	10398	-1	A	ACT	insertion		ND3	frmshft	51.11%	M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920576	9540	0	T	C	transition		COIII	syn:L=>L	97.78%	M30	M30+16234		0	0	840	1	true	false	false	true	10553	32.92	35	100.00
-SRR2920576	15431	0	G	A	transition		Cytb	non-syn:A=>T	6.67%	M30	M30+16234		0	0	2071	0	true	false	false	false	509	1.59	35	100.00
-SRR2920576	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	M30	M30+16234		0	0	1219	1	true	false	false	true	31512	98.29	35	100.00
 SRR2920576	7028	0	C	T	transition		COI	syn:A=>A	100.00%	M30	M30+16234		0	0	700	1	true	false	false	true	25290	78.89	35	100.00
-SRR2920576	309	-1	C	CCTC	insertion		HVS2/OH/CSB2/ATT/D-Loop	non-coding		M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
-SRR2920576	12007	0	G	A	transition		ND4	syn:W=>W	8.89%	M30	M30+16234		0	0	990	2	true	false	false	true	2149	6.70	34	97.14
-SRR2920576	16223	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		M30	M30+16234		0	0	287	2	true	false	false	true	12546	39.13	35	100.00
+SRR2920576	8568	0	C	T	transition		ATPase8/ATPase6	non-syn:S=>F	22.22%	M30	M30+16234		0	0	131568	0	true	false	false	false	1	0.00	0	0.00
 SRR2920576	8701	0	A	G	transition		ATPase6	non-syn:T=>A	42.22%	M30	M30+16234		0	0	797	2	true	false	false	true	10523	32.82	34	97.14
-SRR2920576	15043	0	G	A	transition	G15043A	Cytb	syn:G=>G	97.78%	M30	M30+16234	MDD-associated	204	0	1196	1	true	true	false	true	7301	22.77	35	100.00
-SRR2920576	750	0	A	G	transition		12S	rRNA	97.78%	M30	M30+16234		0	0	437	1	true	false	false	true	31410	97.98	35	100.00
-SRR2920576	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		M30	M30+16234		0	0	432	1	true	false	false	true	19787	61.72	34	97.14
+SRR2920576	8860	0	A	G	transition		ATPase6	non-syn:T=>A	71.11%	M30	M30+16234		0	0	806	5	true	false	false	true	31527	98.34	35	100.00
+SRR2920576	9540	0	T	C	transition		COIII	syn:L=>L	97.78%	M30	M30+16234		0	0	840	1	true	false	false	true	10553	32.92	35	100.00
+SRR2920576	10398	-1	A	ACT	insertion		ND3	frmshft	51.11%	M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920576	10873	0	T	C	transition		ND4	syn:P=>P	20.00%	M30	M30+16234		0	0	926	3	true	false	false	true	10541	32.88	35	100.00
 SRR2920576	11719	0	G	A	transition		ND4	syn:G=>G	97.78%	M30	M30+16234		0	0	975	2	true	false	false	true	24160	75.36	35	100.00
-SRR2920576	73	0	A	G	transition		HVS2/ATT/D-Loop/7S DNA	non-coding		M30	M30+16234		0	0	14	3	true	false	false	true	23631	73.71	35	100.00
-SRR2920576	16234	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		M30	M30+16234		0	0	295	2	true	false	false	true	1043	3.25	15	42.86
-SRR2920576	14783	0	T	C	transition		Cytb	syn:L=>L	17.78%	M30	M30+16234		0	0	1176	2	true	false	false	true	6504	20.29	34	97.14
-SRR2920576	195	0	T	A	transversion		HVS2/OH/ATT/D-Loop	non-coding		M30	M30+16234		0	0	1983	1	true	false	false	true	84	0.26	35	100.00
+SRR2920576	12007	0	G	A	transition		ND4	syn:W=>W	8.89%	M30	M30+16234		0	0	990	2	true	false	false	true	2149	6.70	34	97.14
 SRR2920576	12705	0	C	T	transition		ND5	syn:I=>I	28.89%	M30	M30+16234		0	0	1031	2	true	false	false	true	13381	41.74	35	100.00
-
+SRR2920576	13879	0	T	C	transition		ND5	non-syn:S=>P	13.33%	M30	M30+16234		0	0	1105	1	true	false	false	true	250	0.78	0	0.00
+SRR2920576	14766	-1	C	CTAA	insertion		Cytb		48.89%	M30	M30+16234		0	0	0	0	false	false	false	false	0	0.00	0	0.00
+SRR2920576	14783	0	T	C	transition		Cytb	syn:L=>L	17.78%	M30	M30+16234		0	0	1176	2	true	false	false	true	6504	20.29	34	97.14
+SRR2920576	15043	0	G	A	transition	G15043A	Cytb	syn:G=>G	97.78%	M30	M30+16234	MDD-associated	204	0	1196	1	true	true	false	true	7301	22.77	35	100.00
+SRR2920576	15301	0	G	A	transition		Cytb	syn:L=>L	95.56%	M30	M30+16234		0	0	1215	1	true	false	false	true	8833	27.55	35	100.00
+SRR2920576	15326	0	A	G	transition		Cytb	non-syn:T=>A	17.78%	M30	M30+16234		0	0	1219	1	true	false	false	true	31512	98.29	35	100.00
+SRR2920576	15431	0	G	A	transition		Cytb	non-syn:A=>T	6.67%	M30	M30+16234		0	0	2071	0	true	false	false	false	509	1.59	35	100.00
+SRR2920576	16223	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		M30	M30+16234		0	0	287	2	true	false	false	true	12546	39.13	35	100.00
+SRR2920576	16234	0	C	T	transition		ATT/D-Loop/HVS1/7S DNA	non-coding		M30	M30+16234		0	0	295	2	true	false	false	true	1043	3.25	15	42.86
+SRR2920576	16519	0	T	C	transition		ATT/D-Loop/7S DNA	non-coding		M30	M30+16234		0	0	432	1	true	false	false	true	19787	61.72	34	97.14
