@@ -1,12 +1,12 @@
-## Mitochondrial DNA Analysis ##
+# Mitochondrial DNA Analysis #
 
-### mtDNA Reference ###
+## mtDNA Reference ##
 
 This [page](http://haplogrep.uibk.ac.at/blog/rcrs-vs-rsrs-vs-hg19) has some information on the different references available for mtDNA. 
 
-### Literature ###
+## Literature ##
 
-#### mtDNA copy number ####
+### mtDNA copy number ###
 Katrina's talk
 - mentioned this [paper](http://onlinelibrary.wiley.com/doi/10.1002/bies.201500082/abstract) related to mitochondria.
 - `mtDNA copy number / cell = 2 * (mtDNA average covearge) / (autosomal DNA average coverage ) `
@@ -17,7 +17,7 @@ Other papers that might be of interest:
 - [2015 - Assessing Mitochondrial DNA Variation and Copy Number in Lymphocytes of ~2,000 Sardinians Using Tailored Sequencing Analysis Tools](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005306)
 - [2016 - Mitochondrial DNA copy number variation across human cancers](https://elifesciences.org/content/5/e10769)
 
-#### Heteroplasmy Detection ####
+### Heteroplasmy Detection ###
 
 - [2010 - Detecting heteroplasmy from NGS data - Li M, Stoneking M](http://www.cell.com/ajhg/abstract/S0002-9297(10)00370-8)
 	- pathogenic heteroplasmy levels are around `0.7-0.9`
@@ -80,7 +80,7 @@ I think the pipeline I want to implement is:
 
 This, I think, should account for indels, use rCRS as reference and employ required filtering criteria for heteroplasmy detection. The thing I am worried about is how do we map the heteroplasmies back to RCRS. Also, we could use the consensus for normal cells to call heteroplasmies in senescent. Also, I might want to see how I can take care of NUMTs.
 
-### ATACseq mtDNA ###
+## ATACseq mtDNA ##
 
 Because in ATACseq a lot of the reads are biased for the mitochondrial DNA, it seems like an obvious thing to use ATACseq reads to call variants on mt-DNA. There are a few caveats though. The mt-DNA is haploid, inherited completely from the mother. However, most callers like `gatk` and `samtools` assume a diploid genome. 
 
