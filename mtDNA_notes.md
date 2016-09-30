@@ -146,3 +146,5 @@ samtools view -h atac.bam "chrM" > out.sam
 samtools view -Sb out.sam > out.bam
 ```
 [Biostar](https://www.biostars.org/p/56246) has some comments on using the `-f 4` flag with `samtools`. __must__ check with Tim.
+
+__9/29__: This [paper](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005306#pgen.1005306.s013) presents a mtDNA variant calling and copy number estimation pipeline that could be a useful reference. 
