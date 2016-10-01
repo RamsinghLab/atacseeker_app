@@ -14,7 +14,7 @@ bam_name=`basename ${bam_file} .bam`
 work_dir=${output_dir}/${bam_name}
 mkdir -p ${work_dir}
 
-externaltoolsfolder="/home/cmb-07/sn1/asifzuba/mtHeteroplasmy/ext_tools"
+externaltoolsfolder="../../data/ext_tools"
 
 echo "**************************"
 echo "Working with sample ..." ${bam_name}
