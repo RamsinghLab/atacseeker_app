@@ -255,10 +255,10 @@ if (do_QC){
 }
 ```
 
-Coverage plot for choosing window size:
+<!--Coverage plot for choosing window size:-->
 
 ```{r cov_plot}
-if (do_QC){ 
+if (FALSE){ 
     collected <- list()
 
     ## Should parallelize ? 
