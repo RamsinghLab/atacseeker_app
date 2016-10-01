@@ -83,22 +83,15 @@ mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```{r mtDNA_analysis}
 ## Mitochondrial assembly
 if (do_mtdNA_analysis){
-    dir.create(file.path(dump_dir, "mtDNA_assembly"), recursive = TRUE)
-    tmp <- mapply(dir.create, path = file.path(dump_dir, "mtDNA_assembly", samples), recursive = TRUE)
-
-    chrM.files = file.path(dump_dir, "mtDNA_assembly", samples, paste0("chrM.",samples,".bam"))
-    chrM_command = paste("samtools view -F 4 -h", bam.files, "\"chrM\" | samtools view -Sb - >", chrM.files)
-
+    mt_dir = file.path(dump_dir, "mtDNA_variants")
+    reference = "../../data/reference/chrM.fa"
+    dir.create(mt_dir, recursive = TRUE)
     for (i in seq(num_samples)){
-        cat("samtools view -F 4 -h", bam.files[i], "\"chrM\" | samtools view -Sb - >", chrM.files[i], "\n",
-            file = "atacseeker_helper.sh", append = TRUE)
-        cat("bash assembleMTgenome.sh", chrM.files[i], ">", 
-            file.path(dump_dir, "mtDNA_assembly", samples[i], "mtDNA_analysis.log 2>&1"), "\n",
+        cat("bash extract_align_mt_reads.sh", bam.files[i], mt_dir, reference, "\n",
             file = "atacseeker_helper.sh", append = TRUE)
     }
-
-    cat(paste0("mv ", file.path(dump_dir, "mtDNA_assembly"), " '", output_dir, "'\n"),
-        file = "atacseeker_helper.sh", append = TRUE)
+    cat("bash call_variants.sh", mt_dir, reference, "\n", file = "atacseeker_helper.sh", append = TRUE)
+    cat(paste0("mv ", mt_dir, " '", output_dir, "'\n"), file = "atacseeker_helper.sh", append = TRUE)
 }
 ```
 
