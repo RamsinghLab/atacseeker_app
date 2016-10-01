@@ -578,13 +578,6 @@ if (do_motif_analysis){
 }
 ```
 
-## Session Info ##
-
-```{r sess_info}
-# Dump session info for versioning, debugging, CITATIONS (!), etc.
-sessionInfo()
-```
-
 ## References ##
 ```{r references}
 # Explicitly remind user: cite us and/or the various components of the pipeline!
@@ -596,4 +589,11 @@ citation("csaw")
 if (do_motif_analysis)
     citation("PWMEnrich")
 ## citation("LOLA")
+```
+
+## Session Info ##
+
+```{r sess_info}
+# Dump session info for versioning, debugging, CITATIONS (!), etc.
+sessionInfo()
 ```
