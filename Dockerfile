@@ -31,8 +31,9 @@ RUN apt-get update && apt-get install -y --force-yes \
 RUN mkdir /atacseeker
 
 ## Copy scripts & reference to atacseeker folder
-COPY atacseeker/scripts /atacseeker/scripts 
+COPY atacseeker/ext_tools /atacseeker/ext_tools 
 COPY atacseeker/reference /atacseeker/reference
+COPY atacseeker/scripts /atacseeker/scripts 
 
 ## Install R packages 
 RUN Rscript /atacseeker/scripts/install_packages.R
