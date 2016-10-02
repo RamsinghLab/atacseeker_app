@@ -13,6 +13,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 ## Installing required packages.
 RUN apt-get update && apt-get install -y --force-yes \
     bedtools \
+    bwa \
     libcurl4-gnutls-dev \
     libssh2-1-dev \
     libssl-dev \
@@ -21,6 +22,8 @@ RUN apt-get update && apt-get install -y --force-yes \
     python \
     r-base \
     r-base-dev \
+    samtools \
+    vcftools \
     wget \
     zlib1g-dev
 
@@ -38,13 +41,6 @@ RUN Rscript /atacseeker/scripts/install_packages.R
 RUN wget --directory-prefix=/tmp http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig
 RUN cp /tmp/bedGraphToBigWig /usr/local/bin && \
     chmod +x /usr/local/bin/bedGraphToBigWig
-
-## Install samtools v.<1.0
-RUN wget --directory-prefix=/tmp https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
-RUN tar -jxvf /tmp/samtools-0.1.19.tar.bz2 -C /tmp && \
-    cd /tmp/samtools-0.1.19 && make && \
-    cp /tmp/samtools-0.1.19/samtools /usr/local/bin && \
-    rm -rf /tmp/samtools-0.1.19.tar.bz2
 
 ## Install RStudio for pandoc libraries, required for rmarkdown
 ## RStudio is removed once pandoc has been copied to bin
