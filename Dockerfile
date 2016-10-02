@@ -2,7 +2,8 @@
 ## This Docker file builds an image for running the ATACseeker pipeline. 
 ##
 
-FROM ubuntu:14.04
+#FROM ubuntu:14.04
+FROM openjdk:7
 MAINTAINER Asif Zubair <asif.zubair@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -14,6 +15,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN apt-get update && apt-get install -y --force-yes \
     bedtools \
     bwa \
+    cmake \
+    git \
     libcurl4-gnutls-dev \
     libssh2-1-dev \
     libssl-dev \
@@ -22,7 +25,6 @@ RUN apt-get update && apt-get install -y --force-yes \
     python \
     r-base \
     r-base-dev \
-    samblaster \
     samtools \
     vcftools \
     wget \
@@ -36,13 +38,16 @@ COPY atacseeker/ext_tools /atacseeker/ext_tools
 COPY atacseeker/reference /atacseeker/reference
 COPY atacseeker/scripts /atacseeker/scripts 
 
-## Install R packages 
-RUN Rscript /atacseeker/scripts/install_packages.R
-
 ## Install bedGraphToBigWig
 RUN wget --directory-prefix=/tmp http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig
 RUN cp /tmp/bedGraphToBigWig /usr/local/bin && \
     chmod +x /usr/local/bin/bedGraphToBigWig
+
+## Install github packages
+RUN bash /atacseeker/scripts/install_git_packages.sh
+
+## Install R packages 
+RUN Rscript /atacseeker/scripts/install_packages.R
 
 ## Install RStudio for pandoc libraries, required for rmarkdown
 ## RStudio is removed once pandoc has been copied to bin
