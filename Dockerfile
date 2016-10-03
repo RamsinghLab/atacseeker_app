@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     r-base \
     r-base-dev \
     samtools \
+    software-properties-common \
     vcftools \
     wget \
     zlib1g-dev
@@ -45,6 +46,12 @@ RUN cp /tmp/bedGraphToBigWig /usr/local/bin && \
 
 ## Install github packages
 RUN bash /atacseeker/scripts/install_git_packages.sh
+
+## Install java
+RUN add-apt-repository ppa:webupd8team/java -y && \
+    apt-get update && \
+    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+    apt-get install -y oracle-java7-installer
 
 ## Install R packages 
 RUN Rscript /atacseeker/scripts/install_packages.R
