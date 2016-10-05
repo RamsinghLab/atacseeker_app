@@ -2,8 +2,8 @@
 ## This Docker file builds an image for running the ATACseeker pipeline. 
 ##
 
-#FROM ubuntu:14.04
-FROM openjdk:7
+FROM ubuntu:14.04
+#FROM openjdk:7
 MAINTAINER Asif Zubair <asif.zubair@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -25,7 +25,6 @@ RUN apt-get update && apt-get install -y --force-yes \
     python \
     r-base \
     r-base-dev \
-    samtools \
     software-properties-common \
     vcftools \
     wget \
@@ -62,3 +61,12 @@ RUN wget --directory-prefix=/tmp https://download1.rstudio.org/rstudio-0.99.486-
 RUN tar -zxvf /tmp/rstudio-0.99.486-amd64-debian.tar.gz -C /tmp && \
     cp /tmp/rstudio-0.99.486/bin/pandoc/* /bin && \
     rm -rf /tmp/rstudio*
+
+## Install samtools
+RUN wget --directory-prefix=/tmp https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2
+RUN tar -jxvf /tmp/samtools-1.3.1.tar.bz2 -C /tmp && \
+    cd /tmp/samtools-1.3.1 && \
+    make && \
+    make prefix=/usr/local install && \
+    cd /tmp && \
+    rm -rf /tmp/samtools-1.3.1*
