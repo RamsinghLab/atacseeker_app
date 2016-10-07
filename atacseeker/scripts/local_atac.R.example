@@ -2,10 +2,6 @@
 dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
 output_dir = ""
 
-## bam files
-control.files = 
-compare.files =
-
 ## control and compare labels
 control = "control"
 compare = "compare"
@@ -13,6 +9,10 @@ compare = "compare"
 ## sample names
 controlName =
 compareName =
+
+## bam files
+control.files = 
+compare.files =
 
 ## analysis flags
 do_mtdNA_analysis = F
