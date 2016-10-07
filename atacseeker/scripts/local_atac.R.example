@@ -1,0 +1,28 @@
+## data/output directories
+dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
+output_dir = ""
+
+## bam files
+control.files = 
+compare.files =
+
+## control and compare labels
+control = "control"
+compare = "compare"
+
+## sample names
+controlName =
+compareName =
+
+## analysis flags
+do_mtdNA_analysis = F
+compute_library_complexity = F
+do_QC = F
+generate_BigWigs = F
+do_motif_analysis = F
+
+## analysis options
+dedup = TRUE
+mapQ = 10
+win.width = 150
+fdr.cut.off = 0.05
