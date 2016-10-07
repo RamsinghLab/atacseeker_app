@@ -31,51 +31,47 @@ library(ATACseeker)
 
 ## Helper scripts
 source("atacseeker.R")
-source("parse_AppSession.R")
 ```
 
-```{r setup_out_scratch}
+```{r setup}
 ## Defining Output and Scratch directories.
-test = F
-app_session_name = gsub('/','-', app_session_name)
-base_dir = "/data/output/appresults"
-dump_dir = "/data/scratch"
-if(test){
-    base_dir = "/Users/asifzubair/projects/atacseq_counts/data/output/appresults"
-    dump_dir = "/Users/asifzubair/projects/atacseq_counts/data/scratch"
- ##   dedup = TRUE
- ##   mapQ = 10
- ##   win.width = 150
+local = F
+if (local){
+    source("local_atac.R")
+    dir.create(output_dir, recursive = TRUE)
+    cat(paste0("cp atacseeker.html", " '", output_dir, "'\n"), 
+            file = "atacseeker_helper.sh", append=TRUE)  
+} else {
+    source("parse_AppSession.R")
+    app_session_name = gsub('/','-', app_session_name)
+    base_dir = "/data/output/appresults"
+    dump_dir = "/data/scratch"
+    output_dir = file.path(base_dir, project_id, app_session_name)
+    dir.create(output_dir, recursive = TRUE)
+    cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
+            file = "atacseeker_helper.sh", append=TRUE)  
+
+    base_dir = "/data/input/appresults"
+    tmp <- get_bams(controlID, controlName)
+    control.files = tmp$group.in
+    tmp<- get_bams(compareID, compareName)
+    compare.files = tmp$group.in
 }
 
-output_dir = file.path(base_dir, project_id, app_session_name)
-dir.create(output_dir, recursive = TRUE)
-cat(paste0("cp /atacseeker/scripts/atacseeker.html", " '", output_dir, "'\n"), 
-        file = "atacseeker_helper.sh", append=TRUE)  
-```
-
-
-```{r setup_var_input}
 ## Setting up Control and Compare variables and Input directory.
 control.label = control
 compare.label = comparison
+
 control = controlName
 compare = compareName
 samples = c(control, compare)
+
 num_control = length(control)
 num_compare = length(compare)
 num_samples = length(samples)
 
-base_dir = "/data/input/appresults"
-if(test){
-    base_dir = "/Users/asifzubair/projects/atacseq_counts/data/input/appresults"
-}
-
-tmp <- get_bams(controlID, controlName)
-control.files = tmp$group.in
-tmp<- get_bams(compareID, compareName)
-compare.files = tmp$group.in
 bam.files = c(control.files, compare.files)
+
 margin = max(sapply(samples, nchar))
 mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ```
