@@ -250,6 +250,7 @@ __Note:__ Rafa had a good [post](http://simplystatistics.org/2014/10/13/as-an-ap
 
 ## Docker ##
 
+Installing java in Docker image can be a little tricky, but I followed instructions [here](https://www.ivankrizsan.se/2015/08/08/creating-a-docker-image-with-ubuntu-and-java) and they seem to work. 
 
 ## Native App ##
 

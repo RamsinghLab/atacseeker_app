@@ -8,13 +8,13 @@ fi
 bam_file=$1
 output_dir=$2
 reference=$3
+externaltoolsfolder="../ext_tools"
 
 dir_name=`dirname ${bam_file}`
 bam_name=`basename ${bam_file} .bam`
 work_dir=${output_dir}/${bam_name}
 mkdir -p ${work_dir}
 
-externaltoolsfolder="../../data/ext_tools"
 
 echo "**************************"
 echo "Working with sample ..." ${bam_name}

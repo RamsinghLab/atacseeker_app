@@ -84,7 +84,7 @@ mars = c(max(margin / 1.8, 5), 4, 4, 0.9) + 0.1
 ## Mitochondrial assembly
 if (do_mtdNA_analysis){
     mt_dir = file.path(dump_dir, "mtDNA_variants")
-    reference = "../../data/reference/chrM.fa"
+    reference = "../reference/chrM.fa"
     dir.create(mt_dir, recursive = TRUE)
     for (i in seq(num_samples)){
         cat("bash extract_align_mt_reads.sh", bam.files[i], mt_dir, reference, "\n",
