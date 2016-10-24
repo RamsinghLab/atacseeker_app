@@ -206,7 +206,7 @@ if (do_QC){
         # use mcmapply(), but only if we haven't already...
         if (!file.exists("controlQC.rds")) {
             controlQC <- mapply(getQC, name=control, pe.bam=control.files, SIMPLIFY=F)
-            if(test)
+            if(local)
                 saveRDS(controlQC, "controlQC.rds")
         } else { 
             controlQC <- readRDS("controlQC.rds")
@@ -214,7 +214,7 @@ if (do_QC){
 
         if (!file.exists("compareQC.rds")) {
             compareQC <- mapply(getQC, name=compare, pe.bam=compare.files, SIMPLIFY=F)
-            if(test)
+            if(local)
                 saveRDS(compareQC, file="compareQC.rds")  
         } else { 
             compareQC <- readRDS("compareQC.rds")
