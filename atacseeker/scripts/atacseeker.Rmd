@@ -5,7 +5,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
 
-```{r, include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
+```{r knitr, include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = F, warning = F, message = F, comment = "")
 ```
