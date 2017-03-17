@@ -110,23 +110,23 @@ ENV/
 
 ## user files ##
 ################
-*.swp
-*.bam
-*.bai*
-*.fastq
-*.fa
-hg19.*
-chr22*
-*.rds
-*.gz
-*.html
 
 .DS_Store
 AppSession.json
 literature/
 nativeApp/assets/
 
+*.gz
+*.html
+*.qsub
+*.rds
+*.swp
 
-
-
+*.bam
+*.bai*
 *.bw
+chr22*
+*.fa
+*.fastq
+local_atac*.R
+hg19.*
